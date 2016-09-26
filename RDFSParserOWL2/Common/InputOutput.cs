@@ -17,6 +17,7 @@ namespace RDFSParserOWL2.Common
 		   //private const string pathToWordsToSkip = @"../../Resources/WordsToSkip.xml";
 		public static  string resourceFilepath = @"../../Resources/";
 		public static  string owlGeneratedFilePath = @"../../Resources/OWL2Generated/";
+        public static string importsFilename = "Imports.xml";
 
 		//public static const string entsoFilepath = @"";
 
@@ -38,12 +39,21 @@ namespace RDFSParserOWL2.Common
 		}
 
 
-		//public static Profile GenerateEntsoProfile() 
-		//{
-		//	OWL2Generator 
-		
-		//}
-
+        /// <summary>
+        /// Method for loading import namespaces from configuration file
+        /// </summary>
+        /// <returns>List of loaded namespaces </returns>
+        public static List<Namespace> LoadImportNamespaces()
+        {
+            XMLNamespaceReaderHandler reader = new XMLNamespaceReaderHandler();
+            bool succes;
+            TimeSpan ts;
+            using (FileStream fs = new FileStream(resourceFilepath+importsFilename, FileMode.Open))
+            {
+                XMLParser.DoParse(reader, fs, null, out succes, out ts);
+            }
+            return reader.Namespaces;
+        }
 
 	}
 }

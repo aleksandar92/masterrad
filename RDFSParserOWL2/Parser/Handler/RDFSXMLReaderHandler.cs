@@ -196,7 +196,7 @@ namespace RDFSParserOWL2.Parser
 								}
 								else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
 								{
-									cs.URI = str;
+                                    cs.URI = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
 								}
 							}
 							AddProfileElement(ProfileElementTypes.Class, cs);
@@ -217,7 +217,7 @@ namespace RDFSParserOWL2.Parser
 								}
 								else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
 								{
-									pr.URI = str;
+                                    pr.URI = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
 								}
 								else if ((pp.Key.Equals(rdfType)) && (str != null))
 								{

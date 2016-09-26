@@ -31,9 +31,9 @@ namespace RDFSParserOWL2.Converter
         {
             rdfsParser.ParseProfile();
             Profile profile = rdfsParser.Profile;
-			Profile entsoProfile = InputOutput.LoadEntsoProfile();
-			profile.ProcessEntsoeElements(entsoProfile);
-			generator = new OWL2Generator(entsoProfile);
+			//Profile entsoProfile = InputOutput.LoadEntsoProfile();
+			//profile.ProcessEntsoeElements(entsoProfile);
+			generator = new OWL2Generator(profile);
 
             //generator = new OWL2Generator(profile);
             generator.GenerateProfile();

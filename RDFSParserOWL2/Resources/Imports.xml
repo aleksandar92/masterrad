@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<namespaces>
+  <namespace prefix="core" >http://www.semanticweb.org/core </namespace>
+  <namespace prefix="entsoe" >http://www.semanticweb.org/entsoe </namespace>
+</namespaces>

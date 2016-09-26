@@ -124,7 +124,9 @@
   <ItemGroup>
     <Resource Include="Resources\WordsToSkip.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Imports.xml" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\StereotypesToSkip.xml" />
   </ItemGroup>

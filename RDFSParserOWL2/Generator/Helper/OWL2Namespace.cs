@@ -47,12 +47,22 @@ namespace RDFSParserOWL2.Generator.Helper
         public static string owlOnDataRange = owlPrefix + StringManipulationManager.SeparatorColon + OnDataRange;
         public static string owlOntology = "Ontology";
 
+        public static string Import = "imports";
+
+        public static string owlImport =owlPrefix + StringManipulationManager.SeparatorColon + Import;
+
 		public static string multiplcityNs = "http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:";
       
 
         public static string nonNegativeInteger = "nonNegativeInteger";
 
 		public static string Entsoe = "Entsoe";
+
+        public static string Description = "Description";
+
+        public static string EqProperty = "equivalentProperty";
+
+        public static string owlEqProperty = owlPrefix + StringManipulationManager.SeparatorColon + EqProperty;
 
 
         #region helpers
