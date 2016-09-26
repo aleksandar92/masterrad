@@ -5,7 +5,7 @@
   <namespace prefix="gl" ns="xmlns" generate="true" relative="true"> </namespace> 
   <namespace prefix="rdf" ns="xmlns"  > http://www.w3.org/1999/02/22-rdf-syntax-ns# </namespace>
   <namespace prefix="owl" ns="xmlns"> http://www.w3.org/2002/07/owl# </namespace>
-
+    <namespace prefix="entsoe" ns="xmlns"> http://entsoe.eu/CIM/SchemaExtension/3/1# </namespace>
   <namespace prefix="xsd"  ns="xmlns"> http://www.w3.org/2001/XMLSchema# </namespace>
   <namespace prefix="rdfs" ns="xmlns"> http://www.w3.org/2000/01/rdf-schema# </namespace>
 </namespaces>

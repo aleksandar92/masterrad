@@ -250,43 +250,19 @@ namespace RDFSParserOWL2.Model
 		}
 
 
-        public string ProcessMultiplicityToString(string card)
+        public static string ProcessOwlMultiplicityToString(string card)
         {
             string result=string.Empty;
             if (card != null && card.Equals(OWL2Namespace.AllValuesFrom))
-                result = "0..n";
-            else if (card != null && card.Equals(OWL2Namespace.owlMinQualified))
-                result = "1..n";
-            else if (card != null && card.Equals(OWL2Namespace.owlMaxQualified))
-                result="0..1";
-            else if (card != null && card.Equals(OWL2Namespace.AllValuesFrom))
-                result="1..1";
+                result = OWL2Namespace.multiplcityNs+"0..n";
+            else if (card != null && card.Equals(OWL2Namespace.MinQualified))
+				result = OWL2Namespace.multiplcityNs + "1..n";
+            else if (card != null && card.Equals(OWL2Namespace.MaxQualified))
+				result = OWL2Namespace.multiplcityNs + "0..1";
+            else if (card != null && card.Equals(OWL2Namespace.Qualified))
+				result = OWL2Namespace.multiplcityNs + "1..1";
 
             return result;
-            //CardinaltyType result = CardinaltyType.UNKNOWN;
-            //if (multiplicityAsString != null && multiplicityAsString != null)
-            //{
-            //    string cardinality = StringManipulationManager.ExtractShortestName(multiplicityAsString, StringManipulationManager.SeparatorColon);
-            //    if (cardinality.Equals("0..1"))
-            //    {
-            //        result = CardinaltyType.ZEROTOONE;
-            //    }
-            //    else if (cardinality.Equals("1..1") || cardinality.Equals("1"))
-            //    {
-            //        result = CardinaltyType.ONE;
-            //    }
-            //    else if (cardinality.Equals("1..n"))
-            //    {
-            //        result = CardinaltyType.ONETOMANY;
-            //    }
-            //    else if (cardinality.Equals("0..n"))
-            //    {
-            //        result = CardinaltyType.ZEROTOMANY;
-            //    }
-
-            //}
-
-            //return result;
 
         }
 

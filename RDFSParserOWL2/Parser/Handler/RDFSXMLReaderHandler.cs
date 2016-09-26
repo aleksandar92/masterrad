@@ -1,4 +1,5 @@
-﻿using RDFSParserOWL2.Manager;
+﻿using RDFSParserOWL2.Generator.Helper;
+using RDFSParserOWL2.Manager;
 using RDFSParserOWL2.Model;
 using RDFSParserOWL2.Parser.Handler;
 using System;
@@ -28,11 +29,16 @@ namespace RDFSParserOWL2.Parser
 		private const string cimsIsAggregate = "cims:isAggregate"; // text
 
 
+		private bool isEntso;
+
+
 
 
 		#endregion
 
 		#region IHandler Members
+
+
         
         override
 		public void StartDocument(string filePath)
@@ -243,7 +249,15 @@ namespace RDFSParserOWL2.Parser
 								{
 									pr.Range = str;
 								}
+
+
 							}
+
+							foreach (string s in stereotypes)
+							{
+								pr.AddStereotype(s);
+							}
+
 							AddProfileElement(ProfileElementTypes.Property, pr);
 						}
 						else
@@ -275,8 +289,11 @@ namespace RDFSParserOWL2.Parser
 							//}
 							//AddProfileElement(ProfileElementTypes.Unknown, en);
 						}
+
 						prop.Clear();
 						values.Clear();
+						isEntso = false;
+						stereotypes.Clear();
 
 					}
 				}
@@ -338,6 +355,38 @@ namespace RDFSParserOWL2.Parser
 						content = string.Empty;
 					}
 				}
+				else if (qName.Equals(cimsIsAggregate)) //// end of isAggregate subelement
+				{
+					content = content.Trim();
+					if (!string.IsNullOrEmpty(content))
+					{
+						bool paresedValue;
+
+						//novo
+						string ls;
+						prop.TryGetValue(qName, out ls);
+						if (ls == null)
+						{
+							if (bool.TryParse((string)content.Clone(), out paresedValue))
+							{
+								ls = paresedValue.ToString();
+							}
+							prop.Add(qName, ls);
+						}
+						content = string.Empty;
+					}
+				}else if(qName.Equals(cimsStereotype)) 
+				{
+					content = content.Trim();
+					if (!string.IsNullOrEmpty(content))
+					{
+						if (content.Equals(OWL2Namespace.Entsoe))
+						{
+							isEntso = true;
+							stereotypes.Add(content);
+						}
+					}
+				}
 			}
 		}
 
@@ -372,7 +421,7 @@ namespace RDFSParserOWL2.Parser
 
 		#endregion
 
-
+		
 
 
 	}

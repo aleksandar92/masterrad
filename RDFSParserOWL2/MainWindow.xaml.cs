@@ -61,7 +61,11 @@ namespace RDFSParserOWL2
                 bool su;
                 TimeSpan ts;
                 XMLParser.DoParse(handler,fs,txtFile.Text,out su,out ts);
+				
             }
+
+			OWL2Generator generator = new OWL2Generator(handler.Profile);
+			generator.GenerateProfile();
             //ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(txtFile.Text);
             //converter.Convert();
             MessageBox.Show("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno");

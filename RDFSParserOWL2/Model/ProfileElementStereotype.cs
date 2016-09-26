@@ -18,6 +18,7 @@ namespace RDFSParserOWL2.Model
 	/// </summary>
 	public class ProfileElementStereotype
 	{
+
 		/// <summary> "concrete" stereotype </summary>
 		public const string StereotypeConcrete = "concrete";
 		/// <summary> "compound" stereotype </summary>
@@ -34,6 +35,8 @@ namespace RDFSParserOWL2.Model
 		public const string StereotypeAggregateOf = "aggregateOf";
 		/// <summary> "compositeOf" stereotype </summary>
 		public const string StereotypeCompositeOf = "compositeOf";
+
+		public const string StereotypeEntsoe = "Entsoe";
 
 		private int code;
 		private string name;

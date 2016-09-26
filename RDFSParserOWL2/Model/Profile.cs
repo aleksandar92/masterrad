@@ -1,4 +1,5 @@
-﻿using RDFSParserOWL2.Manager;
+﻿using RDFSParserOWL2.Generator.Helper;
+using RDFSParserOWL2.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,7 @@ namespace RDFSParserOWL2.Model
 			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeAggregateOf));
 			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeOfAggregate));
 			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeCompositeOf));
+			StereotypeList.Add(new ProfileElementStereotype(index++,ProfileElementStereotype.StereotypeEntsoe));
 		}
 
 
@@ -290,10 +292,17 @@ namespace RDFSParserOWL2.Model
         public static List<ProfileElement> RepackProperties(List<ProfileElement> elements)
         {
             List<Property> properties = elements.Cast<Property>().ToList();
-            List<Property> datatypeProperties = properties.Where(x => x.IsObjectProperty() != true).ToList();
-            List<Property> objectProperties = properties.Where(x => x.IsObjectProperty() == true).ToList();
-            objectProperties.AddRange(datatypeProperties);
-            return objectProperties.Cast<ProfileElement>().ToList();
+
+
+			List<Property> objectProperties = properties.Where(x => x.IsObjectProperty() == true && !x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+			List<Property> entsoObjectProperties= properties.Where(x => x.IsObjectProperty() && x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+            List<Property> datatypeProperties = properties.Where(x => x.IsObjectProperty() != true && !x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+			List<Property> entsoDatatypesProperties = properties.Where(x =>x.IsObjectProperty() != true &&  x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+
+			entsoObjectProperties.AddRange(objectProperties);
+			entsoObjectProperties.AddRange(entsoDatatypesProperties);
+			entsoObjectProperties.AddRange(datatypeProperties);
+            return entsoObjectProperties.Cast<ProfileElement>().ToList();
         }
 
         public void RemovePropertiesWithStereotype(string stereotype) 
@@ -309,6 +318,86 @@ namespace RDFSParserOWL2.Model
             profileMap[ProfileElementTypes.Class] = classes.Where(x => !x.HasStereotype(stereotype)).Cast<ProfileElement>().ToList();
 
         }
+
+
+
+		public void ProcessEntsoeElements(Profile entsoProfile) 
+		{	
+			if(entsoProfile!=null ) 
+			{
+
+				//List<Class> entsoClasses = profileMap[ProfileElementTypes.Class].Cast<Class>().Where(x=>x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+				//List<Class> epClasses = entsoProfile[ProfileElementTypes.Class].Cast<Class>().ToString();
+				//foreach(Class cls in entsoClasses) 
+				//{
+					
+
+				//}
+				foreach(ProfileElementTypes type in profileMap.Keys) 
+				{
+						switch(type)
+						{
+							case ProfileElementTypes.Class:
+								//List<Class> 
+								break;
+
+							case ProfileElementTypes.Property:
+								List<Property> propertiesToAdd=new List<Property>();
+								List<Property> properties=null;
+								List<Property> entsoProp = null;
+
+								if (entsoProfile.ProfileMap.ContainsKey(type)) 
+								{
+									properties = entsoProfile.ProfileMap[type].Cast<Property>().ToList(); 									
+								}
+								
+								if(profileMap.ContainsKey(type)) 
+								{
+									entsoProp = profileMap[type].Cast<Property>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+								}
+
+								if (properties == null && entsoProp != null)
+								{
+									propertiesToAdd.AddRange(entsoProp);
+									properties = new List<Property>();
+									//entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
+								}
+								else if (properties != null && entsoProp != null)
+								{
+									foreach (Property p in entsoProp)
+									{
+										if (!properties.Contains(p))
+											propertiesToAdd.Add(p);
+									}
+
+								}
+								else 
+								{
+									continue;						
+								}
+
+
+
+								properties.AddRange(propertiesToAdd);
+								entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
+
+								break;
+
+
+						}
+				}
+				//List<Property> entsoProperties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
+
+			
+			}
+
+			
+			
+		}
+
+
+
+
 
 		public List<ProfileElement> GetAllProfileElementsOfType(ProfileElementTypes type)
 		{

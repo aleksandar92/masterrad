@@ -62,6 +62,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Common\InputOutput.cs" />
     <Compile Include="Converter\ConverterRDFSToOWL2.cs" />
     <Compile Include="Generator\Helper\OWL2Namespace.cs" />
     <Compile Include="Generator\OWL2Generator.cs" />
@@ -110,6 +111,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\OWL2Generated\entsoe.owl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -122,9 +124,7 @@
   <ItemGroup>
     <Resource Include="Resources\WordsToSkip.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\OWL2Generated\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\StereotypesToSkip.xml" />
   </ItemGroup>

@@ -317,6 +317,9 @@ namespace RDFSParserOWL2.Model
 
         //}
 
+
+		
+
 		#endregion Class specifics
 	}
 }

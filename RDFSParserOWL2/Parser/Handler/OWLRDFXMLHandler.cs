@@ -164,13 +164,13 @@ namespace RDFSParserOWL2.Parser.Handler
                                 //}
                                 else if ((pp.Key.Contains(rdfsSubClassOf)) && (str != null))
                                 {
-                                    cs.SubClassOf = str;
+									cs.SubClassOf = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
                                 }
                                 else if ((pp.Key.Equals(rdfType)) && (str != null))
                                 {
                                     cs.Type = str;
                                 }
-                                else if ((pp.Key.Equals(OWL2Namespace.owlPrefix + OWL2Namespace.Class)) && (str != null))
+                                else if ((pp.Key.Equals(OWL2Namespace.owlClass)) && (str != null))
                                 {
                                     cs.URI = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
                                 }
@@ -202,7 +202,7 @@ namespace RDFSParserOWL2.Parser.Handler
                                 }
                                 else if ((pp.Key.Equals(rdfsDomain)) && (str != null))
                                 {
-                                    pr.Domain = str;
+									pr.Domain = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
                                     AddBelongingInformation(pr, pr.Domain);
                                 }
                                 //else if ((pp.Key.Contains(cimsStereotype)) && (str != null))
@@ -225,9 +225,9 @@ namespace RDFSParserOWL2.Parser.Handler
                                 else if ((pp.Key.Equals(rdfsRange)) && (str != null))
                                 {
                                     if (localName.Equals(OWL2Namespace.DatatypeProperty))
-                                        pr.DataType = str;
+										pr.DataType = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
                                     else
-                                        pr.Range = str;
+										pr.Range = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
                                 }
                             }
                             AddProfileElement(ProfileElementTypes.Property, pr);
@@ -263,6 +263,7 @@ namespace RDFSParserOWL2.Parser.Handler
                         }
                         prop.Clear();
                         values.Clear();
+						
 
                     }
                 }
@@ -290,11 +291,16 @@ namespace RDFSParserOWL2.Parser.Handler
                     if (prop != null)
                     {
                         string onProperty, cardinality;
-                        prop.TryGetValue(OWL2Namespace.OnProperty, out onProperty);
+                        prop.TryGetValue(OWL2Namespace.owlOnProperty, out onProperty);
                         cardinality = GetCardinality();
                         if (onProperty != null && cardinality != null)
                         {
-                            if (cardinality.Equals(OWL2Namespace.owlMaxQualified) || cardinality.Equals(OWL2Namespace.owlMinQualified) || cardinality.Equals(OWL2Namespace.owlQualified))
+							if (prop.ContainsKey(OWL2Namespace.owlOnProperty)) 
+							{
+								prop.Remove(OWL2Namespace.owlOnProperty);
+							}
+
+                            if (cardinality.Equals(OWL2Namespace.owlMaxQualified) || cardinality.Equals(OWL2Namespace.owlMinQualified) || cardinality.Equals(OWL2Namespace.owlQualified) )
                             {
                                 if (prop.ContainsKey(OWL2Namespace.owlOnDataRange))
                                     prop.Remove(OWL2Namespace.owlOnDataRange);
@@ -384,6 +390,8 @@ namespace RDFSParserOWL2.Parser.Handler
             if (profile != null)
             {
                 profile.ProfileMap = allByType;
+				ConvertCardinality();
+				res.Clear();
                 ProcessProfile();
             }
         }
@@ -395,27 +403,52 @@ namespace RDFSParserOWL2.Parser.Handler
 
         private string GetCardinality()
         {
-            string result = string.Empty, allValuesFrom = string.Empty, maxQualified = string.Empty, minQualified = string.Empty, qualified = string.Empty;
+			string result = string.Empty, allValuesFrom = string.Empty, maxQualified = string.Empty, minQualified = string.Empty, qualified = string.Empty;
 
-            prop.TryGetValue(OWL2Namespace.owlAllValuesFrom, out allValuesFrom);
-            prop.TryGetValue(OWL2Namespace.owlMaxQualified, out maxQualified);
-            prop.TryGetValue(OWL2Namespace.owlMinQualified, out minQualified);
-            prop.TryGetValue(OWL2Namespace.owlQualified, out qualified);
 
-            if (allValuesFrom != null && allValuesFrom != string.Empty)
-                result = OWL2Namespace.AllValuesFrom;
-            else if (maxQualified != null && maxQualified != string.Empty)
-                result = OWL2Namespace.owlMaxQualified;
-            else if (minQualified != null && minQualified != string.Empty)
-                result = OWL2Namespace.owlMinQualified;
-            else if (qualified != null && qualified != string.Empty)
-                result = OWL2Namespace.owlQualified;
+			if (prop != null)
+			{
+				
+				prop.TryGetValue(OWL2Namespace.owlAllValuesFrom, out allValuesFrom);
+				prop.TryGetValue(OWL2Namespace.owlMaxQualified, out maxQualified);
+				prop.TryGetValue(OWL2Namespace.owlMinQualified, out minQualified);
+				prop.TryGetValue(OWL2Namespace.owlQualified, out qualified);
 
-            if (result != null && result != string.Empty && prop.ContainsKey(OWL2Namespace.owlPrefix + StringManipulationManager.SeparatorColon + result))
-                prop.Remove(OWL2Namespace.owlPrefix+StringManipulationManager.SeparatorColon+result);
+				if (allValuesFrom != null && allValuesFrom != string.Empty)
+					result = OWL2Namespace.AllValuesFrom;
+				else if (maxQualified != null && maxQualified != string.Empty)
+					result = OWL2Namespace.MaxQualified;
+				else if (minQualified != null && minQualified != string.Empty)
+					result = OWL2Namespace.MinQualified;
+				else if (qualified != null && qualified != string.Empty)
+					result = OWL2Namespace.Qualified;
 
+				if (result != null && result != string.Empty && prop.ContainsKey(OWL2Namespace.owlPrefix + StringManipulationManager.SeparatorColon + result))
+					prop.Remove(OWL2Namespace.owlPrefix + StringManipulationManager.SeparatorColon + result);
+
+			}
             return result;
         }
+
+		private void ConvertCardinality() 
+		{
+			
+
+			if(res!=null && allByType!=null && allByType.Keys.Contains(ProfileElementTypes.Property)) 
+			{
+				List<Property> properties =new List<Property>(allByType[ProfileElementTypes.Property].Cast<Property>().ToList());
+				
+				foreach(string ped in res.Keys) 
+				{
+					Property p= properties.Where(x=>x.URI.Equals(ped)).Single();
+					if (p != null)
+						p.MultiplicityAsString = Property.ProcessOwlMultiplicityToString(res[ped]);
+				}
+			
+			
+			}
+		
+		}
 
 
     }

@@ -82,6 +82,18 @@
         <rdfs:comment>The name is any free human readable and possibly non unique text naming the object.</rdfs:comment>
         <rdfs:label>name</rdfs:label>
     </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfilehttp://entsoe.eu/CIM/SchemaExtension/3/1#IdentifiedObject.energyIdentCodeEic">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+        <rdfs:comment>.</rdfs:comment>
+        <rdfs:label>energyIdentCodeEic</rdfs:label>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfilehttp://entsoe.eu/CIM/SchemaExtension/3/1#IdentifiedObject.shortName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+        <rdfs:comment>The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.</rdfs:comment>
+        <rdfs:label>shortName</rdfs:label>
+    </owl:DatatypeProperty>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
         <rdfs:subClassOf>
@@ -170,6 +182,20 @@
         <rdfs:label>Integer</rdfs:label>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfilehttp://entsoe.eu/CIM/SchemaExtension/3/1#IdentifiedObject.shortName" />
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfilehttp://entsoe.eu/CIM/SchemaExtension/3/1#IdentifiedObject.energyIdentCodeEic" />
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.name" />

@@ -1,4 +1,5 @@
-﻿using RDFSParserOWL2.Generator.Helper;
+﻿using RDFSParserOWL2.Common;
+using RDFSParserOWL2.Generator.Helper;
 using RDFSParserOWL2.Model;
 using RDFSParserOWL2.Parser;
 using RDFSParserOWL2.Parser.Handler;
@@ -27,6 +28,23 @@ namespace RDFSParserOWL2.Generator
         private List<string> words;
 
 
+
+		private Profile profileForGenerating;
+
+		public Profile ProfileForGenerating
+		{
+			get { ChangeOfProfile(); return profileForGenerating; }
+			set { profileForGenerating = value; }
+		}
+
+
+		private void ChangeOfProfile() 
+		{
+			GenerateNameForFile(profileForGenerating.FileName);
+			fileName = profileForGenerating.FileName;
+		}
+
+
         public string FileName
         {
             get { return fileName; }
@@ -52,6 +70,7 @@ namespace RDFSParserOWL2.Generator
         }
 
 
+
         public OWL2Generator(Profile profile)
         {
             LoadWordsToSkip();
@@ -59,6 +78,9 @@ namespace RDFSParserOWL2.Generator
             fileName = profile.FileName;
             GenerateNameForFile(fileName);
             GenerateNamespaces();
+			profileForGenerating = profile;
+			//entsoProfile = InputOutput.LoadEntsoProfile();
+
 
             BaseAddress = predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value;
             //GenerateProfile(null);
@@ -119,8 +141,9 @@ namespace RDFSParserOWL2.Generator
             }
         }
 
-        public void GenerateProfile(Model.Profile profile)
+        public void GenerateProfile()
         {
+			//profileForGenerating.ProcessEntsoeElements(entsoProfile);
             StringBuilder sb = new StringBuilder();
             sb.Append(path).Append(shortName).Append(".owl");
             XmlTextWriter xtw = new XmlTextWriter(sb.ToString(), null);
@@ -129,9 +152,9 @@ namespace RDFSParserOWL2.Generator
             XmlWriter writer = xtw;
             GenerateStartElement(ref writer);
             GenerateOntologyTag(ref writer);
-            foreach (ProfileElementTypes pet in profile.ProfileMap.Keys)
+            foreach (ProfileElementTypes pet in profileForGenerating.ProfileMap.Keys)
             {
-                foreach (ProfileElement pe in profile.ProfileMap[pet])
+                foreach (ProfileElement pe in profileForGenerating.ProfileMap[pet])
                 {
                     GenerateElement(pet, pe, ref writer);
                 }
@@ -234,15 +257,15 @@ namespace RDFSParserOWL2.Generator
 
                     if (ct == CardinaltyType.ZEROTOONE)
                     {
-                        qCardinality = OWL2Namespace.owlMaxQualified;
+                        qCardinality = OWL2Namespace.MaxQualified;
                     }
                     else if (ct == CardinaltyType.ONETOMANY)
                     {
-                        qCardinality = OWL2Namespace.owlMinQualified;
+                        qCardinality = OWL2Namespace.MinQualified;
                     }
                     else if (ct == CardinaltyType.ONE)
                     {
-                        qCardinality = OWL2Namespace.owlQualified;
+                        qCardinality = OWL2Namespace.Qualified;
                     }
 
                     writer.WriteStartElement(OWL2Namespace.owlPrefix, qCardinality, null);
@@ -253,13 +276,13 @@ namespace RDFSParserOWL2.Generator
 
                     if (property.IsObjectProperty())
                     {
-                        writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.owlOnClass, null);
+                        writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.OnClass, null);
                         writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + property.RangeAsObject.URI);
                         writer.WriteEndElement();
                     }
                     else
                     {
-                        writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.owlOnDataRange, null);
+                        writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.OnDataRange, null);
                         writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, xsd + property.ProcessDatatype());
                         writer.WriteEndElement();
                     }
@@ -332,7 +355,6 @@ namespace RDFSParserOWL2.Generator
             {
                 writer.WriteAttributeString(n.Ns, n.Prefix, null, n.Value);
             }
-
         }
 
 

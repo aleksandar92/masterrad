@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace RDFSParserOWL2.Parser.Handler
 {
-    abstract class  RDFXMLHandler:IHandler
-    {
-        protected const string rdfId = "rdf:ID";
+	abstract class RDFXMLHandler : IHandler
+	{
+		protected const string rdfId = "rdf:ID";
 		protected const string rdfType = "rdf:type";
 		protected const string rdfAbout = "rdf:about";
 		protected const string rdfResource = "rdf:resource";
 		protected const string rdfParseType = "rdf:parseType";
 
-        protected const string rdfProfileElement = "rdf:Description";
+		protected const string rdfProfileElement = "rdf:Description";
 		protected const string rdfPropertyElement = "rdf:Property";
 
 		protected const string rdfsNamespace = "rdfs:";
@@ -27,14 +27,14 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected const string rdfsDomain = "rdfs:domain";
 		protected const string rdfsSubClassOf = "rdfs:subClassOf";
 
-       
+
 		protected const string xmlBase = "xml:base";
 
 		protected const string xmlLang = "xml:lang";
 
 		protected const string separator = StringManipulationManager.SeparatorSharp;
 
-        protected string content = string.Empty; //// text content of element
+		protected string content = string.Empty; //// text content of element
 		protected Profile profile;
 		protected SortedDictionary<ProfileElementTypes, List<ProfileElement>> allByType;
 		//// helper map:  parent class uri,   properties
@@ -42,8 +42,14 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected Dictionary<string, Stack<ProfileElement>> belongingMap;
 		//private ProfileElement currentElement;
 
+
+		/// <summary>
+		/// stereotypes for element
+		/// </summary>
+		protected List<string> stereotypes;
+
 		//// for checking if document can't be processed as CIM-RDFS
-	
+
 		protected int checkedElementsCount = 0;
 		protected bool abort = false;
 
@@ -63,36 +69,37 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 		}
 
-        //public abstract void StartDocument(string filePath);
+		//public abstract void StartDocument(string filePath);
 
-        public virtual void StartDocument(string filePath)
+		public virtual void StartDocument(string filePath)
 		{
 			profile = new Profile();
 			profile.SourcePath = filePath;
+			stereotypes = new List<string>();
 			allByType = new SortedDictionary<ProfileElementTypes, List<ProfileElement>>();
 
 			checkedElementsCount = 0;
-			
+
 			abort = false;
 		}
 
-        public abstract void StartElement(string localName, string qName, SortedList<string, string> atts);
+		public abstract void StartElement(string localName, string qName, SortedList<string, string> atts);
 
-        public abstract  void EndElement(string localName, string qName);
+		public abstract void EndElement(string localName, string qName);
 
-        public abstract void StartPrefixMapping(string prefix, string uri);
+		public abstract void StartPrefixMapping(string prefix, string uri);
 
-        public abstract void Characters(string text);
+		public abstract void Characters(string text);
 
-        public abstract void EndDocument();
-
-
+		public abstract void EndDocument();
 
 
 
-        		#region Helper methods
 
-        
+
+		#region Helper methods
+
+
 		//novo
 		protected void AddProfileElement(ProfileElementTypes tp, ProfileElement el)
 		{
@@ -150,7 +157,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		}
 
 
-        protected  void ProcessProfile()
+		protected void ProcessProfile()
 		{
 			if (profile.ProfileMap != null)
 			{
@@ -191,30 +198,34 @@ namespace RDFSParserOWL2.Parser.Handler
 							}
 						case ProfileElementTypes.Class:
 							{
-								List<Class> list = profile.ProfileMap[type].Cast<Class>().ToList();
-								foreach (Class element in list)
+								if (profile.ProfileMap.ContainsKey(type))
 								{
-									if (element.SubClassOf != null)
-									{
-										Class uppclass = (Class)profile.FindProfileElementByUri(element.SubClassOf);
-										element.SubClassOfAsObject = uppclass;
 
-										if (uppclass != null)
+									List<Class> list = profile.ProfileMap[type].Cast<Class>().ToList();
+									foreach (Class element in list)
+									{
+										if (element.SubClassOf != null)
 										{
-											uppclass.AddToMySubclasses(element);
+											Class uppclass = (Class)profile.FindProfileElementByUri(element.SubClassOf);
+											element.SubClassOfAsObject = uppclass;
+
+											if (uppclass != null)
+											{
+												uppclass.AddToMySubclasses(element);
+											}
 										}
-									}
 
-									//// search for attributes of class and classCategory of class
-									if ((belongingMap != null) && (belongingMap.ContainsKey(element.URI)))
-									{
-										Stack<ProfileElement> stack = belongingMap[element.URI];
-										Property property;
-										while (stack.Count > 0)
+										//// search for attributes of class and classCategory of class
+										if ((belongingMap != null) && (belongingMap.ContainsKey(element.URI)))
 										{
-											property = (Property)stack.Pop();
-											element.AddToMyProperties(property);
-											property.DomainAsObject = element;
+											Stack<ProfileElement> stack = belongingMap[element.URI];
+											Property property;
+											while (stack.Count > 0)
+											{
+												property = (Property)stack.Pop();
+												element.AddToMyProperties(property);
+												property.DomainAsObject = element;
+											}
 										}
 									}
 								}
@@ -222,26 +233,30 @@ namespace RDFSParserOWL2.Parser.Handler
 							}
 						case ProfileElementTypes.Property:
 							{
-								List<Property> list = profile.ProfileMap[type].Cast<Property>().ToList();
-								foreach (Property element in list)
+								if (profile.ProfileMap.ContainsKey(type))
 								{
-									if (!element.IsPropertyDataTypeSimple)
+
+									List<Property> list = profile.ProfileMap[type].Cast<Property>().ToList();
+									foreach (Property element in list)
 									{
-										element.DataTypeAsComplexObject = profile.FindProfileElementByUri(element.DataType);
+										if (!element.IsPropertyDataTypeSimple)
+										{
+											element.DataTypeAsComplexObject = profile.FindProfileElementByUri(element.DataType);
+										}
+										if (!string.IsNullOrEmpty(element.Range))
+										{
+											element.RangeAsObject = profile.FindProfileElementByUri(element.Range);
+										}
+										//if (!string.IsNullOrEmpty(element.Name) && (Char.IsUpper(element.Name[0]))
+										//    && (!element.HasStereotype(ProfileElementStereotype.StereotypeByReference)))
+										//{
+										//    element.IsExpectedToContainLocalClass = true;
+										//    if (element.RangeAsObject != null)
+										//    {
+										//        element.RangeAsObject.IsExpectedAsLocal = true;
+										//    }
+										//}
 									}
-									if (!string.IsNullOrEmpty(element.Range))
-									{
-										element.RangeAsObject = profile.FindProfileElementByUri(element.Range);
-									}
-									//if (!string.IsNullOrEmpty(element.Name) && (Char.IsUpper(element.Name[0]))
-									//    && (!element.HasStereotype(ProfileElementStereotype.StereotypeByReference)))
-									//{
-									//    element.IsExpectedToContainLocalClass = true;
-									//    if (element.RangeAsObject != null)
-									//    {
-									//        element.RangeAsObject.IsExpectedAsLocal = true;
-									//    }
-									//}
 								}
 								break;
 							}
@@ -295,6 +310,8 @@ namespace RDFSParserOWL2.Parser.Handler
 						}
 					}
 				}
+
+				if (profile.ProfileMap.ContainsKey(ProfileElementTypes.Property))
 				profile.ProfileMap[ProfileElementTypes.Property] = Profile.RepackProperties(profile.ProfileMap[ProfileElementTypes.Property]);
 			}
 		}
@@ -307,8 +324,8 @@ namespace RDFSParserOWL2.Parser.Handler
 
 
 
- 
 
 
-    }
+
+	}
 }

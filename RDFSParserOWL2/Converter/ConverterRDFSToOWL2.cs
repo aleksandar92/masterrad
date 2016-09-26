@@ -1,4 +1,5 @@
-﻿using RDFSParserOWL2.Generator;
+﻿using RDFSParserOWL2.Common;
+using RDFSParserOWL2.Generator;
 using RDFSParserOWL2.Model;
 using RDFSParserOWL2.Parser;
 using System;
@@ -30,8 +31,12 @@ namespace RDFSParserOWL2.Converter
         {
             rdfsParser.ParseProfile();
             Profile profile = rdfsParser.Profile;
-            generator = new OWL2Generator(profile);
-            generator.GenerateProfile(profile);
+			Profile entsoProfile = InputOutput.LoadEntsoProfile();
+			profile.ProcessEntsoeElements(entsoProfile);
+			generator = new OWL2Generator(entsoProfile);
+
+            //generator = new OWL2Generator(profile);
+            generator.GenerateProfile();
         }
     }
 }

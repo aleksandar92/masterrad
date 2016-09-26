@@ -41,14 +41,18 @@ namespace RDFSParserOWL2.Generator.Helper
         public static string owlOnClass =owlPrefix + StringManipulationManager.SeparatorColon + OnClass ;
         public static string MinQualified = "minQualifiedCardinality";
         public static string owlMinQualified = owlPrefix + StringManipulationManager.SeparatorColon + MinQualified;
-        public static string owlQualified = "qualifiedCardinality";
+        public static string Qualified = "qualifiedCardinality";
+		public static string owlQualified = owlPrefix + StringManipulationManager.SeparatorColon + Qualified;
         public static string OnDataRange = "onDataRange";
         public static string owlOnDataRange = owlPrefix + StringManipulationManager.SeparatorColon + OnDataRange;
         public static string owlOntology = "Ontology";
+
+		public static string multiplcityNs = "http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:";
       
 
         public static string nonNegativeInteger = "nonNegativeInteger";
 
+		public static string Entsoe = "Entsoe";
 
 
         #region helpers
