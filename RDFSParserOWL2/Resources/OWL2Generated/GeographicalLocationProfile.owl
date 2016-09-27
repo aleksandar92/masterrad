@@ -44,7 +44,7 @@
         <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.energyIdentCodeEic" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.energyIdentCodeEic">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/core#IdentifiedObject" />
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>.</rdfs:comment>
         <rdfs:label>energyIdentCodeEic</rdfs:label>
@@ -53,7 +53,7 @@
         <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.shortName" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.shortName">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/core#IdentifiedObject" />
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.</rdfs:comment>
         <rdfs:label>shortName</rdfs:label>
@@ -71,12 +71,6 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
         <rdfs:comment>Zero-relative sequence number of this point within a series of points.</rdfs:comment>
         <rdfs:label>sequenceNumber</rdfs:label>
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint.xPosition">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-        <rdfs:comment>X axis position.</rdfs:comment>
-        <rdfs:label>xPosition</rdfs:label>
     </owl:DatatypeProperty>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint.yPosition">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint" />
@@ -185,10 +179,6 @@
         </rdfs:subClassOf>
         <rdfs:comment>Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.CoordinateSystem'. Use a single position point instance to desribe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).</rdfs:comment>
         <rdfs:label>PositionPoint</rdfs:label>
-    </owl:Class>
-    <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#Integer">
-        <rdfs:comment>An integer number. The range is unspecified and not limited.</rdfs:comment>
-        <rdfs:label>Integer</rdfs:label>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject">
         <rdfs:subClassOf>

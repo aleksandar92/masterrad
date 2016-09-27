@@ -31,14 +31,16 @@ namespace RDFSParserOWL2.Converter
         {
             rdfsParser.ParseProfile();
             Profile profile = rdfsParser.Profile;
+			profile.RemoveElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
 			Profile entsoProfile = InputOutput.LoadEntsoProfile();
+			
 			if (profile.ProcessEntsoeElements(entsoProfile))
 			{
 				entsoProfile.PopulateDomainAsObjectProperties();
 				generator = new OWL2Generator(entsoProfile);
 				generator.GenerateProfile();
-
 			}
+
 			generator = new OWL2Generator(profile);
             generator.GenerateProfile();
         }

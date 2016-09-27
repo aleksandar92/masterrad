@@ -29,7 +29,7 @@ namespace RDFSParserOWL2.Parser
 		private const string cimsIsAggregate = "cims:isAggregate"; // text
 
 
-		private bool isEntso;
+		//private bool isEntso;
 
 
 
@@ -200,10 +200,10 @@ namespace RDFSParserOWL2.Parser
 								}
 							}
 
-							//foreach (string s in stereotypes)
-							//{
-							//	cs.AddStereotype(s);
-							//}
+							foreach (string s in stereotypes)
+							{
+								cs.AddStereotype(s);
+							}
 
 							AddProfileElement(ProfileElementTypes.Class, cs);
 						}
@@ -253,7 +253,7 @@ namespace RDFSParserOWL2.Parser
 								}
 								else if ((pp.Key.Equals(rdfsRange)) && (str != null))
 								{
-									pr.Range = str;
+									pr.Range = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
 								}
 
 
@@ -298,7 +298,7 @@ namespace RDFSParserOWL2.Parser
 
 						prop.Clear();
 						values.Clear();
-						isEntso = false;
+						//isEntso = false;
 						stereotypes.Clear();
 
 					}
@@ -386,11 +386,11 @@ namespace RDFSParserOWL2.Parser
 					content = content.Trim();
 					if (!string.IsNullOrEmpty(content))
 					{
-						if (content.Equals(OWL2Namespace.Entsoe))
-						{
-							isEntso = true;
+						//if (content.Equals(OWL2Namespace.Entsoe))
+						//{
+							//isEntso = true;
 							stereotypes.Add(content);
-						}
+						//}
 					}
 				}
 			}
@@ -424,6 +424,9 @@ namespace RDFSParserOWL2.Parser
 				ProcessProfile();
 			}
 		}
+
+
+		
 
 		#endregion
 

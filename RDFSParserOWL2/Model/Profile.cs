@@ -48,6 +48,7 @@ namespace RDFSParserOWL2.Model
 			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeOfAggregate));
 			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeCompositeOf));
 			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeEntsoe));
+			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypePrimitive));
 		}
 
 
@@ -305,17 +306,40 @@ namespace RDFSParserOWL2.Model
 			return entsoObjectProperties.Cast<ProfileElement>().ToList();
 		}
 
-		public void RemovePropertiesWithStereotype(string stereotype)
+		private void RemovePropertiesWithStereotypes(List<string> stereotypes)
 		{
-			List<Property> properties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
-			profileMap[ProfileElementTypes.Property] = properties.Where(x => !x.HasStereotype(stereotype)).Cast<ProfileElement>().ToList();
+			List<Property> properties = null;
+			if (profileMap != null && profileMap.ContainsKey(ProfileElementTypes.Property))
+			{
+				properties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
+				foreach(string s in stereotypes) 
+				{
+					if(properties!=null)
+					properties = properties.Where(x => !x.HasStereotype(s)).ToList() ;
+				}
+
+				if (properties != null)
+					profileMap[ProfileElementTypes.Property] = properties.Cast<ProfileElement>().ToList();
+			}
 
 		}
 
-		public void RemoveClassesWithStereotype(string stereotype)
+		private void RemoveClassesWithStereotypes(List<string> stereotypes)
 		{
-			List<Class> classes = GetAllProfileElementsOfType(ProfileElementTypes.Class).Cast<Class>().ToList();
-			profileMap[ProfileElementTypes.Class] = classes.Where(x => !x.HasStereotype(stereotype)).Cast<ProfileElement>().ToList();
+			if (profileMap != null && profileMap.ContainsKey(ProfileElementTypes.Class))
+			{
+				List<Class> classes = GetAllProfileElementsOfType(ProfileElementTypes.Class).Cast<Class>().ToList();
+				foreach (string s in stereotypes)
+				{
+					if (classes != null)
+						classes = classes.Where(x => !x.HasStereotype(s)).ToList();
+				}
+
+				if (classes != null)
+					profileMap[ProfileElementTypes.Class] = classes.Cast<ProfileElement>().ToList();
+
+
+			}
 
 		}
 
@@ -390,7 +414,7 @@ namespace RDFSParserOWL2.Model
 							break;
 
 						case ProfileElementTypes.Property:
-							List<Property> propertiesToAdd=new List<Property>();
+							List<Property> propertiesToAdd = new List<Property>();
 							List<Property> properties = null;
 							List<Property> entsoProp = null;
 
@@ -403,7 +427,6 @@ namespace RDFSParserOWL2.Model
 							{
 								entsoProp = profileMap[type].Cast<Property>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
 							}
-
 
 							//DifferenceBeetwenListOfProperties(ref properties, entsoProp,out propertiesToAdd);
 							if (properties == null && entsoProp != null)
@@ -426,14 +449,12 @@ namespace RDFSParserOWL2.Model
 								continue;
 							}
 
-
-
 							//if (properties != null)
 							//{
-								properties.AddRange(propertiesToAdd);
-								entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
-								if (propertiesToAdd.Count > 0)
-									changed = true;
+							properties.AddRange(propertiesToAdd);
+							entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
+							if (propertiesToAdd.Count > 0)
+								changed = true;
 
 							//}
 							break;
@@ -708,6 +729,19 @@ namespace RDFSParserOWL2.Model
 			}
 
 
+		}
+
+		/// <summary>
+		/// Remove lements with certain stereotypes
+		/// </summary>
+		/// <param name="stereotypes"> Steroetypes to be removed </param>
+		public void RemoveElementsWithStereotypes(List<string> stereotypes)
+		{
+			if (profileMap != null && stereotypes != null)
+			{
+				RemoveClassesWithStereotypes(stereotypes);
+				RemovePropertiesWithStereotypes(stereotypes);
+			}
 		}
 
 

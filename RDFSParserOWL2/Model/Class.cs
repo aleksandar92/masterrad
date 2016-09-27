@@ -185,6 +185,12 @@ namespace RDFSParserOWL2.Model
 		}
 
 
+
+		/// <summary>
+		/// Method for checking if class has certain  stereotype
+		/// </summary>
+		/// <param name="stereotypeName">Stereotype for checking existence </param>
+		/// <returns> True if class has sterotype otherwise false </returns>
         public bool HasStereotype(string stereotypeName)
         {
             bool hasStereotype = false;

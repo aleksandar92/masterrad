@@ -16,7 +16,7 @@ namespace RDFSParserOWL2.Model
 
 
 		public ComplexTag() 
-		{
+		{                                        
 			attributes = new Dictionary<string, string>();
             value = String.Empty;
 		}

@@ -18,6 +18,9 @@ namespace RDFSParserOWL2.Common
 		public static  string resourceFilepath = @"../../Resources/";
 		public static  string owlGeneratedFilePath = @"../../Resources/OWL2Generated/";
         public static string importsFilename = "Imports.xml";
+		public static string stereotypeFilename = "StereotypesToSkip.xml";
+		private const string filenameWordsToSkip = "WordsToSkip.xml";
+		private const string filenameNamespaces = "DefaultNamespaces.xml";
 
 		//public static const string entsoFilepath = @"";
 
@@ -54,6 +57,51 @@ namespace RDFSParserOWL2.Common
             }
             return reader.Namespaces;
         }
+
+		/// <summary>
+		/// Method for loading stereotypes to skip from configuration file
+		/// </summary>
+		/// <returns>List of stereotypes from file  </returns>
+		public static List<string> LoadStereotypesToSkip() 
+		{
+			WordsXMLHandler reader = new WordsXMLHandler();
+			bool succes;
+			TimeSpan ts;
+			using (FileStream fs = new FileStream(resourceFilepath +stereotypeFilename, FileMode.Open))
+			{
+				XMLParser.DoParse(reader, fs, null, out succes, out ts);
+			}
+			return reader.Words;
+
+		}
+
+		/// <summary>
+		/// Method for loading words to skip from configuration file
+		/// </summary>
+		/// <returns>List of words from file</returns>
+		public  static List<string> LoadWordsToSkip()
+		{
+			WordsXMLHandler reader = new WordsXMLHandler();
+			bool succes;
+			TimeSpan ts;
+			using (FileStream fs = new FileStream(resourceFilepath+filenameWordsToSkip, FileMode.Open))
+			{
+				XMLParser.DoParse(reader, fs, null, out succes, out ts);
+			}
+			return reader.Words;
+		}
+
+		public static List<Namespace> LoadPredefinedNamespaces()
+		{
+			XMLNamespaceReaderHandler reader = new XMLNamespaceReaderHandler();
+			bool succes;
+			TimeSpan ts;
+			using (FileStream fs = new FileStream(resourceFilepath + filenameNamespaces, FileMode.Open))
+			{
+				XMLParser.DoParse(reader, fs, null, out succes, out ts);
+			}
+			return reader.Namespaces;
+		}
 
 	}
 }

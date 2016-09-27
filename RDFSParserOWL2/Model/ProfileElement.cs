@@ -67,12 +67,16 @@ namespace RDFSParserOWL2.Model
 		protected ComplexTag label;
 		protected ComplexTag comment;
 
+		//protected Dictionary<string,string> label;
+		//protected Dictionary<string,string> comment;
 
 
 		protected string multiplicityAsString = "M:0..1";
 
 		public ProfileElement()
 		{
+			//label = new Dictionary<string, string>();
+			//comment = new Dictionary<string, string>();
 			label = new ComplexTag();
 			comment = new ComplexTag();
 		}
@@ -158,6 +162,12 @@ namespace RDFSParserOWL2.Model
 		/// <summary>
 		/// Gets and sets the label of profile element.
 		/// </summary>
+		//public Dictionary<string, string> Label 
+		//{
+		//	get { return label; }
+		//	set { label = value; }
+		
+		//}
 		public ComplexTag Label
 		{
 			get { return label; }
@@ -180,6 +190,13 @@ namespace RDFSParserOWL2.Model
 		/// gets and sets the comment atached to the profile element.
 		/// </summary>
 		/// 
+		//public Dictionary<string, string> Comment
+		//{
+		//	get { return comment; }
+		//	set { comment = value; }
+
+		//}
+
 		public ComplexTag Comment
 		{
 			get { return comment; }
@@ -261,7 +278,6 @@ namespace RDFSParserOWL2.Model
 				result = OWL2Namespace.multiplcityNs + "0..1";
             else if (card != null && card.Equals(OWL2Namespace.Qualified))
 				result = OWL2Namespace.multiplcityNs + "1..1";
-
             return result;
 
         }

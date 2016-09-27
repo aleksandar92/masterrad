@@ -1,4 +1,5 @@
-﻿using RDFSParserOWL2.Manager;
+﻿using RDFSParserOWL2.Generator.Helper;
+using RDFSParserOWL2.Manager;
 using RDFSParserOWL2.Model;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected const string rdfsDomain = "rdfs:domain";
 		protected const string rdfsSubClassOf = "rdfs:subClassOf";
 
-		protected  Dictionary<string,Dictionary<string,string>> commentsAndLabels;
+		protected Dictionary<string, Dictionary<string, string>> commentsAndLabels;
 
 		protected const string xmlBase = "xml:base";
 
@@ -44,7 +45,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		//private ProfileElement currentElement;
 
 
-		
+
 
 
 		/// <summary>
@@ -96,10 +97,6 @@ namespace RDFSParserOWL2.Parser.Handler
 		public abstract void Characters(string text);
 
 		public abstract void EndDocument();
-
-
-
-
 
 		#region Helper methods
 
@@ -316,7 +313,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				}
 
 				if (profile.ProfileMap.ContainsKey(ProfileElementTypes.Property))
-				profile.ProfileMap[ProfileElementTypes.Property] = Profile.RepackProperties(profile.ProfileMap[ProfileElementTypes.Property]);
+					profile.ProfileMap[ProfileElementTypes.Property] = Profile.RepackProperties(profile.ProfileMap[ProfileElementTypes.Property]);
 			}
 		}
 
@@ -326,13 +323,42 @@ namespace RDFSParserOWL2.Parser.Handler
 		/// <param name="key">First key repesents type of content ,comment or label  </param>
 		/// <param name="attribute"> Attribute id of content </param>
 		/// <param name="content">Content of attribute </param>
-		protected void  AddToCommentsAndLabels(string key,string attribute,string content) 
+		protected void AddToCommentsAndLabels(string key, string attribute, string content)
 		{
-			if (key != null && attribute != null && content != null) 
+			if (key != null && attribute != null && content != null)
 			{
-				
-			} 
-			
+				if (!commentsAndLabels.ContainsKey(key))
+				{
+					commentsAndLabels.Add(key, new Dictionary<string, string>());
+				}
+
+
+				if (!commentsAndLabels.ContainsKey(attribute))
+				{
+					commentsAndLabels[key].Add(attribute, content);
+				}
+
+			}
+
+		}
+
+		protected void ProcessCommentsAndLabelsDictionary(ref ProfileElement pe) 
+		{
+
+
+			//foreach (string key in commentsAndLabels)
+			//{
+			//		switch(key) 
+			//		{
+			//			case OWL2Namespace.rdfsComment:
+			//				break;
+
+			//			case OWL2Namespace.rdfsLabel:
+			//				break;
+					
+			//		}
+			//}
+		
 		}
 
 

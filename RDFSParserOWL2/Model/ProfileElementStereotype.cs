@@ -35,8 +35,14 @@ namespace RDFSParserOWL2.Model
 		public const string StereotypeAggregateOf = "aggregateOf";
 		/// <summary> "compositeOf" stereotype </summary>
 		public const string StereotypeCompositeOf = "compositeOf";
-
+		/// <summary>
+		/// "Entsoe" stereotype
+		/// </summary>
 		public const string StereotypeEntsoe = "Entsoe";
+		/// <summary>
+		/// "Primitive" stereotype
+		/// </summary>
+		public const string StereotypePrimitive = "Primitive";
 
 		private int code;
 		private string name;

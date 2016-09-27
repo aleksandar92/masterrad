@@ -17,8 +17,8 @@ namespace RDFSParserOWL2.Generator
 {
     public class OWL2Generator
     {
-        private const string pathToFileNamespaces = @"../../Resources/DefaultNamespaces.xml";
-        private const string pathToWordsToSkip = @"../../Resources/WordsToSkip.xml";
+		//private const string pathToFileNamespaces = @"../../Resources/DefaultNamespaces.xml";
+       
         private const string path = @"../../Resources/OWL2Generated/";
 
 
@@ -75,43 +75,16 @@ namespace RDFSParserOWL2.Generator
 
         public OWL2Generator(Profile profile)
         {
-            LoadWordsToSkip();
-            LoadPredefinedNamespaces();
+			words = InputOutput.LoadWordsToSkip();
+			predefinedNamespaces = InputOutput.LoadPredefinedNamespaces(); 
             fileName = profile.FileName;
             GenerateNameForFile(fileName);
             GenerateNamespaces();
 			profileForGenerating = profile;
             importNamespaces = InputOutput.LoadImportNamespaces();
-			//entsoProfile = InputOutput.LoadEntsoProfile();
-
-
             BaseAddress = predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value;
-            //GenerateProfile(null);
         }
 
-        public void LoadPredefinedNamespaces()
-        {
-            XMLNamespaceReaderHandler reader = new XMLNamespaceReaderHandler();
-            bool succes;
-            TimeSpan ts;
-            using (FileStream fs = new FileStream(pathToFileNamespaces, FileMode.Open))
-            {
-                XMLParser.DoParse(reader, fs, null, out succes, out ts);
-            }
-            predefinedNamespaces = reader.Namespaces;
-        }
-
-        public void LoadWordsToSkip()
-        {
-            WordsXMLHandler reader = new WordsXMLHandler();
-            bool succes;
-            TimeSpan ts;
-            using (FileStream fs = new FileStream(pathToWordsToSkip, FileMode.Open))
-            {
-                XMLParser.DoParse(reader, fs, null, out succes, out ts);
-            }
-            words = reader.Words;
-        }
 
         public void GenerateNameForFile(string fileName)
         {
@@ -198,12 +171,13 @@ namespace RDFSParserOWL2.Generator
 
         private void GenerateClass(Class cls, ref XmlWriter writer)
         {
-
+			///starting owl class element
             writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.Class, null);
             writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + cls.URI);
 
             if (cls.SubClassOf != null && cls.SubClassOf != string.Empty && cls.SubClassOfAsObject != null)
             {
+				///subclass owl element
                 writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsSubclasOf, null);
                 writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + cls.SubClassOfAsObject.URI);
                 writer.WriteEndElement();
@@ -212,6 +186,7 @@ namespace RDFSParserOWL2.Generator
             if (cls.MyProperties != null)
                 foreach (ProfileElement pe in cls.MyProperties)
                 {
+					///restriction for property
                     GeneratePropertyForClass(pe as Property, ref writer);
                 }
 
@@ -225,7 +200,9 @@ namespace RDFSParserOWL2.Generator
         {
             if (property != null && property.MultiplicityAsString != null)
             {
+				///start of subclass element 
                 writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsSubclasOf, null);
+				///start of restriction owl element  
                 writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.owlRestriction, null);
                 writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.OnProperty, null);
                 writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + property.URI);
@@ -275,7 +252,6 @@ namespace RDFSParserOWL2.Generator
                     writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfDatatype, null, value);
                     writer.WriteValue(1);
                     writer.WriteEndElement();
-
 
 
 
@@ -363,7 +339,7 @@ namespace RDFSParserOWL2.Generator
 					domainUri =baseAdress+property.DomainAsObject.URI;
 				}
 
-					writer.WriteStartElement(OWL2Namespace.owlPrefix, propertyType, null);
+				writer.WriteStartElement(OWL2Namespace.owlPrefix, propertyType, null);
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + property.URI);
 
 
@@ -375,6 +351,8 @@ namespace RDFSParserOWL2.Generator
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, rangeValue);
 				writer.WriteEndElement();
 
+
+				if(!fileName.Equals(OWL2Namespace.EntsoeOwl))
 				GenerateProfileElement(property, ref writer);
 
 
