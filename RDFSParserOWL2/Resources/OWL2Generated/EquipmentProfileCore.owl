@@ -1,6 +1,18 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://www.semanticweb.org/EquipmentProfileCore#" xml:base="http://www.semanticweb.org/EquipmentProfileCore" xmlns:gl="http://www.semanticweb.org/EquipmentProfileCore#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/EquipmentProfileCore" />
+<rdf:RDF xmlns="http://www.semanticweb.org/EquipmentProfileCore#" xml:base="http://www.semanticweb.org/EquipmentProfileCore" xmlns:gl="http://www.semanticweb.org/EquipmentProfileCore#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/EquipmentProfileCore">
+        <owl:imports rdf:resource="http://www.semanticweb.org/core" />
+        <owl:imports rdf:resource="http://www.semanticweb.org/entsoe" />
+    </owl:Ontology>
+    <rdf:Description rdf:about="http://www.semanticweb.org/entsoe#OperationalLimitType.limitType">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#OperationalLimitType.limitType" />
+    </rdf:Description>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#OperationalLimitType.limitType">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/core#OperationalLimitType" />
+        <rdfs:range rdf:resource="http://www.semanticweb.org/corehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind" />
+        <rdfs:comment>Types of limits defined in the ENTSO-E Operational Handbook Policy 3.</rdfs:comment>
+        <rdfs:label>limitType</rdfs:label>
+    </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#ApparentPower.unit">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#ApparentPower" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#UnitSymbol" />
@@ -312,15 +324,15 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#UnitMultiplier" />
         <rdfs:label>multiplier</rdfs:label>
     </owl:ObjectProperty>
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EnergySchedulingType.EnergySource">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EnergySchedulingType" />
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EnergySchedulingType.EnergySource">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EnergySchedulingType" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EnergySource" />
         <rdfs:comment>Energy Scheduling Type of an Energy Source</rdfs:comment>
         <rdfs:label>EnergySource</rdfs:label>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EnergySource.EnergySchedulingType">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EnergySource" />
-        <rdfs:range rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EnergySchedulingType" />
+        <rdfs:range rdf:resource="http://www.semanticweb.org/corehttp://entsoe.eu/CIM/SchemaExtension/3/1#EnergySchedulingType" />
         <rdfs:comment>Energy Source of a particular Energy Scheduling Type</rdfs:comment>
         <rdfs:label>EnergySchedulingType</rdfs:label>
     </owl:ObjectProperty>
@@ -710,12 +722,6 @@ If the attribute is missing three phases (ABC or ABCN) shall be assumed.</rdfs:c
         <rdfs:range rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#OperationalLimit" />
         <rdfs:comment>The operational limits associated with this type of limit.</rdfs:comment>
         <rdfs:label>OperationalLimit</rdfs:label>
-    </owl:ObjectProperty>
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#OperationalLimitType.limitType">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#OperationalLimitType" />
-        <rdfs:range rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind" />
-        <rdfs:comment>Types of limits defined in the ENTSO-E Operational Handbook Policy 3.</rdfs:comment>
-        <rdfs:label>limitType</rdfs:label>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#OperationalLimitType.direction">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#OperationalLimitType" />
@@ -1119,93 +1125,114 @@ If the attribute is missing three phases (ABC or ABCN) shall be assumed.</rdfs:c
         <rdfs:comment>The generating unit specificaitons for the control area.</rdfs:comment>
         <rdfs:label>ControlAreaGeneratingUnit</rdfs:label>
     </owl:ObjectProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.baseUML">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <rdf:Description rdf:about="http://www.semanticweb.org/entsoe#EquipmentVersion.baseUML">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.baseUML" />
+    </rdf:Description>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.baseUML">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
         <rdfs:label>baseUML</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.baseURIcore">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <rdf:Description rdf:about="http://www.semanticweb.org/entsoe#IdentifiedObject.energyIdentCodeEic">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject.energyIdentCodeEic" />
+    </rdf:Description>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject.energyIdentCodeEic">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject" />
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+        <rdfs:comment>.</rdfs:comment>
+        <rdfs:label>energyIdentCodeEic</rdfs:label>
+    </owl:DatatypeProperty>
+    <rdf:Description rdf:about="http://www.semanticweb.org/entsoe#IdentifiedObject.shortName">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject.shortName" />
+    </rdf:Description>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject.shortName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject" />
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+        <rdfs:comment>The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.</rdfs:comment>
+        <rdfs:label>shortName</rdfs:label>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.baseURIcore">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label>baseURIcore</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.baseURIoperation">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.baseURIoperation">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label>baseURIoperation</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.baseURIshortCircuit">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.baseURIshortCircuit">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label>baseURIshortCircuit</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.date">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.date">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
         <rdfs:comment>Profile creation date
 Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label>date</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.differenceModelURI">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.differenceModelURI">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label>differenceModelURI</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.entsoeUML">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.entsoeUML">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
         <rdfs:label>entsoeUML</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.entsoeURIcore">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.entsoeURIcore">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentCore/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label>entsoeURIcore</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.entsoeURIoperation">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.entsoeURIoperation">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentOperation/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label>entsoeURIoperation</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.entsoeURIshortCircuit">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.entsoeURIshortCircuit">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentShortCircuit/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label>entsoeURIshortCircuit</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.modelDescriptionURI">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.modelDescriptionURI">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label>modelDescriptionURI</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.namespaceRDF">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.namespaceRDF">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>RDF namespace.</rdfs:comment>
         <rdfs:label>namespaceRDF</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.namespaceUML">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.namespaceUML">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>CIM UML namespace.</rdfs:comment>
         <rdfs:label>namespaceUML</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.shortName">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.shortName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label>shortName</rdfs:label>
@@ -1693,12 +1720,6 @@ The attribute shall be a positive value equal or less than RotatingMachine.rated
         <rdfs:comment>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</rdfs:comment>
         <rdfs:label>description</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#IdentifiedObject.energyIdentCodeEic">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-        <rdfs:comment>.</rdfs:comment>
-        <rdfs:label>energyIdentCodeEic</rdfs:label>
-    </owl:DatatypeProperty>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject.mRID">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -1711,12 +1732,6 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The name is any free human readable and possibly non unique text naming the object.</rdfs:comment>
         <rdfs:label>name</rdfs:label>
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#IdentifiedObject.shortName">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-        <rdfs:comment>The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.</rdfs:comment>
-        <rdfs:label>shortName</rdfs:label>
     </owl:DatatypeProperty>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/EquipmentProfileCore#RegularIntervalSchedule.timeStep">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#RegularIntervalSchedule" />
@@ -2401,101 +2416,101 @@ Usage rule : EquivalentBranch is a result of network reduction prior to the data
         <rdfs:comment>True if the flow into the terminal (load convention) is also flow into the control area.  For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.</rdfs:comment>
         <rdfs:label>positiveFlowIn</rdfs:label>
     </owl:DatatypeProperty>
-    <owl:Class rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion">
+    <owl:Class rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.shortName" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.shortName" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.namespaceUML" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.namespaceUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.namespaceRDF" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.namespaceRDF" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.modelDescriptionURI" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.modelDescriptionURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.entsoeURIshortCircuit" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.entsoeURIshortCircuit" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.entsoeURIoperation" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.entsoeURIoperation" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.entsoeURIcore" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.entsoeURIcore" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.entsoeUML" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.entsoeUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.differenceModelURI" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.differenceModelURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.date" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.date" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.baseURIshortCircuit" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.baseURIshortCircuit" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.baseURIoperation" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.baseURIoperation" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.baseURIcore" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.baseURIcore" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EquipmentVersion.baseUML" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EquipmentVersion.baseUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
@@ -3450,11 +3465,11 @@ Residential and small commercial loads are often served from single-phase, or sp
         <rdfs:comment>Validity for MeasurementValue.</rdfs:comment>
         <rdfs:label>Validity</rdfs:label>
     </owl:Class>
-    <owl:Class rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EnergySchedulingType">
+    <owl:Class rdf:about="http://www.semanticweb.org/EquipmentProfileCore#EnergySchedulingType">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject" />
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#EnergySchedulingType.EnergySource" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EnergySchedulingType.EnergySource" />
                 <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#EnergySource" />
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4105,7 +4120,7 @@ Residential and small commercial loads are often served from single-phase, or sp
     <owl:Class rdf:about="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#IdentifiedObject.shortName" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject.shortName" />
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
@@ -4126,7 +4141,7 @@ Residential and small commercial loads are often served from single-phase, or sp
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#IdentifiedObject.energyIdentCodeEic" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#IdentifiedObject.energyIdentCodeEic" />
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
@@ -4345,7 +4360,7 @@ Residential and small commercial loads are often served from single-phase, or sp
         <rdfs:comment>Operational limit on current.</rdfs:comment>
         <rdfs:label>CurrentLimit</rdfs:label>
     </owl:Class>
-    <owl:Class rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind">
+    <owl:Class rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind">
         <rdfs:comment>The enumeration defines the kinds of the limit types.</rdfs:comment>
         <rdfs:label>LimitTypeKind</rdfs:label>
     </owl:Class>
@@ -4413,7 +4428,7 @@ A value_x with direction="high" shall be greater than a value_y with direction="
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#OperationalLimitType.limitType" />
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/EquipmentProfileCore#OperationalLimitType.limitType" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind" />
             </owl:Restriction>

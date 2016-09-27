@@ -199,6 +199,12 @@ namespace RDFSParserOWL2.Parser
                                     cs.URI = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
 								}
 							}
+
+							//foreach (string s in stereotypes)
+							//{
+							//	cs.AddStereotype(s);
+							//}
+
 							AddProfileElement(ProfileElementTypes.Class, cs);
 						}
 						else if (ExtractSimpleNameFromResourceURI(type) == "Property")
@@ -225,7 +231,7 @@ namespace RDFSParserOWL2.Parser
 								}
 								else if ((pp.Key.Equals(rdfsDomain)) && (str != null))
 								{
-									pr.Domain = str;
+									pr.Domain = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
 									AddBelongingInformation(pr, pr.Domain);
 								}
 								else if ((pp.Key.Contains(cimsStereotype)) && (str != null))

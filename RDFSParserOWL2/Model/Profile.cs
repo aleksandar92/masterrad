@@ -47,7 +47,7 @@ namespace RDFSParserOWL2.Model
 			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeAggregateOf));
 			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeOfAggregate));
 			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeCompositeOf));
-			StereotypeList.Add(new ProfileElementStereotype(index++,ProfileElementStereotype.StereotypeEntsoe));
+			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeEntsoe));
 		}
 
 
@@ -289,114 +289,190 @@ namespace RDFSParserOWL2.Model
 		}
 
 
-        public static List<ProfileElement> RepackProperties(List<ProfileElement> elements)
-        {
-            List<Property> properties = elements.Cast<Property>().ToList();
+		public static List<ProfileElement> RepackProperties(List<ProfileElement> elements)
+		{
+			List<Property> properties = elements.Cast<Property>().ToList();
 
 
 			List<Property> objectProperties = properties.Where(x => x.IsObjectProperty() == true && !x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
-			List<Property> entsoObjectProperties= properties.Where(x => x.IsObjectProperty() && x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
-            List<Property> datatypeProperties = properties.Where(x => x.IsObjectProperty() != true && !x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
-			List<Property> entsoDatatypesProperties = properties.Where(x =>x.IsObjectProperty() != true &&  x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+			List<Property> entsoObjectProperties = properties.Where(x => x.IsObjectProperty() && x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+			List<Property> datatypeProperties = properties.Where(x => x.IsObjectProperty() != true && !x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+			List<Property> entsoDatatypesProperties = properties.Where(x => x.IsObjectProperty() != true && x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
 
 			entsoObjectProperties.AddRange(objectProperties);
 			entsoObjectProperties.AddRange(entsoDatatypesProperties);
 			entsoObjectProperties.AddRange(datatypeProperties);
-            return entsoObjectProperties.Cast<ProfileElement>().ToList();
-        }
+			return entsoObjectProperties.Cast<ProfileElement>().ToList();
+		}
 
-        public void RemovePropertiesWithStereotype(string stereotype) 
-        {
-            List<Property> properties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
-             profileMap[ProfileElementTypes.Property]= properties.Where(x=>!x.HasStereotype(stereotype)).Cast<ProfileElement>().ToList();
-            
-        }
+		public void RemovePropertiesWithStereotype(string stereotype)
+		{
+			List<Property> properties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
+			profileMap[ProfileElementTypes.Property] = properties.Where(x => !x.HasStereotype(stereotype)).Cast<ProfileElement>().ToList();
 
-        public void RemoveClassesWithStereotype(string stereotype)
-        {
-            List<Class> classes = GetAllProfileElementsOfType(ProfileElementTypes.Class).Cast<Class>().ToList();
-            profileMap[ProfileElementTypes.Class] = classes.Where(x => !x.HasStereotype(stereotype)).Cast<ProfileElement>().ToList();
+		}
 
-        }
+		public void RemoveClassesWithStereotype(string stereotype)
+		{
+			List<Class> classes = GetAllProfileElementsOfType(ProfileElementTypes.Class).Cast<Class>().ToList();
+			profileMap[ProfileElementTypes.Class] = classes.Where(x => !x.HasStereotype(stereotype)).Cast<ProfileElement>().ToList();
 
-
-
-		public void ProcessEntsoeElements(Profile entsoProfile) 
-		{	
-			if(entsoProfile!=null ) 
-			{
-
-				//List<Class> entsoClasses = profileMap[ProfileElementTypes.Class].Cast<Class>().Where(x=>x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
-				//List<Class> epClasses = entsoProfile[ProfileElementTypes.Class].Cast<Class>().ToString();
-				//foreach(Class cls in entsoClasses) 
-				//{
-					
-
-				//}
-				foreach(ProfileElementTypes type in profileMap.Keys) 
-				{
-						switch(type)
-						{
-							case ProfileElementTypes.Class:
-								//List<Class> 
-								break;
-
-							case ProfileElementTypes.Property:
-								List<Property> propertiesToAdd=new List<Property>();
-								List<Property> properties=null;
-								List<Property> entsoProp = null;
-
-								if (entsoProfile.ProfileMap.ContainsKey(type)) 
-								{
-									properties = entsoProfile.ProfileMap[type].Cast<Property>().ToList(); 									
-								}
-								
-								if(profileMap.ContainsKey(type)) 
-								{
-									entsoProp = profileMap[type].Cast<Property>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
-								}
-
-								if (properties == null && entsoProp != null)
-								{
-									propertiesToAdd.AddRange(entsoProp);
-									properties = new List<Property>();
-									//entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
-								}
-								else if (properties != null && entsoProp != null)
-								{
-									foreach (Property p in entsoProp)
-									{
-										if (!properties.Contains(p))
-											propertiesToAdd.Add(p);
-									}
-
-								}
-								else 
-								{
-									continue;						
-								}
-
-
-
-								properties.AddRange(propertiesToAdd);
-								entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
-
-								break;
-
-
-						}
-				}
-				//List<Property> entsoProperties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
-
-			
-			}
-
-			
-			
 		}
 
 
 
+		public bool ProcessEntsoeElements(Profile entsoProfile)
+		{
+			bool changed = false;
+			if (entsoProfile != null)
+			{
+
+				foreach (ProfileElementTypes type in profileMap.Keys)
+				{
+					switch (type)
+					{
+						case ProfileElementTypes.Class:
+
+							/// napraviti funkcije za ovo							
+							//List<Class> classesToAdd=new List<Class>();
+							//List<Class> classes = null;
+							//List<Class> entsoCls=null;
+
+							//if (entsoProfile.ProfileMap.ContainsKey(type))
+							//{
+							//	classes = entsoProfile.ProfileMap[type].Cast<Class>().ToList();
+							//}
+
+							//if (profileMap.ContainsKey(type))
+							//{
+							//	entsoCls = profileMap[type].Cast<Class>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+							//}
+
+
+							////DifferenceBeetwenListOfProperties(ref properties, entsoProp,out propertiesToAdd);
+							//if (classes == null && entsoCls != null)
+							//{
+							//	classesToAdd.AddRange(entsoCls);
+							//	classes = new List<Class>();
+							//	//entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
+							//}
+							//else if (classes != null && entsoCls != null)
+							//{
+							//	foreach (Class c in entsoCls)
+							//	{
+							//		if (!classes.Contains(c))
+							//			classesToAdd.Add(c);
+							//	}
+
+							//}
+							//else
+							//{
+							//	continue;
+							//}
+
+
+
+							//	classes.AddRange(classesToAdd);
+							//	entsoProfile.ProfileMap[type] = classes.Cast<ProfileElement>().ToList();
+							//	if (classesToAdd.Count > 0)
+							//		changed = true;
+							//if (entsoProfile.ProfileMap.ContainsKey(type))
+							//{
+							//	properties = entsoProfile.ProfileMap[type].Cast<Property>().ToList();
+							//}
+
+							//if (profileMap.ContainsKey(type))
+							//{
+							//	entsoProp = profileMap[type].Cast<Property>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+							//}
+
+
+							break;
+
+						case ProfileElementTypes.Property:
+							List<Property> propertiesToAdd=new List<Property>();
+							List<Property> properties = null;
+							List<Property> entsoProp = null;
+
+							if (entsoProfile.ProfileMap.ContainsKey(type))
+							{
+								properties = entsoProfile.ProfileMap[type].Cast<Property>().ToList();
+							}
+
+							if (profileMap.ContainsKey(type))
+							{
+								entsoProp = profileMap[type].Cast<Property>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+							}
+
+
+							//DifferenceBeetwenListOfProperties(ref properties, entsoProp,out propertiesToAdd);
+							if (properties == null && entsoProp != null)
+							{
+								propertiesToAdd.AddRange(entsoProp);
+								properties = new List<Property>();
+								//entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
+							}
+							else if (properties != null && entsoProp != null)
+							{
+								foreach (Property p in entsoProp)
+								{
+									if (!properties.Contains(p))
+										propertiesToAdd.Add(p);
+								}
+
+							}
+							else
+							{
+								continue;
+							}
+
+
+
+							//if (properties != null)
+							//{
+								properties.AddRange(propertiesToAdd);
+								entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
+								if (propertiesToAdd.Count > 0)
+									changed = true;
+
+							//}
+							break;
+
+
+					}
+				}
+				//List<Property> entsoProperties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
+
+
+			}
+
+			return changed;
+
+
+		}
+
+
+		private void DifferenceBeetwenListOfProperties(ref List<Property> firstList, List<Property> secondList, out List<Property> propertiesToAdd)
+		{
+			propertiesToAdd = new List<Property>();
+
+
+			if (firstList == null && secondList != null)
+			{
+				propertiesToAdd.AddRange(secondList);
+				firstList = new List<Property>();
+			}
+			else if (firstList != null && secondList != null)
+			{
+				foreach (Property p in secondList)
+				{
+					if (!firstList.Contains(p))
+						firstList.Add(p);
+				}
+
+			}
+
+		}
 
 
 		public List<ProfileElement> GetAllProfileElementsOfType(ProfileElementTypes type)
@@ -582,6 +658,59 @@ namespace RDFSParserOWL2.Model
 			return toStringBuilder.ToString();
 		}
 		*/
+
+		public void PopulateDomainAsObjectProperties()
+		{
+			if (profileMap != null)
+			{
+				List<Property> properties = null;
+				List<Class> classes = null;
+
+
+				if (profileMap.ContainsKey(ProfileElementTypes.Class))
+				{
+					classes = profileMap[ProfileElementTypes.Class].Cast<Class>().ToList();
+				}
+
+
+				if (profileMap.ContainsKey(ProfileElementTypes.Property))
+				{
+					properties = profileMap[ProfileElementTypes.Property].Cast<Property>().ToList();
+				}
+
+				if (properties != null && classes != null)
+				{
+					foreach (Property p in properties)
+					{
+						Class cls = classes.Where(x => x.URI.Equals(p.Domain)).SingleOrDefault();
+						if (cls == null)
+						{
+							p.DomainAsObject = cls;
+						}
+						else
+						{
+							p.DomainAsObject = cls;
+						}
+					}
+				}
+
+				else if (classes == null)
+				{
+					foreach (Property p in properties)
+					{
+						p.DomainAsObject = null;
+					}
+
+				}
+
+
+
+			}
+
+
+		}
+
+
 		private void SortElementsInMap()
 		{
 			if ((profileMap != null) && (profileMap.Count > 0))

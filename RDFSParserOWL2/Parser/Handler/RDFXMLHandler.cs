@@ -27,6 +27,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected const string rdfsDomain = "rdfs:domain";
 		protected const string rdfsSubClassOf = "rdfs:subClassOf";
 
+		protected  Dictionary<string,Dictionary<string,string>> commentsAndLabels;
 
 		protected const string xmlBase = "xml:base";
 
@@ -41,6 +42,9 @@ namespace RDFSParserOWL2.Parser.Handler
 		////   ie.        package uri,      classes
 		protected Dictionary<string, Stack<ProfileElement>> belongingMap;
 		//private ProfileElement currentElement;
+
+
+		
 
 
 		/// <summary>
@@ -77,7 +81,7 @@ namespace RDFSParserOWL2.Parser.Handler
 			profile.SourcePath = filePath;
 			stereotypes = new List<string>();
 			allByType = new SortedDictionary<ProfileElementTypes, List<ProfileElement>>();
-
+			commentsAndLabels = new Dictionary<string, Dictionary<string, string>>();
 			checkedElementsCount = 0;
 
 			abort = false;
@@ -316,8 +320,20 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 		}
 
-
-
+		/// <summary>
+		/// Method for adding content of label or comment in dictionary
+		/// </summary>
+		/// <param name="key">First key repesents type of content ,comment or label  </param>
+		/// <param name="attribute"> Attribute id of content </param>
+		/// <param name="content">Content of attribute </param>
+		protected void  AddToCommentsAndLabels(string key,string attribute,string content) 
+		{
+			if (key != null && attribute != null && content != null) 
+			{
+				
+			} 
+			
+		}
 
 
 		#endregion

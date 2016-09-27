@@ -57,6 +57,7 @@ namespace RDFSParserOWL2.Generator.Helper
         public static string nonNegativeInteger = "nonNegativeInteger";
 
 		public static string Entsoe = "Entsoe";
+		public static string EntsoeOwl = "entsoe.owl";
 
         public static string Description = "Description";
 

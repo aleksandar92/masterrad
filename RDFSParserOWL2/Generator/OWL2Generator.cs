@@ -216,7 +216,6 @@ namespace RDFSParserOWL2.Generator
                 }
 
             GenerateProfileElement(cls, ref writer);
-
             writer.WriteEndElement();
 
 
@@ -278,10 +277,22 @@ namespace RDFSParserOWL2.Generator
                     writer.WriteEndElement();
 
 
+
+
                     if (property.IsObjectProperty())
                     {
+						string rangeUri;
+						if (property.RangeAsObject == null)
+						{
+							rangeUri = property.Range;
+						}
+						else 
+						{
+							rangeUri = property.RangeAsObject.URI;
+						}
+
                         writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.OnClass, null);
-                        writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + property.RangeAsObject.URI);
+                        writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + rangeUri );
                         writer.WriteEndElement();
                     }
                     else
@@ -298,41 +309,77 @@ namespace RDFSParserOWL2.Generator
 
         private void GenerateProperty(Property property, ref XmlWriter writer)
         {
-            string propertyType;
-            string rangeValue;
-            if (property.HasStereotype(OWL2Namespace.Entsoe)) 
-            {
-                string entsoe=importNamespaces.Where(x=>x.Prefix.Equals(OWL2Namespace.Entsoe.ToLower())).Single().Value;
-                GenerateEquivalentProperty(ref writer,entsoe,property);
-            } 
-            if (property.IsObjectProperty())
-            {
-                propertyType = OWL2Namespace.ObjectProperty;
-                rangeValue = String.Format("{0}{1}", BaseAddress, property.RangeAsObject.URI);
-            }
-            else
-            {
-                propertyType = OWL2Namespace.DatatypeProperty;
-                string xsd = DefaultNamespaces.Where(x => x.Prefix != null && x.Prefix.Equals("xsd")).Single().Value;
-                rangeValue = String.Format("{0}{1}", xsd, property.ProcessDatatype());
-            }
+			if (property != null && writer != null)
+			{
 
-            writer.WriteStartElement(OWL2Namespace.owlPrefix, propertyType, null);
-            writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + property.URI);
+				string propertyType;
+				string rangeValue;
+				string domainUri;
+				if (property.HasStereotype(OWL2Namespace.Entsoe) && !fileName.Equals(OWL2Namespace.EntsoeOwl))
+				{
+					string entsoe = importNamespaces.Where(x => x.Prefix.Equals(OWL2Namespace.Entsoe.ToLower())).Single().Value;
+					GenerateEquivalentProperty(ref writer, entsoe, property);
+				}
+				if (property.IsObjectProperty())
+				{
+					propertyType = OWL2Namespace.ObjectProperty;
+
+					if(property.RangeAsObject!=null)
+						rangeValue = String.Format("{0}{1}", BaseAddress, property.RangeAsObject.URI);
+					else  
+					{
+						Namespace n = importNamespaces.Where(x => x.Prefix.Equals("core")).SingleOrDefault();
+						string address = BaseAddress;
+						if (n != null)
+						{
+							address= n.Value ;
+						}
+
+						rangeValue = String.Format("{0}{1}", address, property.Range);
+					}
+				}
+				else
+				{
+					propertyType = OWL2Namespace.DatatypeProperty;
+					string xsd = DefaultNamespaces.Where(x => x.Prefix != null && x.Prefix.Equals("xsd")).Single().Value;
+					rangeValue = String.Format("{0}{1}", xsd, property.ProcessDatatype());
+				}
+
+				if (property.DomainAsObject == null)
+				{
+					Namespace n = importNamespaces.Where(x=>x.Prefix.Equals("core")).SingleOrDefault();
+					if (n != null)
+					{
+						domainUri = n.Value + property.Domain;
+					}
+					else 
+					{
+						domainUri = baseAdress + property.Domain;
+					}
+				}
+				else 
+				{
+					
+					domainUri =baseAdress+property.DomainAsObject.URI;
+				}
+
+					writer.WriteStartElement(OWL2Namespace.owlPrefix, propertyType, null);
+				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + property.URI);
 
 
-            writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsDomain, null);
-            writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + property.DomainAsObject.URI);
-            writer.WriteEndElement();
+				writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsDomain, null);
+				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, domainUri);
+				writer.WriteEndElement();
 
-            writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsRange, null);
-            writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, rangeValue);
-            writer.WriteEndElement();
+				writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsRange, null);
+				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, rangeValue);
+				writer.WriteEndElement();
 
-            GenerateProfileElement(property, ref writer);
+				GenerateProfileElement(property, ref writer);
 
 
-            writer.WriteEndElement();
+				writer.WriteEndElement();
+			}
         }
 
 
@@ -370,6 +417,11 @@ namespace RDFSParserOWL2.Generator
         {
             foreach(Namespace n in importNamespaces) 
             {
+				if (fileName.Equals(OWL2Namespace.EntsoeOwl) && n.Prefix.Equals(OWL2Namespace.Entsoe.ToLower())) 
+				{
+					continue;
+				} 
+
                 writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.Import, null);
                 writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, n.Value);
                 writer.WriteEndElement();
@@ -388,7 +440,6 @@ namespace RDFSParserOWL2.Generator
                 writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp));
                 writer.WriteEndElement();
                 writer.WriteEndElement();
-
             }
        }
 

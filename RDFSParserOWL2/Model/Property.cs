@@ -318,6 +318,9 @@ namespace RDFSParserOWL2.Model
 
 		#region helperMethods
 
+	
+
+
 		public bool IsObjectProperty()
 		{
 			return (domain != null && range != null) || (domainAsObject != null && rangeAsObject != null);
