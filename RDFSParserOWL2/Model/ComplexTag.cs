@@ -21,6 +21,19 @@ namespace RDFSParserOWL2.Model
             value = String.Empty;
 		}
 
+		public ComplexTag(string value)
+		{
+			attributes = new Dictionary<string, string>();
+			this.value = value;
+		}
+
+		public ComplexTag(string value,Dictionary<string,string> attr) 
+		{
+		    this.attributes = new Dictionary<string,string>(attr);
+			this.value = value;		
+		}
+
+
 		public string Value
 		{
 			get { return this.value; }

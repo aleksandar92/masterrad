@@ -28,11 +28,13 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected const string rdfsDomain = "rdfs:domain";
 		protected const string rdfsSubClassOf = "rdfs:subClassOf";
 
-		protected Dictionary<string, Dictionary<string, string>> commentsAndLabels;
+		protected Dictionary<TextType, List<ComplexTag>> commentsAndLabels;
 
 		protected const string xmlBase = "xml:base";
 
 		protected const string xmlLang = "xml:lang";
+
+		protected Dictionary<string, string> commentAndLabelAtts;
 
 		protected const string separator = StringManipulationManager.SeparatorSharp;
 
@@ -82,9 +84,9 @@ namespace RDFSParserOWL2.Parser.Handler
 			profile.SourcePath = filePath;
 			stereotypes = new List<string>();
 			allByType = new SortedDictionary<ProfileElementTypes, List<ProfileElement>>();
-			commentsAndLabels = new Dictionary<string, Dictionary<string, string>>();
+			commentsAndLabels = new Dictionary<TextType, List<ComplexTag>>();
 			checkedElementsCount = 0;
-
+			commentAndLabelAtts = new Dictionary<string, string>();
 			abort = false;
 		}
 
@@ -160,7 +162,7 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		protected void ProcessProfile()
 		{
-			if (profile.ProfileMap != null)
+			if (profile!=null && profile.ProfileMap != null)
 			{
 				List<ProfileElement> moveFromUnknownToEnumElement = new List<ProfileElement>();
 				foreach (ProfileElementTypes type in profile.ProfileMap.Keys)
@@ -199,81 +201,27 @@ namespace RDFSParserOWL2.Parser.Handler
 							}
 						case ProfileElementTypes.Class:
 							{
-								if (profile.ProfileMap.ContainsKey(type))
-								{
-
-									List<Class> list = profile.ProfileMap[type].Cast<Class>().ToList();
-									foreach (Class element in list)
-									{
-										if (element.SubClassOf != null)
-										{
-											Class uppclass = (Class)profile.FindProfileElementByUri(element.SubClassOf);
-											element.SubClassOfAsObject = uppclass;
-
-											if (uppclass != null)
-											{
-												uppclass.AddToMySubclasses(element);
-											}
-										}
-
-										//// search for attributes of class and classCategory of class
-										if ((belongingMap != null) && (belongingMap.ContainsKey(element.URI)))
-										{
-											Stack<ProfileElement> stack = belongingMap[element.URI];
-											Property property;
-											while (stack.Count > 0)
-											{
-												property = (Property)stack.Pop();
-												element.AddToMyProperties(property);
-												property.DomainAsObject = element;
-											}
-										}
-									}
-								}
+								ProcessClass();
 								break;
 							}
 						case ProfileElementTypes.Property:
 							{
-								if (profile.ProfileMap.ContainsKey(type))
-								{
-
-									List<Property> list = profile.ProfileMap[type].Cast<Property>().ToList();
-									foreach (Property element in list)
-									{
-										if (!element.IsPropertyDataTypeSimple)
-										{
-											element.DataTypeAsComplexObject = profile.FindProfileElementByUri(element.DataType);
-										}
-										if (!string.IsNullOrEmpty(element.Range))
-										{
-											element.RangeAsObject = profile.FindProfileElementByUri(element.Range);
-										}
-										//if (!string.IsNullOrEmpty(element.Name) && (Char.IsUpper(element.Name[0]))
-										//    && (!element.HasStereotype(ProfileElementStereotype.StereotypeByReference)))
-										//{
-										//    element.IsExpectedToContainLocalClass = true;
-										//    if (element.RangeAsObject != null)
-										//    {
-										//        element.RangeAsObject.IsExpectedAsLocal = true;
-										//    }
-										//}
-									}
-								}
+								ProcessProperty();
 								break;
 							}
 						case ProfileElementTypes.Unknown:
 							{
-								//List<EnumMember> list = profile.ProfileMap[type].Cast<EnumMember>().ToList();
-								//foreach (EnumMember element in list)
-								//{
-								//	Class enumElement = (Class)profile.FindProfileElementByUri(element.Type);
-								//	if (enumElement != null)
-								//	{
-								//		element.EnumerationObject = enumElement;
-								//		enumElement.AddToMyEnumerationMembers(element);
-								//		moveFromUnknownToEnumElement.Add(element);
-								//	}
-								//}
+								List<EnumMember> list = profile.ProfileMap[type].Cast<EnumMember>().ToList();
+								foreach (EnumMember element in list)
+								{
+									Class enumElement = (Class)profile.FindProfileElementByUri(element.Type);
+									if (enumElement != null)
+									{
+										element.EnumerationObject = enumElement;
+										enumElement.AddToMyEnumerationMembers(element);
+										moveFromUnknownToEnumElement.Add(element);
+									}
+								}
 								break;
 							}
 					}
@@ -317,49 +265,129 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 		}
 
+	
 		/// <summary>
-		/// Method for adding content of label or comment in dictionary
+		/// Method for populating fields of class after parsing 
 		/// </summary>
-		/// <param name="key">First key repesents type of content ,comment or label  </param>
-		/// <param name="attribute"> Attribute id of content </param>
-		/// <param name="content">Content of attribute </param>
-		protected void AddToCommentsAndLabels(string key, string attribute, string content)
+		private void ProcessClass() 
 		{
-			if (key != null && attribute != null && content != null)
+			ProfileElementTypes type = ProfileElementTypes.Class;
+			if (profile != null && profile.ProfileMap != null && profile.ProfileMap.ContainsKey(type))
 			{
-				if (!commentsAndLabels.ContainsKey(key))
+
+				List<Class> list = profile.ProfileMap[type].Cast<Class>().ToList();
+				foreach (Class element in list)
 				{
-					commentsAndLabels.Add(key, new Dictionary<string, string>());
+					if (element.SubClassOf != null)
+					{
+						Class uppclass = (Class)profile.FindProfileElementByUri(element.SubClassOf);
+						element.SubClassOfAsObject = uppclass;
+
+						if (uppclass != null)
+						{
+							uppclass.AddToMySubclasses(element);
+						}
+					}
+
+					//// search for attributes of class and classCategory of class
+					if ((belongingMap != null) && (belongingMap.ContainsKey(element.URI)))
+					{
+						Stack<ProfileElement> stack = belongingMap[element.URI];
+						Property property;
+						while (stack.Count > 0)
+						{
+							property = (Property)stack.Pop();
+							element.AddToMyProperties(property);
+							property.DomainAsObject = element;
+						}
+					}
 				}
-
-
-				if (!commentsAndLabels.ContainsKey(attribute))
-				{
-					commentsAndLabels[key].Add(attribute, content);
-				}
-
 			}
-
-		}
-
-		protected void ProcessCommentsAndLabelsDictionary(ref ProfileElement pe) 
-		{
-
-
-			//foreach (string key in commentsAndLabels)
-			//{
-			//		switch(key) 
-			//		{
-			//			case OWL2Namespace.rdfsComment:
-			//				break;
-
-			//			case OWL2Namespace.rdfsLabel:
-			//				break;
-					
-			//		}
-			//}
 		
 		}
+
+		/// <summary>
+		/// Method for populating fields of property after parsing 
+		/// </summary>
+		private void ProcessProperty() 
+		{
+			ProfileElementTypes type = ProfileElementTypes.Property;
+			if (profile!=null && profile.ProfileMap!=null && profile.ProfileMap.ContainsKey(type))
+			{
+
+				List<Property> list = profile.ProfileMap[type].Cast<Property>().ToList();
+				foreach (Property element in list)
+				{
+					if (!element.IsPropertyDataTypeSimple)
+					{
+						element.DataTypeAsComplexObject = profile.FindProfileElementByUri(element.DataType);
+					}
+					if (!string.IsNullOrEmpty(element.Range))
+					{
+						element.RangeAsObject = profile.FindProfileElementByUri(element.Range);
+					}
+					//if (!string.IsNullOrEmpty(element.Name) && (Char.IsUpper(element.Name[0]))
+					//    && (!element.HasStereotype(ProfileElementStereotype.StereotypeByReference)))
+					//{
+					//    element.IsExpectedToContainLocalClass = true;
+					//    if (element.RangeAsObject != null)
+					//    {
+					//        element.RangeAsObject.IsExpectedAsLocal = true;
+					//    }
+					//}
+				}
+			}
+		
+		}
+
+		protected void AddComplexTagToCommentsAndLabels(TextType type, ComplexTag ct)
+		{
+			if (commentsAndLabels == null )
+			{
+				commentsAndLabels = new Dictionary<TextType, List<ComplexTag>>();
+			}
+
+			if(!commentsAndLabels.ContainsKey(type)) 
+			{
+				commentsAndLabels[type] = new List<ComplexTag>();
+			}
+
+			commentsAndLabels[type].Add(ct);
+
+		}
+
+		/// <summary>
+		/// Method for processing parsed  comments and labels in profile element
+		/// </summary>
+		/// <param name="pe"></param>
+		protected void ProccessCommentsAndLabels(ProfileElement pe) 
+		{
+			if(commentAndLabelAtts!=null&& pe!=null) 
+			{
+				foreach(TextType type in commentsAndLabels.Keys) 
+				{
+					List<ComplexTag> tags = null;
+					switch (type)
+					{
+						case TextType.Comment:
+							tags =new List<ComplexTag>(commentsAndLabels[TextType.Comment]);
+							pe.Comments = tags;
+							break;
+						case TextType.Label:
+							tags =new List<ComplexTag>(commentsAndLabels[TextType.Label]);
+							pe.Labels = tags;
+							break;
+					}
+				
+				}
+			}
+		}
+
+
+		//protected PopulateClass()
+		//{
+		
+		//}
 
 
 		#endregion

@@ -11,7 +11,7 @@ namespace RDFSParserOWL2.Model
 
 
 
-	class Property : ProfileElement
+	public class Property : ProfileElement
 	{
 
 

@@ -64,7 +64,18 @@ namespace RDFSParserOWL2.Generator.Helper
         public static string EqProperty = "equivalentProperty";
 
         public static string owlEqProperty = owlPrefix + StringManipulationManager.SeparatorColon + EqProperty;
+		public static string xmlLang = "xml:lang";
+		public static string xmlPrefix="xml";
+		public static string Lang = "lang";
+		public static string EnLang = "en";
+		public static string EqClass = "equivalentClass";
+		public static string OneOf = "oneOf";
+		public static string ParseType = "parseType";
+		public static string Collection = "Collection";
+		public static string NamedIndividual = "NamedIndividual";
 
+		
+ 
 
         #region helpers
 

@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 namespace RDFSParserOWL2.Model
 {
 
+
+	public enum TextType 
+	{
+		Unknown=0,Comment=1,Label=2
+	}
+
 	public enum CardinaltyType
 	{
 		UNKNOWN = 0, ONETOMANY, ZEROTOMANY, ZEROTOONE, ONE, MANYTOMANY
@@ -18,7 +24,7 @@ namespace RDFSParserOWL2.Model
 	/// </summary>
 	public enum ProfileElementTypes
 	{
-		Unknown = 0,ClassCategory, Property, Class, EnumerationElement, Stereotype
+		Unknown = 0, ClassCategory, Property, EnumerationElement, Class, Stereotype
 	};
 
 	/// <summary>
@@ -63,9 +69,15 @@ namespace RDFSParserOWL2.Model
 		protected string type;
 		//// creted from shema
 
+
+		private List<ComplexTag> labels;
+
+		private List<ComplexTag> comments;
+
+
 		//protected string label;
-		protected ComplexTag label;
-		protected ComplexTag comment;
+		//protected ComplexTag label;
+		//protected ComplexTag comment;
 
 		//protected Dictionary<string,string> label;
 		//protected Dictionary<string,string> comment;
@@ -77,15 +89,19 @@ namespace RDFSParserOWL2.Model
 		{
 			//label = new Dictionary<string, string>();
 			//comment = new Dictionary<string, string>();
-			label = new ComplexTag();
-			comment = new ComplexTag();
+			//label = new ComplexTag();
+			//comment = new ComplexTag();
+			labels = new List<ComplexTag>();
+			comments = new List<ComplexTag>();
 		}
 
 		public ProfileElement(string uri)
 		{
 			this.uri = uri;
-			label = new ComplexTag();
-			comment = new ComplexTag();
+			labels = new List<ComplexTag>();
+			comments = new List<ComplexTag>();
+			//label = new ComplexTag();
+			//comment = new ComplexTag();
 		}
 
 
@@ -160,19 +176,27 @@ namespace RDFSParserOWL2.Model
 		}
 
 		/// <summary>
-		/// Gets and sets the label of profile element.
+		/// Gets and sets the labels of profile element.
 		/// </summary>
+		/// 
+
+		public List<ComplexTag> Labels
+		{
+			get { return labels; }
+			set { labels = value; }
+		}
+
 		//public Dictionary<string, string> Label 
 		//{
 		//	get { return label; }
 		//	set { label = value; }
 		
 		//}
-		public ComplexTag Label
-		{
-			get { return label; }
-			set { label = value; }
-		}
+		//public ComplexTag Label
+		//{
+		//	get { return label; }
+		//	set { label = value; }
+		//}
 		/// 
 		//public string Label
 		//{
@@ -197,11 +221,19 @@ namespace RDFSParserOWL2.Model
 
 		//}
 
-		public ComplexTag Comment
+
+		public List<ComplexTag> Comments
 		{
-			get { return comment; }
-			set { comment = value; }
+			get { return comments; }
+			set { comments = value; }
 		}
+
+
+		//public ComplexTag Comment
+		//{
+		//	get { return comment; }
+		//	set { comment = value; }
+		//}
 
 		//public string Comment
 		//{

@@ -142,18 +142,18 @@ namespace RDFSParserOWL2.Parser.Handler
                                 //    AddBelongingInformation(cs, cs.BelongsToCategory);
                                 //}
                                 //else 
-								if ((pp.Key.Equals(rdfsComment)) && (str != null))
-								{
+								//if ((pp.Key.Equals(rdfsComment)) && (str != null))
+								//{
 
-									cs.Comment.Attributes[rdfParseType] = str;
-									cs.Comment.Value = values[rdfsComment];
-								}
-								else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
-								{
-									cs.Label.Attributes[xmlLang] = str;
-									cs.Label.Value = values[rdfsLabel];
-									//cs.Label = str;
-								}
+								//	cs.Comment.Attributes[rdfParseType] = str;
+								//	cs.Comment.Value = values[rdfsComment];
+								//}
+								//else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
+								//{
+								//	cs.Label.Attributes[xmlLang] = str;
+								//	cs.Label.Value = values[rdfsLabel];
+								//	//cs.Label = str;
+								//}
 								//else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
 								//{
 								//	cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
@@ -162,7 +162,8 @@ namespace RDFSParserOWL2.Parser.Handler
 								//{
 								//	cs.AddStereotype(str);
 								//}
-                                else if ((pp.Key.Contains(rdfsSubClassOf)) && (str != null))
+                               // else 
+								if ((pp.Key.Contains(rdfsSubClassOf)) && (str != null))
                                 {
 									cs.SubClassOf = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
                                 }
@@ -209,19 +210,19 @@ namespace RDFSParserOWL2.Parser.Handler
                                 //{
                                 //    pr.AddStereotype(str);
                                 //}
-                                else if ((pp.Key.Contains(rdfsComment)) && (str != null))
-                                {
-                                    pr.Comment.Attributes[rdfParseType] = str;
-                                    pr.Comment.Value = values[rdfsComment];
-                                    //pr.Comment = str;
-                                }
-                                else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
-                                {
+								//else if ((pp.Key.Contains(rdfsComment)) && (str != null))
+								//{
+								//	pr.Comment.Attributes[rdfParseType] = str;
+								//	pr.Comment.Value = values[rdfsComment];
+								//	//pr.Comment = str;
+								//}
+								//else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
+								//{
 
-                                    pr.Label.Attributes[xmlLang] = str;
-                                    pr.Label.Value = values[rdfsLabel];
-                                    //pr.Label = str;
-                                }
+								//	pr.Label.Attributes[xmlLang] = str;
+								//	pr.Label.Value = values[rdfsLabel];
+								//	//pr.Label = str;
+								//}
                                 else if ((pp.Key.Equals(rdfsRange)) && (str != null))
                                 {
                                     if (localName.Equals(OWL2Namespace.DatatypeProperty))

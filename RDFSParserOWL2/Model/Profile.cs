@@ -1,4 +1,5 @@
-﻿using RDFSParserOWL2.Generator.Helper;
+﻿using RDFSParserOWL2.Common.Comparers;
+using RDFSParserOWL2.Generator.Helper;
 using RDFSParserOWL2.Manager;
 using System;
 using System.Collections.Generic;
@@ -312,10 +313,10 @@ namespace RDFSParserOWL2.Model
 			if (profileMap != null && profileMap.ContainsKey(ProfileElementTypes.Property))
 			{
 				properties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
-				foreach(string s in stereotypes) 
+				foreach (string s in stereotypes)
 				{
-					if(properties!=null)
-					properties = properties.Where(x => !x.HasStereotype(s)).ToList() ;
+					if (properties != null)
+						properties = properties.Where(x => !x.HasStereotype(s)).ToList();
 				}
 
 				if (properties != null)
@@ -356,36 +357,135 @@ namespace RDFSParserOWL2.Model
 					switch (type)
 					{
 						case ProfileElementTypes.Class:
+							List<Class> classesToAdd = null;
+							List<Class> classes = null;
+							List<Class> entsoClasses = null;
 
-							/// napraviti funkcije za ovo							
-							//List<Class> classesToAdd=new List<Class>();
-							//List<Class> classes = null;
-							//List<Class> entsoCls=null;
+							if (entsoProfile.ProfileMap.ContainsKey(type))
+							{
+								entsoClasses = entsoProfile.ProfileMap[type].Cast<Class>().ToList();
+							}
 
-							//if (entsoProfile.ProfileMap.ContainsKey(type))
+							if (profileMap.ContainsKey(type))
+							{
+								classes = profileMap[type].Cast<Class>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+							}
+
+							if (entsoClasses == null && classes != null)
+							{
+								classesToAdd = new List<Class>();
+								classesToAdd.AddRange(classes);
+								entsoClasses = new List<Class>();
+							}
+							else if (entsoClasses != null && classes != null)
+							{
+								classesToAdd = classes.Except(entsoClasses, new ClassComparer()).ToList();
+							}
+
+							if (classesToAdd != null && classesToAdd.Count > 0)
+							{
+								if (entsoClasses == null)
+								{
+									entsoClasses = new List<Class>();
+								}
+
+								entsoClasses.AddRange(classesToAdd);
+								entsoProfile.ProfileMap[type] = entsoClasses.Cast<ProfileElement>().ToList();
+								changed = true;
+							}
+
+
+							foreach (Class cls in classes)
+							{
+
+
+								List<Property> propToAdd = null;
+								List<Property> entsoProp = null;
+								List<Property> prop = null;
+
+								if (entsoProfile.ProfileMap.ContainsKey(ProfileElementTypes.Property))
+								{
+									entsoProp = entsoProfile.ProfileMap[ProfileElementTypes.Property].Cast<Property>().ToList();
+								}
+
+								if (cls.MyProperties != null)
+								{
+									prop = cls.MyProperties.Cast<Property>().ToList();
+								}
+
+
+								DifferenceBeetwenListOfProperties(ref entsoProp, prop, out propToAdd);
+
+								if (prop != null && propToAdd.Count > 0)
+								{
+									if (entsoProp == null)
+									{
+										entsoProp = new List<Property>();
+									}
+
+									entsoProp.AddRange(propToAdd);
+									entsoProfile.ProfileMap[ProfileElementTypes.Property] = entsoProp.Cast<ProfileElement>().ToList();
+									changed = true;
+								}
+
+							}
+
+							break;
+
+						case ProfileElementTypes.Property:
+							List<Property> propertiesToAdd = null;
+							List<Property> entsoProperties = null;
+							List<Property> properties = null;
+
+							if (entsoProfile.ProfileMap.ContainsKey(type))
+							{
+								entsoProperties = entsoProfile.ProfileMap[type].Cast<Property>().ToList();
+							}
+
+							if (profileMap.ContainsKey(type))
+							{
+								properties = profileMap[type].Cast<Property>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
+							}
+
+
+							DifferenceBeetwenListOfProperties(ref entsoProperties,properties,out propertiesToAdd);
+
+							//if (entsoProperties == null && properties != null)
 							//{
-							//	classes = entsoProfile.ProfileMap[type].Cast<Class>().ToList();
+							//	propertiesToAdd.AddRange(properties);
+							//	entsoProperties = new List<Property>();
+							//}
+							//else if (entsoProperties != null && properties != null)
+							//{
+							//	propertiesToAdd = properties.Except(entsoProperties, new PropertyComparer()).ToList();
+
 							//}
 
-							//if (profileMap.ContainsKey(type))
-							//{
-							//	entsoCls = profileMap[type].Cast<Class>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
-							//}
+							if (propertiesToAdd != null && propertiesToAdd.Count > 0)
+							{
+								if (entsoProperties == null)
+								{
+									entsoProperties = new List<Property>();
+								}
 
+								entsoProperties.AddRange(propertiesToAdd);
+								entsoProfile.ProfileMap[type] = entsoProperties.Cast<ProfileElement>().ToList();
+								changed = true;
+							}
 
-							////DifferenceBeetwenListOfProperties(ref properties, entsoProp,out propertiesToAdd);
-							//if (classes == null && entsoCls != null)
+							//DifferenceBeetwenListOfProperties(ref properties, entsoProp,out propertiesToAdd);
+							//if (entsoProperties == null && properties != null)
 							//{
-							//	classesToAdd.AddRange(entsoCls);
-							//	classes = new List<Class>();
+							//	propertiesToAdd.AddRange(properties);
+							//	entsoProperties = new List<Property>();
 							//	//entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
 							//}
-							//else if (classes != null && entsoCls != null)
+							//else if (entsoProperties != null && properties != null)
 							//{
-							//	foreach (Class c in entsoCls)
+							//	foreach (Property p in properties)
 							//	{
-							//		if (!classes.Contains(c))
-							//			classesToAdd.Add(c);
+							//		if (!entsoProperties.Contains(p))
+							//			propertiesToAdd.Add(p);
 							//	}
 
 							//}
@@ -394,67 +494,12 @@ namespace RDFSParserOWL2.Model
 							//	continue;
 							//}
 
-
-
-							//	classes.AddRange(classesToAdd);
-							//	entsoProfile.ProfileMap[type] = classes.Cast<ProfileElement>().ToList();
-							//	if (classesToAdd.Count > 0)
-							//		changed = true;
-							//if (entsoProfile.ProfileMap.ContainsKey(type))
-							//{
-							//	properties = entsoProfile.ProfileMap[type].Cast<Property>().ToList();
-							//}
-
-							//if (profileMap.ContainsKey(type))
-							//{
-							//	entsoProp = profileMap[type].Cast<Property>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
-							//}
-
-
-							break;
-
-						case ProfileElementTypes.Property:
-							List<Property> propertiesToAdd = new List<Property>();
-							List<Property> properties = null;
-							List<Property> entsoProp = null;
-
-							if (entsoProfile.ProfileMap.ContainsKey(type))
-							{
-								properties = entsoProfile.ProfileMap[type].Cast<Property>().ToList();
-							}
-
-							if (profileMap.ContainsKey(type))
-							{
-								entsoProp = profileMap[type].Cast<Property>().Where(x => x.HasStereotype(OWL2Namespace.Entsoe)).ToList();
-							}
-
-							//DifferenceBeetwenListOfProperties(ref properties, entsoProp,out propertiesToAdd);
-							if (properties == null && entsoProp != null)
-							{
-								propertiesToAdd.AddRange(entsoProp);
-								properties = new List<Property>();
-								//entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
-							}
-							else if (properties != null && entsoProp != null)
-							{
-								foreach (Property p in entsoProp)
-								{
-									if (!properties.Contains(p))
-										propertiesToAdd.Add(p);
-								}
-
-							}
-							else
-							{
-								continue;
-							}
-
-							//if (properties != null)
-							//{
-							properties.AddRange(propertiesToAdd);
-							entsoProfile.ProfileMap[type] = properties.Cast<ProfileElement>().ToList();
-							if (propertiesToAdd.Count > 0)
-								changed = true;
+							////if (properties != null)
+							////{
+							//entsoProperties.AddRange(propertiesToAdd);
+							//entsoProfile.ProfileMap[type] = entsoProperties.Cast<ProfileElement>().ToList();
+							//if (propertiesToAdd.Count > 0)
+							//	changed = true;
 
 							//}
 							break;
@@ -473,9 +518,10 @@ namespace RDFSParserOWL2.Model
 		}
 
 
-		private void DifferenceBeetwenListOfProperties(ref List<Property> firstList, List<Property> secondList, out List<Property> propertiesToAdd)
+
+		private void DifferenceBeetwenListOfProperties(ref List<Property> firstList, List<Property> secondList, out List<Property> propertiesToAdd) 
 		{
-			propertiesToAdd = new List<Property>();
+			propertiesToAdd = null;
 
 
 			if (firstList == null && secondList != null)
@@ -483,17 +529,35 @@ namespace RDFSParserOWL2.Model
 				propertiesToAdd.AddRange(secondList);
 				firstList = new List<Property>();
 			}
-			else if (firstList != null && secondList != null)
+			else if (firstList!= null && secondList != null)
 			{
-				foreach (Property p in secondList)
-				{
-					if (!firstList.Contains(p))
-						firstList.Add(p);
-				}
+				propertiesToAdd = secondList.Except(firstList, new PropertyComparer()).ToList();
 
 			}
-
 		}
+
+		//private void DifferenceBeetwenListOfProperties(ref List<Property> firstList, List<Property> secondList, out List<Property> propertiesToAdd)
+		//{
+
+		//	//propertiesToAdd = new List<Property>();
+
+
+		//	//if (firstList == null && secondList != null)
+		//	//{
+		//	//	propertiesToAdd.AddRange(secondList);
+		//	//	firstList = new List<Property>();
+		//	//}
+		//	//else if (firstList != null && secondList != null)
+		//	//{
+		//	//	foreach (Property p in secondList)
+		//	//	{
+		//	//		if (!firstList.Contains(p))
+		//	//			firstList.Add(p);
+		//	//	}
+
+		//	//}
+
+		//}
 
 
 		public List<ProfileElement> GetAllProfileElementsOfType(ProfileElementTypes type)
@@ -757,6 +821,12 @@ namespace RDFSParserOWL2.Model
 					}
 				}
 			}
+		}
+
+		public bool IsEntsoe()
+		{
+			return fileName.Equals(OWL2Namespace.EntsoeOwl);
+
 		}
 	}
 }
