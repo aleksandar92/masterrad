@@ -183,7 +183,10 @@
 	</rdf:Description>
 	<rdf:Description rdf:about="#CoordinateSystem.Location">
 		<rdfs:label xml:lang="en">Location</rdfs:label>
+    <rdfs:label xml:lang="sr">Lokacija</rdfs:label>
+    <rdfs:label xml:lang="usa">Location</rdfs:label>
 		<rdfs:comment  rdf:parseType="Literal">All locations described with position points in this coordinate system.</rdfs:comment>
+    <rdfs:comment  xml:lang="sr">Sve lokacije opisane u koordinatnom sistemu</rdfs:comment>
 		<rdfs:domain rdf:resource="#CoordinateSystem"/>
 		<rdfs:range rdf:resource="#Location"/>
 		<cims:inverseRoleName rdf:resource="#Location.CoordinateSystem"/>

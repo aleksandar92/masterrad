@@ -14,7 +14,10 @@
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location" />
         <rdfs:comment xml:lang="en">All locations described with position points in this coordinate system.</rdfs:comment>
+        <rdfs:comment xml:lang="sr">Sve lokacije opisane u koordinatnom sistemu</rdfs:comment>
         <rdfs:label xml:lang="en">Location</rdfs:label>
+        <rdfs:label xml:lang="sr">Lokacija</rdfs:label>
+        <rdfs:label xml:lang="usa">Location</rdfs:label>
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#Location.PowerSystemResources">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location" />

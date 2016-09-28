@@ -744,7 +744,96 @@ namespace RDFSParserOWL2.Model
 		}
 		*/
 
-		public void PopulateDomainAsObjectProperties()
+        public void PopulateObjectReferences() 
+        {
+            PopulateRangeAsObjectProperties();
+            PopulateDomainAsObjectProperties();
+            PopulateSubclassOfClasses();
+        
+        }
+
+
+        private void PopulateSubclassOfClasses()
+        {
+            if (profileMap!=null && profileMap != null)
+            {
+                //List<Property> properties = null;
+                List<Class> classes = null;
+
+
+                if (profileMap.ContainsKey(ProfileElementTypes.Class))
+                {
+                    classes = profileMap[ProfileElementTypes.Class].Cast<Class>().ToList();
+                }
+
+                if ( classes != null)
+                {
+                    foreach (Class c  in classes)
+                    {
+                            Class cls = classes.Where(x => x.URI.Equals(c.SubClassOf)).SingleOrDefault();
+                            c.SubClassOfAsObject = cls;
+                        
+                    }
+                }
+
+                //else if (classes == null)
+                //{
+                //    foreach (Class c  in properties)
+                //    {
+                //        p.DomainAsObject = null;
+                //    }
+
+                //}
+
+            }
+
+        }
+
+
+        private  void PopulateRangeAsObjectProperties() 
+        {
+            if (profileMap != null)
+            {
+                List<Property> properties = null;
+                List<Class> classes = null;
+
+
+                if (profileMap.ContainsKey(ProfileElementTypes.Class))
+                {
+                    classes = profileMap[ProfileElementTypes.Class].Cast<Class>().ToList();
+                }
+
+
+                if (profileMap.ContainsKey(ProfileElementTypes.Property))
+                {
+                    properties = profileMap[ProfileElementTypes.Property].Cast<Property>().ToList();
+                }
+
+                if (properties != null && classes != null)
+                {
+                    foreach (Property p in properties)
+                    {
+                            Class cls = classes.Where(x => x.URI.Equals(p.Range)).SingleOrDefault();
+                            p.RangeAsObject = cls;
+
+                    }
+                }
+
+                else if (classes == null)
+                {
+                    foreach (Property p in properties)
+                    {
+                        p.DomainAsObject = null;
+                    }
+
+                }
+
+            }
+        
+        }
+
+
+		private void PopulateDomainAsObjectProperties()
 		{
 			if (profileMap != null)
 			{
@@ -763,32 +852,23 @@ namespace RDFSParserOWL2.Model
 					properties = profileMap[ProfileElementTypes.Property].Cast<Property>().ToList();
 				}
 
-				if (properties != null && classes != null)
-				{
-					foreach (Property p in properties)
-					{
-						Class cls = classes.Where(x => x.URI.Equals(p.Domain)).SingleOrDefault();
-						if (cls == null)
-						{
-							p.DomainAsObject = cls;
-						}
-						else
-						{
-							p.DomainAsObject = cls;
-						}
-					}
-				}
+                if (properties != null && classes != null)
+                {
+                    foreach (Property p in properties)
+                    {
+                        Class cls = classes.Where(x => x.URI.Equals(p.Domain)).SingleOrDefault();
+                        p.DomainAsObject = cls;
+                    }
+                }
 
-				else if (classes == null)
-				{
-					foreach (Property p in properties)
-					{
-						p.DomainAsObject = null;
-					}
+                else if (classes == null)
+                {
+                    foreach (Property p in properties)
+                    {
+                        p.DomainAsObject = null;
+                    }
 
-				}
-
-
+                }
 
 			}
 

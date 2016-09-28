@@ -283,8 +283,9 @@ namespace RDFSParserOWL2.Generator
 
 				if (ct == CardinaltyType.ZEROTOMANY)
 				{
+                    string value = property.RangeAsObject != null ? baseAdress + property.RangeAsObject.URI : baseAdress + property.Range;
 					writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.AllValuesFrom, null);
-					writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + property.RangeAsObject.URI);
+					writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null,value);
 					writer.WriteEndElement();
 				}
 				else
@@ -487,12 +488,17 @@ namespace RDFSParserOWL2.Generator
 
 		public void GenerateImports(ref XmlWriter writer)
 		{
+            if (fileName.Equals(OWL2Namespace.EntsoeOwl) )
+            {
+                return;
+            }
+
 			foreach (Namespace n in importNamespaces)
 			{
-				if (fileName.Equals(OWL2Namespace.EntsoeOwl) && n.Prefix.Equals(OWL2Namespace.Entsoe.ToLower()))
-				{
-					continue;
-				}
+                //if (fileName.Equals(OWL2Namespace.EntsoeOwl) && n.Prefix.Equals(OWL2Namespace.Entsoe.ToLower()))
+                //{
+                //    continue;
+                //}
 
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.Import, null);
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, n.Value);

@@ -36,7 +36,7 @@ namespace RDFSParserOWL2.Converter
 			
 			if (profile.ProcessEntsoeElements(entsoProfile))
 			{
-				entsoProfile.PopulateDomainAsObjectProperties();
+				entsoProfile.PopulateObjectReferences();
 				generator = new OWL2Generator(entsoProfile);
 				generator.GenerateProfile();
 			}
