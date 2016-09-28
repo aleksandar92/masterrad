@@ -116,6 +116,7 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Resources\OWL2Generated\entsoe.owl" />
+    <None Include="Resources\rdfs\GeographicalLocationProfileRDFSAugmented-v2_4_15-7Aug2014_with_entsoe.rdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -134,9 +135,7 @@
   <ItemGroup>
     <Resource Include="Resources\StereotypesToSkip.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\rdfs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
