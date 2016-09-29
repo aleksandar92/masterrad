@@ -103,5 +103,36 @@ namespace RDFSParserOWL2.Common
 			return reader.Namespaces;
 		}
 
+		public static string CreateOWLFilename(string name) 
+		{
+			return name + ".owl";
+		}
+
+
+		public static string CreatePathForGeneratedOWL(string fileName) 
+		{
+			return resourceFilepath + fileName;	
+			
+		}
+
+
+		public static bool CheckIfFileExists(string filePath) 
+		{
+			bool exists = false;
+
+			if (filePath != null)
+			{
+				string absolute =  Path.GetFullPath(filePath);
+			
+				if (File.Exists(absolute))
+				{
+					exists = true;
+				}
+
+			}
+			return exists;
+
+		}
+
 	}
 }

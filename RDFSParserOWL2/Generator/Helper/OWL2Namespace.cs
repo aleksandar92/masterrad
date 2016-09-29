@@ -73,8 +73,7 @@ namespace RDFSParserOWL2.Generator.Helper
 		public static string ParseType = "parseType";
 		public static string Collection = "Collection";
 		public static string NamedIndividual = "NamedIndividual";
-
-		
+		public static string IsDefinedBy = "isDefinedBy";		
  
 
         #region helpers

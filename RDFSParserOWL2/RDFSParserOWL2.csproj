@@ -91,6 +91,7 @@
     <Compile Include="Parser\Handler\RDFXMLHandler.cs" />
     <Compile Include="Parser\Handler\WordsToSkipXMLHandler.cs" />
     <Compile Include="Parser\Handler\XMLNamespaceReaderHandler.cs" />
+    <Compile Include="Parser\OWL2XMLParser.cs" />
     <Compile Include="Parser\RDFSXMLParser.cs" />
     <Compile Include="Parser\XMLParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

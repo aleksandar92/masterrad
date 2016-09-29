@@ -140,6 +140,8 @@ namespace RDFSParserOWL2.Generator
 			writer.Close();
 		}
 
+		
+
 		public void GenerateOntologyTag(ref XmlWriter writer)
 		{
 			writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.owlOntology, null);
@@ -233,6 +235,7 @@ namespace RDFSParserOWL2.Generator
 				writer.WriteEndElement();
 			}
 		}
+
 
 		private void GenerateEnumMembers(List<ProfileElement> members, ref XmlWriter writer)
 		{
@@ -437,6 +440,10 @@ namespace RDFSParserOWL2.Generator
 					GenerateLabelElement(ref writer, ct);
 				}
 			}
+
+			writer.WriteStartElement(OWL2Namespace.rdfsPrefix,OWL2Namespace.IsDefinedBy,null);
+			writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null,BaseAddress);
+			writer.WriteEndElement();
 		}
 
 
@@ -510,7 +517,7 @@ namespace RDFSParserOWL2.Generator
 
 		private void GenerateEquivalentProperty(ref XmlWriter writer, string baseAddressImport, Property p)
 		{
-			if (p != null)
+			if (p != null && writer!=null)
 			{
 				writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Description, null);
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAddressImport + StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp));
@@ -521,6 +528,14 @@ namespace RDFSParserOWL2.Generator
 			}
 		}
 
+
+		//public void GenerateBlankDocument(ref XmlWriter writer) 
+		//{
+		//	GenerateStartElement(ref writer);
+		//	GenerateNamespaces();
+		//	writer.WriteEndElement();
+		//	writer.WriteEndDocument();
+		//}
 
 
 

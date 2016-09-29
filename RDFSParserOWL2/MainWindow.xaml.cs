@@ -30,6 +30,8 @@ namespace RDFSParserOWL2
 		public MainWindow()
 		{
 			InitializeComponent();
+			txtOntology.IsEnabled = false;
+			
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -70,5 +72,17 @@ namespace RDFSParserOWL2
             //converter.Convert();
             MessageBox.Show("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno");
         }
+
+		private void cbOntology_Checked(object sender, RoutedEventArgs e)
+		{
+			if (cbOntology.IsChecked == true)
+			{
+				txtOntology.IsEnabled = true;
+			}
+			else 
+			{
+				txtOntology.IsEnabled = false;
+			}
+		}
 	}
 }
