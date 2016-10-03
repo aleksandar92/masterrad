@@ -20,16 +20,16 @@ namespace RDFSParserOWL2.Converter
 		/// Parser for file in RDFS 
 		/// </summary>
         private RDFSXMLParser rdfsParser;
+
 		/// <summary>
 		/// Generator for OWL2
 		/// </summary>
         private OWL2Generator generator;
 		private bool isSpecialOntology;
+		private bool isRoofOntology;
 		private OWL2XMLParser owlParser;
-
 		private string nameOfOntology;
-
-
+		private string roofOntology;
 
         public ConverterRDFSToOWL2() 
         {
@@ -45,15 +45,21 @@ namespace RDFSParserOWL2.Converter
             //generator = new  OWL2Generator();
         }
 
-		public ConverterRDFSToOWL2(string path,bool isSpecial,string nameOfOnt)
+		public ConverterRDFSToOWL2(string path,bool isSpecialOnt,string nameOfOnt)
 		{
 			rdfsParser = new RDFSXMLParser(path);
+			isSpecialOntology = isSpecialOnt;
 			nameOfOntology = nameOfOnt;
-			isSpecialOntology = isSpecial;
-			//generator = new  OWL2Generator();
 		}
 
-
+		public ConverterRDFSToOWL2(string path, bool isSpecialOnt, string nameOfOnt,bool isRoof,string roofOntologyName)
+		{
+			rdfsParser = new RDFSXMLParser(path);
+			isSpecialOntology = isSpecialOnt;
+			nameOfOntology = nameOfOnt;
+			isRoofOntology = isRoof;
+			roofOntology = roofOntologyName;
+		}
 
 		public bool IsSpecialOntology
 		{
@@ -67,23 +73,42 @@ namespace RDFSParserOWL2.Converter
 			set { nameOfOntology = value; }
 		}
 
+		public string RoofOntology
+		{
+			get { return roofOntology; }
+			set { roofOntology = value; }
+		}
 
+
+		/// <summary>
+		/// Method for converting file from RDFS format to OWL2 format 
+		/// </summary>
         public void  Convert() 
         {
             rdfsParser.ParseProfile();
             Profile profile = rdfsParser.Profile;
 			profile.RemoveElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
-			//bool exists = InputOutput.CheckIfFileExists(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename("entsoe")));
-			Profile entsoProfile = InputOutput.LoadEntsoProfile();
 			
-			if (profile.ProcessEntsoeElements(entsoProfile))
+			if (isSpecialOntology == true)
 			{
-				entsoProfile.PopulateObjectReferences();
-				generator = new OWL2Generator(entsoProfile);
-				generator.GenerateProfile();
+				owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(nameOfOntology)));
+				owlParser.ParseProfile();
+				Profile entsoProfile = owlParser.Profile;
+
+				if (entsoProfile != null)
+				{
+					entsoProfile.IsOwlProfile = true;
+				}
+
+				if (profile.ProcessSpecialStereotypeElements(entsoProfile,nameOfOntology))
+				{
+					entsoProfile.PopulateObjectReferences();
+					generator = new OWL2Generator(entsoProfile);
+					generator.GenerateProfile();
+				}
 			}
 
-			generator = new OWL2Generator(profile);
+			generator = new OWL2Generator(profile,nameOfOntology);
             generator.GenerateProfile();
         }
     }

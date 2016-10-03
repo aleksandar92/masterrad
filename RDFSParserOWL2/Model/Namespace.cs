@@ -16,7 +16,6 @@ namespace RDFSParserOWL2.Model
 		private string prefix;
 		private string ns;
 
-
 		public Namespace(string value,bool generate,bool relative,bool def,string ns,string prefix) 
 		{
 			this.Value = value;
@@ -25,6 +24,12 @@ namespace RDFSParserOWL2.Model
 			this.IsToBeDefault = def;
 			this.ns = ns;
 			this.prefix = prefix;
+		}
+
+		public Namespace(string value,string prefix) 
+		{
+			this.Value = value;
+			this.Prefix = prefix;
 		}
 
 		public void GenerateNamespace(string def,string localName) 
@@ -37,6 +42,12 @@ namespace RDFSParserOWL2.Model
 			}
 			value = sb.ToString();
 		}
+
+		//public  Namespace(string def, string localName) 
+		//{
+		//	this.prefix = localName;
+		//	this.value = def+localName;
+		//}
 
 		public string Value
 		{

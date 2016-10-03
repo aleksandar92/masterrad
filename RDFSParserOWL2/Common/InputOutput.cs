@@ -111,7 +111,7 @@ namespace RDFSParserOWL2.Common
 
 		public static string CreatePathForGeneratedOWL(string fileName) 
 		{
-			return resourceFilepath + fileName;	
+			return owlGeneratedFilePath + fileName;	
 			
 		}
 
