@@ -88,8 +88,9 @@ namespace RDFSParserOWL2.Converter
             rdfsParser.ParseProfile();
             Profile profile = rdfsParser.Profile;
 			profile.RemoveElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
+
 			
-			if (isSpecialOntology == true)
+			if (isSpecialOntology)
 			{
 				owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(nameOfOntology)));
 				owlParser.ParseProfile();
@@ -108,7 +109,7 @@ namespace RDFSParserOWL2.Converter
 				}
 			}
 
-			generator = new OWL2Generator(profile,nameOfOntology);
+			generator = new OWL2Generator(profile,nameOfOntology,isSpecialOntology,roofOntology,isRoofOntology);
             generator.GenerateProfile();
         }
     }

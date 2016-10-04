@@ -436,6 +436,10 @@ namespace RDFSParserOWL2.Model
 									changed = true;
 								}
 
+								if (cls.IsEnumeration)
+								{
+									DifferenceBeetwenEnumsInClass(ref specialOntologyProfile, cls, ref changed);
+								}
 							
 
 							}
@@ -507,6 +511,59 @@ namespace RDFSParserOWL2.Model
 				propertiesToAdd = secondList.Except(firstList, new PropertyComparer()).ToList();
 
 			}
+		}
+
+
+		private void DifferenceBeetwenListOfEnums(ref List<EnumMember> firstList, List<EnumMember> secondList, out List<EnumMember> enumsToAdd)
+		{
+			enumsToAdd = null;
+
+			if (firstList == null && secondList != null)
+			{
+				firstList = new List<EnumMember>();
+				enumsToAdd = new List<EnumMember>();
+				enumsToAdd.AddRange(secondList);
+			}
+			else if (firstList != null && secondList != null)
+			{
+				enumsToAdd = secondList.Except(firstList, new EnumMemberComparer()).ToList();
+
+			}
+		}
+
+
+		private void  DifferenceBeetwenEnumsInClass(ref Profile specialOntologyProfile,Class cls,ref bool changed) 
+		{
+			List<EnumMember> enumToAdd = null;
+			List<EnumMember> soEnum = null;
+			List<EnumMember> enums = null;
+
+			if (specialOntologyProfile.ProfileMap.ContainsKey(ProfileElementTypes.EnumerationElement))
+			{
+				soEnum = specialOntologyProfile.ProfileMap[ProfileElementTypes.EnumerationElement].Cast<EnumMember>().ToList();
+			}
+
+			if (cls.MyEnumerationMembers != null)
+			{
+				enums = cls.MyEnumerationMembers.Cast<EnumMember>().ToList();
+			}
+
+
+			DifferenceBeetwenListOfEnums(ref soEnum, enums, out enumToAdd);
+
+			if (enums != null && enumToAdd.Count > 0)
+			{
+				if (soEnum == null)
+				{
+					soEnum = new List<EnumMember>();
+				}
+
+				soEnum.AddRange(enumToAdd);
+				specialOntologyProfile.ProfileMap[ProfileElementTypes.EnumerationElement] = soEnum.Cast<ProfileElement>().ToList();
+				changed = true;
+			}
+
+				
 		}
 
 

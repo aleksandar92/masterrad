@@ -44,35 +44,12 @@ namespace RDFSParserOWL2
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
-            ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(txtFile.Text,(bool)cbOntology.IsChecked,txtOntology.Text.Trim());
+            ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(txtFile.Text,(bool)cbOntology.IsChecked,txtOntology.Text.Trim(),(bool)cbRoofOntology.IsChecked,txtRoofOntology.Text.Trim() );
             converter.Convert();
 			MessageBox.Show("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno");
 		}
 
-		private void Button_Click_2(object sender, RoutedEventArgs e)
-		{
-			//OWL2Generator generator = new OWL2Generator();
-			//generator.LoadPredefinedNamespaces();
-			//generator.GenerateNameForFile("TopologyProfileRDFSAugmented-v2_4_15-7Aug2014");			
-		}
 
-		//private void Button_Click_3(object sender, RoutedEventArgs e)
-		//{
-		//	OWLRDFXMLHandler handler = new OWLRDFXMLHandler(); 
-		//	using(FileStream fs =new FileStream(txtFile.Text,FileMode.Open)) 
-		//	{
-		//		bool su;
-		//		TimeSpan ts;
-		//		XMLParser.DoParse(handler,fs,txtFile.Text,out su,out ts);
-				
-		//	}
-
-		//	OWL2Generator generator = new OWL2Generator(handler.Profile);
-		//	generator.GenerateProfile();
-		//	//ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(txtFile.Text);
-		//	//converter.Convert();
-		//	MessageBox.Show("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno");
-		//}
 
 		private void cbOntology_Checked(object sender, RoutedEventArgs e)
 		{

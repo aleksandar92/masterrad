@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RDFSParserOWL2.Model
 {
-	class EnumMember:ProfileElement
+	 public class EnumMember:ProfileElement
 	{
 		//protected bool isEnumeration = true;
 		//// enum specifics

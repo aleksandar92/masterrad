@@ -90,7 +90,57 @@ namespace RDFSParserOWL2.Parser.Handler
 			abort = false;
 		}
 
-		public abstract void StartElement(string localName, string qName, SortedList<string, string> atts);
+		public virtual void StartElement(string localName, string qName, SortedList<string, string> atts) 
+		{
+			 /**
+             * Deo neophodan za proveru ako postoji xml:base jer tada elementi, bar vecina nema nista pre #
+             */
+			if (atts.ContainsKey(xmlBase))
+			{
+				profile.BaseNS = atts[xmlBase];
+				Console.WriteLine(profile.BaseNS);
+			}
+			else if (qName.Equals(rdfsComment) || qName.Equals(rdfsLabel))
+			{
+				if (commentsAndLabels == null)
+				{
+					commentAndLabelAtts = new Dictionary<string, string>();
+				}
+				foreach (KeyValuePair<string, string> at in atts)
+				{
+					commentAndLabelAtts.Add(at.Key, at.Value);
+				}
+
+			}
+			//novo
+			else
+			{
+				string ls;
+				prop.TryGetValue(qName, out ls);
+
+				foreach (KeyValuePair<string, string> at in atts)
+				{
+					if (ls != null)
+					{
+						int i = 0;
+						do
+						{
+							ls = null; ;
+							prop.TryGetValue(qName + (++i), out ls);
+						} while (ls != null);
+						ls = at.Value;
+						prop.Add(qName + i, ls);
+					}
+					else
+					{
+						ls = at.Value;
+						prop.Add(qName, ls);
+					}
+				}
+			}
+		
+		
+		}
 
 		public abstract void EndElement(string localName, string qName);
 
@@ -159,6 +209,13 @@ namespace RDFSParserOWL2.Parser.Handler
 			belongingMap.Add(classUri, stack);
 		}
 
+
+		//protected void PopulateClass(ref Class cls) 
+		//{
+		//	if(cls!=null)
+	
+		
+		//}
 
 		protected void ProcessProfile()
 		{
@@ -264,6 +321,48 @@ namespace RDFSParserOWL2.Parser.Handler
 					profile.ProfileMap[ProfileElementTypes.Property] = Profile.RepackProperties(profile.ProfileMap[ProfileElementTypes.Property]);
 			}
 		}
+
+		/// <summary>
+		/// Populate class attributes
+		/// </summary>
+		/// <param name="atts"></param>
+		protected virtual void PopulateClass(Dictionary<string,string > atts) 
+		{
+			Class cs = new Class();
+			foreach (KeyValuePair<string, string> pp in prop)
+			{
+				string str = pp.Value;
+				PopulateClassAttribute(cs,pp.Value,pp.Key);
+			}
+
+			ProccessCommentsAndLabels(cs);
+			AddProfileElement(ProfileElementTypes.Class, cs);
+			
+		}
+
+
+		//protected virtual void PopulateProperty() 
+		//{
+		//	Property 
+		
+		//}
+
+		/// <summary>
+		/// Populate class aattribute 
+		/// </summary>
+		/// <param name="cs">Class for population </param>
+		/// <param name="attrVal">Value of attribute to be inserted </param>
+		/// <param name="attr">Attribute to be populated</param>
+		protected virtual void PopulateClassAttribute(Class cs,string attrVal,string attr) 
+		{
+			if ((attr.Contains(rdfsSubClassOf)) && (attrVal != null))
+			{
+				cs.SubClassOf = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+			}
+		
+		}
+
+
 
 	
 		/// <summary>

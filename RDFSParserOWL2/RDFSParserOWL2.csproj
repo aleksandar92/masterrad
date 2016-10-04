@@ -63,6 +63,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\Comparers\ClassComparer.cs" />
+    <Compile Include="Common\Comparers\EnumMemberComparer.cs" />
     <Compile Include="Common\Comparers\ProfileElementComparer.cs" />
     <Compile Include="Common\Comparers\PropertyComparer.cs" />
     <Compile Include="Common\InputOutput.cs" />
@@ -117,7 +118,9 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Resources\OWL2Generated\entsoe.owl" />
-    <None Include="Resources\rdfs\GeographicalLocationProfileRDFSAugmented-v2_4_15-7Aug2014_with_entsoe.rdf" />
+    <None Include="Resources\rdfs\GeographicalLocationProfileRDFSAugmented-v2_4_15-7Aug2014_with_entsoe.rdf">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

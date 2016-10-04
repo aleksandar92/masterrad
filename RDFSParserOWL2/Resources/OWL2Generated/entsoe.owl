@@ -1,192 +1,41 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.semanticweb.org/Entsoe#" xml:base="http://www.semanticweb.org/Entsoe" xmlns:gl="http://www.semanticweb.org/Entsoe#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/Entsoe" />
+    <owl:Ontology rdf:about="http://www.semanticweb.org/Entsoe">
+        <owl:imports rdf:resource="http://www.semanticweb.org/core" />
+    </owl:Ontology>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#IdentifiedObject.energyIdentCodeEic">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
     </owl:DatatypeProperty>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#IdentifiedObject.shortName">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion.baseUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologicalNode.boundaryPoint">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologicalNode.fromEndName">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologicalNode.fromEndNameTso">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologicalNode.toEndIsoCode">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologicalNode.toEndName">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologicalNode.toEndNameTso">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion.shortName">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion.namespaceUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion.namespaceRDF">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion.modelDescriptionURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion.entsoeURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion.entsoeUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion.differenceModelURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion.date">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion.baseURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.baseUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#ConnectivityNode.boundaryPoint">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#ConnectivityNode.fromEndName">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#ConnectivityNode.fromEndNameTso">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#ConnectivityNode.toEndIsoCode">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#ConnectivityNode.toEndName">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#ConnectivityNode.toEndNameTso">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.shortName">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.namespaceUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.namespaceRDF">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.modelDescriptionURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.entsoeURIoperation">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.entsoeURIcore">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.entsoeUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.differenceModelURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.date">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion.baseURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EnergySchedulingType.EnergySource">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#OperationalLimitType.limitType">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.baseUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.shortName">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.namespaceUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.namespaceRDF">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.modelDescriptionURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.entsoeURIshortCircuit">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.entsoeURIoperation">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.entsoeURIcore">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.entsoeUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.differenceModelURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.date">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.baseURIshortCircuit">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.baseURIoperation">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion.baseURIcore">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.baseUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.shortName">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.namespaceUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.namespaceRDF">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.modelDescriptionURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.entsoeURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.entsoeUML">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.differenceModelURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.date">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
-    </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.baseURI">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    </owl:DatatypeProperty>
-    <owl:Class rdf:about="http://www.semanticweb.org/Entsoe#TopologyBoundaryVersion" />
-    <owl:Class rdf:about="http://www.semanticweb.org/Entsoe#EquipmentBoundaryVersion" />
-    <owl:Class rdf:about="http://www.semanticweb.org/Entsoe#EnergySchedulingType" />
-    <owl:Class rdf:about="http://www.semanticweb.org/Entsoe#EquipmentVersion" />
-    <owl:Class rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VA" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.W" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VAr" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VAh" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Wh" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VArh" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.V" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.ohm" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.A" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.F" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.H" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.degC" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.s" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.min" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.h" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.deg" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.rad" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.J" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.N" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.S" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.none" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Hz" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.g" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Pa" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m2" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m3" />
+    <owl:Class rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol" />
+    <owl:Class rdf:about="http://www.semanticweb.org/EntsoeFrom Derived" />
 </rdf:RDF>

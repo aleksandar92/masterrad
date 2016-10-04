@@ -46,52 +46,7 @@ namespace RDFSParserOWL2.Parser
 		{
 			if (!abort)
 			{
-				/**
-				 * Deo neophodan za proveru ako postoji xml:base jer tada elementi, bar vecina nema nista pre #
-				 */
-				if (atts.ContainsKey(xmlBase))
-				{
-					profile.BaseNS = atts[xmlBase];
-					Console.WriteLine(profile.BaseNS);
-				}
-				else if (qName.Equals(rdfsComment) || qName.Equals(rdfsLabel))
-				{
-					if (commentsAndLabels == null)
-					{
-						commentAndLabelAtts = new Dictionary<string, string>();
-					}
-					foreach (KeyValuePair<string, string> at in atts)
-					{
-						commentAndLabelAtts.Add(at.Key, at.Value);
-					}
-
-				}
-				//novo
-				else
-				{
-					string ls;
-					prop.TryGetValue(qName, out ls);
-
-					foreach (KeyValuePair<string, string> at in atts)
-					{
-						if (ls != null)
-						{
-							int i = 0;
-							do
-							{
-								ls = null; ;
-								prop.TryGetValue(qName + (++i), out ls);
-							} while (ls != null);
-							ls = at.Value;
-							prop.Add(qName + i, ls);
-						}
-						else
-						{
-							ls = at.Value;
-							prop.Add(qName, ls);
-						}
-					}
-				}
+				base.StartElement(localName,qName,atts);
 
 				checkedElementsCount++;
 				if (qName.StartsWith(rdfsNamespace, StringComparison.OrdinalIgnoreCase) || (qName.StartsWith(cimsNamespace, StringComparison.OrdinalIgnoreCase)))
