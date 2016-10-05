@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.semanticweb.org/DynamicsProfile#" xml:base="http://www.semanticweb.org/DynamicsProfile" xmlns:gl="http://www.semanticweb.org/DynamicsProfile#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/DynamicsProfile">
-        <owl:imports rdf:resource="http://www.semanticweb.org/core" />
         <owl:imports rdf:resource="http://www.semanticweb.org/Entsoe" />
     </owl:Ontology>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#Terminal.ConductingEquipment">
@@ -1394,8 +1393,8 @@
         <rdfs:label xml:lang="en">staticLoadModelType</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion.baseUML">
-        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.baseUML" />
+    <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.baseUML">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/Entsoe#DynamicsVersion.baseUML" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.baseUML">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1404,6 +1403,9 @@
         <rdfs:label xml:lang="en">baseUML</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
+    <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.date">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/Entsoe#DynamicsVersion.date" />
+    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.date">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
@@ -1412,6 +1414,9 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <rdfs:label xml:lang="en">date</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
+    <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.entsoeUML">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/Entsoe#DynamicsVersion.entsoeUML" />
+    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.entsoeUML">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -1419,6 +1424,9 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
+    <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.entsoeURI">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/Entsoe#DynamicsVersion.entsoeURI" />
+    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.entsoeURI">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -1428,6 +1436,9 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <rdfs:label xml:lang="en">entsoeURI</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
+    <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.modelDescriptionURI">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/Entsoe#DynamicsVersion.modelDescriptionURI" />
+    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.modelDescriptionURI">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -1435,6 +1446,9 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
+    <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.namespaceRDF">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/Entsoe#DynamicsVersion.namespaceRDF" />
+    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.namespaceRDF">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -1442,6 +1456,9 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
+    <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.namespaceUML">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/Entsoe#DynamicsVersion.namespaceUML" />
+    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.namespaceUML">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -1449,6 +1466,9 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
+    <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.shortName">
+        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/Entsoe#DynamicsVersion.shortName" />
+    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.shortName">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -20382,6 +20402,9 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         <rdfs:label xml:lang="en">constantZ</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:NamedIndividual>
+    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#DynamicsVersion">
+        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
+    </rdf:Description>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion">
         <rdfs:subClassOf>
             <owl:Restriction>

@@ -236,6 +236,11 @@ namespace RDFSParserOWL2.Generator
 
 		}
 
+		/// <summary>
+		/// Generate enum member to OWL2 format 
+		/// </summary>
+		/// <param name="em">Enum member to be generated</param>
+		/// <param name="writer"></param>
 		private void GenerateEnumMember(EnumMember em, ref XmlWriter writer)
 		{
 			if (em != null && writer != null)
@@ -268,10 +273,10 @@ namespace RDFSParserOWL2.Generator
 						writer.WriteEndElement();
 					}
 
-					GenerateProfileElement(em, ref writer);
-				} 
+					
+				}
 
-				
+				GenerateProfileElement(em, ref writer);
 				writer.WriteEndElement();
 			}
 		}
@@ -310,8 +315,8 @@ namespace RDFSParserOWL2.Generator
 					writer.WriteEndElement();
 				}
 
-				if (!profileForGenerating.IsOwlProfile)
-				{
+				//if (!profileForGenerating.IsOwlProfile)
+				//{
 					if (cls.MyProperties != null)
 					{
 						foreach (ProfileElement pe in cls.MyProperties)
@@ -322,9 +327,9 @@ namespace RDFSParserOWL2.Generator
 					}
 
 
-					GenerateProfileElement(cls, ref writer);
+				GenerateProfileElement(cls, ref writer);
 				
-				}
+				//}
 				GenerateEnumeration(cls, ref writer);
 				writer.WriteEndElement();
 			}
@@ -358,7 +363,11 @@ namespace RDFSParserOWL2.Generator
 			}
 		}
 
-
+		/// <summary>
+		/// Generates rdf description tag in owl2 document 
+		/// </summary>
+		/// <param name="writer"></param>
+		/// <param name="value"></param>
 		private void GenerateDescription(ref XmlWriter writer, string value)
 		{
 			writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Description, null);
@@ -366,6 +375,11 @@ namespace RDFSParserOWL2.Generator
 			writer.WriteEndElement();
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="property"></param>
+		/// <param name="writer"></param>
 		private void GeneratePropertyForClass(Property property, ref XmlWriter writer)
 		{
 			if (property != null && property.MultiplicityAsString != null)
@@ -386,6 +400,11 @@ namespace RDFSParserOWL2.Generator
 
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="property"></param>
+		/// <param name="writer"></param>
 		private void GenerateCardinality(Property property, ref XmlWriter writer)
 		{
 			if (property != null)
@@ -493,7 +512,7 @@ namespace RDFSParserOWL2.Generator
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, propertyType, null);
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + property.URI);
 
-				if (!profileForGenerating.IsOwlProfile)
+				if (!profileForGenerating.IsOwlProfile || (profileForGenerating.IsOwlProfile && property.DomainAsObject!=null))
 				{
 					writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsDomain, null);
 					writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, domainUri);
@@ -505,8 +524,8 @@ namespace RDFSParserOWL2.Generator
 				writer.WriteEndElement();
 
 
-				if (!profileForGenerating.IsOwlProfile)
-					GenerateProfileElement(property, ref writer);
+				//if (!profileForGenerating.IsOwlProfile)
+				GenerateProfileElement(property, ref writer);
 
 				writer.WriteEndElement();
 			}
@@ -597,9 +616,9 @@ namespace RDFSParserOWL2.Generator
 			if (p != null && writer != null)
 			{
 				writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Description, null);
-				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAddressImport + StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp));
+				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp));
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.EqProperty, null);
-				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp));
+				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAddressImport + StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp));
 				writer.WriteEndElement();
 				writer.WriteEndElement();
 			}

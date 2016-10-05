@@ -5,37 +5,325 @@
     </owl:Ontology>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#IdentifiedObject.energyIdentCodeEic">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+        <rdfs:comment>.</rdfs:comment>
+        <rdfs:label xml:lang="en">energyIdentCodeEic</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
     </owl:DatatypeProperty>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/Entsoe#IdentifiedObject.shortName">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+        <rdfs:comment>The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.</rdfs:comment>
+        <rdfs:label xml:lang="en">shortName</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VA" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.W" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VAr" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VAh" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Wh" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VArh" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.V" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.ohm" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.A" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.F" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.H" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.degC" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.s" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.min" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.h" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.deg" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.rad" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.J" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.N" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.S" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.none" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Hz" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.g" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Pa" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m2" />
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m3" />
-    <owl:Class rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol" />
-    <owl:Class rdf:about="http://www.semanticweb.org/EntsoeFrom Derived" />
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VA">
+        <rdfs:comment>Apparent power in volt ampere.</rdfs:comment>
+        <rdfs:label xml:lang="en">VA</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.W">
+        <rdfs:comment>Active power in watt.</rdfs:comment>
+        <rdfs:label xml:lang="en">W</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VAr">
+        <rdfs:comment>Reactive power in volt ampere reactive.</rdfs:comment>
+        <rdfs:label xml:lang="en">VAr</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VAh">
+        <rdfs:comment>Apparent energy in volt ampere hours.</rdfs:comment>
+        <rdfs:label xml:lang="en">VAh</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Wh">
+        <rdfs:comment>Real energy in what hours.</rdfs:comment>
+        <rdfs:label xml:lang="en">Wh</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VArh">
+        <rdfs:comment>Reactive energy in volt ampere reactive hours.</rdfs:comment>
+        <rdfs:label xml:lang="en">VArh</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.V">
+        <rdfs:comment>Voltage in volt.</rdfs:comment>
+        <rdfs:label xml:lang="en">V</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.ohm">
+        <rdfs:comment>Resistance in ohm.</rdfs:comment>
+        <rdfs:label xml:lang="en">ohm</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.A">
+        <rdfs:comment>Current in ampere.</rdfs:comment>
+        <rdfs:label xml:lang="en">A</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.F">
+        <rdfs:comment>Capacitance in farad.</rdfs:comment>
+        <rdfs:label xml:lang="en">F</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.H">
+        <rdfs:comment>Inductance in henry.</rdfs:comment>
+        <rdfs:label xml:lang="en">H</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.degC">
+        <rdfs:comment>Relative temperature in degrees Celsius. In the SI unit system the symbol is ºC. Electric charge is measured in coulomb that has the unit symbol C. To distinguish degree Celsius form coulomb the symbol used in the UML is degC. Reason for not using ºC is the special character º is difficult to manage in software.</rdfs:comment>
+        <rdfs:label xml:lang="en">degC</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.s">
+        <rdfs:comment>Time in seconds.</rdfs:comment>
+        <rdfs:label xml:lang="en">s</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.min">
+        <rdfs:comment>Time in minutes.</rdfs:comment>
+        <rdfs:label xml:lang="en">min</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.h">
+        <rdfs:comment>Time in hours.</rdfs:comment>
+        <rdfs:label xml:lang="en">h</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.deg">
+        <rdfs:comment>Plane angle in degrees.</rdfs:comment>
+        <rdfs:label xml:lang="en">deg</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.rad">
+        <rdfs:comment>Plane angle in radians.</rdfs:comment>
+        <rdfs:label xml:lang="en">rad</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.J">
+        <rdfs:comment>Energy in joule.</rdfs:comment>
+        <rdfs:label xml:lang="en">J</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.N">
+        <rdfs:comment>Force in newton.</rdfs:comment>
+        <rdfs:label xml:lang="en">N</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.S">
+        <rdfs:comment>Conductance in siemens.</rdfs:comment>
+        <rdfs:label xml:lang="en">S</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.none">
+        <rdfs:comment>Dimension less quantity, e.g. count, per unit, etc.</rdfs:comment>
+        <rdfs:label xml:lang="en">none</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Hz">
+        <rdfs:comment>Frequency in hertz.</rdfs:comment>
+        <rdfs:label xml:lang="en">Hz</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.g">
+        <rdfs:comment>Mass in gram.</rdfs:comment>
+        <rdfs:label xml:lang="en">g</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Pa">
+        <rdfs:comment>Pressure in pascal (n/m2).</rdfs:comment>
+        <rdfs:label xml:lang="en">Pa</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m">
+        <rdfs:comment>Length in meter.</rdfs:comment>
+        <rdfs:label xml:lang="en">m</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m2">
+        <rdfs:comment>Area in square meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m2</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m3">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m4">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m5">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m6">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m7">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m8">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m9">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m10">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m11">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m12">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m13">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m14">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m15">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m17">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m18">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m19">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m20">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m21">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m22">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m23">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m24">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m25">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m26">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m27">
+        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
+        <rdfs:label xml:lang="en">m3</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+    </owl:NamedIndividual>
+    <owl:Class rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol">
+        <rdfs:comment>The units defined for usage in the CIM.</rdfs:comment>
+        <rdfs:label xml:lang="en">UnitSymbol</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/Entsoe" />
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VA" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.W" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VAr" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VAh" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Wh" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.VArh" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.V" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.ohm" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.A" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.F" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.H" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.degC" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.s" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.min" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.h" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.deg" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.rad" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.J" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.N" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.S" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.none" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Hz" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.g" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.Pa" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m2" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m3" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m4" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m5" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m6" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m7" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m8" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m9" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m10" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m11" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m12" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m13" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m14" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m15" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m17" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m18" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m19" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m20" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m21" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m22" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m23" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m24" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m25" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m26" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol.m27" />
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
 </rdf:RDF>

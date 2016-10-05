@@ -262,6 +262,11 @@ namespace RDFSParserOWL2.Model
 			{
 				return myEnumerationMembers;
 			}
+
+			set 
+			{
+				myEnumerationMembers = value;
+			}
 		}
 
 		/// <summary>

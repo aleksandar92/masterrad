@@ -355,6 +355,12 @@ namespace RDFSParserOWL2.Model
 		}
 
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="specialOntologyProfile"></param>
+		/// <param name="nameOfStereotype"></param>
+		/// <returns></returns>
 		public bool ProcessSpecialStereotypeElements(Profile specialOntologyProfile,string nameOfStereotype)
 		{
 			bool changed = false;
@@ -366,84 +372,7 @@ namespace RDFSParserOWL2.Model
 					switch (type)
 					{
 						case ProfileElementTypes.Class:
-							List<Class> classesToAdd = null;
-							List<Class> classes = null;
-							List<Class> soClasses = null;
-
-
-							if (specialOntologyProfile.ProfileMap.ContainsKey(type))
-							{
-								soClasses = specialOntologyProfile.ProfileMap[type].Cast<Class>().ToList();
-							}
-
-							if (profileMap.ContainsKey(type))
-							{
-								classes = profileMap[type].Cast<Class>().Where(x => x.HasStereotype(nameOfStereotype)).ToList();
-							}
-
-							if (soClasses == null && classes != null)
-							{
-								classesToAdd = new List<Class>();
-								classesToAdd.AddRange(classes);
-								soClasses = new List<Class>();
-							}
-							else if (soClasses != null && classes != null)
-							{
-								classesToAdd = classes.Except(soClasses, new ClassComparer()).ToList();
-							}
-
-							if (classesToAdd != null && classesToAdd.Count > 0)
-							{
-								if (soClasses == null)
-								{
-									soClasses = new List<Class>();
-								}
-
-								soClasses.AddRange(classesToAdd);
-								specialOntologyProfile.ProfileMap[type] = soClasses.Cast<ProfileElement>().ToList();
-								changed = true;
-							}
-
-
-							foreach (Class cls in classes)
-							{
-								List<Property> propToAdd = null;
-								List<Property> soProp = null;
-								List<Property> prop = null;
-
-								if (specialOntologyProfile.ProfileMap.ContainsKey(ProfileElementTypes.Property))
-								{
-									soProp = specialOntologyProfile.ProfileMap[ProfileElementTypes.Property].Cast<Property>().ToList();
-								}
-
-								if (cls.MyProperties != null)
-								{
-									prop = cls.MyProperties.Cast<Property>().ToList();
-								}
-
-
-								DifferenceBeetwenListOfProperties(ref soProp, prop, out propToAdd);
-
-								if (prop != null && propToAdd.Count > 0)
-								{
-									if (soProp == null)
-									{
-										soProp = new List<Property>();
-									}
-
-									soProp.AddRange(propToAdd);
-									specialOntologyProfile.ProfileMap[ProfileElementTypes.Property] = soProp.Cast<ProfileElement>().ToList();
-									changed = true;
-								}
-
-								if (cls.IsEnumeration)
-								{
-									DifferenceBeetwenEnumsInClass(ref specialOntologyProfile, cls, ref changed);
-								}
-							
-
-							}
-
+							CalculateDifferencessInClassesBeetweenTwoProfiles(specialOntologyProfile,ref changed,nameOfStereotype);
 							break;
 
 						case ProfileElementTypes.Property:
@@ -490,6 +419,126 @@ namespace RDFSParserOWL2.Model
 		}
 
 
+		private void CalculateDifferencessInClassesBeetweenTwoProfiles(Profile specialOntologyProfile,ref bool changed,string nameOfStereotype) 
+		{
+			List<Class> classesToAdd = null;
+			List<Class> classes = null;
+			List<Class> soClasses = null;
+			ProfileElementTypes type = ProfileElementTypes.Class;
+
+			if (specialOntologyProfile.ProfileMap.ContainsKey(type))
+			{
+				soClasses = specialOntologyProfile.ProfileMap[type].Cast<Class>().ToList();
+			}
+
+			if (profileMap.ContainsKey(type))
+			{
+				classes = profileMap[type].Cast<Class>().Where(x => x.HasStereotype(nameOfStereotype)).ToList();
+			}
+
+			if (soClasses == null && classes != null)
+			{
+				classesToAdd = new List<Class>();
+				classesToAdd.AddRange(classes);
+				soClasses = new List<Class>();
+			}
+			else if (soClasses != null && classes != null)
+			{
+				classesToAdd = classes.Except(soClasses, new ClassComparer()).ToList();
+				List<Class> classesToChange = classes.Intersect(soClasses, new ClassComparer()).ToList();
+				foreach (Class cls in soClasses)
+				{
+
+					Class secCLs = classes.Where(x => x.URI.Equals(cls.URI)).SingleOrDefault();
+					if (secCLs != null)
+					{
+						List<ProfileElement> enumsClassToAdd = null;
+						List<ProfileElement> enumMembersSoClass = cls.MyEnumerationMembers;
+						List<ProfileElement> enumMembersClass = secCLs.MyEnumerationMembers;
+						DifferenceBeetwenListOfProfileElements(ref enumMembersSoClass, enumMembersClass, out enumsClassToAdd);
+						if (enumsClassToAdd != null && enumsClassToAdd.Count > 0)
+						{
+							if (enumMembersSoClass == null)
+							{
+								enumMembersSoClass = new List<ProfileElement>();
+							}
+
+							enumMembersSoClass.AddRange(enumsClassToAdd);
+							cls.MyEnumerationMembers = enumMembersSoClass;
+							//specialOntologyProfile.ProfileMap[type] = entsoProperties.Cast<ProfileElement>().ToList();
+							changed = true;
+						}
+						//if (enumMembersSoClass == null && enumMembersClass!=null) 
+						//{
+						//	propertiesClassToAdd = new List<ProfileElement>();
+						//	propertiesClassToAdd.AddRange(enumMembersClass);
+						//}else if() 
+					}
+					//DifferenceBeetwenListOfProperties(,,);
+				}
+			}
+
+			if (classesToAdd != null && classesToAdd.Count > 0)
+			{
+				if (soClasses == null)
+				{
+					soClasses = new List<Class>();
+				}
+
+				soClasses.AddRange(classesToAdd);
+				specialOntologyProfile.ProfileMap[type] = soClasses.Cast<ProfileElement>().ToList();
+				changed = true;
+			}
+
+
+			foreach (Class cls in classes)
+			{
+				List<Property> propToAdd = null;
+				List<Property> soProp = null;
+				List<Property> prop = null;
+
+				if (specialOntologyProfile.ProfileMap.ContainsKey(ProfileElementTypes.Property))
+				{
+					soProp = specialOntologyProfile.ProfileMap[ProfileElementTypes.Property].Cast<Property>().ToList();
+				}
+
+				if (cls.MyProperties != null)
+				{
+					prop = cls.MyProperties.Cast<Property>().ToList();
+				}
+
+
+				DifferenceBeetwenListOfProperties(ref soProp, prop, out propToAdd);
+
+				if (prop != null && propToAdd.Count > 0)
+				{
+					if (soProp == null)
+					{
+						soProp = new List<Property>();
+					}
+
+					soProp.AddRange(propToAdd);
+					specialOntologyProfile.ProfileMap[ProfileElementTypes.Property] = soProp.Cast<ProfileElement>().ToList();
+					changed = true;
+				}
+
+				if (cls.IsEnumeration)
+				{
+					DifferenceBeetwenEnumsInClass(ref specialOntologyProfile, cls, ref changed);
+				}
+
+
+			}
+		
+		}
+
+		private void DifferenceBeetweenListOfSameClassesFromDifferentProfile() 
+		{
+		
+		
+		}
+
+
 		/// <summary>
 		/// Method for calculating deifferences between  two lists of properties
 		/// </summary>
@@ -509,6 +558,30 @@ namespace RDFSParserOWL2.Model
 			else if (firstList!= null && secondList != null)
 			{
 				propertiesToAdd = secondList.Except(firstList, new PropertyComparer()).ToList();
+
+			}
+		}
+
+
+		/// <summary>
+		/// Method for calculating deifferences between  two lists of profile elements
+		/// </summary>
+		/// <param name="firstList"> </param>
+		/// <param name="secondList"></param>
+		/// <param name="propertiesToAdd"></param>
+		private void DifferenceBeetwenListOfProfileElements(ref List<ProfileElement> firstList, List<ProfileElement> secondList, out List<ProfileElement> propertiesToAdd)
+		{
+			propertiesToAdd = null;
+
+			if (firstList == null && secondList != null)
+			{
+				firstList = new List<ProfileElement>();
+				propertiesToAdd = new List<ProfileElement>();
+				propertiesToAdd.AddRange(secondList);
+			}
+			else if (firstList != null && secondList != null)
+			{
+				propertiesToAdd = secondList.Except(firstList, new ProfileElementComparer()).ToList();
 
 			}
 		}

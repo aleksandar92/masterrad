@@ -9,377 +9,504 @@ using System.Threading.Tasks;
 
 namespace RDFSParserOWL2.Parser.Handler
 {
-    class OWLRDFXMLHandler : RDFXMLHandler
-    {
+	class OWLRDFXMLHandler : RDFXMLHandler
+	{
 
-        /// <summary>
-        /// Kolekcija za restrikcije u profilu 
-        /// </summary>
-        private Dictionary<string, string> res;
+		/// <summary>
+		/// Kolekcija za restrikcije u profilu 
+		/// </summary>
+		private Dictionary<string, string> res;
 
-        override
-        public void StartDocument(string filePath)
-        {
-            base.StartDocument(filePath);
-            res = new Dictionary<string, string>();
+		private List<string> enumMembers;
 
-            //throw new NotImplementedException();
-        }
+		override
+		public void StartDocument(string filePath)
+		{
+			base.StartDocument(filePath);
+			res = new Dictionary<string, string>();
+			enumMembers = new List<string>();
+			//throw new NotImplementedException();
+		}
 
-        override
-        public void StartElement(string localName, string qName, SortedList<string, string> atts)
-        {
-            if (!abort)
-            {
-				base.StartElement(localName,qName,atts);
+		override
+		public void StartElement(string localName, string qName, SortedList<string, string> atts)
+		{
+			if (!abort)
+			{
+				if (localName.Equals(OWL2Namespace.OneOf))
+				{
+					enumMembers.Clear();
+				}
+				else if (qName.Equals(rdfProfileElement))
+				{
+					string id;
+					atts.TryGetValue(rdfAbout, out id);
+					if (!string.IsNullOrEmpty(id))
+						enumMembers.Add(id);
+				}
+				else
+				{
 
-                //checkedElementsCount++;
-                //if (qName.StartsWith(rdfsNamespace, StringComparison.OrdinalIgnoreCase) || (qName.StartsWith(cimsNamespace, StringComparison.OrdinalIgnoreCase)))
-                //{
-                //    documentIdentifiedLikeRDFS = true;
-                //}
-                //if ((!documentIdentifiedLikeRDFS) && (checkedElementsCount >= 70))
-                //{
-                //    this.profile = null;
-                //    //occurredError = new ExtendedParseError(new Exception(documentError));
-                //    abort = true;
-                //}
-            }
+					base.StartElement(localName, qName, atts);
+				}
+				//checkedElementsCount++;
+				//if (qName.StartsWith(rdfsNamespace, StringComparison.OrdinalIgnoreCase) || (qName.StartsWith(cimsNamespace, StringComparison.OrdinalIgnoreCase)))
+				//{
+				//    documentIdentifiedLikeRDFS = true;
+				//}
+				//if ((!documentIdentifiedLikeRDFS) && (checkedElementsCount >= 70))
+				//{
+				//    this.profile = null;
+				//    //occurredError = new ExtendedParseError(new Exception(documentError));
+				//    abort = true;
+				//}
+			}
 
-            //throw new NotImplementedException();
-        }
+			//throw new NotImplementedException();
+		}
 
-        override
-        public void EndElement(string localName, string qName)
-        {
-            if (!abort)
-            {
-                if (OWL2Namespace.IsElementOWL(qName)) //end of element    
-                {
-                    //novo
-                    if (prop != null)
-                    {
-                        string type = localName;
 
-                        //prop.TryGetValue(rdfType, out type);
+		public override bool IsEndElement(string qName)
+		{
+			return OWL2Namespace.IsElementOWL(qName);
+		}
 
-                        if (ExtractSimpleNameFromResourceURI(type) == "ClassCategory")
-                        {
-                            //ClassCategory cs = new ClassCategory();
-                            //foreach (KeyValuePair<string, string> pp in prop)
-                            //{
-                            //	string str = pp.Value;
-                            //	if ((pp.Key.Equals(cimsBelongsToCategory)) && (str != null))
-                            //	{
-                            //		cs.BelongsToCategory = str;
-                            //		AddBelongingInformation(cs, cs.BelongsToCategory);
-                            //	}
-                            //	else if ((pp.Key.Equals(rdfsComment)) && (str != null))
-                            //	{
-                            //		cs.Comment = str;
-                            //	}
-                            //	else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
-                            //	{
-                            //		cs.Label = str;
-                            //	}
-                            //	else if ((pp.Key.Equals(rdfType)) && (str != null))
-                            //	{
-                            //		cs.Type = str;
-                            //	}
-                            //	else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
-                            //	{
-                            //		cs.URI = str;
-                            //	}
-                            //	else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
-                            //	{
-                            //		cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
-                            //	}
-                            //}
-                            //AddProfileElement(ProfileElementTypes.ClassCategory, cs);
-                        }
-                        else if (ExtractSimpleNameFromResourceURI(type) == "Class")
-                        {
-                            Class cs = new Class();
-                            foreach (KeyValuePair<string, string> pp in prop)
-                            {
-                                string str = pp.Value;
-                                //if ((pp.Key.Equals(cimsBelongsToCategory)) && (str != null))
-                                //{
-                                //    cs.BelongsToCategory = str;
-                                //    AddBelongingInformation(cs, cs.BelongsToCategory);
-                                //}
-                                //else 
-								//if ((pp.Key.Equals(rdfsComment)) && (str != null))
-								//{
+		protected override bool IsProperty(string type)
+		{
+			return ExtractSimpleNameFromResourceURI(type).Equals(OWL2Namespace.DatatypeProperty) || ExtractSimpleNameFromResourceURI(type).Equals(OWL2Namespace.ObjectProperty);
+		}
 
-								//	cs.Comment.Attributes[rdfParseType] = str;
-								//	cs.Comment.Value = values[rdfsComment];
-								//}
-								//else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
-								//{
-								//	cs.Label.Attributes[xmlLang] = str;
-								//	cs.Label.Value = values[rdfsLabel];
-								//	//cs.Label = str;
-								//}
-								//else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
-								//{
-								//	cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
-								//}
-								//else if ((pp.Key.Contains(cimsStereotype)) && (str != null))
-								//{
-								//	cs.AddStereotype(str);
-								//}
-                               // else 
-								if ((pp.Key.Contains(rdfsSubClassOf)) && (str != null))
-                                {
-									cs.SubClassOf = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
-                                }
-                                else if ((pp.Key.Equals(rdfType)) && (str != null))
-                                {
-                                    cs.Type = str;
-                                }
-                                else if ((pp.Key.Equals(OWL2Namespace.owlClass)) && (str != null))
-                                {
-                                    cs.URI = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
-                                }
-                            }
-							ProccessCommentsAndLabels(cs);
-                            AddProfileElement(ProfileElementTypes.Class, cs);
-                        }
-                        else if (ExtractSimpleNameFromResourceURI(type).Equals(OWL2Namespace.DatatypeProperty) || ExtractSimpleNameFromResourceURI(type).Equals(OWL2Namespace.ObjectProperty))
-                        {
-                            Property pr = new Property();
-                            foreach (KeyValuePair<string, string> pp in prop)
-                            {
-                                string str = pp.Value;
-                                //if ((pp.Key.Equals(cimsDataType)) && (str != null))
-                                //{
-                                //    pr.DataType = str;
-                                //}
-                                //else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
-                                //{
-                                //    pr.MultiplicityAsString = str;
-                                //}
-                                //else 
-                                if ((pp.Key.Equals(OWL2Namespace.owlDatatypeProperty) || pp.Key.Equals(OWL2Namespace.owlObjectProperty)) && (str != null))
-                                {
-                                    pr.URI = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
-                                }
-                                else if ((pp.Key.Equals(rdfType)) && (str != null))
-                                {
-                                    pr.Type = str;
-                                }
-                                else if ((pp.Key.Equals(rdfsDomain)) && (str != null))
-                                {
-									pr.Domain = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
-                                    AddBelongingInformation(pr, pr.Domain);
-                                }
-                                //else if ((pp.Key.Contains(cimsStereotype)) && (str != null))
-                                //{
-                                //    pr.AddStereotype(str);
-                                //}
-								//else if ((pp.Key.Contains(rdfsComment)) && (str != null))
-								//{
-								//	pr.Comment.Attributes[rdfParseType] = str;
-								//	pr.Comment.Value = values[rdfsComment];
-								//	//pr.Comment = str;
-								//}
-								//else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
-								//{
+		protected override void GetType(out string type, string localName)
+		{
+			type = localName;
+		}
 
-								//	pr.Label.Attributes[xmlLang] = str;
-								//	pr.Label.Value = values[rdfsLabel];
-								//	//pr.Label = str;
-								//}
-                                else if ((pp.Key.Equals(rdfsRange)) && (str != null))
-                                {
-                                    if (localName.Equals(OWL2Namespace.DatatypeProperty))
-										pr.DataType = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
-                                    else
-										pr.Range = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
-                                }
-                            }
-                            AddProfileElement(ProfileElementTypes.Property, pr);
-                        }
-                        else
-                        {
-                            //EnumMember en = new EnumMember();
-                            //foreach (KeyValuePair<string, string> pp in prop)
-                            //{
-                            //	string str = pp.Value;
-                            //	if ((pp.Key.Equals(rdfsComment)) && (str != null))
-                            //	{
-                            //		en.Comment = str;
-                            //	}
-                            //	else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
-                            //	{
-                            //		en.Label = str;
-                            //	}
-                            //	else if ((pp.Key.Equals(rdfType)) && (str != null))
-                            //	{
-                            //		en.Type = str;
-                            //	}
-                            //	else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
-                            //	{
-                            //		en.URI = str;
-                            //	}
-                            //	else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
-                            //	{
-                            //		en.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
-                            //	}
-                            //}
-                            //AddProfileElement(ProfileElementTypes.Unknown, en);
-                        }
 
-						commentsAndLabels.Clear();
-                        prop.Clear();
-                        values.Clear();
-						
+		override
+		public void EndElement(string localName, string qName)
+		{
+			if (!abort)
+			{
+				base.EndElement(localName, qName);
+				//if (OWL2Namespace.IsElementOWL(qName)) //end of element    
+				//{
+				//	//novo
+				//	if (prop != null)
+				//	{
+				//		string type = localName;
 
-                    }
-                }
+				//		//prop.TryGetValue(rdfType, out type);
 
-                else if (qName.Equals(rdfsLabel)) //// end of label subelement
-                {
-                    content = content.Trim();
-                    if (!string.IsNullOrEmpty(content))
-                    {
-                        //novo
-                        string ls;
-                        prop.TryGetValue(qName, out ls);
-                        if (ls == null)
-                        {
-                            ls = (string)content.Clone();
-                            prop.Add(qName, ls);
+				//		if (ExtractSimpleNameFromResourceURI(type) == "ClassCategory")
+				//		{
+				//			//ClassCategory cs = new ClassCategory();
+				//			//foreach (KeyValuePair<string, string> pp in prop)
+				//			//{
+				//			//	string str = pp.Value;
+				//			//	if ((pp.Key.Equals(cimsBelongsToCategory)) && (str != null))
+				//			//	{
+				//			//		cs.BelongsToCategory = str;
+				//			//		AddBelongingInformation(cs, cs.BelongsToCategory);
+				//			//	}
+				//			//	else if ((pp.Key.Equals(rdfsComment)) && (str != null))
+				//			//	{
+				//			//		cs.Comment = str;
+				//			//	}
+				//			//	else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
+				//			//	{
+				//			//		cs.Label = str;
+				//			//	}
+				//			//	else if ((pp.Key.Equals(rdfType)) && (str != null))
+				//			//	{
+				//			//		cs.Type = str;
+				//			//	}
+				//			//	else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
+				//			//	{
+				//			//		cs.URI = str;
+				//			//	}
+				//			//	else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
+				//			//	{
+				//			//		cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
+				//			//	}
+				//			//}
+				//			//AddProfileElement(ProfileElementTypes.ClassCategory, cs);
+				//		}
+				//		else if (ExtractSimpleNameFromResourceURI(type) == "Class")
+				//		{
+				//			Class cs = new Class();
+				//			foreach (KeyValuePair<string, string> pp in prop)
+				//			{
+				//				string str = pp.Value;
+				//				//if ((pp.Key.Equals(cimsBelongsToCategory)) && (str != null))
+				//				//{
+				//				//    cs.BelongsToCategory = str;
+				//				//    AddBelongingInformation(cs, cs.BelongsToCategory);
+				//				//}
+				//				//else 
+				//				//if ((pp.Key.Equals(rdfsComment)) && (str != null))
+				//				//{
 
-                        }
-                        values.Add(qName, content);
-                        content = string.Empty;
-                    }
-                }
-                else if (localName.Equals(OWL2Namespace.owlRestriction))
-                {
-                    if (prop != null)
-                    {
-                        string onProperty, cardinality;
-                        prop.TryGetValue(OWL2Namespace.owlOnProperty, out onProperty);
-                        cardinality = GetCardinality();
-                        if (onProperty != null && cardinality != null)
-                        {
-							if (prop.ContainsKey(OWL2Namespace.owlOnProperty)) 
+				//				//	cs.Comment.Attributes[rdfParseType] = str;
+				//				//	cs.Comment.Value = values[rdfsComment];
+				//				//}
+				//				//else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
+				//				//{
+				//				//	cs.Label.Attributes[xmlLang] = str;
+				//				//	cs.Label.Value = values[rdfsLabel];
+				//				//	//cs.Label = str;
+				//				//}
+				//				//else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
+				//				//{
+				//				//	cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
+				//				//}
+				//				//else if ((pp.Key.Contains(cimsStereotype)) && (str != null))
+				//				//{
+				//				//	cs.AddStereotype(str);
+				//				//}
+				//				// else 
+				//				if ((pp.Key.Contains(rdfsSubClassOf)) && (str != null))
+				//				{
+				//					cs.SubClassOf = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
+				//				}
+				//				else if ((pp.Key.Equals(rdfType)) && (str != null))
+				//				{
+				//					cs.Type = str;
+				//				}
+				//				else if ((pp.Key.Equals(OWL2Namespace.owlClass)) && (str != null))
+				//				{
+				//					cs.URI = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
+				//				}
+				//			}
+				//			ProccessCommentsAndLabels(cs);
+				//			AddProfileElement(ProfileElementTypes.Class, cs);
+				//		}
+				//		else if (ExtractSimpleNameFromResourceURI(type).Equals(OWL2Namespace.DatatypeProperty) || ExtractSimpleNameFromResourceURI(type).Equals(OWL2Namespace.ObjectProperty))
+				//		{
+				//			Property pr = new Property();
+				//			foreach (KeyValuePair<string, string> pp in prop)
+				//			{
+				//				string str = pp.Value;
+				//				//if ((pp.Key.Equals(cimsDataType)) && (str != null))
+				//				//{
+				//				//    pr.DataType = str;
+				//				//}
+				//				//else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
+				//				//{
+				//				//    pr.MultiplicityAsString = str;
+				//				//}
+				//				//else 
+				//				if ((pp.Key.Equals(OWL2Namespace.owlDatatypeProperty) || pp.Key.Equals(OWL2Namespace.owlObjectProperty)) && (str != null))
+				//				{
+				//					pr.URI = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
+				//				}
+				//				else if ((pp.Key.Equals(rdfType)) && (str != null))
+				//				{
+				//					pr.Type = str;
+				//				}
+				//				else if ((pp.Key.Equals(rdfsDomain)) && (str != null))
+				//				{
+				//					pr.Domain = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
+				//					AddBelongingInformation(pr, pr.Domain);
+				//				}
+				//				else if ((pp.Key.Equals(rdfsRange)) && (str != null))
+				//				{
+				//					if (localName.Equals(OWL2Namespace.DatatypeProperty))
+				//						pr.DataType = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
+				//					else
+				//						pr.Range = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
+				//				}
+				//			}
+				//			AddProfileElement(ProfileElementTypes.Property, pr);
+				//		}
+				//		else
+				//		{
+				//			//EnumMember en = new EnumMember();
+				//			//foreach (KeyValuePair<string, string> pp in prop)
+				//			//{
+				//			//	string str = pp.Value;
+				//			//	if ((pp.Key.Equals(rdfsComment)) && (str != null))
+				//			//	{
+				//			//		en.Comment = str;
+				//			//	}
+				//			//	else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
+				//			//	{
+				//			//		en.Label = str;
+				//			//	}
+				//			//	else if ((pp.Key.Equals(rdfType)) && (str != null))
+				//			//	{
+				//			//		en.Type = str;
+				//			//	}
+				//			//	else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
+				//			//	{
+				//			//		en.URI = str;
+				//			//	}
+				//			//	else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
+				//			//	{
+				//			//		en.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
+				//			//	}
+				//			//}
+				//			//AddProfileElement(ProfileElementTypes.Unknown, en);
+				//		}
+
+				//		commentsAndLabels.Clear();
+				//		prop.Clear();
+				//		values.Clear();
+
+
+				//	}
+				//}
+
+				//else if (qName.Equals(rdfsLabel)) //// end of label subelement
+				//{
+				//	content = content.Trim();
+				//	if (!string.IsNullOrEmpty(content))
+				//	{
+				//		//novo
+				//		string ls;
+				//		prop.TryGetValue(qName, out ls);
+				//		if (ls == null)
+				//		{
+				//			ls = (string)content.Clone();
+				//			prop.Add(qName, ls);
+
+				//		}
+				//		values.Add(qName, content);
+				//		content = string.Empty;
+				//	}
+				//}
+				//else
+
+				if (localName.Equals(OWL2Namespace.owlRestriction))
+				{
+					if (prop != null)
+					{
+						string onProperty, cardinality;
+						prop.TryGetValue(OWL2Namespace.owlOnProperty, out onProperty);
+						cardinality = GetCardinality();
+						if (onProperty != null && cardinality != null)
+						{
+							if (prop.ContainsKey(OWL2Namespace.owlOnProperty))
 							{
 								prop.Remove(OWL2Namespace.owlOnProperty);
 							}
 
-                            if (cardinality.Equals(OWL2Namespace.owlMaxQualified) || cardinality.Equals(OWL2Namespace.owlMinQualified) || cardinality.Equals(OWL2Namespace.owlQualified) )
-                            {
-                                if (prop.ContainsKey(OWL2Namespace.owlOnDataRange))
-                                    prop.Remove(OWL2Namespace.owlOnDataRange);
-                                if (prop.ContainsKey(OWL2Namespace.owlOnClass))
-                                    prop.Remove(OWL2Namespace.owlOnClass);
+							if (cardinality.Equals(OWL2Namespace.owlMaxQualified) || cardinality.Equals(OWL2Namespace.owlMinQualified) || cardinality.Equals(OWL2Namespace.owlQualified))
+							{
+								if (prop.ContainsKey(OWL2Namespace.owlOnDataRange))
+									prop.Remove(OWL2Namespace.owlOnDataRange);
+								if (prop.ContainsKey(OWL2Namespace.owlOnClass))
+									prop.Remove(OWL2Namespace.owlOnClass);
+							}
+							AddRestriction(StringManipulationManager.ExtractAllWithSeparator(onProperty, StringManipulationManager.SeparatorSharp), cardinality);
 
-                            }
-                            AddRestriction(StringManipulationManager.ExtractAllWithSeparator(onProperty, StringManipulationManager.SeparatorSharp), cardinality);
+						}
+					}
 
-                            //if(cardinality.Equals()) 
-                            //{
+				}
+				//else if (qName.Equals(rdfsComment)) //// end of comment subelement
+				//{
+				//	content = content.Trim();
+				//	if (!string.IsNullOrEmpty(content))
+				//	{
+				//		//novo
+				//		string ls;
+				//		prop.TryGetValue(qName, out ls);
+				//		if (ls == null)
+				//		{
+				//			ls = (string)content.Clone();
+				//			prop.Add(qName, ls);
 
-                            //}
+				//		}
+				//		values.Add(qName, content);
+				//		content = string.Empty;
+				//	}
+				//}
+				//else if (qName.Equals(cimsIsAggregate)) //// end of isAggregate subelement
+				//{
+				//    content = content.Trim();
+				//    if (!string.IsNullOrEmpty(content))
+				//    {
+				//        bool paresedValue;
 
-                        }
+				//        //novo
+				//        string ls;
+				//        prop.TryGetValue(qName, out ls);
+				//        if (ls == null)
+				//        {
+				//            if (bool.TryParse((string)content.Clone(), out paresedValue))
+				//            {
+				//                ls = paresedValue.ToString();
+				//            }
+				//            prop.Add(qName, ls);
+				//        }
+				//        content = string.Empty;
+				//    }
+				//}
+			}
+		}
+
+		override
+		public void StartPrefixMapping(string prefix, string uri)
+		{
+			//throw new NotImplementedException();
+		}
 
 
-                    }
+		/// <summary>
+		/// Method for populating class 
+		/// </summary>
+		/// <param name="localName"></param>
+		protected override void PopulateClass(string localName)
+		{
 
-                }
-                else if (qName.Equals(rdfsComment)) //// end of comment subelement
-                {
-                    content = content.Trim();
-                    if (!string.IsNullOrEmpty(content))
-                    {
-                        //novo
-                        string ls;
-                        prop.TryGetValue(qName, out ls);
-                        if (ls == null)
-                        {
-                            ls = (string)content.Clone();
-                            prop.Add(qName, ls);
+			///Checking if class is for populating
+			if (prop.Keys.Contains(OWL2Namespace.owlClass))
+			{
+				base.PopulateClass(localName);
+			}
+		}
 
-                        }
-                        values.Add(qName, content);
-                        content = string.Empty;
-                    }
-                }
-                //else if (qName.Equals(cimsIsAggregate)) //// end of isAggregate subelement
-                //{
-                //    content = content.Trim();
-                //    if (!string.IsNullOrEmpty(content))
-                //    {
-                //        bool paresedValue;
+		protected override void OperationsForPopulatingClass(Class cs, string localName)
+		{
+			base.OperationsForPopulatingClass(cs, localName);
+			AddEnumMembersToClass(cs);
+		}
 
-                //        //novo
-                //        string ls;
-                //        prop.TryGetValue(qName, out ls);
-                //        if (ls == null)
-                //        {
-                //            if (bool.TryParse((string)content.Clone(), out paresedValue))
-                //            {
-                //                ls = paresedValue.ToString();
-                //            }
-                //            prop.Add(qName, ls);
-                //        }
-                //        content = string.Empty;
-                //    }
-                //}
-            }
-            //throw new NotImplementedException();
-        }
+		private void AddEnumMembersToClass(Class cs)
+		{
+			if (cs != null)
+			{
+				foreach (string uri in enumMembers)
+				{
+					ProfileElement pe = new EnumMember() { URI = StringManipulationManager.ExtractAllWithSeparator(uri, StringManipulationManager.SeparatorSharp) };
+					cs.AddToMyEnumerationMembers(pe);
+				}
+			}
+			enumMembers.Clear();
 
-        override
-        public void StartPrefixMapping(string prefix, string uri)
-        {
-            //throw new NotImplementedException();
-        }
+		}
 
-        override
-        public void Characters(string text)
-        {
-            if (!string.IsNullOrEmpty(text))
-            {
-                content = text;
-            }
-            else
-            {
-                content = string.Empty;
-            }
-            //throw new NotImplementedException();
-        }
+		protected override void PopulateEnumMemberAttribute(EnumMember em, string attrVal, string attr, string localName)
+		{
+			if ((attr.Equals(OWL2Namespace.owlNamedIndividual)) && (attrVal != null))
+			{
+				em.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+			}
+			else
+			{
+				base.PopulateEnumMemberAttribute(em, attrVal, attr, localName);
+			}
+		}
 
-        override
-        public void EndDocument()
-        {
-            if (profile != null)
-            {
-                profile.ProfileMap = allByType;
+		protected override void PopulateClassAttribute(Class cs, string attrVal, string attr, string localName)
+		{
+			if ((attr.Equals(rdfType)) && (attrVal != null))
+			{
+				cs.Type = attrVal;
+			}
+			else if ((attr.Equals(OWL2Namespace.owlClass)) && (attrVal != null))
+			{
+				cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+			}
+			else
+			{
+				base.PopulateClassAttribute(cs, attrVal, attr, localName);
+			}
+		}
+
+
+		protected override void PopulatePropertyAttribute(Property pr, string attrVal, string attr, string localName)
+		{
+			if ((attr.Equals(OWL2Namespace.owlDatatypeProperty) || attr.Equals(OWL2Namespace.owlObjectProperty)) && (attrVal != null))
+			{
+				pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+			}
+			else if ((attr.Equals(rdfType)) && (attrVal != null))
+			{
+				pr.Type = attrVal;
+			}
+
+			else if ((attr.Equals(rdfsRange)) && (attrVal != null))
+			{
+				if (localName.Equals(OWL2Namespace.DatatypeProperty))
+					pr.DataType = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				else
+					pr.Range = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+			}
+			else
+			{
+				base.PopulatePropertyAttribute(pr, attrVal, attr, localName);
+			}
+		}
+
+		override
+		public void Characters(string text)
+		{
+			if (!string.IsNullOrEmpty(text))
+			{
+				content = text;
+			}
+			else
+			{
+				content = string.Empty;
+			}
+			//throw new NotImplementedException();
+		}
+
+		override
+		public void EndDocument()
+		{
+			if (profile != null)
+			{
+				profile.ProfileMap = allByType;
+				ProcessEnumerations();
+				/// funkcionalnost za povezivanje kardinaliteta
 				ConvertCardinality();
 				res.Clear();
-                ProcessProfile();
-            }
-        }
+				ProcessProfile();
+			}
+		}
 
-        private void AddRestriction(string key, string value)
-        {
-            res.Add(key, value);
-        }
+		private void ProcessEnumerations() 
+		{
+			if(profile.ProfileMap!=null && profile.ProfileMap.ContainsKey(ProfileElementTypes.Class) && profile.ProfileMap.ContainsKey(ProfileElementTypes.Unknown) ) 
+			{
+				List<ProfileElement> elements=profile.ProfileMap[ProfileElementTypes.Class];
+				List<ProfileElement> unknown = profile.ProfileMap[ProfileElementTypes.Unknown];	
+				if(elements!=null && unknown!=null) 
+				{
+					List<Class> classes=elements.Cast<Class>().ToList();
+					foreach(Class cs in classes) 
+					{
+						if(cs.MyEnumerationMembers!=null) 
+						{
+							foreach(EnumMember em in cs.MyEnumerationMembers) 
+							{
+								ProfileElement pe = unknown.Where(x => x.URI.Equals(em.URI)).SingleOrDefault();
+								if (pe != null)
+									pe.Type = cs.URI;
+							}
+						}
+					}	
+				}
 
-        private string GetCardinality()
-        {
+			}
+
+		}
+
+		private void AddRestriction(string key, string value)
+		{
+			res.Add(key, value);
+		}
+
+		private string GetCardinality()
+		{
 			string result = string.Empty, allValuesFrom = string.Empty, maxQualified = string.Empty, minQualified = string.Empty, qualified = string.Empty;
 
 
 			if (prop != null)
 			{
-				
+
 				prop.TryGetValue(OWL2Namespace.owlAllValuesFrom, out allValuesFrom);
 				prop.TryGetValue(OWL2Namespace.owlMaxQualified, out maxQualified);
 				prop.TryGetValue(OWL2Namespace.owlMinQualified, out minQualified);
@@ -398,29 +525,26 @@ namespace RDFSParserOWL2.Parser.Handler
 					prop.Remove(OWL2Namespace.owlPrefix + StringManipulationManager.SeparatorColon + result);
 
 			}
-            return result;
-        }
+			return result;
+		}
 
-		private void ConvertCardinality() 
+		private void ConvertCardinality()
 		{
-			
 
-			if(res!=null && allByType!=null && allByType.Keys.Contains(ProfileElementTypes.Property)) 
+			if (res != null && allByType != null && allByType.Keys.Contains(ProfileElementTypes.Property))
 			{
-				List<Property> properties =new List<Property>(allByType[ProfileElementTypes.Property].Cast<Property>().ToList());
-				
-				foreach(string ped in res.Keys) 
+				List<Property> properties = new List<Property>(allByType[ProfileElementTypes.Property].Cast<Property>().ToList());
+
+				foreach (string ped in res.Keys)
 				{
-					Property p= properties.Where(x=>x.URI.Equals(ped)).Single();
+					Property p = properties.Where(x => x.URI.Equals(ped)).Single();
 					if (p != null)
 						p.MultiplicityAsString = Property.ProcessOwlMultiplicityToString(res[ped]);
 				}
-			
-			
+
 			}
-		
 		}
 
 
-    }
+	}
 }

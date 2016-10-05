@@ -28,6 +28,8 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected const string rdfsDomain = "rdfs:domain";
 		protected const string rdfsSubClassOf = "rdfs:subClassOf";
 
+		protected const string cimsStereotype = "cims:stereotype";
+
 		protected Dictionary<TextType, List<ComplexTag>> commentsAndLabels;
 
 		protected const string xmlBase = "xml:base";
@@ -47,13 +49,12 @@ namespace RDFSParserOWL2.Parser.Handler
 		//private ProfileElement currentElement;
 
 
-
-
-
 		/// <summary>
 		/// stereotypes for element
 		/// </summary>
 		protected List<string> stereotypes;
+
+
 
 		//// for checking if document can't be processed as CIM-RDFS
 
@@ -90,15 +91,22 @@ namespace RDFSParserOWL2.Parser.Handler
 			abort = false;
 		}
 
-		public virtual void StartElement(string localName, string qName, SortedList<string, string> atts) 
+		public virtual void StartElement(string localName, string qName, SortedList<string, string> atts)
 		{
-			 /**
-             * Deo neophodan za proveru ako postoji xml:base jer tada elementi, bar vecina nema nista pre #
-             */
+			/**
+			* Deo neophodan za proveru ako postoji xml:base jer tada elementi, bar vecina nema nista pre #
+			*/
 			if (atts.ContainsKey(xmlBase))
 			{
 				profile.BaseNS = atts[xmlBase];
 				Console.WriteLine(profile.BaseNS);
+			}
+			else  if (qName.Equals(cimsStereotype))
+			{
+				string val;
+				atts.TryGetValue(rdfResource, out val);
+				if (!string.IsNullOrEmpty(val))
+					stereotypes.Add(val);
 			}
 			else if (qName.Equals(rdfsComment) || qName.Equals(rdfsLabel))
 			{
@@ -138,15 +146,175 @@ namespace RDFSParserOWL2.Parser.Handler
 					}
 				}
 			}
-		
-		
+
+
 		}
 
-		public abstract void EndElement(string localName, string qName);
+
+		public virtual bool IsEndElement(string qName)
+		{
+
+			return qName.Equals(rdfProfileElement)
+	|| qName.Equals(rdfsClassElement) || qName.Equals(rdfPropertyElement);
+		}
+
+		public virtual void EndElement(string localName, string qName)
+		{
+			if (IsEndElement(qName)) //end of element    
+			{
+				//novo
+				if (prop != null)
+				{
+					string type;
+					GetType(out type,localName);
+
+					if (ExtractSimpleNameFromResourceURI(type) == "ClassCategory")
+					{
+						//ClassCategory cs = new ClassCategory();
+						//foreach (KeyValuePair<string, string> pp in prop)
+						//{
+						//	string str = pp.Value;
+						//	if ((pp.Key.Equals(cimsBelongsToCategory)) && (str != null))
+						//	{
+						//		cs.BelongsToCategory = str;
+						//		AddBelongingInformation(cs, cs.BelongsToCategory);
+						//	}
+						//	else if ((pp.Key.Equals(rdfsComment)) && (str != null))
+						//	{
+						//		cs.Comment = str;
+						//	}
+						//	else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
+						//	{
+						//		cs.Label = str;
+						//	}
+						//	else if ((pp.Key.Equals(rdfType)) && (str != null))
+						//	{
+						//		cs.Type = str;
+						//	}
+						//	else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
+						//	{
+						//		cs.URI = str;
+						//	}
+						//	else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
+						//	{
+						//		cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
+						//	}
+						//}
+						//AddProfileElement(ProfileElementTypes.ClassCategory, cs);
+					}
+					else if (IsClass(type))
+					{
+						PopulateClass(localName);
+					}
+					else if (IsProperty(type))
+					{
+						PopulateProperty(localName);
+					}
+					else
+					{
+						PopulateEnumMember(localName);
+					}
+
+					prop.Clear();
+					values.Clear();
+					stereotypes.Clear();
+					commentsAndLabels.Clear();
+
+				}
+			}
+
+			else if (qName.Equals(rdfsLabel)) //// end of label subelement
+			{
+				content = content.Trim();
+				if (!string.IsNullOrEmpty(content))
+				{
+					if (commentAndLabelAtts == null)
+					{
+						commentAndLabelAtts = new Dictionary<string, string>();
+					}
+
+					AddComplexTagToCommentsAndLabels(TextType.Label, new ComplexTag(content, commentAndLabelAtts));
+				}
+				content = string.Empty;
+				commentAndLabelAtts.Clear();
+			}
+			else if (qName.Equals(rdfsComment)) //// end of comment subelement
+			{
+				content = content.Trim();
+				if (!string.IsNullOrEmpty(content))
+				{
+					if (commentAndLabelAtts == null)
+					{
+						commentAndLabelAtts = new Dictionary<string, string>();
+					}
+					///Dodavanje novog komentara u kolekciju koja ce kasnije biti ispraznjena 
+					AddComplexTagToCommentsAndLabels(TextType.Comment, new ComplexTag(content, commentAndLabelAtts));
+				}
+				content = string.Empty;
+				commentAndLabelAtts.Clear();
+			}
+			//else if (qName.Equals(cimsIsAggregate)) //// end of isAggregate subelement
+			//{
+			//	content = content.Trim();
+			//	if (!string.IsNullOrEmpty(content))
+			//	{
+			//		bool paresedValue;
+
+			//		//novo
+			//		string ls;
+			//		prop.TryGetValue(qName, out ls);
+			//		if (ls == null)
+			//		{
+			//			if (bool.TryParse((string)content.Clone(), out paresedValue))
+			//			{
+			//				ls = paresedValue.ToString();
+			//			}
+			//			prop.Add(qName, ls);
+			//		}
+			//		content = string.Empty;
+			//	}
+			//}
+			else if (qName.Equals(cimsStereotype))
+			{
+				content = content.Trim();
+				if (!string.IsNullOrEmpty(content))
+				{
+					stereotypes.Add(content);
+				}
+			}
+
+
+		}
 
 		public abstract void StartPrefixMapping(string prefix, string uri);
 
-		public abstract void Characters(string text);
+
+		protected virtual void  GetType(out string  type,string localName) 
+		{
+			 prop.TryGetValue(rdfType, out type);
+		}
+
+		protected virtual bool IsClass(string type) 
+		{
+			return  ExtractSimpleNameFromResourceURI(type).Equals("Class");
+		}
+
+		protected virtual bool IsProperty(string type)
+		{
+			return ExtractSimpleNameFromResourceURI(type).Equals("Property");
+		}
+
+		public virtual void Characters(string text) 
+		{
+			if (!string.IsNullOrEmpty(text))
+			{
+				content = text;
+			}
+			else
+			{
+				content = string.Empty;
+			}		
+		}
 
 		public abstract void EndDocument();
 
@@ -213,13 +381,13 @@ namespace RDFSParserOWL2.Parser.Handler
 		//protected void PopulateClass(ref Class cls) 
 		//{
 		//	if(cls!=null)
-	
-		
+
+
 		//}
 
 		protected void ProcessProfile()
 		{
-			if (profile!=null && profile.ProfileMap != null)
+			if (profile != null && profile.ProfileMap != null)
 			{
 				List<ProfileElement> moveFromUnknownToEnumElement = new List<ProfileElement>();
 				foreach (ProfileElementTypes type in profile.ProfileMap.Keys)
@@ -326,26 +494,95 @@ namespace RDFSParserOWL2.Parser.Handler
 		/// Populate class attributes
 		/// </summary>
 		/// <param name="atts"></param>
-		protected virtual void PopulateClass(Dictionary<string,string > atts) 
+		protected virtual void PopulateClass(string localName)
 		{
-			Class cs = new Class();
-			foreach (KeyValuePair<string, string> pp in prop)
-			{
-				string str = pp.Value;
-				PopulateClassAttribute(cs,pp.Value,pp.Key);
-			}
 
-			ProccessCommentsAndLabels(cs);
-			AddProfileElement(ProfileElementTypes.Class, cs);
+				Class cs = new Class();
+				OperationsForPopulatingClass(cs,localName);
+
+
+				AddProfileElement(ProfileElementTypes.Class, cs);
 			
 		}
 
+		/// <summary>
+		/// Puts all procedures for populating class at one place 
+		/// </summary>
+		/// <param name="cs">Class to be populated  </param>
+		/// <param name="localName">Local name of tag that is being processed</param>
+		protected virtual void OperationsForPopulatingClass(Class cs,string localName) 
+		{
+			PopulateClassAttributes(cs,localName);
+			PopulateStereotypes(cs);
+			ProccessCommentsAndLabels(cs);
+			
+		}
 
-		//protected virtual void PopulateProperty() 
-		//{
-		//	Property 
+		protected virtual void PopulateStereotypes(Class cs) 
+		{
+			if (stereotypes != null)
+			{
+				foreach (string s in stereotypes)
+				{
+					cs.AddStereotype(s);
+				}
+			}
+		}
+
+		protected virtual void PopulateClassAttributes(Class cs,string localName) 
+		{
+			foreach (KeyValuePair<string, string> pp in prop)
+			{
+				string str = pp.Value;
+				PopulateClassAttribute(cs, pp.Value, pp.Key, localName);
+			}
 		
-		//}
+		}
+
+
+		protected virtual void PopulateProperty(string localName)
+		{
+			Property pr = new Property();
+			foreach (KeyValuePair<string, string> pp in prop)
+			{
+				string str = pp.Value;
+				PopulatePropertyAttribute(pr, pp.Value, pp.Key,localName);
+			}
+
+			if (stereotypes != null)
+			{
+				foreach (string s in stereotypes)
+				{
+					pr.AddStereotype(s);
+				}
+			}
+			ProccessCommentsAndLabels(pr);
+			AddProfileElement(ProfileElementTypes.Property, pr);
+		}
+
+
+		protected virtual void PopulateEnumMember(string localName)
+		{
+			EnumMember en = new EnumMember();
+			foreach (KeyValuePair<string, string> pp in prop)
+			{
+				string str = pp.Value;
+				PopulateEnumMemberAttribute(en, pp.Value, pp.Key,localName);
+			}
+			ProccessCommentsAndLabels(en);
+			AddProfileElement(ProfileElementTypes.Unknown, en);
+
+		}
+
+
+		protected virtual void PopulateEnumMemberAttribute(EnumMember em, string attrVal, string attr,string localName)
+		{
+			if ((attr.Equals(rdfType)) && (attrVal != null))
+			{
+				em.Type = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+			}
+
+		}
 
 		/// <summary>
 		/// Populate class aattribute 
@@ -353,22 +590,49 @@ namespace RDFSParserOWL2.Parser.Handler
 		/// <param name="cs">Class for population </param>
 		/// <param name="attrVal">Value of attribute to be inserted </param>
 		/// <param name="attr">Attribute to be populated</param>
-		protected virtual void PopulateClassAttribute(Class cs,string attrVal,string attr) 
+		protected virtual void PopulateClassAttribute(Class cs, string attrVal, string attr,string localName)
 		{
 			if ((attr.Contains(rdfsSubClassOf)) && (attrVal != null))
 			{
 				cs.SubClassOf = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
 			}
-		
+
+		}
+
+
+		protected virtual void PopulatePropertyAttribute(Property pr, string attrVal, string attr,string localName)
+		{
+			if ((attr.Equals(rdfsDomain)) && (attrVal != null))
+			{
+				pr.Domain = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				AddBelongingInformation(pr, pr.Domain);
+			}
+
 		}
 
 
 
-	
+		//protected virtual void PopulateProperty(Dictionary<string, string> atts) 
+		//{
+		//	Property pr  = new Property();
+		//	foreach (KeyValuePair<string, string> pp in prop)
+		//	{
+		//		string str = pp.Value;
+		//		PopulatePropertyAttribute(pr, pp.Value, pp.Key);
+		//	}
+
+		//	ProccessCommentsAndLabels(pr);
+		//	AddProfileElement(ProfileElementTypes.Property, pr);
+
+		//}
+
+
+
+
 		/// <summary>
 		/// Method for populating fields of class after parsing 
 		/// </summary>
-		private void ProcessClass() 
+		private void ProcessClass()
 		{
 			ProfileElementTypes type = ProfileElementTypes.Class;
 			if (profile != null && profile.ProfileMap != null && profile.ProfileMap.ContainsKey(type))
@@ -402,16 +666,16 @@ namespace RDFSParserOWL2.Parser.Handler
 					}
 				}
 			}
-		
+
 		}
 
 		/// <summary>
 		/// Method for populating fields of property after parsing 
 		/// </summary>
-		private void ProcessProperty() 
+		private void ProcessProperty()
 		{
 			ProfileElementTypes type = ProfileElementTypes.Property;
-			if (profile!=null && profile.ProfileMap!=null && profile.ProfileMap.ContainsKey(type))
+			if (profile != null && profile.ProfileMap != null && profile.ProfileMap.ContainsKey(type))
 			{
 
 				List<Property> list = profile.ProfileMap[type].Cast<Property>().ToList();
@@ -436,17 +700,17 @@ namespace RDFSParserOWL2.Parser.Handler
 					//}
 				}
 			}
-		
+
 		}
 
 		protected void AddComplexTagToCommentsAndLabels(TextType type, ComplexTag ct)
 		{
-			if (commentsAndLabels == null )
+			if (commentsAndLabels == null)
 			{
 				commentsAndLabels = new Dictionary<TextType, List<ComplexTag>>();
 			}
 
-			if(!commentsAndLabels.ContainsKey(type)) 
+			if (!commentsAndLabels.ContainsKey(type))
 			{
 				commentsAndLabels[type] = new List<ComplexTag>();
 			}
@@ -459,25 +723,25 @@ namespace RDFSParserOWL2.Parser.Handler
 		/// Method for processing parsed  comments and labels in profile element
 		/// </summary>
 		/// <param name="pe"></param>
-		protected void ProccessCommentsAndLabels(ProfileElement pe) 
+		protected void ProccessCommentsAndLabels(ProfileElement pe)
 		{
-			if(commentAndLabelAtts!=null&& pe!=null) 
+			if (commentsAndLabels != null && pe != null)
 			{
-				foreach(TextType type in commentsAndLabels.Keys) 
+				foreach (TextType type in commentsAndLabels.Keys)
 				{
 					List<ComplexTag> tags = null;
 					switch (type)
 					{
 						case TextType.Comment:
-							tags =new List<ComplexTag>(commentsAndLabels[TextType.Comment]);
+							tags = new List<ComplexTag>(commentsAndLabels[TextType.Comment]);
 							pe.Comments = tags;
 							break;
 						case TextType.Label:
-							tags =new List<ComplexTag>(commentsAndLabels[TextType.Label]);
+							tags = new List<ComplexTag>(commentsAndLabels[TextType.Label]);
 							pe.Labels = tags;
 							break;
 					}
-				
+
 				}
 			}
 		}
@@ -485,7 +749,7 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		//protected PopulateClass()
 		//{
-		
+
 		//}
 
 
