@@ -21,6 +21,7 @@ namespace RDFSParserOWL2.Common
 		public static string stereotypeFilename = "StereotypesToSkip.xml";
 		private const string filenameWordsToSkip = "WordsToSkip.xml";
 		private const string filenameNamespaces = "DefaultNamespaces.xml";
+		private const string filenameFixed = "FixedStereotypes.xml";
 
 		//public static const string entsoFilepath = @"";
 
@@ -40,6 +41,25 @@ namespace RDFSParserOWL2.Common
 			}
 			return handler.Profile;		
 		}
+
+
+		/// <summary>
+		/// Method for loading stereotypes to skip from configuration file
+		/// </summary>
+		/// <returns>List of stereotypes from file  </returns>
+		public static List<string> LoadFixedStereotypes()
+		{
+			WordsXMLHandler reader = new WordsXMLHandler();
+			bool succes;
+			TimeSpan ts;
+			using (FileStream fs = new FileStream(resourceFilepath + filenameFixed, FileMode.Open))
+			{
+				XMLParser.DoParse(reader, fs, null, out succes, out ts);
+			}
+			return reader.Words;
+
+		}
+		
 
 
         /// <summary>

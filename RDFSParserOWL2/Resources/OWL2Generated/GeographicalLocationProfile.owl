@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.semanticweb.org/GeographicalLocationProfile#" xml:base="http://www.semanticweb.org/GeographicalLocationProfile" xmlns:gl="http://www.semanticweb.org/GeographicalLocationProfile#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/GeographicalLocationProfile">
-        <owl:imports rdf:resource="http://www.semanticweb.org/Entsoe" />
-    </owl:Ontology>
+    <owl:Ontology rdf:about="http://www.semanticweb.org/GeographicalLocationProfile" />
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#Location.CoordinateSystem">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem" />
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem.Location" />
         <rdfs:comment>Coordinate system used to describe position points of this location.</rdfs:comment>
         <rdfs:label xml:lang="en">CoordinateSystem</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
@@ -13,6 +12,7 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem.Location">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location" />
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location.CoordinateSystem" />
         <rdfs:comment>All locations described with position points in this coordinate system.</rdfs:comment>
         <rdfs:comment xml:lang="sr">Sve lokacije opisane u koordinatnom sistemu</rdfs:comment>
         <rdfs:label xml:lang="en">Location</rdfs:label>
@@ -23,6 +23,7 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#Location.PowerSystemResources">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PowerSystemResource" />
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PowerSystemResource.Location" />
         <rdfs:comment>All power system resources at this location.</rdfs:comment>
         <rdfs:label xml:lang="en">PowerSystemResources</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
@@ -30,6 +31,7 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#PowerSystemResource.Location">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PowerSystemResource" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location" />
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location.PowerSystemResources" />
         <rdfs:comment>Location of this power system resource.</rdfs:comment>
         <rdfs:label xml:lang="en">Location</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
@@ -37,6 +39,7 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#Location.PositionPoints">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint" />
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint.Location" />
         <rdfs:comment>Sequence of position points describing this location, expressed in coordinate system 'Location.CoordinateSystem'.</rdfs:comment>
         <rdfs:label xml:lang="en">PositionPoints</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
@@ -44,13 +47,11 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint.Location">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location" />
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location.PositionPoints" />
         <rdfs:comment>Location described by this position point.</rdfs:comment>
         <rdfs:label xml:lang="en">Location</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:ObjectProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.energyIdentCodeEic">
-        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/Entsoe#IdentifiedObject.energyIdentCodeEic" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.energyIdentCodeEic">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -58,9 +59,6 @@
         <rdfs:label xml:lang="en">energyIdentCodeEic</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.shortName">
-        <owl:equivalentProperty rdf:resource="http://www.semanticweb.org/Entsoe#IdentifiedObject.shortName" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.shortName">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -128,344 +126,29 @@
         <rdfs:label xml:lang="en">micro</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.m">
-        <rdfs:comment>Milli 10**-3.</rdfs:comment>
-        <rdfs:label xml:lang="en">m</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.c">
-        <rdfs:comment>Centi 10**-2.</rdfs:comment>
-        <rdfs:label xml:lang="en">c</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.d">
-        <rdfs:comment>Deci 10**-1.</rdfs:comment>
-        <rdfs:label xml:lang="en">d</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.k">
-        <rdfs:comment>Kilo 10**3.</rdfs:comment>
-        <rdfs:label xml:lang="en">k</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.M">
-        <rdfs:comment>Mega 10**6.</rdfs:comment>
-        <rdfs:label xml:lang="en">M</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.G">
-        <rdfs:comment>Giga 10**9.</rdfs:comment>
-        <rdfs:label xml:lang="en">G</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.T">
-        <rdfs:comment>Tera 10**12.</rdfs:comment>
-        <rdfs:label xml:lang="en">T</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.none">
-        <rdfs:comment>No multiplier or equivalently multiply by 1.</rdfs:comment>
-        <rdfs:label xml:lang="en">none</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.VA">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.VA" />
         <rdfs:comment>Apparent power in volt ampere.</rdfs:comment>
         <rdfs:label xml:lang="en">VA</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:NamedIndividual>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.W">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.W" />
         <rdfs:comment>Active power in watt.</rdfs:comment>
         <rdfs:label xml:lang="en">W</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.VAr">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.VAr" />
-        <rdfs:comment>Reactive power in volt ampere reactive.</rdfs:comment>
-        <rdfs:label xml:lang="en">VAr</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.VAh">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.VAh" />
-        <rdfs:comment>Apparent energy in volt ampere hours.</rdfs:comment>
-        <rdfs:label xml:lang="en">VAh</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.Wh">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.Wh" />
-        <rdfs:comment>Real energy in what hours.</rdfs:comment>
-        <rdfs:label xml:lang="en">Wh</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.VArh">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.VArh" />
-        <rdfs:comment>Reactive energy in volt ampere reactive hours.</rdfs:comment>
-        <rdfs:label xml:lang="en">VArh</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.V">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.V" />
-        <rdfs:comment>Voltage in volt.</rdfs:comment>
-        <rdfs:label xml:lang="en">V</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.ohm">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.ohm" />
-        <rdfs:comment>Resistance in ohm.</rdfs:comment>
-        <rdfs:label xml:lang="en">ohm</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.A">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.A" />
-        <rdfs:comment>Current in ampere.</rdfs:comment>
-        <rdfs:label xml:lang="en">A</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.F">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.F" />
-        <rdfs:comment>Capacitance in farad.</rdfs:comment>
-        <rdfs:label xml:lang="en">F</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.H">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.H" />
-        <rdfs:comment>Inductance in henry.</rdfs:comment>
-        <rdfs:label xml:lang="en">H</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.degC">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.degC" />
-        <rdfs:comment>Relative temperature in degrees Celsius. In the SI unit system the symbol is ºC. Electric charge is measured in coulomb that has the unit symbol C. To distinguish degree Celsius form coulomb the symbol used in the UML is degC. Reason for not using ºC is the special character º is difficult to manage in software.</rdfs:comment>
-        <rdfs:label xml:lang="en">degC</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.s">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.s" />
-        <rdfs:comment>Time in seconds.</rdfs:comment>
-        <rdfs:label xml:lang="en">s</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.min">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.min" />
-        <rdfs:comment>Time in minutes.</rdfs:comment>
-        <rdfs:label xml:lang="en">min</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.h">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.h" />
-        <rdfs:comment>Time in hours.</rdfs:comment>
-        <rdfs:label xml:lang="en">h</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.deg">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.deg" />
-        <rdfs:comment>Plane angle in degrees.</rdfs:comment>
-        <rdfs:label xml:lang="en">deg</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.rad">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.rad" />
-        <rdfs:comment>Plane angle in radians.</rdfs:comment>
-        <rdfs:label xml:lang="en">rad</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.J">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.J" />
-        <rdfs:comment>Energy in joule.</rdfs:comment>
-        <rdfs:label xml:lang="en">J</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.N">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.N" />
-        <rdfs:comment>Force in newton.</rdfs:comment>
-        <rdfs:label xml:lang="en">N</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.S">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.S" />
-        <rdfs:comment>Conductance in siemens.</rdfs:comment>
-        <rdfs:label xml:lang="en">S</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.none">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.none" />
         <rdfs:comment>Dimension less quantity, e.g. count, per unit, etc.</rdfs:comment>
         <rdfs:label xml:lang="en">none</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:NamedIndividual>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.Hz">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.Hz" />
         <rdfs:comment>Frequency in hertz.</rdfs:comment>
         <rdfs:label xml:lang="en">Hz</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:NamedIndividual>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.g">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.g" />
         <rdfs:comment>Mass in gram.</rdfs:comment>
         <rdfs:label xml:lang="en">g</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.Pa">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.Pa" />
-        <rdfs:comment>Pressure in pascal (n/m2).</rdfs:comment>
-        <rdfs:label xml:lang="en">Pa</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m" />
-        <rdfs:comment>Length in meter.</rdfs:comment>
-        <rdfs:label xml:lang="en">m</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m2">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m2" />
-        <rdfs:comment>Area in square meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m2</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m3">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m3" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m4">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m4" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m5">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m5" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m6">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m6" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m7">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m7" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m8">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m8" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m9">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m9" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m10">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m10" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m11">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m11" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m12">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m12" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m13">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m13" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m14">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m14" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m15">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m15" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m17">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m17" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m18">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m18" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m19">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m19" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m20">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m20" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m21">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m21" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m22">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m22" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m23">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m23" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m24">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m24" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m25">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m25" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m26">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m26" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m27">
-        <owl:sameAs rdf:resource="http://www.semanticweb.org/Entsoe#UnitSymbol.m27" />
-        <rdfs:comment>Volume in cubic meters.</rdfs:comment>
-        <rdfs:label xml:lang="en">m3</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:NamedIndividual>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem">
@@ -612,21 +295,10 @@
                     <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.p" />
                     <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.n" />
                     <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.micro" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.m" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.c" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.d" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.k" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.M" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.G" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.T" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.none" />
                 </owl:oneOf>
             </owl:Class>
         </owl:equivalentClass>
     </owl:Class>
-    <rdf:Description rdf:about="http://www.semanticweb.org/Entsoe#UnitSymbol">
-        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol" />
-    </rdf:Description>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol">
         <rdfs:comment>The units defined for usage in the CIM.</rdfs:comment>
         <rdfs:label xml:lang="en">UnitSymbol</rdfs:label>
@@ -636,54 +308,9 @@
                 <owl:oneOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.VA" />
                     <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.W" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.VAr" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.VAh" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.Wh" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.VArh" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.V" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.ohm" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.A" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.F" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.H" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.degC" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.s" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.min" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.h" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.deg" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.rad" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.J" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.N" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.S" />
                     <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.none" />
                     <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.Hz" />
                     <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.g" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.Pa" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m2" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m3" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m4" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m5" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m6" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m7" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m8" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m9" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m10" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m11" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m12" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m13" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m14" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m15" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m17" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m18" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m19" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m20" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m21" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m22" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m23" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m24" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m25" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m26" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitSymbol.m27" />
                 </owl:oneOf>
             </owl:Class>
         </owl:equivalentClass>

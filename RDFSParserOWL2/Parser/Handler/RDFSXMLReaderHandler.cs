@@ -49,18 +49,18 @@ namespace RDFSParserOWL2.Parser
 			if (!abort)
 			{
 
-				if (qName.Equals(cimsStereotype))
-				{
-					string val;
-					atts.TryGetValue(rdfResource, out val);
-					if (!string.IsNullOrEmpty(val))
-						stereotypes.Add(val);
+				//if (qName.Equals(cimsStereotype))
+				//{
+				//	string val;
+				//	atts.TryGetValue(rdfResource, out val);
+				//	if (!string.IsNullOrEmpty(val))
+				//		stereotypes.Add(val);
 
-				}
-				else
-				{
+				//}
+				//else
+				//{
 					base.StartElement(localName, qName, atts);
-				}
+				//}
 
 				checkedElementsCount++;
 				if (qName.StartsWith(rdfsNamespace, StringComparison.OrdinalIgnoreCase) || (qName.StartsWith(cimsNamespace, StringComparison.OrdinalIgnoreCase)))
@@ -87,227 +87,6 @@ namespace RDFSParserOWL2.Parser
 			if (!abort)
 			{
 				base.EndElement(localName, qName);
-				//if (qName.Equals(rdfProfileElement) || qName.Equals(cimsClassCategoryElement)
-				//	|| qName.Equals(rdfsClassElement) || qName.Equals(rdfPropertyElement)) //end of element    
-				//{
-				//	//novo
-				//	if (prop != null)
-				//	{
-				//		string type;
-				//		prop.TryGetValue(rdfType, out type);
-
-				//		if (ExtractSimpleNameFromResourceURI(type) == "ClassCategory")
-				//		{
-				//			//ClassCategory cs = new ClassCategory();
-				//			//foreach (KeyValuePair<string, string> pp in prop)
-				//			//{
-				//			//	string str = pp.Value;
-				//			//	if ((pp.Key.Equals(cimsBelongsToCategory)) && (str != null))
-				//			//	{
-				//			//		cs.BelongsToCategory = str;
-				//			//		AddBelongingInformation(cs, cs.BelongsToCategory);
-				//			//	}
-				//			//	else if ((pp.Key.Equals(rdfsComment)) && (str != null))
-				//			//	{
-				//			//		cs.Comment = str;
-				//			//	}
-				//			//	else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
-				//			//	{
-				//			//		cs.Label = str;
-				//			//	}
-				//			//	else if ((pp.Key.Equals(rdfType)) && (str != null))
-				//			//	{
-				//			//		cs.Type = str;
-				//			//	}
-				//			//	else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
-				//			//	{
-				//			//		cs.URI = str;
-				//			//	}
-				//			//	else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
-				//			//	{
-				//			//		cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
-				//			//	}
-				//			//}
-				//			//AddProfileElement(ProfileElementTypes.ClassCategory, cs);
-				//		}
-				//		else if (ExtractSimpleNameFromResourceURI(type) == "Class")
-				//		{
-				//			Class cs = new Class();
-				//			foreach (KeyValuePair<string, string> pp in prop)
-				//			{
-				//				string str = pp.Value;
-				//				if ((pp.Key.Equals(cimsBelongsToCategory)) && (str != null))
-				//				{
-				//					cs.BelongsToCategory = str;
-				//					AddBelongingInformation(cs, cs.BelongsToCategory);
-				//				}
-				//				else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
-				//				{
-				//					cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
-				//				}
-				//				else if ((pp.Key.Contains(cimsStereotype)) && (str != null))
-				//				{
-				//					cs.AddStereotype(str);
-				//				}
-				//				else if ((pp.Key.Contains(rdfsSubClassOf)) && (str != null))
-				//				{
-				//					cs.SubClassOf = str;
-				//				}
-				//				else if ((pp.Key.Equals(rdfType)) && (str != null))
-				//				{
-				//					cs.Type = str;
-				//				}
-				//				else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
-				//				{
-				//					cs.URI = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
-				//				}
-				//			}
-
-				//			foreach (string s in stereotypes)
-				//			{
-				//				cs.AddStereotype(s);
-				//			}
-				//			ProccessCommentsAndLabels(cs);
-				//			AddProfileElement(ProfileElementTypes.Class, cs);
-				//		}
-				//		else if (ExtractSimpleNameFromResourceURI(type) == "Property")
-				//		{
-				//			Property pr = new Property();
-				//			foreach (KeyValuePair<string, string> pp in prop)
-				//			{
-				//				string str = pp.Value;
-				//				if ((pp.Key.Equals(cimsDataType)) && (str != null))
-				//				{
-				//					pr.DataType = str;
-				//				}
-				//				else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
-				//				{
-				//					pr.MultiplicityAsString = str;
-				//				}
-				//				else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
-				//				{
-				//					pr.URI = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
-				//				}
-				//				else if ((pp.Key.Equals(rdfType)) && (str != null))
-				//				{
-				//					pr.Type = str;
-				//				}
-				//				else if ((pp.Key.Equals(rdfsDomain)) && (str != null))
-				//				{
-				//					pr.Domain = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
-				//					AddBelongingInformation(pr, pr.Domain);
-				//				}
-				//				else if ((pp.Key.Contains(cimsStereotype)) && (str != null))
-				//				{
-				//					pr.AddStereotype(str);
-				//				}
-				//				else if ((pp.Key.Equals(rdfsRange)) && (str != null))
-				//				{
-				//					pr.Range = StringManipulationManager.ExtractAllWithSeparator(str, StringManipulationManager.SeparatorSharp);
-				//				}
-
-
-				//			}
-
-				//			foreach (string s in stereotypes)
-				//			{
-				//				pr.AddStereotype(s);
-				//			}
-				//			ProccessCommentsAndLabels(pr);
-				//			AddProfileElement(ProfileElementTypes.Property, pr);
-				//		}
-				//		else
-				//		{
-				//			EnumMember en = new EnumMember();
-				//			foreach (KeyValuePair<string, string> pp in prop)
-				//			{
-				//				string str = pp.Value;
-
-				//				if ((pp.Key.Equals(rdfType)) && (str != null))
-				//				{
-				//					en.Type = str;
-				//				}
-				//				else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
-				//				{
-				//					en.URI = str;
-				//				}
-				//				else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
-				//				{
-				//					en.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
-				//				}
-				//			}
-				//			ProccessCommentsAndLabels(en);
-				//			AddProfileElement(ProfileElementTypes.Unknown, en);
-				//		}
-
-				//		prop.Clear();
-				//		values.Clear();
-				//		stereotypes.Clear();
-				//		commentsAndLabels.Clear();
-
-				//	}
-				//}
-
-				//else if (qName.Equals(rdfsLabel)) //// end of label subelement
-				//{
-				//	content = content.Trim();
-				//	if (!string.IsNullOrEmpty(content))
-				//	{
-				//		if (commentAndLabelAtts == null)
-				//		{
-				//			commentAndLabelAtts = new Dictionary<string, string>();
-				//		}
-
-				//		AddComplexTagToCommentsAndLabels(TextType.Label, new ComplexTag(content, commentAndLabelAtts));
-				//	}
-				//	content = string.Empty;
-				//	commentAndLabelAtts.Clear();
-				//}
-				//else if (qName.Equals(rdfsComment)) //// end of comment subelement
-				//{
-				//	content = content.Trim();
-				//	if (!string.IsNullOrEmpty(content))
-				//	{
-				//		if (commentAndLabelAtts == null)
-				//		{
-				//			commentAndLabelAtts = new Dictionary<string, string>();
-				//		}
-
-				//		AddComplexTagToCommentsAndLabels(TextType.Comment, new ComplexTag(content, commentAndLabelAtts));
-				//	}
-				//	content = string.Empty;
-				//	commentAndLabelAtts.Clear();
-				//}
-				//else if (qName.Equals(cimsIsAggregate)) //// end of isAggregate subelement
-				//{
-				//	content = content.Trim();
-				//	if (!string.IsNullOrEmpty(content))
-				//	{
-				//		bool paresedValue;
-
-				//		//novo
-				//		string ls;
-				//		prop.TryGetValue(qName, out ls);
-				//		if (ls == null)
-				//		{
-				//			if (bool.TryParse((string)content.Clone(), out paresedValue))
-				//			{
-				//				ls = paresedValue.ToString();
-				//			}
-				//			prop.Add(qName, ls);
-				//		}
-				//		content = string.Empty;
-				//	}
-				//}
-				//else 
-				//if (qName.Equals(cimsStereotype))
-				//{
-				//	content = content.Trim();
-				//	if (!string.IsNullOrEmpty(content))
-				//	{
-				//		stereotypes.Add(content);
-				//	}
-				//}
 			}
 		}
 
@@ -384,9 +163,12 @@ namespace RDFSParserOWL2.Parser
 			{
 				pr.Range = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
 			}
+		    else if((attr.Equals(cimsInverseRoleName)) && !string.IsNullOrEmpty(attrVal)) 
+			{
+				pr.InverseRoleName = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+			}
 			else
 			{
-
 				base.PopulatePropertyAttribute(pr, attrVal, attr,localName);
 			}
 		}

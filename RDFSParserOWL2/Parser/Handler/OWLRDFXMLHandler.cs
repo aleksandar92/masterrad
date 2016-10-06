@@ -425,7 +425,10 @@ namespace RDFSParserOWL2.Parser.Handler
 			{
 				pr.Type = attrVal;
 			}
-
+			else if ((attr.Equals(OWL2Namespace.owlInverseOf)) && !string.IsNullOrEmpty(attrVal))
+			{
+				pr.InverseRoleName = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+			}
 			else if ((attr.Equals(rdfsRange)) && (attrVal != null))
 			{
 				if (localName.Equals(OWL2Namespace.DatatypeProperty))
@@ -467,31 +470,30 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 		}
 
-		private void ProcessEnumerations() 
+		private void ProcessEnumerations()
 		{
-			if(profile.ProfileMap!=null && profile.ProfileMap.ContainsKey(ProfileElementTypes.Class) && profile.ProfileMap.ContainsKey(ProfileElementTypes.Unknown) ) 
+			if (profile.ProfileMap != null && profile.ProfileMap.ContainsKey(ProfileElementTypes.Class) && profile.ProfileMap.ContainsKey(ProfileElementTypes.Unknown))
 			{
-				List<ProfileElement> elements=profile.ProfileMap[ProfileElementTypes.Class];
-				List<ProfileElement> unknown = profile.ProfileMap[ProfileElementTypes.Unknown];	
-				if(elements!=null && unknown!=null) 
+				List<ProfileElement> elements = profile.ProfileMap[ProfileElementTypes.Class];
+				List<ProfileElement> unknown = profile.ProfileMap[ProfileElementTypes.Unknown];
+				if (elements != null && unknown != null)
 				{
-					List<Class> classes=elements.Cast<Class>().ToList();
-					foreach(Class cs in classes) 
+					List<Class> classes = elements.Cast<Class>().ToList();
+					foreach (Class cs in classes)
 					{
-						if(cs.MyEnumerationMembers!=null) 
+						if (cs.MyEnumerationMembers != null)
 						{
-							foreach(EnumMember em in cs.MyEnumerationMembers) 
+							foreach (EnumMember em in cs.MyEnumerationMembers)
 							{
 								ProfileElement pe = unknown.Where(x => x.URI.Equals(em.URI)).SingleOrDefault();
 								if (pe != null)
 									pe.Type = cs.URI;
 							}
 						}
-					}	
+					}
 				}
 
 			}
-
 		}
 
 		private void AddRestriction(string key, string value)

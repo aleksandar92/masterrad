@@ -36,13 +36,14 @@ namespace RDFSParserOWL2.Generator
 		private bool hasRoofOntology;
 		private string roofOntology;
 		private Profile profileForGenerating;
+		private HashSet<string> stereotypesToSkip;
 
 		#endregion
 
 		public Profile ProfileForGenerating
 		{
-			get { ChangeOfProfile(); return profileForGenerating; }
-			set { profileForGenerating = value; }
+			get { return profileForGenerating; }
+			//set { profileForGenerating = value; }
 		}
 
 
@@ -96,6 +97,14 @@ namespace RDFSParserOWL2.Generator
 			set { hasSpecialStereotype = value; }
 		}
 
+
+		public HashSet<string> StereotypesToSkip
+		{
+			get { return stereotypesToSkip; }
+			set { stereotypesToSkip = value; }
+		}
+
+
 		public OWL2Generator(Profile profile)
 		{
 			words = InputOutput.LoadWordsToSkip();
@@ -106,6 +115,7 @@ namespace RDFSParserOWL2.Generator
 			profileForGenerating = profile;
 			importNamespaces = InputOutput.LoadImportNamespaces();
 			BaseAddress = predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value;
+			stereotypesToSkip = new HashSet<string>(InputOutput.LoadFixedStereotypes());
 		}
 
 		public OWL2Generator(Profile profile, string specialStereo, bool hasSpecStereotype, string roofOnt, bool hasRoofOnt)
@@ -137,12 +147,8 @@ namespace RDFSParserOWL2.Generator
 			GenerateNamespaces();
 			profileForGenerating = profile;
 			BaseAddress = predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value;
-
+			stereotypesToSkip = new HashSet<string>(InputOutput.LoadFixedStereotypes());
 		}
-
-
-
-
 
 
 
@@ -201,8 +207,6 @@ namespace RDFSParserOWL2.Generator
 			writer.Close();
 		}
 
-
-
 		public void GenerateOntologyTag(ref XmlWriter writer)
 		{
 			writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.owlOntology, null);
@@ -247,39 +251,41 @@ namespace RDFSParserOWL2.Generator
 			{
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.NamedIndividual, null);
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + em.URI);
-				if (!profileForGenerating.IsOwlProfile) 
+				if (!profileForGenerating.IsOwlProfile)
 				{
-					string nmspace=string.Empty;
+					string nmspace = string.Empty;
 					bool found = false;
 
 					Class cls = em.EnumerationObject as Class;
 
-					if(hasSpecialStereotype && cls!=null &&   specialStereotype!=null && specialStereotype!=string.Empty && cls.HasStereotype(specialStereotype)) 
+					if (hasSpecialStereotype && cls != null && specialStereotype != null && specialStereotype != string.Empty && cls.HasStereotype(specialStereotype))
 					{
 						found = true;
 						nmspace = importNamespaces.Where(x => x.Prefix.Equals(specialStereotype)).Single().Value + em.URI;
 					}
-					else if (hasRoofOntology && roofOntology != null && roofOntology != string.Empty)
-					{ 
-						found=true;
-						nmspace=importNamespaces.Where(x => x.Prefix.Equals(roofOntology)).Single().Value + em.URI;
-
+					else if ( ((cls!=null && !cls.HasDifferentStereotype(stereotypesToSkip)) || (cls==null))    &&  hasRoofOntology && roofOntology != null && roofOntology != string.Empty  )
+					{						
+						found = true;
+						nmspace = importNamespaces.Where(x => x.Prefix.Equals(roofOntology)).Single().Value + em.URI;
 					}
-				
-					if(found) 
+
+					if (found)
 					{
 						writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.SameAs, null);
-						writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null,nmspace);
+						writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, nmspace);
 						writer.WriteEndElement();
 					}
 
-					
+
 				}
 
 				GenerateProfileElement(em, ref writer);
 				writer.WriteEndElement();
 			}
 		}
+
+
+	  
 
 		private void GenerateClass(Class cls, ref XmlWriter writer)
 		{
@@ -294,7 +300,7 @@ namespace RDFSParserOWL2.Generator
 						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(specialStereotype)).Single().Value;
 						found = true;
 					}
-					else if (hasRoofOntology && roofOntology != null && !roofOntology.Equals(string.Empty))
+					else if (hasRoofOntology && roofOntology != null && !roofOntology.Equals(string.Empty) && !cls.HasDifferentStereotype(stereotypesToSkip) )
 					{
 						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(roofOntology)).Single().Value;
 						found = true;
@@ -317,18 +323,18 @@ namespace RDFSParserOWL2.Generator
 
 				//if (!profileForGenerating.IsOwlProfile)
 				//{
-					if (cls.MyProperties != null)
+				if (cls.MyProperties != null)
+				{
+					foreach (ProfileElement pe in cls.MyProperties)
 					{
-						foreach (ProfileElement pe in cls.MyProperties)
-						{
-							///restriction for property
-							GeneratePropertyForClass(pe as Property, ref writer);
-						}
+						///restriction for property
+						GeneratePropertyForClass(pe as Property, ref writer);
 					}
+				}
 
 
 				GenerateProfileElement(cls, ref writer);
-				
+
 				//}
 				GenerateEnumeration(cls, ref writer);
 				writer.WriteEndElement();
@@ -475,12 +481,13 @@ namespace RDFSParserOWL2.Generator
 				{
 					string ontologyNamespace = string.Empty;
 					bool found = false;
+					Class cls=property.DomainAsObject as Class;
 					if (hasSpecialStereotype && (property.HasStereotype(specialStereotype) || (property.DomainAsObject != null && property.DomainAsObject.HasStereotype(specialStereotype))))
 					{
 						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(specialStereotype)).Single().Value;
 						found = true;
 					}
-					else if (hasRoofOntology && roofOntology != null && !roofOntology.Equals(string.Empty))
+					else if ((((cls != null && !cls.HasDifferentStereotype(stereotypesToSkip)) || (cls == null)) && !property.HasDifferentStereotype(stereotypesToSkip)) && hasRoofOntology && roofOntology != null && !roofOntology.Equals(string.Empty))
 					{
 						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(roofOntology)).Single().Value;
 						found = true;
@@ -512,7 +519,7 @@ namespace RDFSParserOWL2.Generator
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, propertyType, null);
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + property.URI);
 
-				if (!profileForGenerating.IsOwlProfile || (profileForGenerating.IsOwlProfile && property.DomainAsObject!=null))
+				if (!profileForGenerating.IsOwlProfile || (profileForGenerating.IsOwlProfile && property.DomainAsObject != null))
 				{
 					writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsDomain, null);
 					writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, domainUri);
@@ -523,6 +530,14 @@ namespace RDFSParserOWL2.Generator
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, rangeValue);
 				writer.WriteEndElement();
 
+
+				///deo za generisanje cimsInverseRoleName
+				if(!string.IsNullOrEmpty(property.InverseRoleName) && property.InverseRoleNameAsObject!=null) 
+				{
+					writer.WriteStartElement(OWL2Namespace.owlPrefix,OWL2Namespace.InverseOf, null);
+					writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + property.InverseRoleNameAsObject.URI);
+					writer.WriteEndElement();
+				}
 
 				//if (!profileForGenerating.IsOwlProfile)
 				GenerateProfileElement(property, ref writer);
@@ -611,6 +626,8 @@ namespace RDFSParserOWL2.Generator
 			}
 		}
 
+
+
 		private void GenerateEquivalentProperty(ref XmlWriter writer, string baseAddressImport, Property p)
 		{
 			if (p != null && writer != null)
@@ -636,6 +653,8 @@ namespace RDFSParserOWL2.Generator
 				writer.WriteEndElement();
 			}
 		}
+
+
 
 	}
 }

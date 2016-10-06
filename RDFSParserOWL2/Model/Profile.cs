@@ -659,15 +659,31 @@ namespace RDFSParserOWL2.Model
 			{
 				foreach (ProfileElementTypes type in profileMap.Keys)
 				{
+					//List<ProfileElement> list = profileMap[type];
+					//element = list.Where(x=>x.URI.Equals(uri)).SingleOrDefault();
+					////Dictionary<string, ProfileElement> elements = profileMap[type].ToDictionary(x=>x.URI);
+					////if (elements.ContainsKey(uri)) 
+					////{
+					////	element = elements[uri];
+					////}
 					List<ProfileElement> list = profileMap[type];
-					foreach (ProfileElement elem in list)
-					{
-						if (uri.Equals(elem.URI))
+					//HashSet<ProfileElement> hashSet = new HashSet<ProfileElement>(list);
+					//ProfileElement pe = new Class();
+					//pe.URI = uri;
+					//if (hashSet.Contains(pe, new ProfileElementComparer()))
+					//{
+						//{
+						//element = hashSet.Where(x=>x.URI.Equals(uri)).SingleOrDefault();
+						//}
+						foreach (ProfileElement elem in list)
 						{
-							element = elem;
-							break;
+							if (uri.Equals(elem.URI))
+							{
+								element = elem;
+								break;
+							}
 						}
-					}
+					//}
 					if (element != null)
 					{
 						break;

@@ -8,14 +8,8 @@ using System.Threading.Tasks;
 namespace RDFSParserOWL2.Model
 {
 
-
-
-
 	public class Property : ProfileElement
 	{
-
-
-
 		protected string domain;
 		protected Class domainAsObject;
 		protected string dataType;
@@ -26,6 +20,9 @@ namespace RDFSParserOWL2.Model
 		protected bool isAggregate;
 		protected bool isEnumeration = false;
 		protected ProfileElement dataTypeAsComplexObject;
+		protected string inverseRoleName;
+		protected ProfileElement inverseRoleNameAsObject;
+
 		//protected bool isExpectedToContainLocalClass = false; //// if this property expected to contain inner instance of some class
 
 		protected List<ProfileElementStereotype> stereotypes;
@@ -33,6 +30,8 @@ namespace RDFSParserOWL2.Model
 		public Property() : base("From Derived") { }
 
 		#region get and set
+
+
 
 		public bool IsPropertyDataTypeSimple
 		{
@@ -204,6 +203,18 @@ namespace RDFSParserOWL2.Model
 			}
 		}
 
+		public string InverseRoleName
+		{
+			get 
+			{
+				return inverseRoleName; 
+			}
+			set 
+			{ 
+				inverseRoleName = value; 
+			}
+		}
+
 		public ProfileElement RangeAsObject
 		{
 			get
@@ -216,9 +227,31 @@ namespace RDFSParserOWL2.Model
 			}
 		}
 
+
+		public ProfileElement InverseRoleNameAsObject
+		{
+			get { return inverseRoleNameAsObject; }
+			set { inverseRoleNameAsObject = value; }
+		}
+
+
 		#endregion get and set
 
 		#region stereotype
+
+		public bool HasDifferentStereotype(HashSet<string> fixedStereotypes)
+		{
+			if (stereotypes != null)
+			{
+				foreach (ProfileElementStereotype pet in stereotypes)
+				{
+					if (!fixedStereotypes.Contains(pet.Name.ToLower()))
+						return true;
+				}
+			}
+			return false;
+
+		}
 
 		public void AddStereotype(string fullStereotypeString)
 		{
@@ -318,7 +351,7 @@ namespace RDFSParserOWL2.Model
 
 		#region helperMethods
 
-	
+
 
 
 		public bool IsObjectProperty()
@@ -338,7 +371,7 @@ namespace RDFSParserOWL2.Model
 					case "negativeInteger":
 						result = "negativeInteger";
 						break;
-					
+
 					case "nonnegativeinteger":
 						result = "nonNegativeInteger";
 						break;

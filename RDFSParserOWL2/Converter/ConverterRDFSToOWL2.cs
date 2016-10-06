@@ -89,7 +89,6 @@ namespace RDFSParserOWL2.Converter
             Profile profile = rdfsParser.Profile;
 			profile.RemoveElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
 
-			
 			if (isSpecialOntology)
 			{
 				owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(nameOfOntology)));

@@ -1,4 +1,5 @@
-﻿using RDFSParserOWL2.Generator.Helper;
+﻿using RDFSParserOWL2.Common.Comparers;
+using RDFSParserOWL2.Generator.Helper;
 using RDFSParserOWL2.Manager;
 using RDFSParserOWL2.Model;
 using System;
@@ -334,8 +335,13 @@ namespace RDFSParserOWL2.Parser.Handler
 				elementsOfSameType = new List<ProfileElement>();
 			}
 			allByType.Remove(tp);
-			elementsOfSameType.Add(el);
-			allByType.Add(tp, elementsOfSameType);
+			HashSet<ProfileElement> hsElementsOfSameType = new HashSet<ProfileElement>(elementsOfSameType);
+			if (!hsElementsOfSameType.Contains(el, new ProfileElementComparer()))
+			{
+				hsElementsOfSameType.Add(el);
+			}
+			//elementsOfSameType.Add(el);
+			allByType.Add(tp, hsElementsOfSameType.ToList());
 		}
 
 
@@ -688,6 +694,10 @@ namespace RDFSParserOWL2.Parser.Handler
 					if (!string.IsNullOrEmpty(element.Range))
 					{
 						element.RangeAsObject = profile.FindProfileElementByUri(element.Range);
+					}
+					if(!string.IsNullOrEmpty(element.InverseRoleName)) 
+					{
+						element.InverseRoleNameAsObject = profile.FindProfileElementByUri(element.InverseRoleName);
 					}
 					//if (!string.IsNullOrEmpty(element.Name) && (Char.IsUpper(element.Name[0]))
 					//    && (!element.HasStereotype(ProfileElementStereotype.StereotypeByReference)))
