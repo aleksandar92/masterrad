@@ -512,6 +512,8 @@ namespace RDFSParserOWL2.Generator
 		{
 			if (p != null)
 			{
+                XmlElement element = new XmlElement();
+                writer.WriteElementString(element.ToString());
 				writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Description, null);
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAddressImport + StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp));
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.EqProperty, null);
