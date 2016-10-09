@@ -73,7 +73,13 @@ namespace RDFSParserOWL2.Generator.Helper
 		public static string ParseType = "parseType";
 		public static string Collection = "Collection";
 		public static string NamedIndividual = "NamedIndividual";
+		public static string IsDefinedBy = "isDefinedBy";
 
+		public static string owlNamedIndividual = owlPrefix + StringManipulationManager.SeparatorColon + NamedIndividual;
+		public static string SameAs = "sameAs";
+		public static string InverseOf = "inverseOf";
+
+		public static string owlInverseOf = owlPrefix + StringManipulationManager.SeparatorColon + InverseOf;
 		
  
 
@@ -85,7 +91,7 @@ namespace RDFSParserOWL2.Generator.Helper
             string sufx = StringManipulationManager.ExtractAllAfterSeparator(qname, StringManipulationManager.SeparatorColon);
             if (pfx != null && pfx.Equals(OWL2Namespace.owlPrefix))
             {
-                if (sufx != null && (sufx.Equals(OWL2Namespace.Class) || sufx.Equals(OWL2Namespace.DatatypeProperty) || sufx.Equals(OWL2Namespace.ObjectProperty )|| sufx.Equals(OWL2Namespace.owlOntology)))
+                if (sufx != null && (sufx.Equals(OWL2Namespace.NamedIndividual) || sufx.Equals(OWL2Namespace.Class) || sufx.Equals(OWL2Namespace.DatatypeProperty) || sufx.Equals(OWL2Namespace.ObjectProperty )|| sufx.Equals(OWL2Namespace.owlOntology)))
                     return true;
 
             }

@@ -20,8 +20,8 @@ namespace RDFSParserOWL2.Parser
             DateTime startTime = DateTime.Now;
             DateTime stopTime;
 
-            try
-            {
+			//try
+			//{
                 XmlReaderSettings settings = new XmlReaderSettings();
                 settings.IgnoreComments = true;
                 settings.IgnoreWhitespace = true;
@@ -69,11 +69,16 @@ namespace RDFSParserOWL2.Parser
                     }
                 }
                 handler.EndDocument();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+           // }
+			
+			//catch(XmlException xe) 
+			//{
+			//	throw new 
+			//}
+			//catch (Exception e)
+			//{
+			//	throw new Exception(e.Message);
+			//}
 
             stopTime = DateTime.Now;
             durationOfParsing = stopTime - startTime;

@@ -6,6 +6,8 @@ using RDFSParserOWL2.Parser;
 using RDFSParserOWL2.Parser.Handler;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,48 +29,145 @@ namespace RDFSParserOWL2
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+
+		private ObservableCollection<string> filesForParsing;
+
+
+
+		public ObservableCollection<string> FilesForParsing
+		{
+			get { return filesForParsing; }
+			set { filesForParsing = value; }
+		}
+
 		public MainWindow()
 		{
+			filesForParsing = new ObservableCollection<string>();
 			InitializeComponent();
+			lbFilesParsing.ItemsSource = filesForParsing;
+			lbFilesParsing.SelectionMode = SelectionMode.Multiple;
+			txtOntology.IsEnabled = false;
+			txtRoofOntology.IsEnabled = false;
+			
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			OpenFileDialog openFileDialog = new OpenFileDialog();
-			if (openFileDialog.ShowDialog() == true)
-				txtFile.Text = openFileDialog.FileName;
+			openFileDialog.Multiselect = true;
+			if (openFileDialog.ShowDialog() == true) 
+			{
+				foreach(string file in openFileDialog.FileNames) 
+				{
+					if (!filesForParsing.Contains(file.Trim()))
+					{
+						filesForParsing.Add(file.Trim());
+					}
+				}
+				//txtFile.Text = openFileDialog.FileName;
+			}
+				
 		}
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
-            ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(txtFile.Text);
-            converter.Convert();
-			MessageBox.Show("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno");
+
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
+			ConvertFiles(filesForParsing);
+			sw.Stop();
+			string message = String.Format("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno.Vreme izvrsavanja je:{0}",sw.Elapsed);
+			MessageBox.Show(message);
 		}
+
+
+
+		private void ConvertFiles(ObservableCollection<string> fileNames) 
+		{
+			if (fileNames != null && fileNames.Count>0 )
+			{
+				foreach(string fileName in fileNames) 
+				{
+					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileName,(bool)cbOntology.IsChecked, txtOntology.Text.Trim(), (bool)cbRoofOntology.IsChecked, txtRoofOntology.Text.Trim());
+					converter.Convert();
+				}
+			}
+		}
+
+
+
+		private void cbOntology_Checked(object sender, RoutedEventArgs e)
+		{
+			if (cbOntology.IsChecked == true)
+			{
+				txtOntology.IsEnabled = true;
+			}
+			else 
+			{
+				txtOntology.IsEnabled = false;
+			}
+		}
+
+		private void CheckBox_Checked(object sender, RoutedEventArgs e)
+		{
+			if (cbRoofOntology.IsChecked == true)
+			{
+				txtRoofOntology.IsEnabled = true;
+			}
+			else
+			{
+				txtRoofOntology.IsEnabled = false;
+			}
+		}
+
+
+
+		
 
 		private void Button_Click_2(object sender, RoutedEventArgs e)
 		{
-			//OWL2Generator generator = new OWL2Generator();
-			//generator.LoadPredefinedNamespaces();
-			//generator.GenerateNameForFile("TopologyProfileRDFSAugmented-v2_4_15-7Aug2014");			
+			//ObservableCollection<string> itemsToRemove = new ObservableCollection<string>();
+
+			ObservableCollection<string> listSelected = SelectedItemsToList();
+
+			foreach(string s in listSelected) 
+			{
+				filesForParsing.Remove(s.Trim());
+			}
+
+			//filesForParsing = new ObservableCollection<string>((filesForParsing.ToList().Except(listSelected)));
+			//filesForParsing.ToList();
+
+			
+			//filesForParsing =(ObservableCollection<string>) filesForParsing.Except(itemsToRemove);
+			//filesForParsing.Except(); 
 		}
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            OWLRDFXMLHandler handler = new OWLRDFXMLHandler(); 
-            using(FileStream fs =new FileStream(txtFile.Text,FileMode.Open)) 
-            {
-                bool su;
-                TimeSpan ts;
-                XMLParser.DoParse(handler,fs,txtFile.Text,out su,out ts);
-				
-            }
+		private void Button_Click_3(object sender, RoutedEventArgs e)
+		{
+			filesForParsing.Clear();
+		}
 
-			OWL2Generator generator = new OWL2Generator(handler.Profile);
-			generator.GenerateProfile();
-            //ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(txtFile.Text);
-            //converter.Convert();
-            MessageBox.Show("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno");
-        }
+		private void Button_Click_4(object sender, RoutedEventArgs e)
+		{
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
+			ConvertFiles(SelectedItemsToList());
+			sw.Stop();
+			string message = String.Format("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno.Vreme izvrsavanja je:{0} milisekundi", sw.Elapsed.Milliseconds);
+			MessageBox.Show(message);
+
+		}
+
+		private ObservableCollection<string> SelectedItemsToList() 
+		{
+			ObservableCollection<string> result = new ObservableCollection<string>();
+			foreach (string s in lbFilesParsing.SelectedItems)
+			{
+				result.Add(s);
+			}
+
+			return result;
+		}
 	}
 }

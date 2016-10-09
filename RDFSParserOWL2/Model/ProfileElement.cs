@@ -104,7 +104,6 @@ namespace RDFSParserOWL2.Model
 			//comment = new ComplexTag();
 		}
 
-
 		/// <summary>
 		/// Gets and sets the full URI of profile element.
 		/// </summary>

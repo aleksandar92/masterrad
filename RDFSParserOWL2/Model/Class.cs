@@ -208,6 +208,21 @@ namespace RDFSParserOWL2.Model
             return hasStereotype;
         }
 
+
+		public bool HasDifferentStereotype(HashSet<string> fixedStereotypes)
+		{
+			if (stereotypes != null)
+			{
+				foreach (ProfileElementStereotype pet in stereotypes)
+				{
+					if (!fixedStereotypes.Contains(pet.Name.ToLower()))
+						return true;
+				}
+			}
+			return false;
+		
+		}
+
 		public List<ProfileElementStereotype> GetUndefinedStereotypes()
 		{
 			List<ProfileElementStereotype> undefinedStereotypes = new List<ProfileElementStereotype>();
@@ -261,6 +276,11 @@ namespace RDFSParserOWL2.Model
 			get
 			{
 				return myEnumerationMembers;
+			}
+
+			set 
+			{
+				myEnumerationMembers = value;
 			}
 		}
 
