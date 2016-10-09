@@ -2,6 +2,7 @@
 using RDFSParserOWL2.Generator.Helper;
 using RDFSParserOWL2.Manager;
 using RDFSParserOWL2.Model;
+using RDFSParserOWL2.Model.Settings;
 using RDFSParserOWL2.Parser;
 using RDFSParserOWL2.Parser.Handler;
 using System;
@@ -31,10 +32,11 @@ namespace RDFSParserOWL2.Generator
 		private string baseAdress;
 		private List<string> words;
 		private List<Namespace> importNamespaces;
-		private string specialStereotype;
-		private bool hasSpecialStereotype;
-		private bool hasRoofOntology;
-		private string roofOntology;
+        GeneratorSettings settings;
+        //private string specialStereotype;
+        //private bool hasSpecialStereotype;
+        //private bool hasRoofOntology;
+        //private string roofOntology;
 		private Profile profileForGenerating;
 		private HashSet<string> stereotypesToSkip;
 
@@ -78,24 +80,24 @@ namespace RDFSParserOWL2.Generator
 			set { words = value; }
 		}
 
-		public bool HasRoofOntology
-		{
-			get { return hasRoofOntology; }
-			set { hasRoofOntology = value; }
-		}
+        //public bool HasRoofOntology
+        //{
+        //    get { return hasRoofOntology; }
+        //    set { hasRoofOntology = value; }
+        //}
 
-		public string RoofOntology
-		{
-			get { return roofOntology; }
-			set { roofOntology = value; }
-		}
+        //public string RoofOntology
+        //{
+        //    get { return roofOntology; }
+        //    set { roofOntology = value; }
+        //}
 
 
-		public bool HasSpecialStereotype
-		{
-			get { return hasSpecialStereotype; }
-			set { hasSpecialStereotype = value; }
-		}
+        //public bool HasSpecialStereotype
+        //{
+        //    get { return hasSpecialStereotype; }
+        //    set { hasSpecialStereotype = value; }
+        //}
 
 
 		public HashSet<string> StereotypesToSkip
@@ -118,26 +120,27 @@ namespace RDFSParserOWL2.Generator
 			stereotypesToSkip = new HashSet<string>(InputOutput.LoadFixedStereotypes());
 		}
 
-		public OWL2Generator(Profile profile, string specialStereo, bool hasSpecStereotype, string roofOnt, bool hasRoofOnt)
+		public OWL2Generator(Profile profile, GeneratorSettings ge)
 		{
 			words = InputOutput.LoadWordsToSkip();
 			predefinedNamespaces = InputOutput.LoadPredefinedNamespaces();
 			importNamespaces = new List<Namespace>();
-			specialStereotype = specialStereo;
-			roofOntology = roofOnt;
-			hasSpecialStereotype = hasSpecStereotype;
-			hasRoofOntology = hasRoofOnt;
+            settings = ge;
+            //specialStereotype = specialStereo;
+            //roofOntology = roofOnt;
+            //hasSpecialStereotype = hasSpecStereotype;
+            //hasRoofOntology = hasRoofOnt;
 
 			if (profile != null && !profile.IsOwlProfile)
 			{
-				if (hasSpecialStereotype)
+				if (settings.IsSpecialOntology)
 				{
-					importNamespaces.Add(new Namespace(predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value + specialStereotype, specialStereotype));
+					importNamespaces.Add(new Namespace(predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value + settings.NameOfOntology, settings.NameOfOntology));
 				}
 
-				if (hasRoofOnt)
+				if (settings.IsRoofOntology)
 				{
-					importNamespaces.Add(new Namespace(predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value + roofOntology, roofOntology));
+					importNamespaces.Add(new Namespace(predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value + settings.RoofOntology, settings.RoofOntology));
 				}
 			}
 
@@ -258,15 +261,15 @@ namespace RDFSParserOWL2.Generator
 
 					Class cls = em.EnumerationObject as Class;
 
-					if (hasSpecialStereotype && cls != null && specialStereotype != null && specialStereotype != string.Empty && cls.HasStereotype(specialStereotype))
+                    if (settings.IsSpecialOntology && cls != null && settings.NameOfOntology != null && settings.NameOfOntology != string.Empty && cls.HasStereotype(settings.NameOfOntology))
 					{
 						found = true;
-						nmspace = importNamespaces.Where(x => x.Prefix.Equals(specialStereotype)).Single().Value + em.URI;
+                        nmspace = importNamespaces.Where(x => x.Prefix.Equals(settings.NameOfOntology)).Single().Value + em.URI;
 					}
-					else if ( ((cls!=null && !cls.HasDifferentStereotype(stereotypesToSkip)) || (cls==null))    &&  hasRoofOntology && roofOntology != null && roofOntology != string.Empty  )
+                    else if (((cls != null && !cls.HasDifferentStereotype(stereotypesToSkip)) || (cls == null)) && settings.IsRoofOntology && settings.RoofOntology != null && settings.RoofOntology != string.Empty)
 					{						
 						found = true;
-						nmspace = importNamespaces.Where(x => x.Prefix.Equals(roofOntology)).Single().Value + em.URI;
+                        nmspace = importNamespaces.Where(x => x.Prefix.Equals(settings.RoofOntology)).Single().Value + em.URI;
 					}
 
 					if (found)
@@ -295,14 +298,14 @@ namespace RDFSParserOWL2.Generator
 				{
 					string ontologyNamespace = string.Empty;
 					bool found = false;
-					if (hasSpecialStereotype && cls.HasStereotype(specialStereotype))
+                    if (settings.IsSpecialOntology && cls.HasStereotype(settings.NameOfOntology))
 					{
-						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(specialStereotype)).Single().Value;
+                        ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(settings.NameOfOntology)).Single().Value;
 						found = true;
 					}
-					else if (hasRoofOntology && roofOntology != null && !roofOntology.Equals(string.Empty) && !cls.HasDifferentStereotype(stereotypesToSkip) )
+                    else if (settings.IsRoofOntology && settings.RoofOntology != null && !settings.RoofOntology.Equals(string.Empty) && !cls.HasDifferentStereotype(stereotypesToSkip))
 					{
-						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(roofOntology)).Single().Value;
+                        ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(settings.RoofOntology)).Single().Value;
 						found = true;
 					}
 					if (found)
@@ -482,14 +485,14 @@ namespace RDFSParserOWL2.Generator
 					string ontologyNamespace = string.Empty;
 					bool found = false;
 					Class cls=property.DomainAsObject as Class;
-					if (hasSpecialStereotype && (property.HasStereotype(specialStereotype) || (property.DomainAsObject != null && property.DomainAsObject.HasStereotype(specialStereotype))))
+                    if (settings.IsSpecialOntology && (property.HasStereotype(settings.NameOfOntology) || (property.DomainAsObject != null && property.DomainAsObject.HasStereotype(settings.NameOfOntology))))
 					{
-						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(specialStereotype)).Single().Value;
+                        ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(settings.NameOfOntology)).Single().Value;
 						found = true;
 					}
-					else if ((((cls != null && !cls.HasDifferentStereotype(stereotypesToSkip)) || (cls == null)) && !property.HasDifferentStereotype(stereotypesToSkip)) && hasRoofOntology && roofOntology != null && !roofOntology.Equals(string.Empty))
+					else if ((((cls != null && !cls.HasDifferentStereotype(stereotypesToSkip)) || (cls == null)) && !property.HasDifferentStereotype(stereotypesToSkip)) && settings.IsRoofOntology && settings.RoofOntology != null && !settings.RoofOntology.Equals(string.Empty))
 					{
-						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(roofOntology)).Single().Value;
+						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(settings.RoofOntology)).Single().Value;
 						found = true;
 					}
 					if (found)
@@ -632,8 +635,6 @@ namespace RDFSParserOWL2.Generator
 		{
 			if (p != null && writer != null)
 			{
-                XmlElement element = new XmlElement();
-                writer.WriteElementString(element.ToString());
 				writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Description, null);
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp));
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.EqProperty, null);
