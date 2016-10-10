@@ -79,6 +79,7 @@
     <Compile Include="Model\ProfileElement.cs" />
     <Compile Include="Model\ProfileElementStereotype.cs" />
     <Compile Include="Model\Property.cs" />
+    <Compile Include="Model\Settings\GeneratorSettings.cs" />
     <Compile Include="Parser\Handler\IHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

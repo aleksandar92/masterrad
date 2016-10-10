@@ -1,6 +1,7 @@
 ﻿using RDFSParserOWL2.Common;
 using RDFSParserOWL2.Generator;
 using RDFSParserOWL2.Model;
+using RDFSParserOWL2.Model.Settings;
 using RDFSParserOWL2.Parser;
 using System;
 using System.Collections.Generic;
@@ -25,11 +26,13 @@ namespace RDFSParserOWL2.Converter
 		/// Generator for OWL2
 		/// </summary>
         private OWL2Generator generator;
-		private bool isSpecialOntology;
-		private bool isRoofOntology;
+        private GeneratorSettings ge;
+        //private bool isSpecialOntology;
+        //private bool isRoofOntology;
 		private OWL2XMLParser owlParser;
-		private string nameOfOntology;
-		private string roofOntology;
+        //private string nameOfOntology;
+        //private string roofOntology;
+        //private string extOntologyNS;
 
         public ConverterRDFSToOWL2() 
         {
@@ -45,39 +48,20 @@ namespace RDFSParserOWL2.Converter
             //generator = new  OWL2Generator();
         }
 
-		public ConverterRDFSToOWL2(string path,bool isSpecialOnt,string nameOfOnt)
+        //public ConverterRDFSToOWL2(string path,bool isSpecialOnt,string nameOfOnt)
+        //{
+        //    rdfsParser = new RDFSXMLParser(path);
+        //    //isSpecialOntology = isSpecialOnt;
+        //    //nameOfOntology = nameOfOnt;
+        //}
+
+		public ConverterRDFSToOWL2(string path,GeneratorSettings genSet)
 		{
 			rdfsParser = new RDFSXMLParser(path);
-			isSpecialOntology = isSpecialOnt;
-			nameOfOntology = nameOfOnt;
+            ge = genSet;
 		}
 
-		public ConverterRDFSToOWL2(string path, bool isSpecialOnt, string nameOfOnt,bool isRoof,string roofOntologyName)
-		{
-			rdfsParser = new RDFSXMLParser(path);
-			isSpecialOntology = isSpecialOnt;
-			nameOfOntology = nameOfOnt;
-			isRoofOntology = isRoof;
-			roofOntology = roofOntologyName;
-		}
 
-		public bool IsSpecialOntology
-		{
-			get { return isSpecialOntology; }
-			set { isSpecialOntology = value; }
-		}
-
-		public string NameOfOntology
-		{
-			get { return nameOfOntology; }
-			set { nameOfOntology = value; }
-		}
-
-		public string RoofOntology
-		{
-			get { return roofOntology; }
-			set { roofOntology = value; }
-		}
 
 
 		/// <summary>
@@ -85,31 +69,34 @@ namespace RDFSParserOWL2.Converter
 		/// </summary>
         public void  Convert() 
         {
-            rdfsParser.ParseProfile();
-            Profile profile = rdfsParser.Profile;
-			profile.RemoveElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
+            if (ge != null)
+            {
+                rdfsParser.ParseProfile();
+                Profile profile = rdfsParser.Profile;
+                profile.RemoveElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
 
-			if (isSpecialOntology)
-			{
-				owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(nameOfOntology)));
-				owlParser.ParseProfile();
-				Profile entsoProfile = owlParser.Profile;
+                if (ge.IsSpecialOntology)
+                {
+                    owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(ge.NameOfOntology)));
+                    owlParser.ParseProfile();
+                    Profile entsoProfile = owlParser.Profile;
 
-				if (entsoProfile != null)
-				{
-					entsoProfile.IsOwlProfile = true;
-				}
+                    if (entsoProfile != null)
+                    {
+                        entsoProfile.IsOwlProfile = true;
+                    }
 
-				if (profile.ProcessSpecialStereotypeElements(entsoProfile,nameOfOntology))
-				{
-					entsoProfile.PopulateObjectReferences();
-					generator = new OWL2Generator(entsoProfile);
-					generator.GenerateProfile();
-				}
-			}
+                    if (profile.ProcessSpecialStereotypeElements(entsoProfile, ge.NameOfOntology))
+                    {
+                        entsoProfile.PopulateObjectReferences();
+                        generator = new OWL2Generator(entsoProfile);
+                        generator.GenerateProfile();
+                    }
+                }
 
-			generator = new OWL2Generator(profile,nameOfOntology,isSpecialOntology,roofOntology,isRoofOntology);
-            generator.GenerateProfile();
-        }
+                generator = new OWL2Generator(profile, ge);
+                generator.GenerateProfile();
+            }
+          }
     }
 }

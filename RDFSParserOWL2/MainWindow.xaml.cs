@@ -2,6 +2,7 @@
 using RDFSParserOWL2.Converter;
 using RDFSParserOWL2.Generator;
 using RDFSParserOWL2.Model;
+using RDFSParserOWL2.Model.Settings;
 using RDFSParserOWL2.Parser;
 using RDFSParserOWL2.Parser.Handler;
 using System;
@@ -88,7 +89,7 @@ namespace RDFSParserOWL2
 			{
 				foreach(string fileName in fileNames) 
 				{
-					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileName,(bool)cbOntology.IsChecked, txtOntology.Text.Trim(), (bool)cbRoofOntology.IsChecked, txtRoofOntology.Text.Trim());
+					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileName,new GeneratorSettings((bool)cbRoofOntology.IsChecked,(bool)cbOntology.IsChecked,txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(),txtExtOnt.Text.Trim()) );
 					converter.Convert();
 				}
 			}

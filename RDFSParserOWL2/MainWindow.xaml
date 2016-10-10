@@ -13,11 +13,11 @@
             <ColumnDefinition Width="344*"/>
             <ColumnDefinition Width="499*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Files for parsing:" HorizontalAlignment="Left" Margin="18,181,0,0" VerticalAlignment="Top" Height="23" Width="167"/>
-        <Label Content="Name of the extracted ontology:" HorizontalAlignment="Left" Margin="15,360,0,0" VerticalAlignment="Top" Height="23" Width="170"/>
+        <Label Content="Files for parsing:" HorizontalAlignment="Left" Margin="18,181,0,0" VerticalAlignment="Top" Height="38" Width="185"/>
+        <Label Content="Name of the extracted ontology:" HorizontalAlignment="Left" Margin="15,360,0,0" VerticalAlignment="Top" Height="37" Width="206"/>
         <Label HorizontalAlignment="Left" Margin="211,250,0,0" VerticalAlignment="Top" Height="10" Width="10"/>
         <TextBox Name="txtOntology" HorizontalAlignment="Left" Height="48" Margin="241,349,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <Label Content="Name of the roof ontology:" HorizontalAlignment="Left" Margin="18,561,0,0" VerticalAlignment="Top" Height="23" Width="153" RenderTransformOrigin="0.475,2.826"/>
+        <Label Content="Name of the roof ontology:" HorizontalAlignment="Left" Margin="18,561,0,0" VerticalAlignment="Top" Height="34" Width="185" RenderTransformOrigin="0.475,2.826"/>
         <TextBox Name="txtRoofOntology" HorizontalAlignment="Left" Height="48" Margin="241,547,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
         <ListBox Name="lbFilesParsing" ScrollViewer.HorizontalScrollBarVisibility="Auto"  ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Height="259" Margin="241,53,0,0" VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
         <Button x:Name="btnImport"  Content="Browse" HorizontalAlignment="Left" Margin="262,53,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click" RenderTransformOrigin="0.093,2.25" Height="20" Grid.Column="1"/>
@@ -27,6 +27,8 @@
         <Button Content="Remove selected" Grid.Column="1" HorizontalAlignment="Left" Margin="262,160,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_2"/>
         <Button Content="Remove all" Grid.Column="1" HorizontalAlignment="Left" Margin="262,199,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_3"/>
         <Button Content="Convert selected" Grid.Column="1" HorizontalAlignment="Left" Margin="262,88,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_4"/>
+        <Label Content="Extracted onology namespace:" HorizontalAlignment="Left" Margin="28,461,0,0" VerticalAlignment="Top" Width="183"/>
+        <TextBox Name="txtExtOnt" HorizontalAlignment="Left" Height="48" Margin="244,461,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
