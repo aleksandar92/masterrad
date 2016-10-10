@@ -45,11 +45,7 @@ namespace RDFSParserOWL2
 		{
 			filesForParsing = new ObservableCollection<string>();
 			InitializeComponent();
-			lbFilesParsing.ItemsSource = filesForParsing;
-			lbFilesParsing.SelectionMode = SelectionMode.Multiple;
-			txtOntology.IsEnabled = false;
-			txtRoofOntology.IsEnabled = false;
-			
+			Init();			
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -82,30 +78,30 @@ namespace RDFSParserOWL2
 		}
 
 
-
 		private void ConvertFiles(ObservableCollection<string> fileNames) 
 		{
 			if (fileNames != null && fileNames.Count>0 )
 			{
+				
 				foreach(string fileName in fileNames) 
 				{
-					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileName,new GeneratorSettings((bool)cbRoofOntology.IsChecked,(bool)cbOntology.IsChecked,txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(),txtExtOnt.Text.Trim()) );
+					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileName, new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(),(bool)cbEnums.IsChecked,txtNS.Text.Trim()));
 					converter.Convert();
 				}
 			}
 		}
-
-
-
+		
 		private void cbOntology_Checked(object sender, RoutedEventArgs e)
 		{
 			if (cbOntology.IsChecked == true)
 			{
 				txtOntology.IsEnabled = true;
+				txtExtOnt.IsEnabled = true;
 			}
 			else 
 			{
 				txtOntology.IsEnabled = false;
+				txtExtOnt.IsEnabled = false;
 			}
 		}
 
@@ -114,16 +110,18 @@ namespace RDFSParserOWL2
 			if (cbRoofOntology.IsChecked == true)
 			{
 				txtRoofOntology.IsEnabled = true;
+				txtRoofOntNS.IsEnabled = true;
+			//	txtExtOnt.IsEnabled = true;
+				
 			}
 			else
 			{
 				txtRoofOntology.IsEnabled = false;
+				txtRoofOntNS.IsEnabled = false;
+				//txtExtOnt.IsEnabled = false;
 			}
 		}
 
-
-
-		
 
 		private void Button_Click_2(object sender, RoutedEventArgs e)
 		{
@@ -169,6 +167,16 @@ namespace RDFSParserOWL2
 			}
 
 			return result;
+		}
+
+		private void Init() 
+		{
+			lbFilesParsing.ItemsSource = filesForParsing;
+			lbFilesParsing.SelectionMode = SelectionMode.Multiple;
+			txtOntology.IsEnabled = false;
+			txtRoofOntology.IsEnabled = false;
+			txtExtOnt.IsEnabled = false;
+			txtRoofOntNS.IsEnabled = false;
 		}
 	}
 }

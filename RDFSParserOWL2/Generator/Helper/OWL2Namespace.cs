@@ -78,6 +78,7 @@ namespace RDFSParserOWL2.Generator.Helper
 		public static string owlNamedIndividual = owlPrefix + StringManipulationManager.SeparatorColon + NamedIndividual;
 		public static string SameAs = "sameAs";
 		public static string InverseOf = "inverseOf";
+		public static string Type = "type";
 
 		public static string owlInverseOf = owlPrefix + StringManipulationManager.SeparatorColon + InverseOf;
 		

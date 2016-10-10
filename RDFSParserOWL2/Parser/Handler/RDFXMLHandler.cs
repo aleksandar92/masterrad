@@ -107,7 +107,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				string val;
 				atts.TryGetValue(rdfResource, out val);
 				if (!string.IsNullOrEmpty(val))
-					stereotypes.Add(val);
+					stereotypes.Add(val.Trim().ToLower());
 			}
 			else if (qName.Equals(rdfsComment) || qName.Equals(rdfsLabel))
 			{
@@ -155,7 +155,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		public virtual bool IsEndElement(string qName)
 		{
 
-			return qName.Equals(rdfProfileElement)
+			return qName.ToLower().Equals(rdfProfileElement.ToLower())
 	|| qName.Equals(rdfsClassElement) || qName.Equals(rdfPropertyElement);
 		}
 
@@ -280,7 +280,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				content = content.Trim();
 				if (!string.IsNullOrEmpty(content))
 				{
-					stereotypes.Add(content);
+					stereotypes.Add(content.Trim().ToLower());
 				}
 			}
 
@@ -297,12 +297,12 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		protected virtual bool IsClass(string type) 
 		{
-			return  ExtractSimpleNameFromResourceURI(type).Equals("Class");
+			return ExtractSimpleNameFromResourceURI(type).Equals("Class") || ExtractSimpleNameFromResourceURI(type).Equals("class");
 		}
 
 		protected virtual bool IsProperty(string type)
 		{
-			return ExtractSimpleNameFromResourceURI(type).Equals("Property");
+			return ExtractSimpleNameFromResourceURI(type).Equals("Property") || ExtractSimpleNameFromResourceURI(type).Equals("property");
 		}
 
 		public virtual void Characters(string text) 
@@ -505,8 +505,6 @@ namespace RDFSParserOWL2.Parser.Handler
 
 				Class cs = new Class();
 				OperationsForPopulatingClass(cs,localName);
-
-
 				AddProfileElement(ProfileElementTypes.Class, cs);
 			
 		}
@@ -598,7 +596,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		/// <param name="attr">Attribute to be populated</param>
 		protected virtual void PopulateClassAttribute(Class cs, string attrVal, string attr,string localName)
 		{
-			if ((attr.Contains(rdfsSubClassOf)) && (attrVal != null))
+			if ((attr.ToLower().Contains(rdfsSubClassOf.ToLower())) && (attrVal != null))
 			{
 				cs.SubClassOf = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
 			}
@@ -615,24 +613,6 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 
 		}
-
-
-
-		//protected virtual void PopulateProperty(Dictionary<string, string> atts) 
-		//{
-		//	Property pr  = new Property();
-		//	foreach (KeyValuePair<string, string> pp in prop)
-		//	{
-		//		string str = pp.Value;
-		//		PopulatePropertyAttribute(pr, pp.Value, pp.Key);
-		//	}
-
-		//	ProccessCommentsAndLabels(pr);
-		//	AddProfileElement(ProfileElementTypes.Property, pr);
-
-		//}
-
-
 
 
 		/// <summary>

@@ -15,50 +15,35 @@ namespace RDFSParserOWL2.Converter
 	/// <summary>
 	/// Class that converts file in RDFS to  OWL2 format 
 	/// </summary>
-    public  class ConverterRDFSToOWL2
-    {
+	public class ConverterRDFSToOWL2
+	{
 		/// <summary>
 		/// Parser for file in RDFS 
 		/// </summary>
-        private RDFSXMLParser rdfsParser;
+		private RDFSXMLParser rdfsParser;
 
 		/// <summary>
 		/// Generator for OWL2
 		/// </summary>
-        private OWL2Generator generator;
-        private GeneratorSettings ge;
-        //private bool isSpecialOntology;
-        //private bool isRoofOntology;
+		private OWL2Generator generator;
+		private GeneratorSettings ge;
 		private OWL2XMLParser owlParser;
-        //private string nameOfOntology;
-        //private string roofOntology;
-        //private string extOntologyNS;
 
-        public ConverterRDFSToOWL2() 
-        {
-            rdfsParser = new RDFSXMLParser();
+		public ConverterRDFSToOWL2()
+		{
+			rdfsParser = new RDFSXMLParser();
 			owlParser = new OWL2XMLParser();
-           // generator = new  OWL2Generator();
-        }
+		}
 
-        public ConverterRDFSToOWL2(string path) 
-        {
-            rdfsParser = new RDFSXMLParser(path);
-
-            //generator = new  OWL2Generator();
-        }
-
-        //public ConverterRDFSToOWL2(string path,bool isSpecialOnt,string nameOfOnt)
-        //{
-        //    rdfsParser = new RDFSXMLParser(path);
-        //    //isSpecialOntology = isSpecialOnt;
-        //    //nameOfOntology = nameOfOnt;
-        //}
-
-		public ConverterRDFSToOWL2(string path,GeneratorSettings genSet)
+		public ConverterRDFSToOWL2(string path)
 		{
 			rdfsParser = new RDFSXMLParser(path);
-            ge = genSet;
+		}
+
+		public ConverterRDFSToOWL2(string path, GeneratorSettings genSet)
+		{
+			rdfsParser = new RDFSXMLParser(path);
+			ge = genSet;
 		}
 
 
@@ -67,36 +52,34 @@ namespace RDFSParserOWL2.Converter
 		/// <summary>
 		/// Method for converting file from RDFS format to OWL2 format 
 		/// </summary>
-        public void  Convert() 
-        {
-            if (ge != null)
-            {
-                rdfsParser.ParseProfile();
-                Profile profile = rdfsParser.Profile;
-                profile.RemoveElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
+		public void Convert()
+		{
+			if (ge != null)
+			{
+				rdfsParser.ParseProfile();
+				Profile profile = rdfsParser.Profile;
+				profile.RemoveElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
 
-                if (ge.IsSpecialOntology)
-                {
-                    owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(ge.NameOfOntology)));
-                    owlParser.ParseProfile();
-                    Profile entsoProfile = owlParser.Profile;
+				if (ge.IsSpecialOntology)
+				{
+					owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(ge.NameOfOntology)));
+					owlParser.ParseProfile();
+					Profile entsoProfile = owlParser.Profile;
 
-                    if (entsoProfile != null)
-                    {
-                        entsoProfile.IsOwlProfile = true;
-                    }
+					if (entsoProfile != null)
+					{
+						entsoProfile.IsOwlProfile = true;
+						profile.ProcessSpecialStereotypeElements(entsoProfile, ge.NameOfOntology);
+						entsoProfile.PopulateObjectReferences();
+						generator = new OWL2Generator(entsoProfile, ge);
+						generator.GenerateProfile();
+					}
 
-                    if (profile.ProcessSpecialStereotypeElements(entsoProfile, ge.NameOfOntology))
-                    {
-                        entsoProfile.PopulateObjectReferences();
-                        generator = new OWL2Generator(entsoProfile);
-                        generator.GenerateProfile();
-                    }
-                }
+				}
 
-                generator = new OWL2Generator(profile, ge);
-                generator.GenerateProfile();
-            }
-          }
-    }
+				generator = new OWL2Generator(profile, ge);
+				generator.GenerateProfile();
+			}
+		}
+	}
 }

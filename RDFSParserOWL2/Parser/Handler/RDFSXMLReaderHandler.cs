@@ -108,7 +108,7 @@ namespace RDFSParserOWL2.Parser
 
 		protected override void PopulateClassAttribute(Class cs, string attrVal, string attr,string localName)
 		{
-			if ((attr.Equals(cimsBelongsToCategory)) && (attrVal != null))
+			if ((attr.ToLower().Equals(cimsBelongsToCategory.ToLower())) && (attrVal != null))
 			{
 				cs.BelongsToCategory = attrVal;
 				AddBelongingInformation(cs, cs.BelongsToCategory);
@@ -125,7 +125,7 @@ namespace RDFSParserOWL2.Parser
 			{
 				cs.Type = attrVal;
 			}
-			else if ((attr.Equals(rdfProfileElement)) && (attrVal != null))
+			else if ((attr.ToLower().Equals(rdfProfileElement.ToLower())) && (attrVal != null))
 			{
 				cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
 			}
@@ -139,7 +139,7 @@ namespace RDFSParserOWL2.Parser
 
 		protected override void PopulatePropertyAttribute(Property pr, string attrVal, string attr,string localName)
 		{
-			if ((attr.Equals(cimsDataType)) && (attrVal != null))
+			if ((attr.ToLower().Equals(cimsDataType.ToLower())) && (attrVal != null))
 			{
 				pr.DataType = attrVal;
 			}
@@ -147,7 +147,7 @@ namespace RDFSParserOWL2.Parser
 			{
 				pr.MultiplicityAsString = attrVal;
 			}
-			else if ((attr.Equals(rdfProfileElement)) && (attrVal != null))
+			else if ((attr.ToLower().Equals(rdfProfileElement.ToLower())) && (attrVal != null))
 			{
 				pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
 			}
