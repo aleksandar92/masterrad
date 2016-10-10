@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<words>
+  <word>Primitive</word>
+  <word>concrete</word>
+   <word>compound</word>
+   <word>enumeration</word>
+   <word>attribute</word>
+	<word>concrete</word>
+	<word>byreference</word>
+    <word>ofAggregate</word>
+	<word>aggregateOf</word>
+	<word>compositeOf</word>
+	<word>ofComposite</word>
+<word>CIMDatatype</word>
+<word>Description</word>	
+<word>Operation</word>
+<word>Primitive</word>
+<word>ShortCircuit</word>
+<word>abstract</word>
+<word>enum</word>
+<word>XMLELement</word>
+<word>XMLAttribute</word>
+<word>extensionClass</word>
+<word>INV</word>
+<word>invariant</word>
+<word>union</word>
+<word>preserve</word>
+<word>extensionClass</word>
+<word>extendedBy</word>
+<word>datatype</word>
+<word>base</word>
+
+
+
+</words>
