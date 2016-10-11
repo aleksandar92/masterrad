@@ -224,6 +224,126 @@ namespace RDFSParserOWL2.Model
 			}
 		}
 
+
+
+		/// <summary>
+		/// Gets number of datatype properties in profile
+		/// </summary>
+		public int DatatypePropertyCount
+		{
+			get
+			{
+				int count = 0;
+				if (profileMap != null)
+				{
+					List<ProfileElement> elements = null;
+					profileMap.TryGetValue(ProfileElementTypes.Property, out elements);
+					if (elements != null)
+					{
+						count = elements.Cast<Property>().ToList().Where(x => !x.IsObjectProperty()).Count();
+					}
+				}
+				return count;
+			}
+
+		}
+
+		/// <summary>
+		/// Gets number of object properties in profile 
+		/// </summary>
+		public int ObjectPropertyCount
+		{
+			get
+			{
+				int count = 0;
+				if (profileMap != null)
+				{
+					count = PropertyCount - DatatypePropertyCount;
+				}
+				return count;
+			}
+		}
+
+
+		/// <summary>
+		/// Get number of enumeration elements in profile
+		/// </summary>
+		public int EnumMembersCount
+		{
+			get
+			{
+				int count = 0;
+				if (profileMap != null)
+				{
+					List<ProfileElement> elements = null;
+					profileMap.TryGetValue(ProfileElementTypes.EnumerationElement, out elements);
+					if (elements != null)
+					{
+						count = elements.Count;
+					}
+				}
+				return count;
+			}
+		}
+
+		/// <summary>
+		/// Returns number of enum classes in profile 
+		/// </summary>
+		public int EnumClassesCount
+		{
+			get
+			{
+				int count = 0;
+				if (profileMap != null)
+				{
+					List<ProfileElement> elements = null;
+					profileMap.TryGetValue(ProfileElementTypes.Class, out elements);
+					if (elements != null)
+					{
+						count = elements.Cast<Class>().ToList().Where(x => x.IsEnumeration).Count();
+					}
+				}
+				return count;
+			}
+		}
+
+		/// <summary>
+		/// Returns number of unknown elements in profile 
+		/// </summary>
+		public int UnkownElementsCount
+		{
+			get
+			{
+				int count = 0;
+				if (profileMap != null)
+				{
+					List<ProfileElement> elements = null;
+					profileMap.TryGetValue(ProfileElementTypes.Unknown, out elements);
+					if (elements != null)
+					{
+						count = elements.Count;
+					}
+				}
+				return count;
+			}
+		}
+
+
+		/// <summary>
+		/// Returns number of unknown elements in profile 
+		/// </summary>
+		public int TotalElementsCount
+		{
+			get
+			{
+				int count = 0;
+				count = UnkownElementsCount + EnumMembersCount + PropertyCount + ClassCount;
+				return count;
+			}
+		}
+
+
+
 		/// <summary>
 		/// Gets the number of all ProfileElementTypes.Property in this profile.
 		/// </summary>
@@ -244,6 +364,11 @@ namespace RDFSParserOWL2.Model
 				return count;
 			}
 		}
+
+		//public int ElementsWithoutType() 
+		//{
+		
+		//} 
 
 		/// <summary>
 		/// Gets the number of all ProfileElementTypes.Stereotype in this profile.
@@ -361,7 +486,7 @@ namespace RDFSParserOWL2.Model
 		/// <param name="specialOntologyProfile"></param>
 		/// <param name="nameOfStereotype"></param>
 		/// <returns></returns>
-		public bool ProcessSpecialStereotypeElements(Profile specialOntologyProfile,string nameOfStereotype)
+		public bool ProcessSpecialStereotypeElements(Profile specialOntologyProfile, string nameOfStereotype)
 		{
 			bool changed = false;
 			if (specialOntologyProfile != null)
@@ -372,7 +497,7 @@ namespace RDFSParserOWL2.Model
 					switch (type)
 					{
 						case ProfileElementTypes.Class:
-							CalculateDifferencessInClassesBeetweenTwoProfiles(specialOntologyProfile,ref changed,nameOfStereotype);
+							CalculateDifferencessInClassesBeetweenTwoProfiles(specialOntologyProfile, ref changed, nameOfStereotype);
 							break;
 
 						case ProfileElementTypes.Property:
@@ -391,7 +516,7 @@ namespace RDFSParserOWL2.Model
 							}
 
 
-							DifferenceBeetwenListOfProperties(ref entsoProperties,properties,out propertiesToAdd);
+							DifferenceBeetwenListOfProperties(ref entsoProperties, properties, out propertiesToAdd);
 
 							if (propertiesToAdd != null && propertiesToAdd.Count > 0)
 							{
@@ -419,7 +544,7 @@ namespace RDFSParserOWL2.Model
 		}
 
 
-		private void CalculateDifferencessInClassesBeetweenTwoProfiles(Profile specialOntologyProfile,ref bool changed,string nameOfStereotype) 
+		private void CalculateDifferencessInClassesBeetweenTwoProfiles(Profile specialOntologyProfile, ref bool changed, string nameOfStereotype)
 		{
 			List<Class> classesToAdd = null;
 			List<Class> classes = null;
@@ -529,13 +654,13 @@ namespace RDFSParserOWL2.Model
 
 
 			}
-		
+
 		}
 
-		private void DifferenceBeetweenListOfSameClassesFromDifferentProfile() 
+		private void DifferenceBeetweenListOfSameClassesFromDifferentProfile()
 		{
-		
-		
+
+
 		}
 
 
@@ -545,7 +670,7 @@ namespace RDFSParserOWL2.Model
 		/// <param name="firstList"> </param>
 		/// <param name="secondList"></param>
 		/// <param name="propertiesToAdd"></param>
-		private void DifferenceBeetwenListOfProperties(ref List<Property> firstList, List<Property> secondList, out List<Property> propertiesToAdd) 
+		private void DifferenceBeetwenListOfProperties(ref List<Property> firstList, List<Property> secondList, out List<Property> propertiesToAdd)
 		{
 			propertiesToAdd = null;
 
@@ -553,9 +678,9 @@ namespace RDFSParserOWL2.Model
 			{
 				firstList = new List<Property>();
 				propertiesToAdd = new List<Property>();
-				propertiesToAdd.AddRange(secondList);		
+				propertiesToAdd.AddRange(secondList);
 			}
-			else if (firstList!= null && secondList != null)
+			else if (firstList != null && secondList != null)
 			{
 				propertiesToAdd = secondList.Except(firstList, new PropertyComparer()).ToList();
 
@@ -605,7 +730,7 @@ namespace RDFSParserOWL2.Model
 		}
 
 
-		private void  DifferenceBeetwenEnumsInClass(ref Profile specialOntologyProfile,Class cls,ref bool changed) 
+		private void DifferenceBeetwenEnumsInClass(ref Profile specialOntologyProfile, Class cls, ref bool changed)
 		{
 			List<EnumMember> enumToAdd = null;
 			List<EnumMember> soEnum = null;
@@ -636,7 +761,7 @@ namespace RDFSParserOWL2.Model
 				changed = true;
 			}
 
-				
+
 		}
 
 
@@ -672,17 +797,17 @@ namespace RDFSParserOWL2.Model
 					//pe.URI = uri;
 					//if (hashSet.Contains(pe, new ProfileElementComparer()))
 					//{
-						//{
-						//element = hashSet.Where(x=>x.URI.Equals(uri)).SingleOrDefault();
-						//}
-						foreach (ProfileElement elem in list)
+					//{
+					//element = hashSet.Where(x=>x.URI.Equals(uri)).SingleOrDefault();
+					//}
+					foreach (ProfileElement elem in list)
+					{
+						if (uri.Equals(elem.URI))
 						{
-							if (uri.Equals(elem.URI))
-							{
-								element = elem;
-								break;
-							}
+							element = elem;
+							break;
 						}
+					}
 					//}
 					if (element != null)
 					{
@@ -840,94 +965,94 @@ namespace RDFSParserOWL2.Model
 		}
 		*/
 
-        public void PopulateObjectReferences() 
-        {
-            PopulateRangeAsObjectProperties();
-            PopulateDomainAsObjectProperties();
-            PopulateSubclassOfClasses();
-        
-        }
+		public void PopulateObjectReferences()
+		{
+			PopulateRangeAsObjectProperties();
+			PopulateDomainAsObjectProperties();
+			PopulateSubclassOfClasses();
+
+		}
 
 
-        private void PopulateSubclassOfClasses()
-        {
-            if (profileMap!=null && profileMap != null)
-            {
-                //List<Property> properties = null;
-                List<Class> classes = null;
+		private void PopulateSubclassOfClasses()
+		{
+			if (profileMap != null && profileMap != null)
+			{
+				//List<Property> properties = null;
+				List<Class> classes = null;
 
 
-                if (profileMap.ContainsKey(ProfileElementTypes.Class))
-                {
-                    classes = profileMap[ProfileElementTypes.Class].Cast<Class>().ToList();
-                }
+				if (profileMap.ContainsKey(ProfileElementTypes.Class))
+				{
+					classes = profileMap[ProfileElementTypes.Class].Cast<Class>().ToList();
+				}
 
-                if ( classes != null)
-                {
-                    foreach (Class c  in classes)
-                    {
-                            Class cls = classes.Where(x => x.URI.Equals(c.SubClassOf)).SingleOrDefault();
-                            c.SubClassOfAsObject = cls;
-                        
-                    }
-                }
+				if (classes != null)
+				{
+					foreach (Class c in classes)
+					{
+						Class cls = classes.Where(x => x.URI.Equals(c.SubClassOf)).SingleOrDefault();
+						c.SubClassOfAsObject = cls;
 
-                //else if (classes == null)
-                //{
-                //    foreach (Class c  in properties)
-                //    {
-                //        p.DomainAsObject = null;
-                //    }
+					}
+				}
 
-                //}
+				//else if (classes == null)
+				//{
+				//    foreach (Class c  in properties)
+				//    {
+				//        p.DomainAsObject = null;
+				//    }
 
-            }
+				//}
 
-        }
+			}
 
-
-        private  void PopulateRangeAsObjectProperties() 
-        {
-            if (profileMap != null)
-            {
-                List<Property> properties = null;
-                List<Class> classes = null;
+		}
 
 
-                if (profileMap.ContainsKey(ProfileElementTypes.Class))
-                {
-                    classes = profileMap[ProfileElementTypes.Class].Cast<Class>().ToList();
-                }
+		private void PopulateRangeAsObjectProperties()
+		{
+			if (profileMap != null)
+			{
+				List<Property> properties = null;
+				List<Class> classes = null;
 
 
-                if (profileMap.ContainsKey(ProfileElementTypes.Property))
-                {
-                    properties = profileMap[ProfileElementTypes.Property].Cast<Property>().ToList();
-                }
+				if (profileMap.ContainsKey(ProfileElementTypes.Class))
+				{
+					classes = profileMap[ProfileElementTypes.Class].Cast<Class>().ToList();
+				}
 
-                if (properties != null && classes != null)
-                {
-                    foreach (Property p in properties)
-                    {
-                            Class cls = classes.Where(x => x.URI.Equals(p.Range)).SingleOrDefault();
-                            p.RangeAsObject = cls;
 
-                    }
-                }
+				if (profileMap.ContainsKey(ProfileElementTypes.Property))
+				{
+					properties = profileMap[ProfileElementTypes.Property].Cast<Property>().ToList();
+				}
 
-                else if (classes == null)
-                {
-                    foreach (Property p in properties)
-                    {
-                        p.DomainAsObject = null;
+				if (properties != null && classes != null)
+				{
+					foreach (Property p in properties)
+					{
+						Class cls = classes.Where(x => x.URI.Equals(p.Range)).SingleOrDefault();
+						p.RangeAsObject = cls;
+
+					}
+				}
+
+				else if (classes == null)
+				{
+					foreach (Property p in properties)
+					{
+						p.DomainAsObject = null;
 						p.RangeAsObject = null;
-                    }
+					}
 
-                }
+				}
 
-            }
-        
-        }
+			}
+
+		}
 
 
 		private void PopulateDomainAsObjectProperties()
@@ -949,23 +1074,23 @@ namespace RDFSParserOWL2.Model
 					properties = profileMap[ProfileElementTypes.Property].Cast<Property>().ToList();
 				}
 
-                if (properties != null && classes != null)
-                {
-                    foreach (Property p in properties)
-                    {
-                        Class cls = classes.Where(x => x.URI.Equals(p.Domain)).SingleOrDefault();
-                        p.DomainAsObject = cls;
-                    }
-                }
+				if (properties != null && classes != null)
+				{
+					foreach (Property p in properties)
+					{
+						Class cls = classes.Where(x => x.URI.Equals(p.Domain)).SingleOrDefault();
+						p.DomainAsObject = cls;
+					}
+				}
 
-                else if (classes == null)
-                {
-                    foreach (Property p in properties)
-                    {
-                        p.DomainAsObject = null;
-                    }
+				else if (classes == null)
+				{
+					foreach (Property p in properties)
+					{
+						p.DomainAsObject = null;
+					}
 
-                }
+				}
 
 			}
 
@@ -986,6 +1111,29 @@ namespace RDFSParserOWL2.Model
 		}
 
 
+
+		public override string ToString()
+		{
+
+			return BuildProfileReport();
+		}
+
+		private string BuildProfileReport()
+		{
+			StringBuilder report = new StringBuilder();
+			report.AppendLine(String.Format("Report generated at:{0}", DateTime.Now.ToString()));
+			report.AppendLine(String.Format("Total number of elements:{0}", TotalElementsCount));
+			report.AppendLine(String.Format("Number of classes:{0} ,from which:", ClassCount));
+			report.AppendLine(String.Format("\t\t\tNumber of enum classes:{0}", EnumClassesCount));
+			report.AppendLine(String.Format("Number of properties:{0} ,from which:", PropertyCount));
+			report.AppendLine(String.Format("\t\t\tNumber of object properties:{0}", ObjectPropertyCount));
+			report.AppendLine(String.Format("\t\t\tNumber of datatype properties:{0}", DatatypePropertyCount));
+			report.AppendLine(String.Format("Total number of enum elements:{0}", EnumMembersCount));
+			report.AppendLine(String.Format("Total number of unknown elements:{0}", UnkownElementsCount));
+			return report.ToString();
+
+		}
+
 		private void SortElementsInMap()
 		{
 			if ((profileMap != null) && (profileMap.Count > 0))
@@ -1002,10 +1150,6 @@ namespace RDFSParserOWL2.Model
 
 
 
-		//public bool IsEntsoe()
-		//{
-		//	return fileName.Equals(OWL2Namespace.EntsoeOwl);
 
-		//}
 	}
 }

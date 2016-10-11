@@ -28,6 +28,7 @@ namespace RDFSParserOWL2.Generator
 
 		private string fileName;
 		private string shortName;
+
 		private List<Namespace> predefinedNamespaces;
 		private string baseAdress;
 		private List<string> words;
@@ -44,6 +45,13 @@ namespace RDFSParserOWL2.Generator
 			//set { profileForGenerating = value; }
 		}
 
+
+
+		public string ShortName
+		{
+			get { return shortName; }
+			set { shortName = value; }
+		}
 
 		private void ChangeOfProfile()
 		{

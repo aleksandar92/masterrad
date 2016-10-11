@@ -8,7 +8,8 @@
 ///Restrikcije dodati u izdvojene onologije -----
 ///Preurediti GUI, dodati DataGrid ----
 ///srediti bangavu funkciju za poredjenje elemenata koje treba dodati u izdvojenu ontologiju 
-/// procitati dokument 
-////odkomentarisati version u geo loc profilu 
+/// procitati dokument ---
+////odkomentarisati version u geo loc profilu--- 
 ///logovi,metrika
-///parametrizovati generisanje enumeracije,u drugom rezimu dodati tag rdf:type u namedIndividual i izbaciti kolekciju iz klase(open princip) 
+///parametrizovati generisanje enumeracije,u drugom rezimu dodati tag rdf:type u namedIndividual i izbaciti kolekciju iz klase(open princip) ---
+///bag u vezi Protegee Error je vezan za kardinalitete,resiti bag---bag resen ,problem je bio u tome sto su uklanjani propertiji sa primitive stereotipom,a koji su pripadali nekoj klasi

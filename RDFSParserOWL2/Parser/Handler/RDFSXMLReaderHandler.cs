@@ -143,7 +143,7 @@ namespace RDFSParserOWL2.Parser
 			{
 				pr.DataType = attrVal;
 			}
-			else if ((attr.Equals(cimsMultiplicity)) && (attrVal != null))
+			else if ((attr.ToLower().Equals(cimsMultiplicity.ToLower())) && (attrVal != null))
 			{
 				pr.MultiplicityAsString = attrVal;
 			}
@@ -155,7 +155,7 @@ namespace RDFSParserOWL2.Parser
 			{
 				pr.Type = attrVal;
 			}
-			else if ((attr.Contains(cimsStereotype)) && (attrVal != null))
+			else if ((attr.ToLower().Contains(cimsStereotype.ToLower())) && (attrVal != null))
 			{
 				pr.AddStereotype(attrVal);
 			}

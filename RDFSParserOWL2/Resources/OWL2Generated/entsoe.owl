@@ -1,1580 +1,1586 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://extractedontology/Entsoe#" xml:base="http://extractedontology/Entsoe" xmlns:gl="http://extractedontology/Entsoe#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://extractedontology/Entsoe" />
-    <owl:ObjectProperty rdf:about="http://extractedontology/Entsoe#PowerSystemResource.Location">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#PowerSystemResource" />
-        <rdfs:range rdf:resource="http://extractedontology/Entsoe#Location" />
+<rdf:RDF xmlns="http://www.semantic.web.org.profiles/Entsoe#" xml:base="http://www.semantic.web.org.profiles/Entsoe" xmlns:gl="http://www.semantic.web.org.profiles/Entsoe#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semantic.web.org.profiles/Entsoe" />
+    <owl:ObjectProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#PowerSystemResource.Location">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#PowerSystemResource" />
+        <rdfs:range rdf:resource="http://www.semantic.web.org.profiles/Entsoe#Location" />
         <rdfs:comment>Location of this power system resource.</rdfs:comment>
         <rdfs:label xml:lang="en">Location</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:ObjectProperty>
-    <owl:ObjectProperty rdf:about="http://extractedontology/Entsoe#EnergySchedulingType.EnergySource">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EnergySchedulingType" />
-        <rdfs:range rdf:resource="http://extractedontology/Entsoe#EnergySource" />
+    <owl:ObjectProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EnergySchedulingType.EnergySource">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EnergySchedulingType" />
+        <rdfs:range rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EnergySource" />
         <rdfs:comment>Energy Source of a particular Energy Scheduling Type</rdfs:comment>
         <rdfs:label xml:lang="en">EnergySource</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:ObjectProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#geographicallocationversion.baseuml">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#geographicallocationversion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.baseuml">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>base uml provided by cim model manager.</rdfs:comment>
         <rdfs:label xml:lang="en">baseuml</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#IdentifiedObject.energyIdentCodeEic">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#IdentifiedObject.energyIdentCodeEic">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>.</rdfs:comment>
         <rdfs:label xml:lang="en">energyIdentCodeEic</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#IdentifiedObject.shortName">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#IdentifiedObject.shortName">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#geographicallocationversion.shortname">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#geographicallocationversion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.shortname">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>the short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label xml:lang="en">shortname</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#geographicallocationversion.namespaceuml">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#geographicallocationversion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.namespaceuml">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>cim uml namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceuml</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#geographicallocationversion.namespacerdf">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#geographicallocationversion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.namespacerdf">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>rdf namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespacerdf</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#geographicallocationversion.modeldescriptionuri">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#geographicallocationversion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.modeldescriptionuri">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>model description uri defined by iec 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">modeldescriptionuri</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#geographicallocationversion.entsoeuri">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#geographicallocationversion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.entsoeuri">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>profile uri defined by entso-e and used in the model exchange header.  it uniquely identifies the profile and its version. the last two elements in the uri (http://entsoe.eu/cim/geographicallocation/yy/zzz) indicate major and minor versions where: 
 			- yy - indicates a major version;
 			- zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeuri</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#geographicallocationversion.entsoeuml">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#geographicallocationversion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.entsoeuml">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>uml provided by entso-e.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeuml</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#geographicallocationversion.differencemodeluri">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#geographicallocationversion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.differencemodeluri">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>difference model uri defined by iec 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">differencemodeluri</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#geographicallocationversion.date">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#geographicallocationversion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.date">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
         <rdfs:comment>profile creation date
 			form is yyyy-mm-dd for example for january 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#geographicallocationversion.baseuri">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#geographicallocationversion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.baseuri">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>profile uri used in the model exchange header and defined in iec standards.  it uniquely identifies the profile and its version. it is given for information only and to identify the closest iec profile to which this cgmes profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseuri</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion.baseUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.baseUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
         <rdfs:label xml:lang="en">baseUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion.shortName">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.shortName">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion.namespaceUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.namespaceUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>CIM UML namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion.namespaceRDF">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.namespaceRDF">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>RDF namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion.modelDescriptionURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.modelDescriptionURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion.entsoeURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.entsoeURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/DiagramLayout/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion.entsoeUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.entsoeUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion.differenceModelURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.differenceModelURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">differenceModelURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion.date">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.date">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
         <rdfs:comment>Profile creation date
 Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion.baseURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.baseURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DynamicsVersion.baseUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DynamicsVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.baseUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
         <rdfs:label xml:lang="en">baseUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DynamicsVersion.shortName">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DynamicsVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.shortName">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DynamicsVersion.namespaceUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DynamicsVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.namespaceUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>CIM UML namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DynamicsVersion.namespaceRDF">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DynamicsVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.namespaceRDF">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>RDF namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DynamicsVersion.modelDescriptionURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DynamicsVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.modelDescriptionURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DynamicsVersion.entsoeURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DynamicsVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.entsoeURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/Dynamics/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DynamicsVersion.entsoeUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DynamicsVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.entsoeUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DynamicsVersion.differenceModelURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DynamicsVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.differenceModelURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">differenceModelURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DynamicsVersion.date">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DynamicsVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.date">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
         <rdfs:comment>Profile creation date
 Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#DynamicsVersion.baseURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#DynamicsVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.baseURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.baseUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.baseUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
         <rdfs:label xml:lang="en">baseUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#ConnectivityNode.boundaryPoint">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#ConnectivityNode.boundaryPoint">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean" />
         <rdfs:comment>Identifies if a node is a BoundaryPoint. If boundaryPoint=true the ConnectivityNode or the TopologicalNode represents a BoundaryPoint.</rdfs:comment>
         <rdfs:label xml:lang="en">boundaryPoint</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#ConnectivityNode.fromEndName">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#ConnectivityNode.fromEndName">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.</rdfs:comment>
         <rdfs:label xml:lang="en">fromEndName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#ConnectivityNode.fromEndNameTso">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#ConnectivityNode.fromEndNameTso">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The attribute is used for an exchange of the name of the TSO to which the “From” side of the Boundary point belongs to or it is connected to. The length of the string is 32 characters maximum.
 The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.</rdfs:comment>
         <rdfs:label xml:lang="en">fromEndNameTso</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#ConnectivityNode.toEndIsoCode">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#ConnectivityNode.toEndIsoCode">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>). The length of the string is 2 characters maximum.
 The attribute is a required for the Boundary Model Authority Set where this attribute is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.</rdfs:comment>
         <rdfs:label xml:lang="en">toEndIsoCode</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#ConnectivityNode.toEndName">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#ConnectivityNode.toEndName">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.</rdfs:comment>
         <rdfs:label xml:lang="en">toEndName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#ConnectivityNode.toEndNameTso">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#ConnectivityNode.toEndNameTso">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The attribute is used for an exchange of the name of the TSO to which the “To” side of the Boundary point belongs to or it is connected to. The length of the string is 32 characters maximum.
 The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.</rdfs:comment>
         <rdfs:label xml:lang="en">toEndNameTso</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.shortName">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.shortName">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.namespaceUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.namespaceUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>CIM UML namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.namespaceRDF">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.namespaceRDF">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>RDF namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.modelDescriptionURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.modelDescriptionURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.entsoeURIoperation">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.entsoeURIoperation">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentBoundaryOperation/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURIoperation</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.entsoeURIcore">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.entsoeURIcore">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentBoundary/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURIcore</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.entsoeUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.entsoeUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.differenceModelURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.differenceModelURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">differenceModelURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.date">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.date">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
         <rdfs:comment>Profile creation date
 Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion.baseURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.baseURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#OperationalLimitType.limitType">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#OperationalLimitType.limitType">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#" />
         <rdfs:comment>Types of limits defined in the ENTSO-E Operational Handbook Policy 3.</rdfs:comment>
         <rdfs:label xml:lang="en">limitType</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.baseUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.baseUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
         <rdfs:label xml:lang="en">baseUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.shortName">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.shortName">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.namespaceUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.namespaceUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>CIM UML namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.namespaceRDF">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.namespaceRDF">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>RDF namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.modelDescriptionURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.modelDescriptionURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.entsoeURIshortCircuit">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.entsoeURIshortCircuit">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentShortCircuit/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURIshortCircuit</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.entsoeURIoperation">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.entsoeURIoperation">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentOperation/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURIoperation</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.entsoeURIcore">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.entsoeURIcore">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/EquipmentCore/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURIcore</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.entsoeUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.entsoeUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.differenceModelURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.differenceModelURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">differenceModelURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.date">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.date">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
         <rdfs:comment>Profile creation date
 Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.baseURIshortCircuit">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.baseURIshortCircuit">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURIshortCircuit</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.baseURIoperation">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.baseURIoperation">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURIoperation</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#EquipmentVersion.baseURIcore">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#EquipmentVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.baseURIcore">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURIcore</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#StateVariablesVersion.baseUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.baseUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
         <rdfs:label xml:lang="en">baseUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#StateVariablesVersion.shortName">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.shortName">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#StateVariablesVersion.namespaceUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.namespaceUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>CIM UML namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#StateVariablesVersion.namespaceRDF">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.namespaceRDF">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>RDF namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#StateVariablesVersion.modelDescriptionURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.modelDescriptionURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#StateVariablesVersion.entsoeURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.entsoeURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/StateVariables/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#StateVariablesVersion.entsoeUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.entsoeUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#StateVariablesVersion.differenceModelURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.differenceModelURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">differenceModelURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#StateVariablesVersion.date">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.date">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
         <rdfs:comment>Profile creation date
 Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#StateVariablesVersion.baseURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.baseURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.baseUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.baseUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
         <rdfs:label xml:lang="en">baseUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.shortName">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.shortName">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.namespaceUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.namespaceUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>CIM UML namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.namespaceRDF">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.namespaceRDF">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>RDF namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.modelDescriptionURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.modelDescriptionURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.entsoeURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.entsoeURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/SteadyStateHypothesis/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.entsoeUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.entsoeUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.differenceModelURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.differenceModelURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">differenceModelURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.date">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.date">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
         <rdfs:comment>Profile creation date
 Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.baseURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.baseURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion.baseUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.baseUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
         <rdfs:label xml:lang="en">baseUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologicalNode.boundaryPoint">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologicalNode.boundaryPoint">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean" />
         <rdfs:comment>Identifies if a node is a BoundaryPoint. If boundaryPoint=true the ConnectivityNode or the TopologicalNode represents a BoundaryPoint.</rdfs:comment>
         <rdfs:label xml:lang="en">boundaryPoint</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologicalNode.fromEndName">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologicalNode.fromEndName">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.</rdfs:comment>
         <rdfs:label xml:lang="en">fromEndName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologicalNode.fromEndNameTso">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologicalNode.fromEndNameTso">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The attribute is used for an exchange of the name of the TSO to which the “From” side of the Boundary point belongs to or it is connected to. The length of the string is 32 characters maximum.
 The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.</rdfs:comment>
         <rdfs:label xml:lang="en">fromEndNameTso</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologicalNode.toEndIsoCode">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologicalNode.toEndIsoCode">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>). The length of the string is 2 characters maximum.
 The attribute is a required for the Boundary Model Authority Set where this attribute is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.</rdfs:comment>
         <rdfs:label xml:lang="en">toEndIsoCode</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologicalNode.toEndName">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologicalNode.toEndName">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.</rdfs:comment>
         <rdfs:label xml:lang="en">toEndName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologicalNode.toEndNameTso">
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologicalNode.toEndNameTso">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The attribute is used for an exchange of the name of the TSO to which the “To” side of the Boundary point belongs to or it is connected to. The length of the string is 32 characters maximum.
 The attribute is required for the Boundary Model Authority Set where it is used only for the TopologicalNode in the Boundary Topology profile and ConnectivityNode in the Boundary Equipment profile.</rdfs:comment>
         <rdfs:label xml:lang="en">toEndNameTso</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion.shortName">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.shortName">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion.namespaceUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.namespaceUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>CIM UML namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion.namespaceRDF">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.namespaceRDF">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>RDF namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion.modelDescriptionURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.modelDescriptionURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion.entsoeURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.entsoeURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/TopologyBoundary/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion.entsoeUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.entsoeUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion.differenceModelURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.differenceModelURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">differenceModelURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion.date">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.date">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
         <rdfs:comment>Profile creation date
 Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion.baseURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.baseURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyVersion.baseUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.baseUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
         <rdfs:label xml:lang="en">baseUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyVersion.shortName">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.shortName">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyVersion.namespaceUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.namespaceUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>CIM UML namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyVersion.namespaceRDF">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.namespaceRDF">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>RDF namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyVersion.modelDescriptionURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.modelDescriptionURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyVersion.entsoeURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.entsoeURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/Topology/yy/zzz) indicate major and minor versions where: 
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyVersion.entsoeUML">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.entsoeUML">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyVersion.differenceModelURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.differenceModelURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">differenceModelURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyVersion.date">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.date">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
         <rdfs:comment>Profile creation date
 Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:about="http://extractedontology/Entsoe#TopologyVersion.baseURI">
-        <rdfs:domain rdf:resource="http://extractedontology/Entsoe#TopologyVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.baseURI">
+        <rdfs:domain rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:DatatypeProperty>
-    <owl:NamedIndividual rdf:about="http://extractedontology/Entsoe#UnitSymbol.VA">
+    <owl:NamedIndividual rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol.VA">
         <rdfs:comment>Apparent power in volt ampere.</rdfs:comment>
         <rdfs:label xml:lang="en">VA</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
-        <rdf:type rdf:resource="http://extractedontology/Entsoe#UnitSymbol" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://extractedontology/Entsoe#UnitSymbol.W">
+    <owl:NamedIndividual rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol.W">
         <rdfs:comment>Active power in watt.</rdfs:comment>
         <rdfs:label xml:lang="en">W</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
-        <rdf:type rdf:resource="http://extractedontology/Entsoe#UnitSymbol" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://extractedontology/Entsoe#UnitSymbol.none">
+    <owl:NamedIndividual rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol.none">
         <rdfs:comment>Dimension less quantity, e.g. count, per unit, etc.</rdfs:comment>
         <rdfs:label xml:lang="en">none</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
-        <rdf:type rdf:resource="http://extractedontology/Entsoe#UnitSymbol" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://extractedontology/Entsoe#UnitSymbol.Hz">
+    <owl:NamedIndividual rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol.Hz">
         <rdfs:comment>Frequency in hertz.</rdfs:comment>
         <rdfs:label xml:lang="en">Hz</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
-        <rdf:type rdf:resource="http://extractedontology/Entsoe#UnitSymbol" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://extractedontology/Entsoe#UnitSymbol.g">
+    <owl:NamedIndividual rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol.g">
         <rdfs:comment>Mass in gram.</rdfs:comment>
         <rdfs:label xml:lang="en">g</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
-        <rdf:type rdf:resource="http://extractedontology/Entsoe#UnitSymbol" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:NamedIndividual>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#geographicallocationversion">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#geographicallocationversion.baseuri" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.baseuri" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#geographicallocationversion.date" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.date" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#geographicallocationversion.differencemodeluri" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.differencemodeluri" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#geographicallocationversion.entsoeuml" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.entsoeuml" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#geographicallocationversion.entsoeuri" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.entsoeuri" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#geographicallocationversion.modeldescriptionuri" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.modeldescriptionuri" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#geographicallocationversion.namespacerdf" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.namespacerdf" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#geographicallocationversion.namespaceuml" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.namespaceuml" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#geographicallocationversion.shortname" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.shortname" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#geographicallocationversion.baseuml" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#geographicallocationversion.baseuml" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>version details.</rdfs:comment>
         <rdfs:label xml:lang="en">geographicallocationversion</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#PowerSystemResource">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#PowerSystemResource">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#PowerSystemResource.Location" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#PowerSystemResource.Location" />
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://extractedontology/Entsoe#Location" />
+                <owl:onClass rdf:resource="http://www.semantic.web.org.profiles/Entsoe#Location" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.</rdfs:comment>
         <rdfs:label xml:lang="en">PowerSystemResource</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#UnitSymbol">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol">
         <rdfs:comment>The units defined for usage in the CIM.</rdfs:comment>
         <rdfs:label xml:lang="en">UnitSymbol</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol.VA" />
+                    <rdf:Description rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol.W" />
+                    <rdf:Description rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol.none" />
+                    <rdf:Description rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol.Hz" />
+                    <rdf:Description rdf:about="http://www.semantic.web.org.profiles/Entsoe#UnitSymbol.g" />
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#DiagramLayoutVersion">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion.baseURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.baseURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion.date" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.date" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion.differenceModelURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.differenceModelURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion.entsoeUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.entsoeUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion.entsoeURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.entsoeURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion.modelDescriptionURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.modelDescriptionURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion.namespaceRDF" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.namespaceRDF" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion.namespaceUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.namespaceUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion.shortName" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.shortName" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DiagramLayoutVersion.baseUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DiagramLayoutVersion.baseUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Version details.</rdfs:comment>
         <rdfs:label xml:lang="en">DiagramLayoutVersion</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#DynamicsVersion">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DynamicsVersion.baseURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.baseURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DynamicsVersion.date" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.date" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DynamicsVersion.differenceModelURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.differenceModelURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DynamicsVersion.entsoeUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.entsoeUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DynamicsVersion.entsoeURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.entsoeURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DynamicsVersion.modelDescriptionURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.modelDescriptionURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DynamicsVersion.namespaceRDF" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.namespaceRDF" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DynamicsVersion.namespaceUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.namespaceUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DynamicsVersion.shortName" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.shortName" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#DynamicsVersion.baseUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#DynamicsVersion.baseUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Version details.</rdfs:comment>
         <rdfs:label xml:lang="en">DynamicsVersion</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#EquipmentBoundaryVersion">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.baseURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.baseURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.date" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.date" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.differenceModelURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.differenceModelURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.entsoeUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.entsoeUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.entsoeURIcore" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.entsoeURIcore" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.entsoeURIoperation" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.entsoeURIoperation" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.modelDescriptionURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.modelDescriptionURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.namespaceRDF" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.namespaceRDF" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.namespaceUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.namespaceUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.shortName" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.shortName" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentBoundaryVersion.baseUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentBoundaryVersion.baseUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Profile version details.</rdfs:comment>
         <rdfs:label xml:lang="en">EquipmentBoundaryVersion</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#EnergySchedulingType">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#EnergySchedulingType">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EnergySchedulingType.EnergySource" />
-                <owl:allValuesFrom rdf:resource="http://extractedontology/Entsoe#EnergySource" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EnergySchedulingType.EnergySource" />
+                <owl:allValuesFrom rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EnergySource" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Used to define the type of generation for scheduling purposes.</rdfs:comment>
         <rdfs:label xml:lang="en">EnergySchedulingType</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#EquipmentVersion">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.baseURIcore" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.baseURIcore" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.baseURIoperation" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.baseURIoperation" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.baseURIshortCircuit" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.baseURIshortCircuit" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.date" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.date" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.differenceModelURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.differenceModelURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.entsoeUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.entsoeUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.entsoeURIcore" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.entsoeURIcore" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.entsoeURIoperation" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.entsoeURIoperation" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.entsoeURIshortCircuit" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.entsoeURIshortCircuit" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.modelDescriptionURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.modelDescriptionURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.namespaceRDF" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.namespaceRDF" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.namespaceUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.namespaceUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.shortName" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.shortName" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#EquipmentVersion.baseUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#EquipmentVersion.baseUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Version details.</rdfs:comment>
         <rdfs:label xml:lang="en">EquipmentVersion</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#StateVariablesVersion">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion.baseURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.baseURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion.date" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.date" />
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion.differenceModelURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.differenceModelURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion.entsoeUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.entsoeUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion.entsoeURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.entsoeURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion.modelDescriptionURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.modelDescriptionURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion.namespaceRDF" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.namespaceRDF" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion.namespaceUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.namespaceUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion.shortName" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.shortName" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#StateVariablesVersion.baseUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#StateVariablesVersion.baseUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Version details.</rdfs:comment>
         <rdfs:label xml:lang="en">StateVariablesVersion</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#SteadyStateHypothesisVersion">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.baseURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.baseURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.date" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.date" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.differenceModelURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.differenceModelURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.entsoeUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.entsoeUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.entsoeURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.entsoeURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.modelDescriptionURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.modelDescriptionURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.namespaceRDF" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.namespaceRDF" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.namespaceUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.namespaceUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.shortName" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.shortName" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#SteadyStateHypothesisVersion.baseUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#SteadyStateHypothesisVersion.baseUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Version details.</rdfs:comment>
         <rdfs:label xml:lang="en">SteadyStateHypothesisVersion</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#TopologyBoundaryVersion">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion.baseURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.baseURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion.date" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.date" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion.differenceModelURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.differenceModelURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion.entsoeUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.entsoeUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion.entsoeURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.entsoeURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion.modelDescriptionURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.modelDescriptionURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion.namespaceRDF" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.namespaceRDF" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion.namespaceUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.namespaceUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion.shortName" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.shortName" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyBoundaryVersion.baseUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyBoundaryVersion.baseUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Version details.</rdfs:comment>
         <rdfs:label xml:lang="en">TopologyBoundaryVersion</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
-    <owl:Class rdf:about="http://extractedontology/Entsoe#TopologyVersion">
+    <owl:Class rdf:about="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyVersion.shortName" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.baseURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyVersion.namespaceUML" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyVersion.namespaceRDF" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyVersion.modelDescriptionURI" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyVersion.entsoeURI" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyVersion.entsoeUML" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyVersion.differenceModelURI" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyVersion.date" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.date" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyVersion.baseURI" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.differenceModelURI" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://extractedontology/Entsoe#TopologyVersion.baseUML" />
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.entsoeUML" />
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.entsoeURI" />
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.modelDescriptionURI" />
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.namespaceRDF" />
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.namespaceUML" />
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.shortName" />
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semantic.web.org.profiles/Entsoe#TopologyVersion.baseUML" />
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Version details.</rdfs:comment>
         <rdfs:label xml:lang="en">TopologyVersion</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://extractedontology/Entsoe" />
+        <rdfs:isDefinedBy rdf:resource="http://www.semantic.web.org.profiles/Entsoe" />
     </owl:Class>
 </rdf:RDF>

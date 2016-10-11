@@ -67,9 +67,8 @@ namespace RDFSParserOWL2.Model
 
 		protected string uri;
 		protected string type;
-		//// creted from shema
-
-
+		//// created from shema
+		
 		private List<ComplexTag> labels;
 
 		private List<ComplexTag> comments;

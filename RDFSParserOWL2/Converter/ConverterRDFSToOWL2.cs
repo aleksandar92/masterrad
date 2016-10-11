@@ -47,8 +47,6 @@ namespace RDFSParserOWL2.Converter
 		}
 
 
-
-
 		/// <summary>
 		/// Method for converting file from RDFS format to OWL2 format 
 		/// </summary>
@@ -74,11 +72,11 @@ namespace RDFSParserOWL2.Converter
 						generator = new OWL2Generator(entsoProfile, ge);
 						generator.GenerateProfile();
 					}
-
 				}
 
 				generator = new OWL2Generator(profile, ge);
 				generator.GenerateProfile();
+				InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName+DateTime.Now.Ticks),profile.ToString());
 			}
 		}
 	}

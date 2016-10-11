@@ -102,7 +102,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				profile.BaseNS = atts[xmlBase];
 				Console.WriteLine(profile.BaseNS);
 			}
-			else  if (qName.Equals(cimsStereotype))
+			else  if (qName.ToLower().Equals(cimsStereotype.ToLower()))
 			{
 				string val;
 				atts.TryGetValue(rdfResource, out val);
@@ -282,6 +282,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				{
 					stereotypes.Add(content.Trim().ToLower());
 				}
+				content = string.Empty;
 			}
 
 
@@ -532,6 +533,8 @@ namespace RDFSParserOWL2.Parser.Handler
 				}
 			}
 		}
+
+
 
 		protected virtual void PopulateClassAttributes(Class cs,string localName) 
 		{

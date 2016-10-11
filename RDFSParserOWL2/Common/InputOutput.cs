@@ -17,6 +17,7 @@ namespace RDFSParserOWL2.Common
 		   //private const string pathToWordsToSkip = @"../../Resources/WordsToSkip.xml";
 		public static  string resourceFilepath = @"../../Resources/";
 		public static  string owlGeneratedFilePath = @"../../Resources/OWL2Generated/";
+		public static string filePathReports = @"../../Resources/Reports/";
         public static string importsFilename = "Imports.xml";
 		public static string stereotypeFilename = "StereotypesToSkip.xml";
 		private const string filenameWordsToSkip = "WordsToSkip.xml";
@@ -24,6 +25,21 @@ namespace RDFSParserOWL2.Common
 		private const string filenameFixed = "FixedStereotypes.xml";
 
 		//public static const string entsoFilepath = @"";
+
+
+		private static string ToSafeFileName( string s)
+		{
+			return s
+				.Replace("\\", "")
+				.Replace("/", "")
+				.Replace("\"", "")
+				.Replace("*", "")
+				.Replace(":", "")
+				.Replace("?", "")
+				.Replace("<", "")
+				.Replace(">", "")
+				.Replace("|", "");
+		}
 
 		/// <summary>
 		/// Method for loading entso owl profile 
@@ -57,7 +73,22 @@ namespace RDFSParserOWL2.Common
 				XMLParser.DoParse(reader, fs, null, out succes, out ts);
 			}
 			return reader.Words;
+		}
 
+
+		public static void WriteReportToFile(string fileName,string content) 
+		{
+			//File.WriteAllText(Path.GetFullPath(filePathReports).ToString()+ fileName, content);
+			//string absolutPath = Path.GetFullPath(filePathReports+fileName);
+
+			using (FileStream fs = new FileStream(Path.Combine(filePathReports,ToSafeFileName(fileName)), FileMode.OpenOrCreate))
+			{
+				using (StreamWriter sw = new StreamWriter(fs))
+				{
+					sw.Write(content);
+
+				}
+			}
 		}
 		
 
@@ -128,6 +159,10 @@ namespace RDFSParserOWL2.Common
 			return name + ".owl";
 		}
 
+		public static string CreateTxtFilename(string name)
+		{
+			return name + ".txt";
+		}
 
 		public static string CreatePathForGeneratedOWL(string fileName) 
 		{
