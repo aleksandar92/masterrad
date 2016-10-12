@@ -46,6 +46,11 @@ namespace RDFSParserOWL2.Manager
 			public const string SeparatorMinus = "-";
 
 			/// <summary>
+			/// blank node id  "_:" characters
+			/// </summary>
+			public const string SeparatorBlankNode = "_:";
+
+			/// <summary>
 			/// Method extracts the shortest fullName for given full fullName and separator string.
 			/// </summary>
 			/// <param fullName="fullName">full fullName</param>
@@ -84,7 +89,6 @@ namespace RDFSParserOWL2.Manager
 				}
 				return extarcted;
 			}
-
 
 
             /// <summary>

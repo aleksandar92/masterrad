@@ -28,6 +28,8 @@ namespace RDFSParserOWL2.Converter
 		private OWL2Generator generator;
 		private GeneratorSettings ge;
 		private OWL2XMLParser owlParser;
+		private List<string> paths;
+		
 
 		public ConverterRDFSToOWL2()
 		{
@@ -35,14 +37,20 @@ namespace RDFSParserOWL2.Converter
 			owlParser = new OWL2XMLParser();
 		}
 
-		public ConverterRDFSToOWL2(string path)
+		//public ConverterRDFSToOWL2(string path)
+		//{
+		//	rdfsParser = new RDFSXMLParser(path);
+		//}
+
+		public ConverterRDFSToOWL2(List<string> filePaths) 
 		{
-			rdfsParser = new RDFSXMLParser(path);
+			paths = filePaths;
 		}
 
-		public ConverterRDFSToOWL2(string path, GeneratorSettings genSet)
+		public ConverterRDFSToOWL2(List<string> filePaths, GeneratorSettings genSet)
 		{
-			rdfsParser = new RDFSXMLParser(path);
+			//rdfsParser = new RDFSXMLParser(path);
+			paths = filePaths;
 			ge = genSet;
 		}
 
@@ -54,30 +62,87 @@ namespace RDFSParserOWL2.Converter
 		{
 			if (ge != null)
 			{
-				rdfsParser.ParseProfile();
-				Profile profile = rdfsParser.Profile;
-				profile.RemoveElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
-
-				if (ge.IsSpecialOntology)
+				Profile entsoProfile = null;
+				if (ge.IsSpecialOntology) 
 				{
 					owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(ge.NameOfOntology)));
 					owlParser.ParseProfile();
-					Profile entsoProfile = owlParser.Profile;
-
-					if (entsoProfile != null)
-					{
-						entsoProfile.IsOwlProfile = true;
-						profile.ProcessSpecialStereotypeElements(entsoProfile, ge.NameOfOntology);
-						entsoProfile.PopulateObjectReferences();
-						generator = new OWL2Generator(entsoProfile, ge);
-						generator.GenerateProfile();
-					}
+					entsoProfile = owlParser.Profile;
+					entsoProfile.IsOwlProfile = true;
+				
 				}
 
-				generator = new OWL2Generator(profile, ge);
-				generator.GenerateProfile();
-				InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName+DateTime.Now.Ticks),profile.ToString());
+				foreach(string path in paths) 
+				{
+					rdfsParser = new RDFSXMLParser(path);
+					rdfsParser.ParseProfile();
+					Profile profile = rdfsParser.Profile;
+					profile.MarkElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
+
+					generator = new OWL2Generator(profile, ge);
+					generator.GenerateProfile();
+					InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName + DateTime.Now.Ticks), rdfsParser.Reporter.GenerateReport());	
+
+
+					if (ge.IsSpecialOntology)
+					{
+
+
+						if (entsoProfile != null)
+						{
+							//entsoProfile.IsOwlProfile = true;
+							profile.ProcessSpecialStereotypeElements(entsoProfile, ge.NameOfOntology);
+							entsoProfile.PopulateObjectReferences();
+							//generator = new OWL2Generator(entsoProfile, ge);
+							//generator.GenerateProfile();
+						}
+					}
+
+
+				}
+
+				if (entsoProfile != null) 
+				{
+					generator = new OWL2Generator(entsoProfile, ge);
+					generator.GenerateProfile();
+					InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName + DateTime.Now.Ticks), entsoProfile.ToString());	
+				}
+
+
+
 			}
+
+
+
+			//if (ge != null)
+			//{
+				
+
+
+			//	rdfsParser.ParseProfile();
+			//	Profile profile = rdfsParser.Profile;
+			//	profile.MarkElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
+
+			//	if (ge.IsSpecialOntology)
+			//	{
+			//		owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(ge.NameOfOntology)));
+			//		owlParser.ParseProfile();
+			//		Profile entsoProfile = owlParser.Profile;
+
+			//		if (entsoProfile != null)
+			//		{
+			//			entsoProfile.IsOwlProfile = true;
+			//			profile.ProcessSpecialStereotypeElements(entsoProfile, ge.NameOfOntology);
+			//			entsoProfile.PopulateObjectReferences();
+			//			generator = new OWL2Generator(entsoProfile, ge);
+			//			generator.GenerateProfile();
+			//		}
+			//	}
+
+			//	generator = new OWL2Generator(profile, ge);
+			//	generator.GenerateProfile();
+			//	InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName+DateTime.Now.Ticks),profile.ToString());
+			//}
 		}
 	}
 }

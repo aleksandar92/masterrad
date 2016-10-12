@@ -3443,42 +3443,42 @@ Usage rule : EquivalentBranch is a result of network reduction prior to the data
         <rdfs:label xml:lang="en">straightLineYValues</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/EquipmentProfileCore" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.patl">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.patl">
         <rdfs:comment>The Permanent Admissible Transmission Loading (PATL) is the loading in Amps, MVA or MW that can be accepted by a network branch for an unlimited duration without any risk for the material.
 The duration attribute is not used and shall be excluded for the PATL limit type. Hence only one limit value exists for the PATL type.</rdfs:comment>
         <rdfs:label xml:lang="en">patl</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/EquipmentProfileCore" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.patlt">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.patlt">
         <rdfs:comment>Permanent Admissible Transmission Loading Threshold  (PATLT) is a value in engineering units defined for PATL and calculated using percentage less than 100 of the PATL type intended to alert operators of an arising condition. The percentage should be given in the name of the OperationalLimitSet. The aceptableDuration is another way to express the severity of the limit.</rdfs:comment>
         <rdfs:label xml:lang="en">patlt</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/EquipmentProfileCore" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.tatl">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.tatl">
         <rdfs:comment>Such a definition of TATL can depend on the initial operating conditions of the network element (sag situation of a line).
 The duration attribute can be used define several TATL limit types. Hence multiple TATL limit values may exist having different durations.</rdfs:comment>
         <rdfs:label xml:lang="en">tatl</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/EquipmentProfileCore" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.tc">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.tc">
         <rdfs:comment>Tripping Current (TC) is the ultimate intensity without any delay. It is defined as the threshold the line will trip without any possible remedial actions.
 The tripping of the network element is ordered by protections against short circuits or by overload protections, but in any case, the activation delay of these protections is not compatible with the reaction delay of an operator (less than one minute).
 The duration is always zero and the duration attribute may be left out. Hence only one limit value exists for the TC type.</rdfs:comment>
         <rdfs:label xml:lang="en">tc</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/EquipmentProfileCore" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.tct">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.tct">
         <rdfs:comment>Tripping Current Threshold  (TCT) is a value in engineering units defined for TC and calculated using percentage less than 100 of the TC type intended to alert operators of an arising condition. The percentage should be given in the name of the OperationalLimitSet. The aceptableDuration is another way to express the severity of the limit.</rdfs:comment>
         <rdfs:label xml:lang="en">tct</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/EquipmentProfileCore" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.highVoltage">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.highVoltage">
         <rdfs:comment>Referring to the rating of the equipments, a voltage too high can lead to accelerated ageing or the destruction of the equipment. 
 This limit type may or may not have duration.</rdfs:comment>
         <rdfs:label xml:lang="en">highVoltage</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/EquipmentProfileCore" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.lowVoltage">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.lowVoltage">
         <rdfs:comment>A too low voltage can disturb the normal operation of some protections and transformer equipped with on-load tap changers, electronic power devices or can affect the behaviour of the auxiliaries of generation units.
 This limit type may or may not have duration.</rdfs:comment>
         <rdfs:label xml:lang="en">lowVoltage</rdfs:label>
@@ -5868,13 +5868,13 @@ Residential and small commercial loads are often served from single-phase, or sp
         <owl:equivalentClass>
             <owl:Class>
                 <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.patl" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.patlt" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.tatl" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.tc" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.tct" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.highVoltage" />
-                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCorehttp://entsoe.eu/CIM/SchemaExtension/3/1#LimitTypeKind.lowVoltage" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.patl" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.patlt" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.tatl" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.tc" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.tct" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.highVoltage" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/EquipmentProfileCore#LimitTypeKind.lowVoltage" />
                 </owl:oneOf>
             </owl:Class>
         </owl:equivalentClass>

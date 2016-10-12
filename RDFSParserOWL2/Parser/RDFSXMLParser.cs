@@ -1,4 +1,5 @@
 ﻿using RDFSParserOWL2.Model;
+using RDFSParserOWL2.Reporter.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,13 @@ namespace RDFSParserOWL2.Parser
         private RDFSXMLReaderHandler handler;
         private string path;
         private Profile profile;
+		private IParserReporter reporter;
 
+		public IParserReporter Reporter
+		{
+			get { return reporter; }
+			set { reporter = value; }
+		}
 
         public Profile Profile
         {
@@ -44,6 +51,7 @@ namespace RDFSParserOWL2.Parser
                 TimeSpan ts;
                 XMLParser.DoParse(handler, fs, path, out succes, out ts);
                 Profile = handler.Profile;
+				reporter = handler.Reporter;
 
             }
 

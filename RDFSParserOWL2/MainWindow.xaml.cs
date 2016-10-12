@@ -62,8 +62,7 @@ namespace RDFSParserOWL2
 					}
 				}
 				//txtFile.Text = openFileDialog.FileName;
-			}
-				
+			}		
 		}
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -83,11 +82,11 @@ namespace RDFSParserOWL2
 			if (fileNames != null && fileNames.Count>0 )
 			{
 				
-				foreach(string fileName in fileNames) 
-				{
-					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileName, new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(),(bool)cbEnums.IsChecked,txtNS.Text.Trim()));
+				//foreach(string fileName in fileNames) 
+				//{
+					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileNames.ToList(), new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(),(bool)rbEnumOpened.IsChecked,txtNS.Text.Trim()));
 					converter.Convert();
-				}
+				//}
 			}
 		}
 		
@@ -153,9 +152,8 @@ namespace RDFSParserOWL2
 			sw.Start();
 			ConvertFiles(SelectedItemsToList());
 			sw.Stop();
-			string message = String.Format("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno.Vreme izvrsavanja je:{0} milisekundi", sw.Elapsed.Milliseconds);
+			string message = String.Format("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno.Vreme izvrsavanja je:{0} ", sw.Elapsed);
 			MessageBox.Show(message);
-
 		}
 
 		private ObservableCollection<string> SelectedItemsToList() 

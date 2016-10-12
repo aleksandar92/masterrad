@@ -1,6 +1,7 @@
 ﻿using RDFSParserOWL2.Generator.Helper;
 using RDFSParserOWL2.Manager;
 using RDFSParserOWL2.Model;
+using RDFSParserOWL2.Reporter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace RDFSParserOWL2.Parser.Handler
 			base.StartDocument(filePath);
 			res = new Dictionary<string, string>();
 			enumMembers = new List<string>();
+			Reporter = new RDFXMLParserReporter();
 			//throw new NotImplementedException();
 		}
 
@@ -390,7 +392,15 @@ namespace RDFSParserOWL2.Parser.Handler
 		{
 			if ((attr.Equals(OWL2Namespace.owlNamedIndividual)) && (attrVal != null))
 			{
-				em.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
+				{
+					em.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				}
+				else
+				{
+					em.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
+				}
+
 			}
 			else
 			{
@@ -406,7 +416,14 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 			else if ((attr.Equals(OWL2Namespace.owlClass)) && (attrVal != null))
 			{
-				cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
+				{
+					cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				}
+				else
+				{
+					cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
+				}
 			}
 			else
 			{
@@ -419,7 +436,15 @@ namespace RDFSParserOWL2.Parser.Handler
 		{
 			if ((attr.Equals(OWL2Namespace.owlDatatypeProperty) || attr.Equals(OWL2Namespace.owlObjectProperty)) && (attrVal != null))
 			{
-				pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
+				{
+					pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				}
+				else
+				{
+					pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
+				}
+
 			}
 			else if ((attr.Equals(rdfType)) && (attrVal != null))
 			{
@@ -537,9 +562,10 @@ namespace RDFSParserOWL2.Parser.Handler
 			{
 				List<Property> properties = new List<Property>(allByType[ProfileElementTypes.Property].Cast<Property>().ToList());
 
+				if(properties!=null && properties.Count>0)
 				foreach (string ped in res.Keys)
 				{
-					Property p = properties.Where(x => x.URI.Equals(ped)).Single();
+					Property p = properties.Where(x => x.URI.Equals(ped)).SingleOrDefault();
 					if (p != null)
 						p.MultiplicityAsString = Property.ProcessOwlMultiplicityToString(res[ped]);
 				}

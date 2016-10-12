@@ -21,7 +21,6 @@
         <Button Content="Remove selected" Grid.Column="1" HorizontalAlignment="Left" Margin="262,160,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_2" Height="20"/>
         <Button Content="Remove all" Grid.Column="1" HorizontalAlignment="Left" Margin="262,199,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_3" Height="20"/>
         <Button Content="Convert selected" Grid.Column="1" HorizontalAlignment="Left" Margin="262,88,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_4" Height="20"/>
-        <CheckBox Content="Enum members as instances " Name="cbEnums" Width="170" Grid.Column="1" HorizontalAlignment="Left" Margin="402,60,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="13"/>
         <Label Content="Name of the extracted ontology:" HorizontalAlignment="Left" Margin="15,484,0,0" VerticalAlignment="Top" Height="37" Width="206"/>
         <TextBox x:Name="txtOntology" HorizontalAlignment="Left" Height="48" Margin="241,473,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
         <Label Content="Name of the roof ontology:" HorizontalAlignment="Left" Margin="18,685,0,0" VerticalAlignment="Top" Height="34" Width="185" RenderTransformOrigin="0.475,2.826"/>
@@ -34,6 +33,7 @@
         <TextBox HorizontalAlignment="Left" Height="48" Margin="241,797,0,0" TextWrapping="Wrap" x:Name="txtRoofOntNS" VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
         <Label Content="Namespace for generated files" HorizontalAlignment="Left" Margin="20,390,0,0" VerticalAlignment="Top" Width="161"/>
         <TextBox Name="txtNS"  HorizontalAlignment="Left" Height="48" Margin="241,377,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-
+        <RadioButton GroupName="enums" Name="rbEnumClosed" Content="Enumerations as closed" Grid.Column="1" HorizontalAlignment="Left" Margin="402,95,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <RadioButton GroupName="enums" Name="rbEnumOpened" Content="Enumerations as opened" Grid.Column="1" HorizontalAlignment="Left" Margin="402,123,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

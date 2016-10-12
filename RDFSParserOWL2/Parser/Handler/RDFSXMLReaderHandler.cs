@@ -2,6 +2,7 @@
 using RDFSParserOWL2.Manager;
 using RDFSParserOWL2.Model;
 using RDFSParserOWL2.Parser.Handler;
+using RDFSParserOWL2.Reporter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace RDFSParserOWL2.Parser
 		{
 			base.StartDocument(filePath);
 			documentIdentifiedLikeRDFS = false;
+			Reporter = new RDFXMLParserReporter();
 			//stereotypes = new List<string>();
 		}
 
@@ -94,7 +96,16 @@ namespace RDFSParserOWL2.Parser
 		{
 			if ((attr.Equals(rdfProfileElement)) && (attrVal != null))
 			{
-				em.URI = attrVal;
+				if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
+				{
+					em.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				}
+				else
+				{
+					em.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
+				}
+
+				//em.URI = attrVal;
 			}
 			else if ((attr.Equals(cimsMultiplicity)) && (attrVal != null))
 			{
@@ -127,7 +138,15 @@ namespace RDFSParserOWL2.Parser
 			}
 			else if ((attr.ToLower().Equals(rdfProfileElement.ToLower())) && (attrVal != null))
 			{
-				cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
+				{
+					cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				}
+				else
+				{
+					cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
+				}
+				//cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
 			}
 			else
 			{
@@ -149,7 +168,16 @@ namespace RDFSParserOWL2.Parser
 			}
 			else if ((attr.ToLower().Equals(rdfProfileElement.ToLower())) && (attrVal != null))
 			{
-				pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
+				{
+					pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+				}
+				else
+				{
+					pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
+				}
+				
+				//pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
 			}
 			else if ((attr.Equals(rdfType)) && (attrVal != null))
 			{

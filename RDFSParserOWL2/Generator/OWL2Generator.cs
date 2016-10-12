@@ -328,7 +328,7 @@ namespace RDFSParserOWL2.Generator
 
 		private void GenerateClass(Class cls, ref XmlWriter writer)
 		{
-			if (cls != null && writer != null)
+			if (cls != null && writer != null && !cls.IsNotToBeGenerated)
 			{
 				if (!profileForGenerating.IsOwlProfile)
 				{

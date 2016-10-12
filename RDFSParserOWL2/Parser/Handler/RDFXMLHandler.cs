@@ -2,6 +2,7 @@
 using RDFSParserOWL2.Generator.Helper;
 using RDFSParserOWL2.Manager;
 using RDFSParserOWL2.Model;
+using RDFSParserOWL2.Reporter.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,12 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected const string rdfsRange = "rdfs:range";
 		protected const string rdfsDomain = "rdfs:domain";
 		protected const string rdfsSubClassOf = "rdfs:subClassOf";
+
+
+		private IParserReporter reporter;
+
+
+
 
 		protected const string cimsStereotype = "cims:stereotype";
 
@@ -76,6 +83,12 @@ namespace RDFSParserOWL2.Parser.Handler
 			{
 				return profile;
 			}
+		}
+
+		public IParserReporter Reporter
+		{
+			get { return reporter; }
+			set { reporter = value; }
 		}
 
 		//public abstract void StartDocument(string filePath);
@@ -169,51 +182,55 @@ namespace RDFSParserOWL2.Parser.Handler
 					string type;
 					GetType(out type,localName);
 
-					if (ExtractSimpleNameFromResourceURI(type) == "ClassCategory")
-					{
-						//ClassCategory cs = new ClassCategory();
-						//foreach (KeyValuePair<string, string> pp in prop)
-						//{
-						//	string str = pp.Value;
-						//	if ((pp.Key.Equals(cimsBelongsToCategory)) && (str != null))
-						//	{
-						//		cs.BelongsToCategory = str;
-						//		AddBelongingInformation(cs, cs.BelongsToCategory);
-						//	}
-						//	else if ((pp.Key.Equals(rdfsComment)) && (str != null))
-						//	{
-						//		cs.Comment = str;
-						//	}
-						//	else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
-						//	{
-						//		cs.Label = str;
-						//	}
-						//	else if ((pp.Key.Equals(rdfType)) && (str != null))
-						//	{
-						//		cs.Type = str;
-						//	}
-						//	else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
-						//	{
-						//		cs.URI = str;
-						//	}
-						//	else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
-						//	{
-						//		cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
-						//	}
-						//}
-						//AddProfileElement(ProfileElementTypes.ClassCategory, cs);
-					}
-					else if (IsClass(type))
+					//if (ExtractSimpleNameFromResourceURI(type) == "ClassCategory")
+					//{
+					//	//ClassCategory cs = new ClassCategory();
+					//	//foreach (KeyValuePair<string, string> pp in prop)
+					//	//{
+					//	//	string str = pp.Value;
+					//	//	if ((pp.Key.Equals(cimsBelongsToCategory)) && (str != null))
+					//	//	{
+					//	//		cs.BelongsToCategory = str;
+					//	//		AddBelongingInformation(cs, cs.BelongsToCategory);
+					//	//	}
+					//	//	else if ((pp.Key.Equals(rdfsComment)) && (str != null))
+					//	//	{
+					//	//		cs.Comment = str;
+					//	//	}
+					//	//	else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
+					//	//	{
+					//	//		cs.Label = str;
+					//	//	}
+					//	//	else if ((pp.Key.Equals(rdfType)) && (str != null))
+					//	//	{
+					//	//		cs.Type = str;
+					//	//	}
+					//	//	else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
+					//	//	{
+					//	//		cs.URI = str;
+					//	//	}
+					//	//	else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
+					//	//	{
+					//	//		cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
+					//	//	}
+					//	//}
+					//	//AddProfileElement(ProfileElementTypes.ClassCategory, cs);
+					//}
+					//else
+					if (IsClass(type))
 					{
 						PopulateClass(localName);
+						reporter.AddtoEntityCountByType(EntityTypesReporter.Class,1);
 					}
 					else if (IsProperty(type))
 					{
 						PopulateProperty(localName);
+						reporter.AddtoEntityCountByType(EntityTypesReporter.Property, 1);
 					}
 					else
 					{
 						PopulateEnumMember(localName);
+						reporter.AddtoEntityCountByType(EntityTypesReporter.Unknown, 1);
 					}
 
 					prop.Clear();
@@ -401,36 +418,36 @@ namespace RDFSParserOWL2.Parser.Handler
 				{
 					switch (type)
 					{
-						case ProfileElementTypes.ClassCategory:
-							{
-								//List<ClassCategory> list = profile.ProfileMap[type].Cast<ClassCategory>().ToList();
-								//foreach (ClassCategory element in list)
-								//{
-								//	//// search for classes of class categories
-								//	if ((belongingMap != null) && (belongingMap.ContainsKey(element.URI)))
-								//	{
-								//		Stack<ProfileElement> stack = belongingMap[element.URI];
-								//		ProfileElement classInPackage;
-								//		while (stack.Count > 0)
-								//		{
-								//			classInPackage = stack.Pop();
-								//			if (ExtractSimpleNameFromResourceURI(classInPackage.Type).Equals("Class"))
-								//			{
-								//				Class cl = (Class)classInPackage;
-								//				element.AddToMembersOfClassCategory(cl);
-								//				cl.BelongsToCategoryAsObject = element;
-								//			}
-								//			else
-								//			{
-								//				ClassCategory cl = (ClassCategory)classInPackage;
-								//				element.AddToMembersOfClassCategory(cl);
-								//				cl.BelongsToCategoryAsObject = element;
-								//			}
-								//		}
-								//	}
-								//}
-								break;
-							}
+						//case ProfileElementTypes.ClassCategory:
+						//	{
+						//		//List<ClassCategory> list = profile.ProfileMap[type].Cast<ClassCategory>().ToList();
+						//		//foreach (ClassCategory element in list)
+						//		//{
+						//		//	//// search for classes of class categories
+						//		//	if ((belongingMap != null) && (belongingMap.ContainsKey(element.URI)))
+						//		//	{
+						//		//		Stack<ProfileElement> stack = belongingMap[element.URI];
+						//		//		ProfileElement classInPackage;
+						//		//		while (stack.Count > 0)
+						//		//		{
+						//		//			classInPackage = stack.Pop();
+						//		//			if (ExtractSimpleNameFromResourceURI(classInPackage.Type).Equals("Class"))
+						//		//			{
+						//		//				Class cl = (Class)classInPackage;
+						//		//				element.AddToMembersOfClassCategory(cl);
+						//		//				cl.BelongsToCategoryAsObject = element;
+						//		//			}
+						//		//			else
+						//		//			{
+						//		//				ClassCategory cl = (ClassCategory)classInPackage;
+						//		//				element.AddToMembersOfClassCategory(cl);
+						//		//				cl.BelongsToCategoryAsObject = element;
+						//		//			}
+						//		//		}
+						//		//	}
+						//		//}
+						//		break;
+						//	}
 						case ProfileElementTypes.Class:
 							{
 								ProcessClass();
@@ -452,6 +469,8 @@ namespace RDFSParserOWL2.Parser.Handler
 										element.EnumerationObject = enumElement;
 										enumElement.AddToMyEnumerationMembers(element);
 										moveFromUnknownToEnumElement.Add(element);
+										reporter.AddtoEntityCountByType(EntityTypesReporter.EnumMembers,1);
+										reporter.RemoveFromEntityCountByType(EntityTypesReporter.Unknown, 1);
 									}
 								}
 								break;
@@ -470,7 +489,7 @@ namespace RDFSParserOWL2.Parser.Handler
 						{
 							enumerationElementsList = new List<ProfileElement>();
 						}
-
+						
 						foreach (ProfileElement movingEl in moveFromUnknownToEnumElement)
 						{
 							unknownsList.Remove(movingEl);
@@ -578,7 +597,6 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 			ProccessCommentsAndLabels(en);
 			AddProfileElement(ProfileElementTypes.Unknown, en);
-
 		}
 
 

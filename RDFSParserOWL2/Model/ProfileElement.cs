@@ -68,10 +68,19 @@ namespace RDFSParserOWL2.Model
 		protected string uri;
 		protected string type;
 		//// created from shema
-		
-		private List<ComplexTag> labels;
 
-		private List<ComplexTag> comments;
+
+
+		
+		protected List<ComplexTag> labels;
+
+		protected List<ComplexTag> comments;
+
+
+		/// <summary>
+		/// used for generating owl profile to idnicate if element is not going to be generated
+		/// </summary>
+		private bool isNotToBeGenerated;
 
 
 		//protected string label;
@@ -144,6 +153,14 @@ namespace RDFSParserOWL2.Model
 				return uniqueName;
 			}
 		}
+
+
+		public bool IsNotToBeGenerated
+		{
+			get { return isNotToBeGenerated; }
+			set { isNotToBeGenerated = value; }
+		} 
+
 
 		/// <summary>
 		/// Gets the most simple fullName ( URI.sustring('#').substring('.') )

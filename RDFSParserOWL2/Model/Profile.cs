@@ -32,6 +32,8 @@ namespace RDFSParserOWL2.Model
 		private double fileSizeMB = 0;
 		private DateTime? lastModificationTime;
 		private bool isOwlProfile;
+		private int numberOfNotGenerated = 0;
+
 
 
 		private bool loaderErrorOcurred = false;
@@ -65,6 +67,9 @@ namespace RDFSParserOWL2.Model
 			profileMap = new SortedDictionary<ProfileElementTypes, List<ProfileElement>>();
 			SourcePath = sourcePath;
 		}
+
+
+
 
 		/// <summary>
 		/// Gets and sets the map which projectModels the profile.        
@@ -163,6 +168,27 @@ namespace RDFSParserOWL2.Model
 		}
 
 		/// <summary>
+		/// Return number of   members that is not going to be generated
+		/// </summary>
+		public int NumberOfNotGenerated
+		{
+			get 
+			{
+				List<ProfileElement> elements = new List<ProfileElement>();
+				List<ProfileElement> helpColection = null;
+				profileMap.TryGetValue(ProfileElementTypes.Property,out helpColection);
+				elements.AddRange(helpColection);
+				helpColection = null;
+				profileMap.TryGetValue(ProfileElementTypes.Class, out helpColection);
+				elements.AddRange(helpColection);
+				return elements.Where(x => x.IsNotToBeGenerated).Count()+UnkownElementsCount;			
+			}
+			//get { return numberOfNotGenerated; }
+			//set { numberOfNotGenerated = value; }
+		}
+
+
+		/// <summary>
 		/// Get and sets the indication if there was serious errors during initial loading of project file.
 		/// <para>This error is reported by LoaderManager's LoadCIMProject() method.</para>
 		/// </summary>
@@ -202,6 +228,28 @@ namespace RDFSParserOWL2.Model
 				return count;
 			}
 		}
+
+
+		public int ElementsBlankNodeCount 
+		{
+			get
+			{
+				int count = 0;
+				if (profileMap != null)
+				{
+					foreach (ProfileElementTypes pet in profileMap.Keys)
+					{
+						List<ProfileElement> elements = null;
+						profileMap.TryGetValue(pet, out elements);
+						if (elements != null)
+						{
+							count += elements.Where(x=>x.URI.Contains(StringManipulationManager.SeparatorBlankNode)).Count();
+						}
+					}
+				}
+				return count;
+			}
+		} 
 
 		/// <summary>
 		/// Gets the number of all ProfileElementTypes.Class in this profile.
@@ -343,6 +391,34 @@ namespace RDFSParserOWL2.Model
 		}
 
 
+		///// <summary>
+		///// Returns number of unknown elements in profile 
+		///// </summary>
+		//public Dictionary<string,int> ElementsByStereotypesCount
+		//{
+		//	get
+		//	{
+		//		//int count = 0;
+
+		//		if (profileMap != null)
+		//		{
+					
+		//			//List<ProfileElement> elements = null;
+		//			//profileMap.TryGetValue(ProfileElementTypes.Unknown, out elements);
+		//			//if (elements != null)
+		//			//{
+		//			//	count = elements.Count;
+		//			//}
+		//		}
+		//		//return count;
+		//		//int count = 0;
+		//		//count = UnkownElementsCount + EnumMembersCount + PropertyCount + ClassCount;
+		//		//return count;
+		//	}
+		//}
+
+
+
 
 		/// <summary>
 		/// Gets the number of all ProfileElementTypes.Property in this profile.
@@ -391,6 +467,24 @@ namespace RDFSParserOWL2.Model
 			}
 		}
 
+
+		public int UnmappedEnitiesCount
+		{
+			get
+			{
+				//int count = 0;
+				//if (profileMap != null)
+				//{
+				//	List<ProfileElement> elements = null;
+				//	profileMap.TryGetValue(ProfileElementTypes.Stereotype, out elements);
+				//	if (elements != null)
+				//	{
+				//		count = elements.Count;
+				//	}
+				//}
+				return UnkownElementsCount+NumberOfNotGenerated;
+			}
+		}
 
 		/// <summary>
 		/// Method first tries to find the ProfileElementStereotype object with given fullName isInside the
@@ -442,6 +536,11 @@ namespace RDFSParserOWL2.Model
 			return entsoObjectProperties.Cast<ProfileElement>().ToList();
 		}
 
+
+		/// <summary>
+		/// Removes properties that contains one or more items from stereotypes list
+		/// </summary>
+		/// <param name="stereotypes"></param>
 		private void RemovePropertiesWithStereotypes(List<string> stereotypes)
 		{
 			List<Property> properties = null;
@@ -457,6 +556,34 @@ namespace RDFSParserOWL2.Model
 				if (properties != null)
 					profileMap[ProfileElementTypes.Property] = properties.Cast<ProfileElement>().ToList();
 			}
+
+		}
+
+
+		private int MarkPropertiesWithStereotypes(List<string> stereotypes)
+		{
+			List<Property> properties = null;
+			int count = 0;
+			if (profileMap != null && profileMap.ContainsKey(ProfileElementTypes.Property))
+			{
+				properties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
+				foreach (string s in stereotypes)
+				{
+					if (properties != null)
+					{
+						properties = properties.Where(x => x.HasStereotype(s)).ToList();
+						count = properties.Count;
+						foreach(Property p in properties) 
+						{
+							p.IsNotToBeGenerated = true;
+						}
+					}
+				}
+
+				//if (properties != null)
+				//	profileMap[ProfileElementTypes.Property] = properties.Cast<ProfileElement>().ToList();
+			}
+			return count;
 
 		}
 
@@ -476,6 +603,39 @@ namespace RDFSParserOWL2.Model
 
 
 			}
+
+		}
+
+
+	
+
+		private int MarkClassesWithStereotypes(List<string> stereotypes)
+		{
+			int count = 0;
+			if (profileMap != null && profileMap.ContainsKey(ProfileElementTypes.Class))
+			{
+				List<Class> classes = GetAllProfileElementsOfType(ProfileElementTypes.Class).Cast<Class>().ToList();
+				foreach (string s in stereotypes)
+				{
+					if (classes != null)
+					{
+						classes = classes.Where(x => x.HasStereotype(s)).ToList();
+						count = classes.Count;
+						foreach (Class cls in classes)
+						{
+							cls.IsNotToBeGenerated = true;
+						}
+					}
+					//if (classes != null)
+					//	classes = classes.Where(x => !x.HasStereotype(s)).ToList();
+				}
+
+				//if (classes != null)
+				//	profileMap[ProfileElementTypes.Class] = classes.Cast<ProfileElement>().ToList();
+
+
+			}
+			return count;
 
 		}
 
@@ -1101,12 +1261,13 @@ namespace RDFSParserOWL2.Model
 		/// Remove lements with certain stereotypes
 		/// </summary>
 		/// <param name="stereotypes"> Steroetypes to be removed </param>
-		public void RemoveElementsWithStereotypes(List<string> stereotypes)
+		public void MarkElementsWithStereotypes(List<string> stereotypes)
 		{
 			if (profileMap != null && stereotypes != null)
 			{
-				RemoveClassesWithStereotypes(stereotypes);
-				RemovePropertiesWithStereotypes(stereotypes);
+				MarkClassesWithStereotypes(stereotypes);
+				MarkPropertiesWithStereotypes(stereotypes);
+			
 			}
 		}
 
@@ -1130,6 +1291,8 @@ namespace RDFSParserOWL2.Model
 			report.AppendLine(String.Format("\t\t\tNumber of datatype properties:{0}", DatatypePropertyCount));
 			report.AppendLine(String.Format("Total number of enum elements:{0}", EnumMembersCount));
 			report.AppendLine(String.Format("Total number of unknown elements:{0}", UnkownElementsCount));
+			report.AppendLine(String.Format("Total number of elements without non blank id :{0}", ElementsBlankNodeCount));
+			report.AppendLine(String.Format("Total number of elements not mapped :{0}", NumberOfNotGenerated));
 			return report.ToString();
 
 		}
