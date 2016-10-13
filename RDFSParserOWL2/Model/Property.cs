@@ -22,10 +22,15 @@ namespace RDFSParserOWL2.Model
 		protected ProfileElement dataTypeAsComplexObject;
 		protected string inverseRoleName;
 		protected ProfileElement inverseRoleNameAsObject;
+		private string associationUsed;
+
+
 
 		//protected bool isExpectedToContainLocalClass = false; //// if this property expected to contain inner instance of some class
 
-		protected List<ProfileElementStereotype> stereotypes;
+		private List<ProfileElementStereotype> stereotypes;
+
+
 
 		public Property() : base("From Derived") { }
 
@@ -79,6 +84,12 @@ namespace RDFSParserOWL2.Model
 
 
 
+		public string AssociationUsed
+		{
+			get { return associationUsed; }
+			set { associationUsed = value; }
+		}
+
 		/// <summary>
 		/// Property Specific property.
 		/// <para>Gets and sets the ProfileElement which is cosidered for data type of this profile property.</para>
@@ -95,6 +106,13 @@ namespace RDFSParserOWL2.Model
 			{
 				dataTypeAsComplexObject = value;
 			}
+		}
+
+
+		public List<ProfileElementStereotype> Stereotypes
+		{
+			get { return stereotypes; }
+			set { stereotypes = value; }
 		}
 
 		/// <summary>
@@ -245,7 +263,7 @@ namespace RDFSParserOWL2.Model
 			{
 				foreach (ProfileElementStereotype pet in stereotypes)
 				{
-					if (!fixedStereotypes.Contains(pet.Name.ToLower()))
+					if (!fixedStereotypes.Contains(pet.ShortName.ToLower()))
 						return true;
 				}
 			}

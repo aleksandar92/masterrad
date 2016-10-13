@@ -28,7 +28,7 @@ namespace RDFSParserOWL2.Parser
 		private const string cimsInverseRoleName = "cims:inverseRoleName";
 		private const string cimsMultiplicity = "cims:multiplicity";
 		private const string cimsIsAggregate = "cims:isAggregate"; // text
-	
+		private const string cimsAssociationUsed = "cims:AssociationUsed";
 
 		#endregion
 
@@ -89,6 +89,9 @@ namespace RDFSParserOWL2.Parser
 			if (!abort)
 			{
 				base.EndElement(localName, qName);
+
+
+
 			}
 		}
 
@@ -176,8 +179,6 @@ namespace RDFSParserOWL2.Parser
 				{
 					pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
 				}
-				
-				//pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
 			}
 			else if ((attr.Equals(rdfType)) && (attrVal != null))
 			{
@@ -194,6 +195,9 @@ namespace RDFSParserOWL2.Parser
 		    else if((attr.Equals(cimsInverseRoleName)) && !string.IsNullOrEmpty(attrVal)) 
 			{
 				pr.InverseRoleName = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+			}else if(attr.Equals(cimsAssociationUsed)) 
+			{
+				pr.AssociationUsed = attrVal;
 			}
 			else
 			{

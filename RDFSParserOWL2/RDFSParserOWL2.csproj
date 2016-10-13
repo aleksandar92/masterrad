@@ -54,9 +54,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Generator\Helper\MetaNamespace.cs" />
+    <Compile Include="Model\ClassCategory.cs" />
+    <Compile Include="Reporter\Interfaces\IGeneratorReporter.cs" />
     <Compile Include="Reporter\Interfaces\IParserReporter.cs" />
     <Compile Include="Reporter\Interfaces\IProfileReport.cs" />
     <Compile Include="Reporter\Interfaces\IReporter.cs" />
+    <Compile Include="Reporter\OWL2GeneratorReporter.cs" />
     <Compile Include="Reporter\ProfileReporter.cs" />
     <Compile Include="Reporter\RDFXMLParserReporter.cs" />
     <Page Include="MainWindow.xaml">

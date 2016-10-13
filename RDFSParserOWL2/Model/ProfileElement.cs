@@ -69,7 +69,7 @@ namespace RDFSParserOWL2.Model
 		protected string type;
 		//// created from shema
 
-
+		
 
 		
 		protected List<ComplexTag> labels;

@@ -198,7 +198,7 @@ namespace RDFSParserOWL2.Model
             {
                 foreach (ProfileElementStereotype stereotype in stereotypes)
                 {
-                    if ((string.Compare(stereotype.Name, stereotypeName, StringComparison.OrdinalIgnoreCase) == 0) || (string.Compare(stereotype.ShortName, stereotypeName, StringComparison.OrdinalIgnoreCase) == 0))
+                    if ((string.Compare(stereotype.Name, stereotypeName, StringComparison.OrdinalIgnoreCase) == 0) || (string.Compare(stereotype.ShortName.ToLower(), stereotypeName.ToLower(), StringComparison.OrdinalIgnoreCase) == 0))
                     {
                         hasStereotype = true;
                         break;
@@ -215,7 +215,7 @@ namespace RDFSParserOWL2.Model
 			{
 				foreach (ProfileElementStereotype pet in stereotypes)
 				{
-					if (!fixedStereotypes.Contains(pet.Name.ToLower()))
+					if (!fixedStereotypes.Contains(pet.ShortName.ToLower()))
 						return true;
 				}
 			}

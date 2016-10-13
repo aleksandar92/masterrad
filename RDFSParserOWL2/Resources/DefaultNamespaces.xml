@@ -2,7 +2,8 @@
 <namespaces>
   <namespace ns="xmlns" generate="true" relative="true" > </namespace>
   <namespace prefix="base" default="true" ns="xml" generate="true" relative="false" base="true">  http://www.semanticweb.org/  </namespace>
-  <namespace prefix="gl" ns="xmlns" generate="true" relative="true"> </namespace> 
+  <namespace prefix="gl" ns="xmlns" generate="true" relative="true"> </namespace>
+  <namespace prefix="meta" ns="xmlns"  > http://www.semanticweb.org/meta </namespace>
   <namespace prefix="rdf" ns="xmlns"  > http://www.w3.org/1999/02/22-rdf-syntax-ns# </namespace>
   <namespace prefix="owl" ns="xmlns"> http://www.w3.org/2002/07/owl# </namespace>
    <namespace prefix="entsoe" ns="xmlns"> http://entsoe.eu/CIM/SchemaExtension/3/1# </namespace>

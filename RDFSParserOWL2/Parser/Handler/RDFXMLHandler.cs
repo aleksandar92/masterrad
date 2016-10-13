@@ -30,11 +30,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected const string rdfsDomain = "rdfs:domain";
 		protected const string rdfsSubClassOf = "rdfs:subClassOf";
 
-
 		private IParserReporter reporter;
-
-
-
 
 		protected const string cimsStereotype = "cims:stereotype";
 
@@ -55,7 +51,6 @@ namespace RDFSParserOWL2.Parser.Handler
 		////   ie.        package uri,      classes
 		protected Dictionary<string, Stack<ProfileElement>> belongingMap;
 		//private ProfileElement currentElement;
-
 
 		/// <summary>
 		/// stereotypes for element
@@ -115,7 +110,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				profile.BaseNS = atts[xmlBase];
 				Console.WriteLine(profile.BaseNS);
 			}
-			else  if (qName.ToLower().Equals(cimsStereotype.ToLower()))
+			else if (qName.ToLower().Equals(cimsStereotype.ToLower()))
 			{
 				string val;
 				atts.TryGetValue(rdfResource, out val);
@@ -165,6 +160,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		}
 
 
+
 		public virtual bool IsEndElement(string qName)
 		{
 
@@ -180,7 +176,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				if (prop != null)
 				{
 					string type;
-					GetType(out type,localName);
+					GetType(out type, localName);
 
 					//if (ExtractSimpleNameFromResourceURI(type) == "ClassCategory")
 					//{
@@ -220,7 +216,7 @@ namespace RDFSParserOWL2.Parser.Handler
 					if (IsClass(type))
 					{
 						PopulateClass(localName);
-						reporter.AddtoEntityCountByType(EntityTypesReporter.Class,1);
+						reporter.AddtoEntityCountByType(EntityTypesReporter.Class, 1);
 					}
 					else if (IsProperty(type))
 					{
@@ -301,6 +297,17 @@ namespace RDFSParserOWL2.Parser.Handler
 				}
 				content = string.Empty;
 			}
+			else
+			{
+				content = content.Trim();
+				if (!string.IsNullOrEmpty(content))
+				{
+					if(!values.ContainsKey(qName))
+					values.Add(qName, content.Trim().ToLower());
+				}
+				content = string.Empty;
+
+			} 
 
 
 		}
@@ -308,12 +315,12 @@ namespace RDFSParserOWL2.Parser.Handler
 		public abstract void StartPrefixMapping(string prefix, string uri);
 
 
-		protected virtual void  GetType(out string  type,string localName) 
+		protected virtual void GetType(out string type, string localName)
 		{
-			 prop.TryGetValue(rdfType, out type);
+			prop.TryGetValue(rdfType, out type);
 		}
 
-		protected virtual bool IsClass(string type) 
+		protected virtual bool IsClass(string type)
 		{
 			return ExtractSimpleNameFromResourceURI(type).Equals("Class") || ExtractSimpleNameFromResourceURI(type).Equals("class");
 		}
@@ -323,7 +330,7 @@ namespace RDFSParserOWL2.Parser.Handler
 			return ExtractSimpleNameFromResourceURI(type).Equals("Property") || ExtractSimpleNameFromResourceURI(type).Equals("property");
 		}
 
-		public virtual void Characters(string text) 
+		public virtual void Characters(string text)
 		{
 			if (!string.IsNullOrEmpty(text))
 			{
@@ -332,7 +339,7 @@ namespace RDFSParserOWL2.Parser.Handler
 			else
 			{
 				content = string.Empty;
-			}		
+			}
 		}
 
 		public abstract void EndDocument();
@@ -377,6 +384,9 @@ namespace RDFSParserOWL2.Parser.Handler
 		{
 			return StringManipulationManager.ExtractShortestName(resourceUri, separator);
 		}
+
+
+
 
 		//// Connect property of class with class and classes with packages.        
 		protected void AddBelongingInformation(ProfileElement currentElement, string classUri)
@@ -469,7 +479,7 @@ namespace RDFSParserOWL2.Parser.Handler
 										element.EnumerationObject = enumElement;
 										enumElement.AddToMyEnumerationMembers(element);
 										moveFromUnknownToEnumElement.Add(element);
-										reporter.AddtoEntityCountByType(EntityTypesReporter.EnumMembers,1);
+										reporter.AddtoEntityCountByType(EntityTypesReporter.EnumMembers, 1);
 										reporter.RemoveFromEntityCountByType(EntityTypesReporter.Unknown, 1);
 									}
 								}
@@ -489,7 +499,7 @@ namespace RDFSParserOWL2.Parser.Handler
 						{
 							enumerationElementsList = new List<ProfileElement>();
 						}
-						
+
 						foreach (ProfileElement movingEl in moveFromUnknownToEnumElement)
 						{
 							unknownsList.Remove(movingEl);
@@ -516,6 +526,10 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 		}
 
+
+
+
+
 		/// <summary>
 		/// Populate class attributes
 		/// </summary>
@@ -523,10 +537,10 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected virtual void PopulateClass(string localName)
 		{
 
-				Class cs = new Class();
-				OperationsForPopulatingClass(cs,localName);
-				AddProfileElement(ProfileElementTypes.Class, cs);
-			
+			Class cs = new Class();
+			OperationsForPopulatingClass(cs, localName);
+			AddProfileElement(ProfileElementTypes.Class, cs);
+
 		}
 
 		/// <summary>
@@ -534,15 +548,15 @@ namespace RDFSParserOWL2.Parser.Handler
 		/// </summary>
 		/// <param name="cs">Class to be populated  </param>
 		/// <param name="localName">Local name of tag that is being processed</param>
-		protected virtual void OperationsForPopulatingClass(Class cs,string localName) 
+		protected virtual void OperationsForPopulatingClass(Class cs, string localName)
 		{
-			PopulateClassAttributes(cs,localName);
+			PopulateClassAttributes(cs, localName);
 			PopulateStereotypes(cs);
 			ProccessCommentsAndLabels(cs);
-			
+
 		}
 
-		protected virtual void PopulateStereotypes(Class cs) 
+		protected virtual void PopulateStereotypes(Class cs)
 		{
 			if (stereotypes != null)
 			{
@@ -554,15 +568,59 @@ namespace RDFSParserOWL2.Parser.Handler
 		}
 
 
+		/// <summary>
+		/// Method for populating class category
+		/// </summary>
+		/// <param name="localName"></param>
+		protected virtual void PopulateClassCategory(string localName) 
+		{
+			ClassCategory csCat = new ClassCategory();
+			PopulateClassCategoryAttributes(csCat,localName);
+			ProccessCommentsAndLabels(csCat);
+		}
 
-		protected virtual void PopulateClassAttributes(Class cs,string localName) 
+
+		protected virtual void PopulateClassCategoryAttributes(ClassCategory csCat,string localName)
 		{
 			foreach (KeyValuePair<string, string> pp in prop)
 			{
-				string str = pp.Value;
+				//string str = pp.Value;
+				PopulateClassCategoryAttribute(csCat, pp.Value, pp.Key, localName);
+			}
+
+			foreach (KeyValuePair<string, string> val in values)
+			{
+				PopulateClassCategoryAttribute(csCat, val.Value, val.Key, localName);
+			}
+
+
+		}
+
+		protected virtual void PopulateClassCategoryAttribute(ClassCategory csCat, string attrVal, string attr, string localName)
+		{
+			//if ((attr.ToLower().Contains(rdfsSubClassOf.ToLower())) && (attrVal != null))
+			//{
+			//	cs.SubClassOf = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+			//}
+
+		}
+
+
+		protected virtual void PopulateClassAttributes(Class cs, string localName)
+		{
+			foreach (KeyValuePair<string, string> pp in prop)
+			{
+				//string str = pp.Value;
 				PopulateClassAttribute(cs, pp.Value, pp.Key, localName);
 			}
-		
+
+			foreach (KeyValuePair<string, string> val in values)
+			{
+				PopulateClassAttribute(cs, val.Value, val.Key, localName);
+				//string str = val.Value;
+			}
+
+
 		}
 
 
@@ -571,8 +629,14 @@ namespace RDFSParserOWL2.Parser.Handler
 			Property pr = new Property();
 			foreach (KeyValuePair<string, string> pp in prop)
 			{
-				string str = pp.Value;
-				PopulatePropertyAttribute(pr, pp.Value, pp.Key,localName);
+				//string str = pp.Value;
+				PopulatePropertyAttribute(pr, pp.Value, pp.Key, localName);
+			}
+
+			foreach (KeyValuePair<string, string> val in values)
+			{
+				PopulatePropertyAttribute(pr, val.Value, val.Key, localName);
+				//string str = val.Value;
 			}
 
 			if (stereotypes != null)
@@ -593,14 +657,14 @@ namespace RDFSParserOWL2.Parser.Handler
 			foreach (KeyValuePair<string, string> pp in prop)
 			{
 				string str = pp.Value;
-				PopulateEnumMemberAttribute(en, pp.Value, pp.Key,localName);
+				PopulateEnumMemberAttribute(en, pp.Value, pp.Key, localName);
 			}
 			ProccessCommentsAndLabels(en);
 			AddProfileElement(ProfileElementTypes.Unknown, en);
 		}
 
 
-		protected virtual void PopulateEnumMemberAttribute(EnumMember em, string attrVal, string attr,string localName)
+		protected virtual void PopulateEnumMemberAttribute(EnumMember em, string attrVal, string attr, string localName)
 		{
 			if ((attr.Equals(rdfType)) && (attrVal != null))
 			{
@@ -615,7 +679,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		/// <param name="cs">Class for population </param>
 		/// <param name="attrVal">Value of attribute to be inserted </param>
 		/// <param name="attr">Attribute to be populated</param>
-		protected virtual void PopulateClassAttribute(Class cs, string attrVal, string attr,string localName)
+		protected virtual void PopulateClassAttribute(Class cs, string attrVal, string attr, string localName)
 		{
 			if ((attr.ToLower().Contains(rdfsSubClassOf.ToLower())) && (attrVal != null))
 			{
@@ -625,7 +689,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		}
 
 
-		protected virtual void PopulatePropertyAttribute(Property pr, string attrVal, string attr,string localName)
+		protected virtual void PopulatePropertyAttribute(Property pr, string attrVal, string attr, string localName)
 		{
 			if ((attr.Equals(rdfsDomain)) && (attrVal != null))
 			{
@@ -696,7 +760,7 @@ namespace RDFSParserOWL2.Parser.Handler
 					{
 						element.RangeAsObject = profile.FindProfileElementByUri(element.Range);
 					}
-					if(!string.IsNullOrEmpty(element.InverseRoleName)) 
+					if (!string.IsNullOrEmpty(element.InverseRoleName))
 					{
 						element.InverseRoleNameAsObject = profile.FindProfileElementByUri(element.InverseRoleName);
 					}

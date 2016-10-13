@@ -52,7 +52,7 @@ namespace RDFSParserOWL2.Reporter
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("----------RDFXML Parser report----------");
-			sb.AppendLine(String.Format("Total number of parsed entities:{0}",EntityCount));
+			sb.AppendLine(String.Format("Total number of  entities:{0}",EntityCount));
 			foreach(EntityTypesReporter type in Enum.GetValues(typeof(EntityTypesReporter))) 
 			{
 				switch(type) 

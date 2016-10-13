@@ -44,16 +44,16 @@ namespace RDFSParserOWL2.Model
 			StereotypeList = new List<ProfileElementStereotype>();
 			// init common stereotypes list
 			int index = 0;
-			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeConcrete));
-			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeCompound));
-			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeAttribute));
-			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeEnumeration));
-			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeByReference));
-			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeAggregateOf));
-			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeOfAggregate));
-			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeCompositeOf));
-			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeEntsoe));
-			StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypePrimitive));
+			//StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeConcrete));
+			//StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeCompound));
+			//StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeAttribute));
+			//StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeEnumeration));
+			//StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeByReference));
+			//StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeAggregateOf));
+			//StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeOfAggregate));
+			//StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeCompositeOf));
+			//StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypeEntsoe));
+			//StereotypeList.Add(new ProfileElementStereotype(index++, ProfileElementStereotype.StereotypePrimitive));
 		}
 
 
@@ -1271,31 +1271,6 @@ namespace RDFSParserOWL2.Model
 			}
 		}
 
-
-
-		public override string ToString()
-		{
-
-			return BuildProfileReport();
-		}
-
-		private string BuildProfileReport()
-		{
-			StringBuilder report = new StringBuilder();
-			report.AppendLine(String.Format("Report generated at:{0}", DateTime.Now.ToString()));
-			report.AppendLine(String.Format("Total number of elements:{0}", TotalElementsCount));
-			report.AppendLine(String.Format("Number of classes:{0} ,from which:", ClassCount));
-			report.AppendLine(String.Format("\t\t\tNumber of enum classes:{0}", EnumClassesCount));
-			report.AppendLine(String.Format("Number of properties:{0} ,from which:", PropertyCount));
-			report.AppendLine(String.Format("\t\t\tNumber of object properties:{0}", ObjectPropertyCount));
-			report.AppendLine(String.Format("\t\t\tNumber of datatype properties:{0}", DatatypePropertyCount));
-			report.AppendLine(String.Format("Total number of enum elements:{0}", EnumMembersCount));
-			report.AppendLine(String.Format("Total number of unknown elements:{0}", UnkownElementsCount));
-			report.AppendLine(String.Format("Total number of elements without non blank id :{0}", ElementsBlankNodeCount));
-			report.AppendLine(String.Format("Total number of elements not mapped :{0}", NumberOfNotGenerated));
-			return report.ToString();
-
-		}
 
 		private void SortElementsInMap()
 		{

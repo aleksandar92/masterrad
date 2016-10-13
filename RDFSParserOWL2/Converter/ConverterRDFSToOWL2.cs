@@ -81,13 +81,10 @@ namespace RDFSParserOWL2.Converter
 
 					generator = new OWL2Generator(profile, ge);
 					generator.GenerateProfile();
-					InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName + DateTime.Now.Ticks), rdfsParser.Reporter.GenerateReport());	
-
+					InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName + DateTime.Now.Ticks), rdfsParser.Reporter.GenerateReport()+generator.Reporter.GenerateReport());	
 
 					if (ge.IsSpecialOntology)
 					{
-
-
 						if (entsoProfile != null)
 						{
 							//entsoProfile.IsOwlProfile = true;
@@ -97,15 +94,13 @@ namespace RDFSParserOWL2.Converter
 							//generator.GenerateProfile();
 						}
 					}
-
-
 				}
 
 				if (entsoProfile != null) 
 				{
 					generator = new OWL2Generator(entsoProfile, ge);
 					generator.GenerateProfile();
-					InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName + DateTime.Now.Ticks), entsoProfile.ToString());	
+					//InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName + DateTime.Now.Ticks), owlParser..GenerateReport() + generator.Reporter.GenerateReport());	
 				}
 
 
