@@ -10,6 +10,7 @@ namespace RDFSParserOWL2.Reporter.Interfaces
     public enum EntityTypesReporter
     {
         Class,
+        ClassCategory,
         Property,
         EnumMembers,
         Unknown

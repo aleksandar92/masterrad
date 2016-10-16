@@ -69,7 +69,8 @@ namespace RDFSParserOWL2.Model
 		protected string type;
 		//// created from shema
 
-		
+        private string isFixed;
+
 
 		
 		protected List<ComplexTag> labels;
@@ -126,6 +127,17 @@ namespace RDFSParserOWL2.Model
 				uri = value;
 			}
 		}
+
+
+        /// <summary>
+        /// Gets or sets isFixed of profile element
+        /// </summary>
+        public string IsFixed
+        {
+            get { return isFixed; }
+            set { isFixed = value; }
+        }
+
 
 		/// <summary>
 		/// Gets and sets the multiplicityAsString of profile element.

@@ -29,6 +29,7 @@ namespace RDFSParserOWL2.Parser
 		private const string cimsMultiplicity = "cims:multiplicity";
 		private const string cimsIsAggregate = "cims:isAggregate"; // text
 		private const string cimsAssociationUsed = "cims:AssociationUsed";
+        private const string cimsIsFixed = "cims:isFixed";
 
 		#endregion
 
@@ -122,7 +123,12 @@ namespace RDFSParserOWL2.Parser
 
 		protected override void PopulateClassAttribute(Class cs, string attrVal, string attr,string localName)
 		{
-			if ((attr.ToLower().Equals(cimsBelongsToCategory.ToLower())) && (attrVal != null))
+            if ((attr.Equals(cimsIsFixed)) && (attrVal != null))
+            {
+                cs.IsFixed = attrVal;
+            }
+            else 
+			if ((attr.Equals(cimsBelongsToCategory)) && (attrVal != null))
 			{
 				cs.BelongsToCategory = attrVal;
 				AddBelongingInformation(cs, cs.BelongsToCategory);
@@ -158,10 +164,37 @@ namespace RDFSParserOWL2.Parser
 
 		}
 
+        protected override void PopulateClassCategoryAttribute(ClassCategory csCat, string attrVal, string attr, string localName)
+        {
+            if ((attr.Equals(rdfProfileElement)) && (attrVal != null))
+            {
+                if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
+                {
+                    csCat.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+                }
+                else
+                {
+                    csCat.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
+                }
+            }else
+            if ((attr.Equals(cimsIsFixed)) && (attrVal != null))
+            {
+                csCat.IsFixed = attrVal;
+            }
+            else
+            {
+
+                base.PopulateClassCategoryAttribute(csCat, attrVal, attr, localName);
+            }
+        }
 
 		protected override void PopulatePropertyAttribute(Property pr, string attrVal, string attr,string localName)
 		{
-			if ((attr.ToLower().Equals(cimsDataType.ToLower())) && (attrVal != null))
+            if ((attr.Equals(cimsIsFixed)) && (attrVal != null)) 
+            {
+                pr.IsFixed = attrVal;
+            }else 
+			if ((attr.Equals(cimsDataType)) && (attrVal != null))
 			{
 				pr.DataType = attrVal;
 			}
@@ -211,6 +244,8 @@ namespace RDFSParserOWL2.Parser
 			throw new NotImplementedException();
 		}
 
+        
+
 		//override
 		//public void Characters(string text)
 		//{
@@ -223,6 +258,12 @@ namespace RDFSParserOWL2.Parser
 		//		content = string.Empty;
 		//	}
 		//}
+
+        public override bool IsStereotype(string qName)
+        {
+            return qName.Equals(cimsStereotype);
+            //throw new NotImplementedException();
+        }
 
 		override
 		public void EndDocument()

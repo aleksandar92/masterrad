@@ -213,6 +213,11 @@ namespace RDFSParserOWL2.Parser.Handler
 					//	//AddProfileElement(ProfileElementTypes.ClassCategory, cs);
 					//}
 					//else
+                    if(IsClassCategory(type)) 
+                    {
+                        PopulateClassCategory(localName);
+                        reporter.AddtoEntityCountByType(EntityTypesReporter.ClassCategory,1);
+                    }else 
 					if (IsClass(type))
 					{
 						PopulateClass(localName);
@@ -288,8 +293,9 @@ namespace RDFSParserOWL2.Parser.Handler
 			//		content = string.Empty;
 			//	}
 			//}
-			else if (qName.Equals(cimsStereotype))
+			else if (IsStereotype(qName))
 			{
+               // qName.Equals(cimsStereotype)
 				content = content.Trim();
 				if (!string.IsNullOrEmpty(content))
 				{
@@ -312,6 +318,8 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		}
 
+        public abstract bool IsStereotype(string qName);
+
 		public abstract void StartPrefixMapping(string prefix, string uri);
 
 
@@ -319,6 +327,12 @@ namespace RDFSParserOWL2.Parser.Handler
 		{
 			prop.TryGetValue(rdfType, out type);
 		}
+
+
+        protected virtual bool IsClassCategory(string type) 
+        {
+            return ExtractSimpleNameFromResourceURI(type).Equals("ClassCategory");
+        }
 
 		protected virtual bool IsClass(string type)
 		{
@@ -412,12 +426,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		}
 
 
-		//protected void PopulateClass(ref Class cls) 
-		//{
-		//	if(cls!=null)
 
-
-		//}
 
 		protected void ProcessProfile()
 		{
@@ -428,36 +437,11 @@ namespace RDFSParserOWL2.Parser.Handler
 				{
 					switch (type)
 					{
-						//case ProfileElementTypes.ClassCategory:
-						//	{
-						//		//List<ClassCategory> list = profile.ProfileMap[type].Cast<ClassCategory>().ToList();
-						//		//foreach (ClassCategory element in list)
-						//		//{
-						//		//	//// search for classes of class categories
-						//		//	if ((belongingMap != null) && (belongingMap.ContainsKey(element.URI)))
-						//		//	{
-						//		//		Stack<ProfileElement> stack = belongingMap[element.URI];
-						//		//		ProfileElement classInPackage;
-						//		//		while (stack.Count > 0)
-						//		//		{
-						//		//			classInPackage = stack.Pop();
-						//		//			if (ExtractSimpleNameFromResourceURI(classInPackage.Type).Equals("Class"))
-						//		//			{
-						//		//				Class cl = (Class)classInPackage;
-						//		//				element.AddToMembersOfClassCategory(cl);
-						//		//				cl.BelongsToCategoryAsObject = element;
-						//		//			}
-						//		//			else
-						//		//			{
-						//		//				ClassCategory cl = (ClassCategory)classInPackage;
-						//		//				element.AddToMembersOfClassCategory(cl);
-						//		//				cl.BelongsToCategoryAsObject = element;
-						//		//			}
-						//		//		}
-						//		//	}
-						//		//}
-						//		break;
-						//	}
+                        case ProfileElementTypes.ClassCategory:
+                            {
+                                ProcessClassCategory();
+                                break;
+                            }
 						case ProfileElementTypes.Class:
 							{
 								ProcessClass();
@@ -470,6 +454,7 @@ namespace RDFSParserOWL2.Parser.Handler
 							}
 						case ProfileElementTypes.Unknown:
 							{
+
 								List<EnumMember> list = profile.ProfileMap[type].Cast<EnumMember>().ToList();
 								foreach (EnumMember element in list)
 								{
@@ -530,6 +515,7 @@ namespace RDFSParserOWL2.Parser.Handler
 
 
 
+
 		/// <summary>
 		/// Populate class attributes
 		/// </summary>
@@ -577,6 +563,7 @@ namespace RDFSParserOWL2.Parser.Handler
 			ClassCategory csCat = new ClassCategory();
 			PopulateClassCategoryAttributes(csCat,localName);
 			ProccessCommentsAndLabels(csCat);
+            AddProfileElement(ProfileElementTypes.ClassCategory, csCat);
 		}
 
 
@@ -598,6 +585,12 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		protected virtual void PopulateClassCategoryAttribute(ClassCategory csCat, string attrVal, string attr, string localName)
 		{
+            if ((attr.Equals(rdfType)) && (attrVal != null))
+            {
+                csCat.Type = attrVal;
+                   // StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+            }
+
 			//if ((attr.ToLower().Contains(rdfsSubClassOf.ToLower())) && (attrVal != null))
 			//{
 			//	cs.SubClassOf = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
@@ -700,8 +693,55 @@ namespace RDFSParserOWL2.Parser.Handler
 		}
 
 
+        #region Methods for processing entities after parsing
+
+        
+        /// <summary>
+        /// Method for processing unknown entites after parsing
+        /// </summary>
+        private void ProcessUnknown() 
+        {
+        
+        }
+
+
+        /// <summary>
+        /// Method for processing class category after parsing
+        /// </summary>
+        private void ProcessClassCategory() 
+        {
+            ProfileElementTypes type = ProfileElementTypes.ClassCategory;
+            List<ClassCategory> list = profile.ProfileMap[type].Cast<ClassCategory>().ToList();
+            foreach (ClassCategory element in list)
+            {
+                //// search for classes of class categories
+                if ((belongingMap != null) && (belongingMap.ContainsKey(element.URI)))
+                {
+                    Stack<ProfileElement> stack = belongingMap[element.URI];
+                    ProfileElement classInPackage;
+                    while (stack.Count > 0)
+                    {
+                        classInPackage = stack.Pop();
+                        if (ExtractSimpleNameFromResourceURI(classInPackage.Type).Equals("Class"))
+                        {
+                            Class cl = (Class)classInPackage;
+                            element.AddToMembersOfClassCategory(cl);
+                            cl.BelongsToCategoryAsObject = element;
+                        }
+                        else
+                        {
+                            ClassCategory cl = (ClassCategory)classInPackage;
+                            element.AddToMembersOfClassCategory(cl);
+                            cl.BelongsToCategoryAsObject = element;
+                        }
+                    }
+                }
+            }
+        
+        }
+
 		/// <summary>
-		/// Method for populating fields of class after parsing 
+		/// Method for processing class after parsing 
 		/// </summary>
 		private void ProcessClass()
 		{
@@ -712,6 +752,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				List<Class> list = profile.ProfileMap[type].Cast<Class>().ToList();
 				foreach (Class element in list)
 				{
+                   
 					if (element.SubClassOf != null)
 					{
 						Class uppclass = (Class)profile.FindProfileElementByUri(element.SubClassOf);
@@ -741,7 +782,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		}
 
 		/// <summary>
-		/// Method for populating fields of property after parsing 
+		/// Method for processing  property entity after parsing 
 		/// </summary>
 		private void ProcessProperty()
 		{
@@ -778,7 +819,10 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		}
 
-		protected void AddComplexTagToCommentsAndLabels(TextType type, ComplexTag ct)
+
+        #endregion
+
+        protected void AddComplexTagToCommentsAndLabels(TextType type, ComplexTag ct)
 		{
 			if (commentsAndLabels == null)
 			{

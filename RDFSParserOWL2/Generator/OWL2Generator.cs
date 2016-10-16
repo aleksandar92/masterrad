@@ -234,13 +234,13 @@ namespace RDFSParserOWL2.Generator
 			xtw.Indentation = 4;
 			XmlWriter writer = xtw;
 			GenerateStartElement(ref writer);
-			GenerateOntologyTag(ref writer);
+			GenerateOntologyTag( writer);
 			foreach (ProfileElementTypes pet in profileForGenerating.ProfileMap.Keys)
 			{
 
 				foreach (ProfileElement pe in profileForGenerating.ProfileMap[pet])
 				{
-					GenerateElement(pet, pe, ref writer);
+					GenerateElement(pet, pe,writer);
 				}
 			}
 
@@ -249,7 +249,7 @@ namespace RDFSParserOWL2.Generator
 			writer.Close();
 		}
 
-		public void GenerateOntologyTag(ref XmlWriter writer)
+		public void GenerateOntologyTag( XmlWriter writer)
 		{
 			writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.owlOntology, null);
 			writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress);
@@ -257,10 +257,15 @@ namespace RDFSParserOWL2.Generator
 			writer.WriteEndElement();
 		}
 
-		private void GenerateElement(ProfileElementTypes type, ProfileElement pe, ref XmlWriter writer)
+		private void GenerateElement(ProfileElementTypes type, ProfileElement pe,  XmlWriter writer)
 		{
 			switch (type)
 			{
+                case ProfileElementTypes.ClassCategory:
+                    ClassCategory clsCat = pe as ClassCategory;
+					if (clsCat != null)
+						GenerateClassCategory(clsCat,writer);
+					break;
 				case ProfileElementTypes.Class:
 					Class cls = pe as Class;
 					if (cls != null)
@@ -283,6 +288,31 @@ namespace RDFSParserOWL2.Generator
 			}
 
 		}
+
+
+        /// <summary>
+        /// Generate class category to OWL2 format
+        /// </summary>
+        /// <param name="csCat">Class category to be represented in xml</param>
+        /// <param name="writer">Writer to which xml representation of class category is being written</param>
+        private void GenerateClassCategory(ClassCategory csCat,XmlWriter writer) 
+        {
+            if (csCat != null && writer != null) 
+            {
+                writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.NamedIndividual, null);
+                writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + csCat.URI);
+             
+                if (!string.IsNullOrEmpty(csCat.Type))
+                {
+                    writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Type, null);
+                    writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, csCat.Type);
+                    writer.WriteEndElement();
+                }
+                GenerateProfileElement(csCat,ref writer);
+                writer.WriteEndElement();
+                reporter.AddtoEntityCountByType(EntityTypesGeneratorReporter.NamedIndividual, 1);
+            }
+        }
 
 		/// <summary>
 		/// Generate enum member to OWL2 format 
@@ -393,6 +423,23 @@ namespace RDFSParserOWL2.Generator
 						writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + cls.SubClassOfAsObject.URI);
 						writer.WriteEndElement();
 					}
+
+                    if(!string.IsNullOrEmpty(cls.BelongsToCategory) && cls.BelongsToCategoryAsObject!=null) 
+                    {
+                        writer.WriteStartElement(MetaNamespace.MetaPrefix, MetaNamespace.Belongs, null);
+                        string address;
+                        ClassCategory cat=cls.BelongsToCategoryAsObject as ClassCategory;
+                        if (cat != null && cat.IsBasePackage)
+                        {
+                            address = predefinedNamespaces.Where(x =>!string.IsNullOrEmpty(x.Prefix) && x.Prefix.Equals("meta")).Single().Value + cls.BelongsToCategory;
+                        }
+                        else 
+                        {
+                            address=baseAdress + cls.BelongsToCategory;
+                        }
+                        writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null,address);
+                        writer.WriteEndElement();
+                    }
 
 					//if (!profileForGenerating.IsOwlProfile)
 					//{
@@ -636,7 +683,7 @@ namespace RDFSParserOWL2.Generator
 			{
 				foreach (ComplexTag ct in pe.Comments)
 				{
-					GenerateCommentElement(ref writer, ct);
+					GenerateCommentElement( writer, ct);
 				}
 			}
 
@@ -644,16 +691,23 @@ namespace RDFSParserOWL2.Generator
 			{
 				foreach (ComplexTag ct in pe.Labels)
 				{
-					GenerateLabelElement(ref writer, ct);
+					GenerateLabelElement( writer, ct);
 				}
 			}
+
+            if(!string.IsNullOrEmpty(pe.IsFixed))
+            {
+                writer.WriteStartElement(MetaNamespace.MetaPrefix, MetaNamespace.Fixed, null);
+                writer.WriteValue(pe.IsFixed);
+                writer.WriteEndElement();
+            }   
 
 			writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.IsDefinedBy, null);
 			writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, BaseAddress);
 			writer.WriteEndElement();
 		}
 
-		private void GenerateCommentElement(ref XmlWriter writer, ComplexTag ct)
+		private void GenerateCommentElement( XmlWriter writer, ComplexTag ct)
 		{
 			if (ct != null && ct.Value != string.Empty && writer != null)
 			{
@@ -664,7 +718,7 @@ namespace RDFSParserOWL2.Generator
 			}
 		}
 
-		private void GenerateLabelElement(ref XmlWriter writer, ComplexTag ct)
+		private void GenerateLabelElement( XmlWriter writer, ComplexTag ct)
 		{
 			if (ct != null && ct.Value != string.Empty && writer != null)
 			{
@@ -695,6 +749,7 @@ namespace RDFSParserOWL2.Generator
 			}
 		}
 
+
 		private void GenerateImports(ref XmlWriter writer)
 		{
 			if (importNamespaces != null && profileForGenerating!=null && !profileForGenerating.IsOwlProfile)
@@ -709,8 +764,6 @@ namespace RDFSParserOWL2.Generator
 				}
 			}
 		}
-
-
 
 		private void GenerateEquivalentProperty(ref XmlWriter writer, string baseAddressImport, Property p)
 		{

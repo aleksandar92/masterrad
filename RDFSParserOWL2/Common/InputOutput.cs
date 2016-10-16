@@ -14,6 +14,7 @@ namespace RDFSParserOWL2.Common
 	public static class InputOutput
 	{
 		public static  string entsoFilename = "entsoe.owl";
+        public static string metaFilename = "meta.owl";
 		   //private const string pathToWordsToSkip = @"../../Resources/WordsToSkip.xml";
 		public static  string resourceFilepath = @"../../Resources/";
 		public static  string owlGeneratedFilePath = @"../../Resources/OWL2Generated/";
@@ -40,6 +41,25 @@ namespace RDFSParserOWL2.Common
 				.Replace(">", "")
 				.Replace("|", "");
 		}
+
+
+        /// <summary>
+        /// Method for loading entso owl profile 
+        /// </summary>
+        /// <returns>Returns resulting profile parsed from entsoe.owl file </returns>
+        public static Profile LoadMetaProfile()
+        {
+            OWLRDFXMLHandler handler = new OWLRDFXMLHandler();
+            using (FileStream fs = new FileStream(owlGeneratedFilePath + metaFilename, FileMode.Open))
+            {
+                bool su;
+                TimeSpan ts;
+                XMLParser.DoParse(handler, fs, entsoFilename, out su, out ts);
+
+            }
+            return handler.Profile;
+        }
+
 
 		/// <summary>
 		/// Method for loading entso owl profile 

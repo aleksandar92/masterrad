@@ -60,6 +60,9 @@ namespace RDFSParserOWL2.Reporter
 					case EntityTypesReporter.Class:
 						sb.AppendLine(String.Format("Total number of parsed classes:{0}", EntityCountByType(type)));
 						break;
+                    case EntityTypesReporter.ClassCategory:
+                        sb.AppendLine(String.Format("Total number of parsed class categories:{0}", EntityCountByType(type)));
+                        break;
 					case EntityTypesReporter.Property:
 						sb.AppendLine(String.Format("Total number of parsed properties:{0}", EntityCountByType(type)));
 						break;

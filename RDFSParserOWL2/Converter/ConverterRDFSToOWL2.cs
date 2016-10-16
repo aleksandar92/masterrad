@@ -63,14 +63,23 @@ namespace RDFSParserOWL2.Converter
 			if (ge != null)
 			{
 				Profile entsoProfile = null;
+                Profile metaProfile = null;
 				if (ge.IsSpecialOntology) 
 				{
 					owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(ge.NameOfOntology)));
 					owlParser.ParseProfile();
 					entsoProfile = owlParser.Profile;
-					entsoProfile.IsOwlProfile = true;
-				
+					entsoProfile.IsOwlProfile = true;	
 				}
+
+                    metaProfile = InputOutput.LoadMetaProfile();
+                    //owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(ge.NameOfOntology)));
+                    //owlParser.ParseProfile();
+                    //entsoProfile = owlParser.Profile;
+                    //entsoProfile.IsOwlProfile = true;
+                //}
+
+
 
 				foreach(string path in paths) 
 				{
@@ -78,7 +87,8 @@ namespace RDFSParserOWL2.Converter
 					rdfsParser.ParseProfile();
 					Profile profile = rdfsParser.Profile;
 					profile.MarkElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
-
+                    if(metaProfile!=null)
+                    profile.MarkBasePackages(metaProfile);
 					generator = new OWL2Generator(profile, ge);
 					generator.GenerateProfile();
 					InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName + DateTime.Now.Ticks), rdfsParser.Reporter.GenerateReport()+generator.Reporter.GenerateReport());	

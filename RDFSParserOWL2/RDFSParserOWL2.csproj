@@ -127,7 +127,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Resources\OWL2Generated\entsoe.owl" />
     <None Include="Resources\rdfs\GeographicalLocationProfileRDFSAugmented-v2_4_15-7Aug2014_with_entsoe.rdf">
       <SubType>Designer</SubType>
     </None>

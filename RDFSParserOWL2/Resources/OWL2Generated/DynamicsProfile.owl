@@ -1,8 +1,156 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.semanticweb.org/DynamicsProfile#" xml:base="http://www.semanticweb.org/DynamicsProfile" xmlns:gl="http://www.semanticweb.org/DynamicsProfile#" xmlns:meta="http://www.semanticweb.org/meta" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/DynamicsProfile">
-        <owl:imports rdf:resource="http://semantic.web.profiles/Entsoe" />
+        <owl:imports rdf:resource="http://semantic.web/Entsoe" />
     </owl:Ontology>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_DynamicsProfile">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>The CIM dynamic model definitions reflect the most common IEEE or, in the case of wind models, IEC, representations of models as well as models included in some of the transient stability software widely used by utilities. 
+
+These dynamic models are intended to ensure interoperability between different vendors’ software products currently in use by electric utility energy companies, utilities, TSOs and RTO/ISOs.  It is important to note that each vendor is free to select its own internal implementation of these models.  Differences in vendor results, as long as they are within accepted engineering practice, caused by different internal representations, are acceptable.
+
+Notes:
+1. Wind models package is defined in accordance with IEC 61400-27-1 version CDV 2013-08-15.</rdfs:comment>
+        <rdfs:label xml:lang="en">DynamicsProfile</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_Core">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:label xml:lang="en">Core</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_Wires">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:label xml:lang="en">Wires</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_StandardInterconnections">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>This section describes the standard interconnections for various types of equipment. These interconnections are understood by the application programs and can be identified based on the presence of one of the key classes with a relationship to the static power flow model: SynchronousMachineDynamics, AsynchronousMachineDynamics, EnergyConsumerDynamics or WindTurbineType3or4Dynamics. 
+
+The relationships between classes expressed in the interconnection diagrams are intended to support dynamic behaviour described by either standard models or user-defined models.
+
+In the interconnection diagrams, boxes which are black in colour represent function blocks whose functionality can be provided by one of many standard models or by a used-defined model. Blue boxes represent specific standard models.  A dashed box means that the function block or specific standard model is optional.</rdfs:comment>
+        <rdfs:label xml:lang="en">StandardInterconnections</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_StandardModels">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>This section contains standard dynamic model specifications grouped into packages by standard function block (type of equipment being modelled).
+In the CIM, standard dynamic models are expressed by means of a class named with the standard model name and attributes reflecting each of the parameters necessary to describe the behaviour of an instance of the standard model.</rdfs:comment>
+        <rdfs:label xml:lang="en">StandardModels</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>This package contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined models.  
+Proprietary models have behavior which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the xxxUserDefined class.  Parameters are  passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
+Explicitly defined models describe dynamic behavior in detail in terms of control blocks and their input and output signals.  NOTE: The classes to support explicitly defined modeling are not currently defined - it is future work.  They are described here to document the current thinking on where they would be added.</rdfs:comment>
+        <rdfs:label xml:lang="en">UserDefinedModels</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_SynchronousMachineDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>in the static (power flow) data.  
+
+The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor’s equipment could also differ due to input and output signals required by standard models.</rdfs:comment>
+        <rdfs:label xml:lang="en">SynchronousMachineDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_AsynchronousMachineDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g., squirrel-cage induction machine. 
+
+The interconnection with the electrical network equations may differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with motor’s equipment could also differ due to input and output signals required by standard models.
+
+The asynchronous machine model is used to model wind generators Type 1 and Type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.</rdfs:comment>
+        <rdfs:label xml:lang="en">AsynchronousMachineDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.</rdfs:comment>
+        <rdfs:label xml:lang="en">TurbineGovernorDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_TurbineLoadControllerDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>A turbine load controller acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference.</rdfs:comment>
+        <rdfs:label xml:lang="en">TurbineLoadControllerDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_MechanicalLoadDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>A mechanical load represents the variation in a motor's shaft torque or power as a function of shaft speed.</rdfs:comment>
+        <rdfs:label xml:lang="en">MechanicalLoadDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.</rdfs:comment>
+        <rdfs:label xml:lang="en">ExcitationSystemDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_OverexcitationLimiterDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.</rdfs:comment>
+        <rdfs:label xml:lang="en">OverexcitationLimiterDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_UnderexcitationLimiterDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.</rdfs:comment>
+        <rdfs:label xml:lang="en">UnderexcitationLimiterDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.</rdfs:comment>
+        <rdfs:label xml:lang="en">PowerSystemStabilizerDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_DiscontinuousExcitationControlDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:label xml:lang="en">DiscontinuousExcitationControlDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_PFVArControllerType1Dynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:label xml:lang="en">PFVArControllerType1Dynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_VoltageAdjusterDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:label xml:lang="en">VoltageAdjusterDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_PFVArControllerType2Dynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:label xml:lang="en">PFVArControllerType2Dynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_VoltageCompensatorDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:label xml:lang="en">VoltageCompensatorDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>Models included in this package are according to IEC 61400-27-1.</rdfs:comment>
+        <rdfs:label xml:lang="en">WindDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_LoadDynamics">
+        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
+        <rdfs:comment>Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
+
+Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
+
+Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
+In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.</rdfs:comment>
+        <rdfs:label xml:lang="en">LoadDynamics</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
+    </owl:NamedIndividual>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#Terminal.ConductingEquipment">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#Terminal" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#ConductingEquipment" />
@@ -268,6 +416,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>s</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#Seconds.multiplier">
@@ -275,6 +424,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">multiplier</rdfs:label>
+        <meta:isFixed>none</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#PU.unit">
@@ -282,6 +432,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>none</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#PU.multiplier">
@@ -289,6 +440,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">multiplier</rdfs:label>
+        <meta:isFixed>none</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#WindPlantUserDefined.ProprietaryParameterDynamics">
@@ -700,6 +852,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>A</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#CurrentFlow.multiplier">
@@ -707,6 +860,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">multiplier</rdfs:label>
+        <meta:isFixed>none</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineTimeConstantReactance.rotorType">
@@ -802,6 +956,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>W</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#ActivePower.multiplier">
@@ -809,6 +964,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">multiplier</rdfs:label>
+        <meta:isFixed>M</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#GovCT1.rselect">
@@ -832,6 +988,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>Hz</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#Frequency.multiplier">
@@ -846,6 +1003,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">multiplier</rdfs:label>
+        <meta:isFixed>none</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#Temperature.unit">
@@ -853,6 +1011,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>degC</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#Area.unit">
@@ -860,6 +1019,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>m2</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#Area.multiplier">
@@ -882,6 +1042,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>m</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#Length.multiplier">
@@ -889,6 +1050,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">multiplier</rdfs:label>
+        <meta:isFixed>k</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#VolumeFlowRate.denominatorMultiplier">
@@ -896,6 +1058,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">denominatorMultiplier</rdfs:label>
+        <meta:isFixed>none</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#VolumeFlowRate.denominatorUnit">
@@ -903,6 +1066,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">denominatorUnit</rdfs:label>
+        <meta:isFixed>s</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#VolumeFlowRate.multiplier">
@@ -910,6 +1074,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">multiplier</rdfs:label>
+        <meta:isFixed>none</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#VolumeFlowRate.unit">
@@ -917,6 +1082,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>m3</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics.ExcitationSystemDynamics">
@@ -1058,6 +1224,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>deg</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#AngleDegrees.multiplier">
@@ -1065,6 +1232,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">multiplier</rdfs:label>
+        <meta:isFixed>none</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST6B.oelin">
@@ -1104,6 +1272,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitSymbol" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">unit</rdfs:label>
+        <meta:isFixed>VA</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#ApparentPower.multiplier">
@@ -1111,6 +1280,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:label xml:lang="en">multiplier</rdfs:label>
+        <meta:isFixed>M</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcST6B.oelin">
@@ -1742,7 +1912,7 @@
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:ObjectProperty>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.baseUML">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion.baseUML" />
+        <owl:equivalentProperty rdf:resource="http://semantic.web/Entsoe#DynamicsVersion.baseUML" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.baseUML">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1750,10 +1920,11 @@
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
         <rdfs:label xml:lang="en">baseUML</rdfs:label>
+        <meta:isFixed>iec61970cim16v28_iec61968cim12v08_iec62325cim03v01a</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.baseURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion.baseURI" />
+        <owl:equivalentProperty rdf:resource="http://semantic.web/Entsoe#DynamicsVersion.baseURI" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.baseURI">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1761,10 +1932,11 @@
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
         <rdfs:label xml:lang="en">baseURI</rdfs:label>
+        <meta:isFixed>http://iec.ch/TC57/2013/61970-457/Dynamics/3</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.date">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion.date" />
+        <owl:equivalentProperty rdf:resource="http://semantic.web/Entsoe#DynamicsVersion.date" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.date">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1773,10 +1945,11 @@
         <rdfs:comment>Profile creation date
 Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
         <rdfs:label xml:lang="en">date</rdfs:label>
+        <meta:isFixed>2014-08-07</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.differenceModelURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion.differenceModelURI" />
+        <owl:equivalentProperty rdf:resource="http://semantic.web/Entsoe#DynamicsVersion.differenceModelURI" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.differenceModelURI">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1784,10 +1957,11 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">differenceModelURI</rdfs:label>
+        <meta:isFixed>http://iec.ch/TC57/61970-552/DifferenceModel/1#</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.entsoeUML">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion.entsoeUML" />
+        <owl:equivalentProperty rdf:resource="http://semantic.web/Entsoe#DynamicsVersion.entsoeUML" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.entsoeUML">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1795,10 +1969,11 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
+        <meta:isFixed>entsoe_v2.4.15</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.entsoeURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion.entsoeURI" />
+        <owl:equivalentProperty rdf:resource="http://semantic.web/Entsoe#DynamicsVersion.entsoeURI" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.entsoeURI">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1808,10 +1983,11 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
 - yy - indicates a major version;
 - zzz - indicates a minor version.</rdfs:comment>
         <rdfs:label xml:lang="en">entsoeURI</rdfs:label>
+        <meta:isFixed>http://entsoe.eu/CIM/Dynamics/3/1</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.modelDescriptionURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion.modelDescriptionURI" />
+        <owl:equivalentProperty rdf:resource="http://semantic.web/Entsoe#DynamicsVersion.modelDescriptionURI" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.modelDescriptionURI">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1819,10 +1995,11 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
         <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
+        <meta:isFixed>http://iec.ch/TC57/61970-552/ModelDescription/1#</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.namespaceRDF">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion.namespaceRDF" />
+        <owl:equivalentProperty rdf:resource="http://semantic.web/Entsoe#DynamicsVersion.namespaceRDF" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.namespaceRDF">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1830,10 +2007,11 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:comment>RDF namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
+        <meta:isFixed>http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.namespaceUML">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion.namespaceUML" />
+        <owl:equivalentProperty rdf:resource="http://semantic.web/Entsoe#DynamicsVersion.namespaceUML" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.namespaceUML">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1841,10 +2019,11 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:comment>CIM UML namespace.</rdfs:comment>
         <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
+        <meta:isFixed>http://iec.ch/TC57/2013/CIM-schema-cim16#</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.shortName">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion.shortName" />
+        <owl:equivalentProperty rdf:resource="http://semantic.web/Entsoe#DynamicsVersion.shortName" />
     </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.shortName">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion" />
@@ -1852,6 +2031,7 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
+        <meta:isFixed>DY</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:DatatypeProperty>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject.description">
@@ -23372,9 +23552,10 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:NamedIndividual>
     <rdf:Description rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion">
-        <owl:equivalentClass rdf:resource="http://semantic.web.profiles/Entsoe#DynamicsVersion" />
+        <owl:equivalentClass rdf:resource="http://semantic.web/Entsoe#DynamicsVersion" />
     </rdf:Description>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_DynamicsProfile" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsVersion.shortName" />
@@ -23452,6 +23633,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ACDCTerminal">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Core" />
         <meta:stereotype>abstract</meta:stereotype>
         <rdfs:comment>An electrical connection point (AC or DC) to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.</rdfs:comment>
         <rdfs:label xml:lang="en">ACDCTerminal</rdfs:label>
@@ -23459,6 +23641,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ConductingEquipment">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#Equipment" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ConductingEquipment.Terminals" />
@@ -23472,12 +23655,14 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Equipment">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemResource" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Core" />
         <meta:stereotype>abstract</meta:stereotype>
         <rdfs:comment>The parts of a power system that are physical devices, electronic or mechanical.</rdfs:comment>
         <rdfs:label xml:lang="en">Equipment</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject.name" />
@@ -23506,6 +23691,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PowerSystemResource">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Core" />
         <meta:stereotype>abstract</meta:stereotype>
         <rdfs:comment>A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.</rdfs:comment>
         <rdfs:label xml:lang="en">PowerSystemResource</rdfs:label>
@@ -23513,6 +23699,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Terminal">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ACDCTerminal" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Terminal.RemoteInputSignal" />
@@ -23533,6 +23720,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachine">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#RotatingMachine" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Wires" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachine.AsynchronousMachineDynamics" />
@@ -23547,6 +23735,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#EnergyConsumer">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ConductingEquipment" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Wires" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#EnergyConsumer.LoadDynamics" />
@@ -23561,6 +23750,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#EnergySource">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ConductingEquipment" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Wires" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#EnergySource.WindTurbineType3or4Dynamics" />
@@ -23575,6 +23765,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#RegulatingCondEq">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ConductingEquipment" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Wires" />
         <meta:stereotype>abstract</meta:stereotype>
         <rdfs:comment>A type of conducting equipment that can regulate a quantity (i.e. voltage or flow) at a specific point in the network.</rdfs:comment>
         <rdfs:label xml:lang="en">RegulatingCondEq</rdfs:label>
@@ -23582,6 +23773,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#RotatingMachine">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#RegulatingCondEq" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Wires" />
         <meta:stereotype>abstract</meta:stereotype>
         <rdfs:comment>A rotating machine which may be used as a generator or motor.</rdfs:comment>
         <rdfs:label xml:lang="en">RotatingMachine</rdfs:label>
@@ -23589,6 +23781,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#SynchronousMachine">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#RotatingMachine" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_Wires" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachine.SynchronousMachineDynamics" />
@@ -23603,6 +23796,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#RemoteInputSignal">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_StandardInterconnections" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#RemoteInputSignal.WindPlantDynamics" />
@@ -23679,6 +23873,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#RemoteSignalKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_StandardInterconnections" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Type of input signal coming from remote bus.</rdfs:comment>
         <rdfs:label xml:lang="en">RemoteSignalKind</rdfs:label>
@@ -23701,6 +23896,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_StandardModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock.enabled" />
@@ -23715,6 +23911,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#RotatingMachineDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_StandardModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#RotatingMachineDynamics.statorResistance" />
@@ -23893,6 +24090,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindPlantUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindPlantDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindPlantUserDefined.ProprietaryParameterDynamics" />
@@ -23912,6 +24110,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindType1or2UserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType1or2Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindType1or2UserDefined.ProprietaryParameterDynamics" />
@@ -23931,6 +24130,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindType3or4UserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType3or4Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindType3or4UserDefined.ProprietaryParameterDynamics" />
@@ -23950,6 +24150,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineUserDefined.ProprietaryParameterDynamics" />
@@ -23970,6 +24171,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineUserDefined.ProprietaryParameterDynamics" />
@@ -23990,6 +24192,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorUserDefined.ProprietaryParameterDynamics" />
@@ -24009,6 +24212,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#TurbineLoadControllerUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineLoadControllerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineLoadControllerUserDefined.ProprietaryParameterDynamics" />
@@ -24028,6 +24232,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#MechanicalLoadUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#MechanicalLoadDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#MechanicalLoadUserDefined.ProprietaryParameterDynamics" />
@@ -24047,6 +24252,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemUserDefined.ProprietaryParameterDynamics" />
@@ -24066,6 +24272,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#OverexcitationLimiterUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcitationLimiterUserDefined.ProprietaryParameterDynamics" />
@@ -24085,6 +24292,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#UnderexcitationLimiterUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcitationLimiterUserDefined.ProprietaryParameterDynamics" />
@@ -24104,6 +24312,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerUserDefined.ProprietaryParameterDynamics" />
@@ -24123,6 +24332,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#DiscontinuousExcitationControlUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DiscontinuousExcitationControlDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#DiscontinuousExcitationControlUserDefined.ProprietaryParameterDynamics" />
@@ -24142,6 +24352,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType1UserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType1Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType1UserDefined.ProprietaryParameterDynamics" />
@@ -24161,6 +24372,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#VoltageAdjusterUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#VoltageAdjusterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#VoltageAdjusterUserDefined.ProprietaryParameterDynamics" />
@@ -24180,6 +24392,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType2UserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType2Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType2UserDefined.ProprietaryParameterDynamics" />
@@ -24199,6 +24412,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#VoltageCompensatorUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#VoltageCompensatorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#VoltageCompensatorUserDefined.ProprietaryParameterDynamics" />
@@ -24218,6 +24432,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#LoadUserDefined">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadUserDefined.ProprietaryParameterDynamics" />
@@ -24237,6 +24452,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ProprietaryParameterDynamics">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UserDefinedModels" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ProprietaryParameterDynamics.floatParameterValue" />
@@ -24398,12 +24614,14 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineSimplified">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_SynchronousMachineDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#concrete</meta:stereotype>
         <rdfs:label xml:lang="en">SynchronousMachineSimplified</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#RotatingMachineDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_SynchronousMachineDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineDynamics.GenICompensationForGenJ" />
@@ -24443,6 +24661,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineDetailed">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_SynchronousMachineDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineDetailed.ifdBaseValue" />
@@ -24484,6 +24703,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#IfdBaseKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_SynchronousMachineDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Excitation base system mode.</rdfs:comment>
         <rdfs:label xml:lang="en">IfdBaseKind</rdfs:label>
@@ -24528,6 +24748,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineTimeConstantReactance">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineDetailed" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_SynchronousMachineDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineTimeConstantReactance.tc" />
@@ -24631,6 +24852,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#RotorKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_SynchronousMachineDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Type of rotor on physical machine.</rdfs:comment>
         <rdfs:label xml:lang="en">RotorKind</rdfs:label>
@@ -24645,6 +24867,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         </owl:equivalentClass>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineModelKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_SynchronousMachineDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Type of synchronous machine model used in Dynamic simulation applications.</rdfs:comment>
         <rdfs:label xml:lang="en">SynchronousMachineModelKind</rdfs:label>
@@ -24663,6 +24886,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineEquivalentCircuit">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineDetailed" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_SynchronousMachineDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#SynchronousMachineEquivalentCircuit.x2q" />
@@ -24759,6 +24983,7 @@ Are only valid for a simplified model where "Canay" reactance is zero.</rdfs:com
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#RotatingMachineDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_AsynchronousMachineDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineDynamics.TurbineGovernorDynamics" />
@@ -24793,6 +25018,7 @@ Are only valid for a simplified model where "Canay" reactance is zero.</rdfs:com
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineTimeConstantReactance">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_AsynchronousMachineDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineTimeConstantReactance.tppo" />
@@ -24834,6 +25060,7 @@ Are only valid for a simplified model where "Canay" reactance is zero.</rdfs:com
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineEquivalentCircuit">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_AsynchronousMachineDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#AsynchronousMachineEquivalentCircuit.xlr2" />
@@ -24881,6 +25108,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics.TurbineLoadControllerDynamics" />
@@ -24907,6 +25135,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydroIEEE0">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydroIEEE0.pmin" />
@@ -24996,6 +25225,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydroIEEE2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydroIEEE2.pgv6" />
@@ -25184,6 +25414,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovSteamIEEE1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovSteamIEEE1.k8" />
@@ -25337,6 +25568,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovCT1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovCT1.rdown" />
@@ -25588,6 +25820,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#DroopSignalFeedbackKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Governor droop signal feedback source.</rdfs:comment>
         <rdfs:label xml:lang="en">DroopSignalFeedbackKind</rdfs:label>
@@ -25605,6 +25838,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovCT2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovCT2.plim10" />
@@ -26031,6 +26265,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovGAST">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovGAST.dturb" />
@@ -26108,6 +26343,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovGAST1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovGAST1.t5" />
@@ -26353,6 +26589,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovGAST2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovGAST2.tc" />
@@ -26611,6 +26848,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovGAST3">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovGAST3.mnef" />
@@ -26765,6 +27003,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovGAST4">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovGAST4.mnef" />
@@ -26849,6 +27088,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovGASTWD">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovGASTWD.td" />
@@ -27087,6 +27327,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydro1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydro1.hdam" />
@@ -27192,6 +27433,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydro2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydro2.pgv6" />
@@ -27402,6 +27644,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydro3">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydro3.pgv6" />
@@ -27663,6 +27906,7 @@ This model differs from that defined in the IEEE modeling guideline paper in tha
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydro4">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydro4.tblade" />
@@ -27936,6 +28180,7 @@ This model differs from that defined in the IEEE modeling guideline paper in tha
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydroDD">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydroDD.inputSignal" />
@@ -28188,6 +28433,7 @@ This model differs from that defined in the IEEE modeling guideline paper in tha
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydroFrancis">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydroFrancis.zsfc" />
@@ -28411,6 +28657,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#FrancisGovernorControlKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Governor control flag for Francis hydro model.</rdfs:comment>
         <rdfs:label xml:lang="en">FrancisGovernorControlKind</rdfs:label>
@@ -28495,6 +28742,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydroPelton">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydroPelton.zsfc" />
@@ -28699,6 +28947,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydroPID">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydroPID.pgv6" />
@@ -28937,6 +29186,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydroPID2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydroPID2.feedbackSignal" />
@@ -29098,6 +29348,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydroR">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydroR.pgv6" />
@@ -29399,6 +29650,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydroWEH">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydroWEH.pmss10" />
@@ -29763,6 +30015,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovHydroWPID">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovHydroWPID.pgv3" />
@@ -29924,6 +30177,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovSteam0">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovSteam0.dt" />
@@ -29987,6 +30241,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovSteam1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovSteam1.pgv6" />
@@ -30267,6 +30522,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovSteam2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovSteam2.mnef" />
@@ -30330,6 +30586,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovSteamCC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovSteamCC.dlp" />
@@ -30456,6 +30713,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovSteamEU">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovSteamEU.tb" />
@@ -30708,6 +30966,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovSteamFV2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovSteamFV2.ti" />
@@ -30806,6 +31065,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovSteamFV3">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovSteamFV3.prmax" />
@@ -30946,6 +31206,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovSteamFV4">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovSteamFV4.ksh" />
@@ -31310,6 +31571,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GovSteamSGO">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineGovernorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineGovernorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GovSteamSGO.pmin" />
@@ -31401,6 +31663,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#TurbineLoadControllerDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineLoadControllerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineLoadControllerDynamics.TurbineGovernorDynamics" />
@@ -31414,6 +31677,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#TurbLCFB1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbineLoadControllerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_TurbineLoadControllerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#TurbLCFB1.pmwset" />
@@ -31505,6 +31769,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#MechanicalLoadDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_MechanicalLoadDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#MechanicalLoadDynamics.AsynchronousMachineDynamics" />
@@ -31525,6 +31790,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#MechLoad1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#MechanicalLoadDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_MechanicalLoadDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#MechLoad1.e" />
@@ -31559,6 +31825,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST1AUELselectorKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Type of connection for the UEL input used in ExcIEEEST1A.</rdfs:comment>
         <rdfs:label xml:lang="en">ExcIEEEST1AUELselectorKind</rdfs:label>
@@ -31575,6 +31842,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
         </owl:equivalentClass>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcREXSFeedbackSignalKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Type of rate feedback signals.</rdfs:comment>
         <rdfs:label xml:lang="en">ExcREXSFeedbackSignalKind</rdfs:label>
@@ -31590,6 +31858,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
         </owl:equivalentClass>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcST6BOELselectorKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Type of connection for the OEL input used for static excitation systems type 6B.</rdfs:comment>
         <rdfs:label xml:lang="en">ExcST6BOELselectorKind</rdfs:label>
@@ -31605,6 +31874,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
         </owl:equivalentClass>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcST7BOELselectorKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Type of connection for the OEL input used for static excitation systems type 7B.</rdfs:comment>
         <rdfs:label xml:lang="en">ExcST7BOELselectorKind</rdfs:label>
@@ -31621,6 +31891,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
         </owl:equivalentClass>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcST7BUELselectorKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Type of connection for the UEL input used for static excitation systems type 7B.</rdfs:comment>
         <rdfs:label xml:lang="en">ExcST7BUELselectorKind</rdfs:label>
@@ -31638,6 +31909,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics.OverexcitationLimiterDynamics" />
@@ -31700,6 +31972,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC1A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC1A.vrmin" />
@@ -31835,6 +32108,7 @@ Reference: IEEE Standard 421.5-2005 Section 6.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC2A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC2A.seve2" />
@@ -31991,6 +32265,7 @@ Reference: IEEE Standard 421.5-2005 Section 6.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC3A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC3A.seve2" />
@@ -32148,6 +32423,7 @@ Reference: IEEE Standard 421.5-2005 Section 6.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC4A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC4A.kc" />
@@ -32221,6 +32497,7 @@ Reference: IEEE Standard 421.5-2005 Section 6.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC5A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC5A.seefd2" />
@@ -32329,6 +32606,7 @@ Reference: IEEE Standard 421.5-2005 Section 6.5.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC6A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC6A.seve2" />
@@ -32492,6 +32770,7 @@ Reference: IEEE Standard 421.5-2005 Section 6.6.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC7B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC7B.seve2" />
@@ -32681,6 +32960,7 @@ Reference: IEEE Standard 421.5-2005 Section 6.6.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC8B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEAC8B.seve2" />
@@ -32817,6 +33097,7 @@ Reference: IEEE Standard 421.5-2005 Section 6.8.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEDC1A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEDC1A.exclim" />
@@ -32939,6 +33220,7 @@ Reference: IEEE Standard 421.5-2005 Section 5.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEDC2A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEDC2A.vrmin" />
@@ -33061,6 +33343,7 @@ Reference: IEEE Standard 421.5-2005 Section 5.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEDC3A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEDC3A.exclim" />
@@ -33148,6 +33431,7 @@ Reference: IEEE Standard 421.5-2005 Section 5.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEDC4B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEDC4B.uelin" />
@@ -33290,6 +33574,7 @@ Reference: IEEE Standard 421.5-2005 Section 5.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST1A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST1A.vrmin" />
@@ -33432,6 +33717,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST2A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST2A.uelin" />
@@ -33532,6 +33818,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST3A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST3A.vgmax" />
@@ -33710,6 +33997,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST4B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST4B.vbmax" />
@@ -33831,6 +34119,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST5B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST5B.tub2" />
@@ -33961,6 +34250,7 @@ Note: the block diagram in the IEEE 421.5 standard has input signal Vc and does 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST6B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST6B.vrmin" />
@@ -34068,6 +34358,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.6.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST7B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcIEEEST7B.vrmin" />
@@ -34182,6 +34473,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAC1A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAC1A.hvlvgates" />
@@ -34343,6 +34635,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAC2A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAC2A.lvgate" />
@@ -34546,6 +34839,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAC3A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAC3A.vlv" />
@@ -34735,6 +35029,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAC4A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAC4A.kc" />
@@ -34805,6 +35100,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAC5A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAC5A.a" />
@@ -34938,6 +35234,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAC6A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAC6A.seve2" />
@@ -35106,6 +35403,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAC8B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAC8B.vtmult" />
@@ -35302,6 +35600,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcANS">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcANS.tb" />
@@ -35407,6 +35706,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAVR1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAVR1.tf" />
@@ -35498,6 +35798,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAVR2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAVR2.tf2" />
@@ -35596,6 +35897,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAVR3">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAVR3.se2" />
@@ -35687,6 +35989,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAVR4">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAVR4.imul" />
@@ -35792,6 +36095,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAVR5">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAVR5.rex" />
@@ -35820,6 +36124,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcAVR7">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcAVR7.vmin5" />
@@ -35974,6 +36279,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcBBC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcBBC.switch" />
@@ -36058,6 +36364,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcCZ">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcCZ.efdmin" />
@@ -36135,6 +36442,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcDC1A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcDC1A.edfmax" />
@@ -36268,6 +36576,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcDC2A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcDC2A.vtlim" />
@@ -36401,6 +36710,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcDC3A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcDC3A.efdlim" />
@@ -36520,6 +36830,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcDC3A1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcDC3A1.vblim" />
@@ -36625,6 +36936,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcELIN1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcELIN1.smax" />
@@ -36737,6 +37049,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcELIN2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcELIN2.efdbas" />
@@ -36933,6 +37246,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcHU">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcHU.ke" />
@@ -37024,6 +37338,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcOEX3T">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcOEX3T.see2" />
@@ -37164,6 +37479,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcPIC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcPIC.kc" />
@@ -37332,6 +37648,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcREXS">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcREXS.xc" />
@@ -37591,6 +37908,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcSCRX">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcSCRX.rcrfd" />
@@ -37654,6 +37972,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcSEXS">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcSEXS.efdmax" />
@@ -37731,6 +38050,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcSK">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcSK.yp" />
@@ -37989,6 +38309,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcST1A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcST1A.xe" />
@@ -38122,6 +38443,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcST2A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcST2A.tc" />
@@ -38234,6 +38556,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcST3A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcST3A.ks1" />
@@ -38381,6 +38704,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcST4B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcST4B.lvgate" />
@@ -38521,6 +38845,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcST6B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcST6B.xc" />
@@ -38689,6 +39014,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ExcST7B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcitationSystemDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_ExcitationSystemDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ExcST7B.vrmin" />
@@ -38808,6 +39134,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#OverexcitationLimiterDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_OverexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcitationLimiterDynamics.ExcitationSystemDynamics" />
@@ -38821,6 +39148,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#OverexcLimIEEE">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_OverexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcLimIEEE.kramp" />
@@ -38872,6 +39200,7 @@ Reference: IEEE OEL 421.5-2005 Section 9.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#OverexcLim2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_OverexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcLim2.ifdlim" />
@@ -38907,6 +39236,7 @@ Reference: IEEE OEL 421.5-2005 Section 9.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#OverexcLimX1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_OverexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcLimX1.vlow" />
@@ -38984,6 +39314,7 @@ Reference: IEEE OEL 421.5-2005 Section 9.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#OverexcLimX2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_OverexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#OverexcLimX2.vlow" />
@@ -39068,6 +39399,7 @@ Reference: IEEE OEL 421.5-2005 Section 9.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#UnderexcitationLimiterDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UnderexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcitationLimiterDynamics.ExcitationSystemDynamics" />
@@ -39088,6 +39420,7 @@ Reference: IEEE OEL 421.5-2005 Section 9.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#UnderexcLimIEEE1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UnderexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcLimIEEE1.vulmin" />
@@ -39202,6 +39535,7 @@ Reference: IEEE UEL1 421.5-2005 Section 10.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#UnderexcLimIEEE2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UnderexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcLimIEEE2.k2" />
@@ -39491,6 +39825,7 @@ Reference: IEEE UEL2 421.5-2005 Section 10.2.  (Limit characteristic lookup tabl
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#UnderexcLim2Simplified">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UnderexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcLim2Simplified.vuimax" />
@@ -39548,6 +39883,7 @@ The limit characteristic (look –up table) is a single straight-line, the same 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#UnderexcLimX1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UnderexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcLimX1.k" />
@@ -39596,6 +39932,7 @@ The limit characteristic (look –up table) is a single straight-line, the same 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#UnderexcLimX2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcitationLimiterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_UnderexcitationLimiterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#UnderexcLimX2.r" />
@@ -39651,6 +39988,7 @@ The limit characteristic (look –up table) is a single straight-line, the same 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics.ExcitationSystemDynamics" />
@@ -39670,6 +40008,7 @@ The limit characteristic (look –up table) is a single straight-line, the same 
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssIEEE1A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssIEEE1A.vrmin" />
@@ -39762,6 +40101,7 @@ Reference: IEEE 1A 421.5-2005 Section 8.1.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#InputSignalKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Input signal type.  In Dynamics modelling, commonly represented by j parameter.</rdfs:comment>
         <rdfs:label xml:lang="en">InputSignalKind</rdfs:label>
@@ -39785,6 +40125,7 @@ Reference: IEEE 1A 421.5-2005 Section 8.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssIEEE2B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssIEEE2B.vstmin" />
@@ -39983,6 +40324,7 @@ Reference: IEEE 2B 421.5-2005 Section 8.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssIEEE3B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssIEEE3B.vstmin" />
@@ -40125,6 +40467,7 @@ Reference: IEEE 3B 421.5-2005 Section 8.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssIEEE4B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssIEEE4B.vstmin" />
@@ -40603,6 +40946,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Pss1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Pss1.vadat" />
@@ -40715,6 +41059,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Pss1A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Pss1A.tdelay" />
@@ -40876,6 +41221,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Pss2B">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Pss2B.tb" />
@@ -41100,6 +41446,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Pss2ST">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Pss2ST.vcl" />
@@ -41233,6 +41580,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Pss5">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Pss5.vadat" />
@@ -41359,6 +41707,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssELIN2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssELIN2.psslim" />
@@ -41443,6 +41792,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssPTIST1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssPTIST1.dtp" />
@@ -41527,6 +41877,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssPTIST3">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssPTIST3.ncr" />
@@ -41772,6 +42123,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssSB4">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssSB4.vsmin" />
@@ -41856,6 +42208,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssSH">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssSH.vsmin" />
@@ -41954,6 +42307,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssSK">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssSK.vsmin" />
@@ -42038,6 +42392,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PssWECC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PowerSystemStabilizerDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PowerSystemStabilizerDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PssWECC.vcl" />
@@ -42171,6 +42526,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#DiscontinuousExcitationControlDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_DiscontinuousExcitationControlDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics" />
@@ -42192,6 +42548,7 @@ Reference: IEEE 4B 421.5-2005 Section 8.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#DiscExcContIEEEDEC1A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DiscontinuousExcitationControlDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_DiscontinuousExcitationControlDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#DiscExcContIEEEDEC1A.vanmax" />
@@ -42327,6 +42684,7 @@ Reference: IEEE Standard 421.5-2005 Section 12.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#DiscExcContIEEEDEC2A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DiscontinuousExcitationControlDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_DiscontinuousExcitationControlDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#DiscExcContIEEEDEC2A.vdmax" />
@@ -42371,6 +42729,7 @@ Reference: IEEE Standard 421.5-2005 Section 12.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#DiscExcContIEEEDEC3A">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DiscontinuousExcitationControlDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_DiscontinuousExcitationControlDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#DiscExcContIEEEDEC3A.tdr" />
@@ -42394,6 +42753,7 @@ Reference: IEEE Standard 421.5-2005 Section 12.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType1Dynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PFVArControllerType1Dynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType1Dynamics.VoltageAdjusterDynamics" />
@@ -42421,6 +42781,7 @@ Reference: IEEE Standard 421.5-2005 Section 12.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PFVArType1IEEEPFController">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType1Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PFVArControllerType1Dynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArType1IEEEPFController.vvtmin" />
@@ -42486,6 +42847,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PFVArType1IEEEVArController">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType1Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PFVArControllerType1Dynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArType1IEEEVArController.vvtmin" />
@@ -42537,6 +42899,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#VoltageAdjusterDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_VoltageAdjusterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#VoltageAdjusterDynamics.PFVArControllerType1Dynamics" />
@@ -42550,6 +42913,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#VAdjIEEE">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#VoltageAdjusterDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_VoltageAdjusterDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#VAdjIEEE.taoff" />
@@ -42601,6 +42965,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType2Dynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PFVArControllerType2Dynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType2Dynamics.ExcitationSystemDynamics" />
@@ -42614,6 +42979,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PFVArType2IEEEPFController">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType2Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PFVArControllerType2Dynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArType2IEEEPFController.exlon" />
@@ -42672,6 +43038,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PFVArType2IEEEVArController">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType2Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PFVArControllerType2Dynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArType2IEEEVArController.exlon" />
@@ -42730,6 +43097,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.5.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PFVArType2Common1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArControllerType2Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_PFVArControllerType2Dynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PFVArType2Common1.ref" />
@@ -42772,6 +43140,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.5.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#VoltageCompensatorDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_VoltageCompensatorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#VoltageCompensatorDynamics.ExcitationSystemDynamics" />
@@ -42792,6 +43161,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.5.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#VCompIEEEType1">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#VoltageCompensatorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_VoltageCompensatorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#VCompIEEEType1.tr" />
@@ -42820,6 +43190,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.5.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#VCompIEEEType2">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#VoltageCompensatorDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_VoltageCompensatorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#VCompIEEEType2.GenICompensationForGenJ" />
@@ -42840,6 +43211,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.5.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GenICompensationForGenJ">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_VoltageCompensatorDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#GenICompensationForGenJ.xcij" />
@@ -42875,6 +43247,7 @@ Reference: IEEE Standard 421.5-2005 Section 11.5.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindAeroConstIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindAeroConstIEC.WindGenTurbineType1IEC" />
@@ -42891,6 +43264,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.1.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindAeroLinearIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindAeroLinearIEC.WindGenTurbineType3IEC" />
@@ -42942,6 +43316,7 @@ Reference: IEC Standard 614000-27-1 Section 6.6.1.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindContCurrLimIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindContCurrLimIEC.WindDynamicsLookupTable" />
@@ -43000,6 +43375,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.7.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindContPitchAngleIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindContPitchAngleIEC.WindGenTurbineType3IEC" />
@@ -43086,6 +43462,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.8.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindContPType3IEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindContPType3IEC.WindDynamicsLookupTable" />
@@ -43256,6 +43633,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindContPType4aIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindContPType4aIEC.WindTurbineType4aIEC" />
@@ -43293,6 +43671,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindContPType4bIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindContPType4bIEC.WindTurbineType4bIEC" />
@@ -43337,6 +43716,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.5.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindContQIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindContQIEC.WindTurbineType3or4IEC" />
@@ -43534,6 +43914,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.6.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindLVRTQcontrolModesKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>.</rdfs:comment>
         <rdfs:label xml:lang="en">WindLVRTQcontrolModesKind</rdfs:label>
@@ -43549,6 +43930,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.6.</rdfs:comment>
         </owl:equivalentClass>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindQcontrolModesKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>.</rdfs:comment>
         <rdfs:label xml:lang="en">WindQcontrolModesKind</rdfs:label>
@@ -43566,6 +43948,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.6.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindContRotorRIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindContRotorRIEC.WindGenTurbineType2IEC" />
@@ -43645,6 +44028,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindDynamicsLookupTable">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindDynamicsLookupTable.WindPlantFreqPcontrolIEC" />
@@ -43707,6 +44091,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.2.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindLookupTableFunctionKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Function of the lookup table.</rdfs:comment>
         <rdfs:label xml:lang="en">WindLookupTableFunctionKind</rdfs:label>
@@ -43725,6 +44110,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType1IEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType1or2IEC" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType1IEC.WindAeroConstIEC" />
@@ -43741,6 +44127,7 @@ Reference: IEC Standard 61400-27-1, section 6.5.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType2IEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType1or2IEC" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType2IEC.WindPitchContEmulIEC" />
@@ -43764,6 +44151,7 @@ Reference: IEC Standard 61400-27-1, section 6.5.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType3aIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType3IEC" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType3aIEC.tic" />
@@ -43794,6 +44182,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.3.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType3bIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType3IEC" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType3bIEC.xs" />
@@ -43838,6 +44227,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.3.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType3IEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType3or4IEC" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindGenTurbineType3IEC.WindMechIEC" />
@@ -43887,6 +44277,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.3.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindGenType4IEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType3or4IEC" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindGenType4IEC.tg" />
@@ -43924,6 +44315,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.3.4.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindMechIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindMechIEC.WindTurbineType1or2IEC" />
@@ -43982,6 +44374,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.2.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindPitchContEmulIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindPitchContEmulIEC.tpe" />
@@ -44068,6 +44461,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindPlantDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindPlantDynamics.WindTurbineType3or4Dynamics" />
@@ -44089,6 +44483,7 @@ Reference: IEC Standard 61400-27-1 Section 6.6.5.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindPlantFreqPcontrolIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindPlantFreqPcontrolIEC.WindPlantIEC" />
@@ -44182,6 +44577,7 @@ Reference: IEC Standard 61400-27-1 Annex E.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindPlantIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindPlantDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindPlantIEC.WindPlantReactiveControlIEC" />
@@ -44205,6 +44601,7 @@ Reference: IEC 61400-27-1, AnnexE.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindPlantReactiveControlIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindPlantReactiveControlIEC.xrefmin" />
@@ -44312,6 +44709,7 @@ Reference: IEC Standard 61400-27-1 Annex E.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindProtectionIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindProtectionIEC.WindTurbineType1or2IEC" />
@@ -44391,6 +44789,7 @@ Reference: IEC Standard 614000-27-1 Section 6.6.6.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindTurbineType1or2Dynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType1or2Dynamics.AsynchronousMachineDynamics" />
@@ -44412,6 +44811,7 @@ Reference: IEC Standard 614000-27-1 Section 6.6.6.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindTurbineType1or2IEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType1or2Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType1or2IEC.WindProtectionIEC" />
@@ -44435,6 +44835,7 @@ Reference: IEC Standard 614000-27-1 Section 6.6.3.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindTurbineType3or4Dynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#DynamicsFunctionBlock" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType3or4Dynamics.WindPlantDynamics" />
@@ -44463,6 +44864,7 @@ Reference: IEC Standard 614000-27-1 Section 6.6.3.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindTurbineType3or4IEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType3or4Dynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType3or4IEC.WindProtectionIEC" />
@@ -44491,6 +44893,7 @@ Reference: IEC Standard 614000-27-1 Section 6.6.3.1.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindTurbineType4aIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindGenType4IEC" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType4aIEC.WindContPType4aIEC" />
@@ -44507,6 +44910,7 @@ Reference: IEC Standard 61400-27-1, section 6.5.5.2.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#WindTurbineType4bIEC">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindGenType4IEC" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_WindDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#WindTurbineType4bIEC.WindMechIEC" />
@@ -44530,6 +44934,7 @@ Reference: IEC Standard 61400-27-1, section 6.5.5.3.</rdfs:comment>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#LoadComposite">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_LoadDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadComposite.pfrac" />
@@ -44615,6 +45020,7 @@ The dynamics of the motor are simplified by linearizing the induction machine eq
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#LoadGenericNonLinear">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_LoadDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadGenericNonLinear.bt" />
@@ -44684,6 +45090,7 @@ The dynamics of the motor are simplified by linearizing the induction machine eq
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#GenericNonLinearLoadModelKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_LoadDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Type of generic non-linear load model.</rdfs:comment>
         <rdfs:label xml:lang="en">GenericNonLinearLoadModelKind</rdfs:label>
@@ -44699,6 +45106,7 @@ The dynamics of the motor are simplified by linearizing the induction machine eq
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#LoadDynamics">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_LoadDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadDynamics.EnergyConsumer" />
@@ -44712,6 +45120,7 @@ The dynamics of the motor are simplified by linearizing the induction machine eq
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#LoadAggregate">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadDynamics" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_LoadDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadAggregate.LoadMotor" />
@@ -44733,6 +45142,7 @@ The dynamics of the motor are simplified by linearizing the induction machine eq
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#LoadStatic">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_LoadDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadStatic.kqf" />
@@ -44865,6 +45275,7 @@ The dynamics of the motor are simplified by linearizing the induction machine eq
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#StaticLoadModelKind">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_LoadDynamics" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>Type of static load model.</rdfs:comment>
         <rdfs:label xml:lang="en">StaticLoadModelKind</rdfs:label>
@@ -44882,6 +45293,7 @@ The dynamics of the motor are simplified by linearizing the induction machine eq
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#LoadMotor">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/DynamicsProfile#IdentifiedObject" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/DynamicsProfile#Package_LoadDynamics" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#LoadMotor.tbkr" />

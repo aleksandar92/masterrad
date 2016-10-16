@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace RDFSParserOWL2.Parser.Handler
 {
 	class OWLRDFXMLHandler : RDFXMLHandler
-	{
+	{ 
 
 		/// <summary>
 		/// Kolekcija za restrikcije u profilu 
@@ -68,6 +68,11 @@ namespace RDFSParserOWL2.Parser.Handler
 		}
 
 
+        public override bool IsStereotype(string qName)
+        {
+            return qName.Equals(MetaNamespace.MetaSteroe);
+        }
+
 		public override bool IsEndElement(string qName)
 		{
 			return OWL2Namespace.IsElementOWL(qName);
@@ -80,7 +85,13 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		protected override void GetType(out string type, string localName)
 		{
-			type = localName;
+            prop.TryGetValue(rdfType,out type);
+            if (string.IsNullOrEmpty(type)) 
+            {
+                type = localName;
+            }
+            //if (!prop.ContainsKey(rdfType)) 
+			
 		}
 
 
@@ -291,7 +302,7 @@ namespace RDFSParserOWL2.Parser.Handler
 							{
 								prop.Remove(OWL2Namespace.owlOnProperty);
 							}
-
+                             
 							if (cardinality.Equals(OWL2Namespace.owlMaxQualified) || cardinality.Equals(OWL2Namespace.owlMinQualified) || cardinality.Equals(OWL2Namespace.owlQualified))
 							{
 								if (prop.ContainsKey(OWL2Namespace.owlOnDataRange))
@@ -410,6 +421,17 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		protected override void PopulateClassAttribute(Class cs, string attrVal, string attr, string localName)
 		{
+            if ((attr.Equals(MetaNamespace.MetaFixed)) && (attrVal != null))
+            {
+                cs.IsFixed = attrVal;
+            }
+            else
+                if ((attr.Equals(MetaNamespace.MetaBelongs)) && (attrVal != null))
+                {
+                    cs.BelongsToCategory = attrVal;
+                    AddBelongingInformation(cs, cs.BelongsToCategory);
+                }
+            else
 			if ((attr.Equals(rdfType)) && (attrVal != null))
 			{
 				cs.Type = attrVal;
@@ -432,8 +454,32 @@ namespace RDFSParserOWL2.Parser.Handler
 		}
 
 
+        protected override void PopulateClassCategoryAttribute(ClassCategory csCat, string attrVal, string attr, string localName)
+        {
+            if ((attr.Equals(OWL2Namespace.owlNamedIndividual)) && (attrVal != null))
+            {
+                if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
+                {
+                    csCat.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
+                }
+                else
+                {
+                    csCat.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
+                }
+            }
+                else
+                {
+
+                    base.PopulateClassCategoryAttribute(csCat, attrVal, attr, localName);
+                }
+        }
+
 		protected override void PopulatePropertyAttribute(Property pr, string attrVal, string attr, string localName)
 		{
+            if ((attr.Equals(MetaNamespace.MetaFixed)) && (attrVal != null))
+            {
+                pr.IsFixed = attrVal;
+            }else
 			if ((attr.Equals(OWL2Namespace.owlDatatypeProperty) || attr.Equals(OWL2Namespace.owlObjectProperty)) && (attrVal != null))
 			{
 				if (attrVal.Contains(StringManipulationManager.SeparatorSharp))

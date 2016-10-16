@@ -872,6 +872,26 @@ namespace RDFSParserOWL2.Model
 		}
 
 
+        public void MarkBasePackages(Profile metaProfile) 
+        {
+            if (metaProfile != null ) 
+            {
+                List<ProfileElement> metaPackages = metaProfile.GetAllProfileElementsOfType(ProfileElementTypes.ClassCategory);
+                List<ProfileElement> packages=GetAllProfileElementsOfType(ProfileElementTypes.ClassCategory);
+                if (metaPackages != null && packages != null) 
+                {
+                    List<ClassCategory> categories = packages.Intersect(metaPackages,new ProfileElementComparer()).Cast<ClassCategory>().ToList();
+                    foreach(ClassCategory cat in categories) 
+                    {
+                        cat.IsBasePackage = true;
+                    }
+                
+                }
+            }
+
+        }
+
+
 		private void DifferenceBeetwenListOfEnums(ref List<EnumMember> firstList, List<EnumMember> secondList, out List<EnumMember> enumsToAdd)
 		{
 			enumsToAdd = null;

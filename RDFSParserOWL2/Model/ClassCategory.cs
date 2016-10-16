@@ -12,6 +12,7 @@ namespace RDFSParserOWL2.Model
 		protected string belongsToCategory;
 		protected List<ProfileElement> membersOfClassCategory;
 		protected ClassCategory belongsToCategoryAsObject;
+        private bool isBasePackage;
 
 
 		public ClassCategory()
@@ -102,6 +103,13 @@ namespace RDFSParserOWL2.Model
 				//  membersOfClassCategory.Sort(CIMComparer.ProfileElementComparer);
 			}
 		}
+
+        public bool IsBasePackage
+        {
+            get { return isBasePackage; }
+            set { isBasePackage = value; }
+        }
+
 	}
 }
 
