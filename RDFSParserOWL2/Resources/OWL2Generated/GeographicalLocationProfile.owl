@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.semanticweb.org/GeographicalLocationProfile#" xml:base="http://www.semanticweb.org/GeographicalLocationProfile" xmlns:gl="http://www.semanticweb.org/GeographicalLocationProfile#" xmlns:meta="http://www.semanticweb.org/meta" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/GeographicalLocationProfile">
-        <owl:imports rdf:resource="http://semantic.web.profiles/Entsoe" />
-    </owl:Ontology>
+    <owl:Ontology rdf:about="http://www.semanticweb.org/GeographicalLocationProfile" />
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#Location.CoordinateSystem">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location" />
         <rdfs:range rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem" />
@@ -18,7 +16,10 @@
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location.CoordinateSystem" />
         <meta:associationUsed>no</meta:associationUsed>
         <rdfs:comment>All locations described with position points in this coordinate system.</rdfs:comment>
+        <rdfs:comment xml:lang="sr">Sve lokacije opisane u koordinatnom sistemu</rdfs:comment>
         <rdfs:label xml:lang="en">Location</rdfs:label>
+        <rdfs:label xml:lang="sr">Lokacija</rdfs:label>
+        <rdfs:label xml:lang="usa">Location</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:ObjectProperty>
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#Location.PowerSystemResources">
@@ -57,116 +58,20 @@
         <rdfs:label xml:lang="en">Location</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:ObjectProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.baseUML">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion.baseUML" />
-    </rdf:Description>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.baseUML">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.energyIdentCodeEic">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
-        <rdfs:comment>Base UML provided by CIM model manager.</rdfs:comment>
-        <rdfs:label xml:lang="en">baseUML</rdfs:label>
+        <meta:stereotype>entsoe</meta:stereotype>
+        <rdfs:label xml:lang="en">energyIdentCodeEic</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.baseURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion.baseURI" />
-    </rdf:Description>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.baseURI">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion" />
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.shortName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
-        <rdfs:comment>Profile URI used in the Model Exchange header and defined in IEC standards.  It uniquely identifies the Profile and its version. It is given for information only and to identify the closest IEC profile to which this CGMES profile is based on.</rdfs:comment>
-        <rdfs:label xml:lang="en">baseURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.date">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion.date" />
-    </rdf:Description>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.date">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
-        <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
-        <rdfs:comment>Profile creation date
-Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comment>
-        <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.differenceModelURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion.differenceModelURI" />
-    </rdf:Description>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.differenceModelURI">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-        <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
-        <rdfs:comment>Difference model URI defined by IEC 61970-552.</rdfs:comment>
-        <rdfs:label xml:lang="en">differenceModelURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.entsoeUML">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion.entsoeUML" />
-    </rdf:Description>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.entsoeUML">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-        <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
-        <rdfs:comment>UML provided by ENTSO-E.</rdfs:comment>
-        <rdfs:label xml:lang="en">entsoeUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.entsoeURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion.entsoeURI" />
-    </rdf:Description>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.entsoeURI">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-        <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
-        <rdfs:comment>Profile URI defined by ENTSO-E and used in the Model Exchange header.  It uniquely identifies the Profile and its version. The last two elements in the URI (http://entsoe.eu/CIM/GeographicalLocation/yy/zzz) indicate major and minor versions where: 
-- yy - indicates a major version;
-- zzz - indicates a minor version.</rdfs:comment>
-        <rdfs:label xml:lang="en">entsoeURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.modelDescriptionURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion.modelDescriptionURI" />
-    </rdf:Description>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.modelDescriptionURI">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-        <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
-        <rdfs:comment>Model Description URI defined by IEC 61970-552.</rdfs:comment>
-        <rdfs:label xml:lang="en">modelDescriptionURI</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.namespaceRDF">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion.namespaceRDF" />
-    </rdf:Description>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.namespaceRDF">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-        <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
-        <rdfs:comment>RDF namespace.</rdfs:comment>
-        <rdfs:label xml:lang="en">namespaceRDF</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.namespaceUML">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion.namespaceUML" />
-    </rdf:Description>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.namespaceUML">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-        <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
-        <rdfs:comment>CIM UML namespace.</rdfs:comment>
-        <rdfs:label xml:lang="en">namespaceUML</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.shortName">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion.shortName" />
-    </rdf:Description>
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.shortName">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion" />
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-        <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
-        <rdfs:comment>The short name of the profile used in profile documentation.</rdfs:comment>
+        <meta:stereotype>entsoe</meta:stereotype>
+        <rdfs:comment>The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.</rdfs:comment>
         <rdfs:label xml:lang="en">shortName</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:DatatypeProperty>
@@ -175,8 +80,8 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:comment>A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.PositionPoints'.
-An example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc:def:uom:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry web site http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:uom:EPSG::4236.
-A profile should limit this code to a set of allowed URNs agreed to by all sending and receiving parties.</rdfs:comment>
+			An example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc:def:uom:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry web site http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:uom:EPSG::4236.
+			A profile should limit this code to a set of allowed URNs agreed to by all sending and receiving parties.</rdfs:comment>
         <rdfs:label xml:lang="en">crsUrn</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:DatatypeProperty>
@@ -217,7 +122,7 @@ A profile should limit this code to a set of allowed URNs agreed to by all sendi
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
         <rdfs:comment>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID.  The use of UUID is strongly recommended.
-For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</rdfs:comment>
+			For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</rdfs:comment>
         <rdfs:label xml:lang="en">mRID</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:DatatypeProperty>
@@ -229,85 +134,61 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
         <rdfs:label xml:lang="en">name</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion">
-        <owl:equivalentClass rdf:resource="http://semantic.web.profiles/Entsoe#GeographicalLocationVersion" />
-    </rdf:Description>
-    <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.shortName" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.namespaceUML" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.namespaceRDF" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.modelDescriptionURI" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.entsoeURI" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.entsoeUML" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.differenceModelURI" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.date" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.baseURI" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#GeographicalLocationVersion.baseUML" />
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <meta:stereotype>entsoe</meta:stereotype>
-        <rdfs:comment>Version details.</rdfs:comment>
-        <rdfs:label xml:lang="en">GeographicalLocationVersion</rdfs:label>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.p">
+        <rdfs:comment>Pico 10**-12.</rdfs:comment>
+        <rdfs:label xml:lang="en">p</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
-    </owl:Class>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.n">
+        <rdfs:comment>Nano 10**-9.</rdfs:comment>
+        <rdfs:label xml:lang="en">n</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.micro">
+        <rdfs:comment>Micro 10**-6.</rdfs:comment>
+        <rdfs:label xml:lang="en">micro</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.m">
+        <rdfs:comment>Milli 10**-3.</rdfs:comment>
+        <rdfs:label xml:lang="en">m</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.c">
+        <rdfs:comment>Centi 10**-2.</rdfs:comment>
+        <rdfs:label xml:lang="en">c</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.d">
+        <rdfs:comment>Deci 10**-1.</rdfs:comment>
+        <rdfs:label xml:lang="en">d</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.k">
+        <rdfs:comment>Kilo 10**3.</rdfs:comment>
+        <rdfs:label xml:lang="en">k</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.M">
+        <rdfs:comment>Mega 10**6.</rdfs:comment>
+        <rdfs:label xml:lang="en">M</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.G">
+        <rdfs:comment>Giga 10**9.</rdfs:comment>
+        <rdfs:label xml:lang="en">G</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.T">
+        <rdfs:comment>Tera 10**12.</rdfs:comment>
+        <rdfs:label xml:lang="en">T</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.none">
+        <rdfs:comment>No multiplier or equivalently multiply by 1.</rdfs:comment>
+        <rdfs:label xml:lang="en">none</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:NamedIndividual>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
         <rdfs:subClassOf>
@@ -325,7 +206,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
         </rdfs:subClassOf>
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#concrete</meta:stereotype>
         <rdfs:comment>Coordinate reference system.</rdfs:comment>
-        <rdfs:label xml:lang="en">CoordinateSystem</rdfs:label>
+        <rdfs:label>CoordinateSystem</rdfs:label>
+        <rdfs:label xml:lang="de">CoordinateSystem</rdfs:label>
+        <rdfs:label xml:lang="sr">CoordinateSystem</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#Location">
@@ -400,6 +283,20 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject">
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.shortName" />
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.energyIdentCodeEic" />
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.name" />
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -428,5 +325,28 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
         <rdfs:comment>A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.</rdfs:comment>
         <rdfs:label xml:lang="en">PowerSystemResource</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+    </owl:Class>
+    <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier">
+        <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
+        <rdfs:comment>The unit multipliers defined for the CIM.</rdfs:comment>
+        <rdfs:label xml:lang="en">UnitMultiplier</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.p" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.n" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.micro" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.m" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.c" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.d" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.k" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.M" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.G" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.T" />
+                    <rdf:Description rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#UnitMultiplier.none" />
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
     </owl:Class>
 </rdf:RDF>
