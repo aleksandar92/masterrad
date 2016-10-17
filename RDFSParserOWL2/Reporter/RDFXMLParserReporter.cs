@@ -72,6 +72,9 @@ namespace RDFSParserOWL2.Reporter
 					case EntityTypesReporter.Unknown:
 						sb.AppendLine(String.Format("Total number of parsed unknown entities:{0}", EntityCountByType(type)));
 						break;
+					case EntityTypesReporter.BlankId:
+						sb.AppendLine(String.Format("Total number of parsed  entities with blank ids:{0}", EntityCountByType(type)));
+						break;
 				}
 			}
 			sb.AppendLine("-----------------------------------------");
@@ -83,11 +86,14 @@ namespace RDFSParserOWL2.Reporter
 			get 
 			{
 				int count = 0;
+				int numberOfBlankIDs;
+				reporterMap.TryGetValue(EntityTypesReporter.BlankId,out numberOfBlankIDs);
 
 				foreach(int value in reporterMap.Values) 
 				{
 					count += value;
 				}
+				count -= numberOfBlankIDs;
 
 				return count;
 			}

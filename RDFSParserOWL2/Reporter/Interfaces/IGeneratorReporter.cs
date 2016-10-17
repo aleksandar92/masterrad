@@ -13,7 +13,8 @@ namespace RDFSParserOWL2.Reporter.Interfaces
 		ObjectProperty,
 		NamedIndividual,
 		NotGenerated,
-		ClassCategory
+		ClassCategory,
+		BlankId
 	}
 
 

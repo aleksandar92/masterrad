@@ -24,11 +24,14 @@ namespace RDFSParserOWL2.Reporter
 			get
 			{
 				int count = 0;
+				int numberOfBlankIDs;
+				reporterMap.TryGetValue(EntityTypesGeneratorReporter.BlankId, out numberOfBlankIDs);
 
 				foreach (int value in reporterMap.Values)
 				{
 					count += value;
 				}
+				count -= numberOfBlankIDs;
 
 				return count;
 			}
@@ -83,6 +86,9 @@ namespace RDFSParserOWL2.Reporter
 						break;
 					case EntityTypesGeneratorReporter.NotGenerated:
 						sb.AppendLine(String.Format("Total number of entities not generated:{0}", EntityCountByType(type)));
+						break;
+					case EntityTypesGeneratorReporter.BlankId:
+						sb.AppendLine(String.Format("Total number of entities with blank ids:{0}", EntityCountByType(type)));
 						break;
 				}
 			}

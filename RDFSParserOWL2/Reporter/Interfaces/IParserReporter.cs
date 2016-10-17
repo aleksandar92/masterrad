@@ -13,6 +13,7 @@ namespace RDFSParserOWL2.Reporter.Interfaces
         ClassCategory,
         Property,
         EnumMembers,
+		BlankId,
         Unknown
 
     }

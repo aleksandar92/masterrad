@@ -69,30 +69,16 @@ namespace RDFSParserOWL2.Model
 		protected string type;
 		//// created from shema
 
-        private string isFixed;
-
-
-		
+        protected string isFixed;
 		protected List<ComplexTag> labels;
-
 		protected List<ComplexTag> comments;
-
-
 		/// <summary>
 		/// used for generating owl profile to idnicate if element is not going to be generated
 		/// </summary>
 		private bool isNotToBeGenerated;
 
-
-		//protected string label;
-		//protected ComplexTag label;
-		//protected ComplexTag comment;
-
-		//protected Dictionary<string,string> label;
-		//protected Dictionary<string,string> comment;
-
-
 		protected string multiplicityAsString = "M:0..1";
+
 
 		public ProfileElement()
 		{
@@ -109,8 +95,12 @@ namespace RDFSParserOWL2.Model
 			this.uri = uri;
 			labels = new List<ComplexTag>();
 			comments = new List<ComplexTag>();
-			//label = new ComplexTag();
-			//comment = new ComplexTag();
+		}
+
+
+		public bool IsBlankNode() 
+		{
+			return uri.StartsWith(StringManipulationManager.SeparatorBlankNode);
 		}
 
 		/// <summary>
@@ -338,7 +328,6 @@ namespace RDFSParserOWL2.Model
             else if (card != null && card.Equals(OWL2Namespace.Qualified))
 				result = OWL2Namespace.multiplcityNs + "1..1";
             return result;
-
         }
 
 

@@ -302,7 +302,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Common" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Package_Common" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem.Location" />
@@ -323,7 +323,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#Location">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Common" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Package_Common" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Location.PositionPoints" />
@@ -351,7 +351,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint">
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Common" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Package_Common" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint.zPosition" />
@@ -393,7 +393,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject">
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Core" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject.name" />
@@ -414,7 +414,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/GeographicalLocationProfile#PowerSystemResource">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#IdentifiedObject" />
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Core" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PowerSystemResource.Location" />

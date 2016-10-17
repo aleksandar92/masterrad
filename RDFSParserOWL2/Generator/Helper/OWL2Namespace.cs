@@ -21,6 +21,7 @@ namespace RDFSParserOWL2.Generator.Helper
         public static string rdfsComment = "comment";
         public static string rdfsLabel = "label";
         public static string rdfsSubclasOf = "subClassOf";
+		public static string NodeId = "nodeID";
 
         public static string owlPrefix = "owl";
         public static string DatatypeProperty = "DatatypeProperty";

@@ -403,15 +403,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		{
 			if ((attr.Equals(OWL2Namespace.owlNamedIndividual)) && (attrVal != null))
 			{
-				if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
-				{
-					em.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
-				}
-				else
-				{
-					em.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
-				}
-
+				PopulateUri(em,attrVal);
 			}
 			else
 			{
@@ -438,14 +430,7 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 			else if ((attr.Equals(OWL2Namespace.owlClass)) && (attrVal != null))
 			{
-				if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
-				{
-					cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
-				}
-				else
-				{
-					cs.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
-				}
+				PopulateUri(cs, attrVal);
 			}
 			else
 			{
@@ -458,14 +443,7 @@ namespace RDFSParserOWL2.Parser.Handler
         {
             if ((attr.Equals(OWL2Namespace.owlNamedIndividual)) && (attrVal != null))
             {
-                if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
-                {
-                    csCat.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
-                }
-                else
-                {
-                    csCat.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
-                }
+				PopulateUri(csCat, attrVal);
             }
                 else
                 {
@@ -482,14 +460,7 @@ namespace RDFSParserOWL2.Parser.Handler
             }else
 			if ((attr.Equals(OWL2Namespace.owlDatatypeProperty) || attr.Equals(OWL2Namespace.owlObjectProperty)) && (attrVal != null))
 			{
-				if (attrVal.Contains(StringManipulationManager.SeparatorSharp))
-				{
-					pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
-				}
-				else
-				{
-					pr.URI = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorBlankNode);
-				}
+				PopulateUri(pr, attrVal);
 
 			}
 			else if ((attr.Equals(rdfType)) && (attrVal != null))
@@ -600,6 +571,7 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 			return result;
 		}
+
 
 		private void ConvertCardinality()
 		{

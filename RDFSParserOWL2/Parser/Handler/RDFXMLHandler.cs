@@ -356,6 +356,24 @@ namespace RDFSParserOWL2.Parser.Handler
 			}
 		}
 
+
+		protected void PopulateUri(ProfileElement pe,string uriValue) 
+		{
+			if (pe != null)
+			{
+				if (uriValue.Contains(StringManipulationManager.SeparatorSharp))
+				{
+					pe.URI = StringManipulationManager.ExtractAllWithSeparator(uriValue, StringManipulationManager.SeparatorSharp);
+				}
+
+				else if (StringManipulationManager.IsBlankNode(uriValue))
+				{
+					reporter.AddtoEntityCountByType(EntityTypesReporter.BlankId, 1);
+					pe.URI = StringManipulationManager.ExtractAllWithSeparator(uriValue, StringManipulationManager.SeparatorBlankNode);
+				}
+			}
+		}
+
 		public abstract void EndDocument();
 
 		#region Helper methods
@@ -539,7 +557,6 @@ namespace RDFSParserOWL2.Parser.Handler
 			PopulateClassAttributes(cs, localName);
 			PopulateStereotypes(cs);
 			ProccessCommentsAndLabels(cs);
-
 		}
 
 		protected virtual void PopulateStereotypes(Class cs)

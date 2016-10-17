@@ -48,7 +48,7 @@ namespace RDFSParserOWL2.Manager
 			/// <summary>
 			/// blank node id  "_:" characters
 			/// </summary>
-			public const string SeparatorBlankNode = "_:";
+			public const string SeparatorBlankNode = "_:b";
 
 			/// <summary>
 			/// Method extracts the shortest fullName for given full fullName and separator string.
@@ -65,9 +65,15 @@ namespace RDFSParserOWL2.Manager
 					if (index > -1)
 					{
 						extarcted = extarcted.Substring(index + 1);
-					}
+					} 
 				}
 				return extarcted;
+			}
+
+
+			public static bool IsBlankNode(string id)
+			{
+				return id.StartsWith(SeparatorBlankNode);
 			}
 
 			/// <summary>
