@@ -76,7 +76,7 @@ namespace RDFSParserOWL2
 			sw.Start();
 			string report;
 			
-			GeneratorSettings ge = new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim());
+			GeneratorSettings ge = new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim(),txtMetaURI.Text.Trim());
 			if (ge.CheckValidity(out report))
 			{
 				ConvertFiles(filesForParsing, ge);
@@ -177,7 +177,7 @@ namespace RDFSParserOWL2
 			Stopwatch sw = new Stopwatch();
 			sw.Start();
 			string report;
-			GeneratorSettings ge = new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim());
+			GeneratorSettings ge = new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim(),txtMetaURI.Text.Trim());
 			if (ge.CheckValidity(out report))
 			{
 				ConvertFiles(SelectedItemsToList(), ge);
@@ -205,6 +205,7 @@ namespace RDFSParserOWL2
 			return result;
 		}
 
+
 		private void Init()
 		{
 			lbFilesParsing.ItemsSource = filesForParsing;
@@ -218,11 +219,11 @@ namespace RDFSParserOWL2
 			txtExtOnt.IsEnabled = false;
 			txtRoofOntNS.Text = BaseURI("base");
 			txtRoofOntNS.IsEnabled = false;
+			txtMetaURI.Text = BaseURI("meta");
 		}
 
 		private string BaseURI(string pfx)
 		{
-
 			Namespace n = predefinedNamespace.Where(x => !string.IsNullOrEmpty(x.Prefix) && x.Prefix.Equals(pfx)).SingleOrDefault();
 			return n != null ? n.Value : "";
 		}

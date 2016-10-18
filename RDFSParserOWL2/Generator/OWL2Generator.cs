@@ -172,6 +172,15 @@ namespace RDFSParserOWL2.Generator
 		{
 			if (defaultNamespaces != null && ge != null)
 			{
+				if (!string.IsNullOrEmpty(ge.MetaURI))
+				{
+					Namespace n = defaultNamespaces.Where(x => !string.IsNullOrEmpty(x.Prefix) && x.Prefix.Equals("meta")).SingleOrDefault();
+					if (n != null)
+					{
+						n.Value = ge.MetaURI;
+					}
+				}
+
 				if (isOWl == true && ge.IsSpecialOntology && !string.IsNullOrEmpty(ge.ExtractionOntologyNS))
 				{
 					string ns = String.Format("{0}", ge.ExtractionOntologyNS);
@@ -294,7 +303,7 @@ namespace RDFSParserOWL2.Generator
 		{
 			if (!StringManipulationManager.IsBlankNode(uri))
 			{
-				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, startingTag, null, baseAdress + uri);
+				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, startingTag, null, baseURI + uri);
 			}
 			else
 			{
@@ -448,6 +457,7 @@ namespace RDFSParserOWL2.Generator
 						//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + cls.SubClassOfAsObject.URI);
 						writer.WriteEndElement();
 					}
+
 
 					if (!string.IsNullOrEmpty(cls.BelongsToCategory) && cls.BelongsToCategoryAsObject != null)
 					{
@@ -794,7 +804,6 @@ namespace RDFSParserOWL2.Generator
 				writer.WriteAttributeString(n.Ns, n.Prefix, null, n.Value);
 			}
 		}
-
 
 		private void GenerateImports(XmlWriter writer)
 		{

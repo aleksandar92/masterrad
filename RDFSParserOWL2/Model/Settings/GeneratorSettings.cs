@@ -21,6 +21,8 @@ namespace RDFSParserOWL2.Model.Settings
 		private string roofOntologyNS;
 		private bool isEnumMembersInstances;
 		private string defaultNamespace;
+		private string metaURI;
+
 
 
 
@@ -29,7 +31,7 @@ namespace RDFSParserOWL2.Model.Settings
 
         #region CONSTRUCTORS
 
-        public GeneratorSettings(bool isROnt,bool isSpeOnt,string naOfOnt,string roofOnt,string ext,string roofOntNS,bool isEnumMemInstance,string defaultNS) 
+        public GeneratorSettings(bool isROnt,bool isSpeOnt,string naOfOnt,string roofOnt,string ext,string roofOntNS,bool isEnumMemInstance,string defaultNS,string mURI) 
         {
             isSpecialOntology = isSpeOnt;
             isRoofOntology = isROnt;
@@ -39,6 +41,8 @@ namespace RDFSParserOWL2.Model.Settings
 			roofOntologyNS = roofOntNS;
 			isEnumMembersInstances = isEnumMemInstance;
 			defaultNamespace = defaultNS;
+			metaURI = mURI;
+
         }
 
         public GeneratorSettings() 
@@ -97,6 +101,11 @@ namespace RDFSParserOWL2.Model.Settings
 			set { defaultNamespace = value; }
 		}
 
+		public string MetaURI
+		{
+			get { return metaURI; }
+			set { metaURI = value; }
+		}
 
 
 
@@ -126,10 +135,11 @@ namespace RDFSParserOWL2.Model.Settings
 				result = false;
 			}
 
-
-
-
-
+			//if (!string.IsNullOrEmpty(metaURI) && !StringManipulationManager.IsValidURI(roofOntologyNS)) 
+			//{
+			//	sb.Append("Meta ontology base URI " + roofOntologyNS + "   is not valid");
+			//	result = false;
+			//}
 
 			report = sb.ToString();
 			return result;

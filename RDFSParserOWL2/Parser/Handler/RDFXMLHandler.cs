@@ -392,13 +392,20 @@ namespace RDFSParserOWL2.Parser.Handler
 				elementsOfSameType = new List<ProfileElement>();
 			}
 			allByType.Remove(tp);
-			HashSet<ProfileElement> hsElementsOfSameType = new HashSet<ProfileElement>(elementsOfSameType);
-			if (!hsElementsOfSameType.Contains(el, new ProfileElementComparer()))
-			{
-				hsElementsOfSameType.Add(el);
-			}
+			//allByType.Remove(tp);
+			//HashSet<ProfileElement> hsElementsOfSameType = new HashSet<ProfileElement>(elementsOfSameType);
+			//if (!hsElementsOfSameType.Contains(el, new ProfileElementComparer()))
+			//{
+			//	hsElementsOfSameType.Add(el);
+			//}
+			elementsOfSameType.Add(el);
+			//HashSet<ProfileElement> hsElementsOfSameType = new HashSet<ProfileElement>(elementsOfSameType);
+			//if (!hsElementsOfSameType.Contains(el, new ProfileElementComparer()))
+			//{
+			//	hsElementsOfSameType.Add(el);
+			//}
 			//elementsOfSameType.Add(el);
-			allByType.Add(tp, hsElementsOfSameType.ToList());
+			allByType.Add(tp, elementsOfSameType.ToList());
 		}
 
 

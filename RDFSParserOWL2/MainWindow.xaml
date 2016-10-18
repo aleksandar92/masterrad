@@ -21,19 +21,21 @@
         <Button Content="Remove selected" Grid.Column="1" HorizontalAlignment="Left" Margin="262,160,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_2" Height="20"/>
         <Button Content="Remove all" Grid.Column="1" HorizontalAlignment="Left" Margin="262,199,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_3" Height="20"/>
         <Button Content="Convert selected" Grid.Column="1" HorizontalAlignment="Left" Margin="262,88,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_4" Height="20"/>
-        <Label Content="Name of the extracted ontology:" HorizontalAlignment="Left" Margin="15,484,0,0" VerticalAlignment="Top" Height="37" Width="206"/>
-        <TextBox x:Name="txtOntology" HorizontalAlignment="Left" Height="48" Margin="241,473,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <Label Content="Name of the roof ontology:" HorizontalAlignment="Left" Margin="18,685,0,0" VerticalAlignment="Top" Height="34" Width="185" RenderTransformOrigin="0.475,2.826"/>
-        <TextBox x:Name="txtRoofOntology" HorizontalAlignment="Left" Height="48" Margin="241,671,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <CheckBox Unchecked="cbOntology_Checked" x:Name="cbOntology" Content="Extract ontology" HorizontalAlignment="Left" Margin="279,489,0,0" VerticalAlignment="Top" Checked="cbOntology_Checked" Height="13" Width="149" Grid.Column="1"/>
-        <CheckBox x:Name="cbRoofOntology" Content="Roof ontology " HorizontalAlignment="Left" Margin="279,690,0,0" VerticalAlignment="Top" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked" Height="13" Width="103" Grid.Column="1"/>
-        <Label Content="Extracted ontology base URI:" HorizontalAlignment="Left" Margin="20,585,0,0" VerticalAlignment="Top" Width="183" Height="23"/>
-        <TextBox x:Name="txtExtOnt" HorizontalAlignment="Left" Height="48" Margin="241,585,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <Label Content="Roof ontology base URI" HorizontalAlignment="Left" Margin="20,810,0,0" VerticalAlignment="Top" Height="23" Width="136"/>
-        <TextBox HorizontalAlignment="Left" Height="48" Margin="241,797,0,0" TextWrapping="Wrap" x:Name="txtRoofOntNS" VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <Label Content="Base URI for generated files" HorizontalAlignment="Left" Margin="20,390,0,0" VerticalAlignment="Top" Width="161"/>
-        <TextBox Name="txtNS"  HorizontalAlignment="Left" Height="48" Margin="241,377,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
+        <Label Content="Name of the extracted ontology:" HorizontalAlignment="Left" Margin="15,437,0,0" VerticalAlignment="Top" Height="37" Width="206"/>
+        <TextBox x:Name="txtOntology" HorizontalAlignment="Left" Height="48" Margin="241,426,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
+        <Label Content="Name of the roof ontology:" HorizontalAlignment="Left" Margin="18,591,0,0" VerticalAlignment="Top" Height="34" Width="185" RenderTransformOrigin="0.475,2.826"/>
+        <TextBox x:Name="txtRoofOntology" HorizontalAlignment="Left" Height="48" Margin="241,577,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
+        <CheckBox Unchecked="cbOntology_Checked" x:Name="cbOntology" Content="Extract ontology" HorizontalAlignment="Left" Margin="279,442,0,0" VerticalAlignment="Top" Checked="cbOntology_Checked" Height="13" Width="149" Grid.Column="1"/>
+        <CheckBox x:Name="cbRoofOntology" Content="Roof ontology " HorizontalAlignment="Left" Margin="279,596,0,0" VerticalAlignment="Top" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked" Height="13" Width="103" Grid.Column="1"/>
+        <Label Content="Extracted ontology base URI:" HorizontalAlignment="Left" Margin="20,491,0,0" VerticalAlignment="Top" Width="183" Height="23"/>
+        <TextBox x:Name="txtExtOnt" HorizontalAlignment="Left" Height="48" Margin="241,491,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
+        <Label Content="Roof ontology base URI:" HorizontalAlignment="Left" Margin="20,676,0,0" VerticalAlignment="Top" Height="23" Width="136"/>
+        <TextBox HorizontalAlignment="Left" Height="48" Margin="241,663,0,0" TextWrapping="Wrap" x:Name="txtRoofOntNS" VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
+        <Label Content="Base URI for generated files:" HorizontalAlignment="Left" Margin="20,343,0,0" VerticalAlignment="Top" Width="161"/>
+        <TextBox Name="txtNS"  HorizontalAlignment="Left" Height="48" Margin="241,330,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
         <RadioButton GroupName="enums" Name="rbEnumClosed" Content="Enumerations as closed" Grid.Column="1" HorizontalAlignment="Left" Margin="402,95,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <RadioButton GroupName="enums" Name="rbEnumOpened" Content="Enumerations as opened" Grid.Column="1" HorizontalAlignment="Left" Margin="402,123,0,0" VerticalAlignment="Top"/>
+        <Label Content="Meta ontology base URI:" HorizontalAlignment="Left" Margin="20,758,0,0" VerticalAlignment="Top" Width="161"/>
+        <TextBox HorizontalAlignment="Left" Height="48" Margin="241,745,0,0" TextWrapping="Wrap" Name="txtMetaURI" VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
