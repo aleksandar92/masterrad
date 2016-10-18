@@ -172,16 +172,16 @@ namespace RDFSParserOWL2.Model
 		/// </summary>
 		public int NumberOfNotGenerated
 		{
-			get 
+			get
 			{
 				List<ProfileElement> elements = new List<ProfileElement>();
 				List<ProfileElement> helpColection = null;
-				profileMap.TryGetValue(ProfileElementTypes.Property,out helpColection);
+				profileMap.TryGetValue(ProfileElementTypes.Property, out helpColection);
 				elements.AddRange(helpColection);
 				helpColection = null;
 				profileMap.TryGetValue(ProfileElementTypes.Class, out helpColection);
 				elements.AddRange(helpColection);
-				return elements.Where(x => x.IsNotToBeGenerated).Count()+UnkownElementsCount;			
+				return elements.Where(x => x.IsNotToBeGenerated).Count() + UnkownElementsCount;
 			}
 			//get { return numberOfNotGenerated; }
 			//set { numberOfNotGenerated = value; }
@@ -230,7 +230,7 @@ namespace RDFSParserOWL2.Model
 		}
 
 
-		public int ElementsBlankNodeCount 
+		public int ElementsBlankNodeCount
 		{
 			get
 			{
@@ -243,13 +243,13 @@ namespace RDFSParserOWL2.Model
 						profileMap.TryGetValue(pet, out elements);
 						if (elements != null)
 						{
-							count += elements.Where(x=>x.URI.Contains(StringManipulationManager.SeparatorBlankNode)).Count();
+							count += elements.Where(x => x.URI.Contains(StringManipulationManager.SeparatorBlankNode)).Count();
 						}
 					}
 				}
 				return count;
 			}
-		} 
+		}
 
 		/// <summary>
 		/// Gets the number of all ProfileElementTypes.Class in this profile.
@@ -402,7 +402,7 @@ namespace RDFSParserOWL2.Model
 
 		//		if (profileMap != null)
 		//		{
-					
+
 		//			//List<ProfileElement> elements = null;
 		//			//profileMap.TryGetValue(ProfileElementTypes.Unknown, out elements);
 		//			//if (elements != null)
@@ -443,7 +443,7 @@ namespace RDFSParserOWL2.Model
 
 		//public int ElementsWithoutType() 
 		//{
-		
+
 		//} 
 
 		/// <summary>
@@ -482,7 +482,7 @@ namespace RDFSParserOWL2.Model
 				//		count = elements.Count;
 				//	}
 				//}
-				return UnkownElementsCount+NumberOfNotGenerated;
+				return UnkownElementsCount + NumberOfNotGenerated;
 			}
 		}
 
@@ -573,7 +573,7 @@ namespace RDFSParserOWL2.Model
 					{
 						properties = properties.Where(x => x.HasStereotype(s)).ToList();
 						count = properties.Count;
-						foreach(Property p in properties) 
+						foreach (Property p in properties)
 						{
 							p.IsNotToBeGenerated = true;
 						}
@@ -607,7 +607,7 @@ namespace RDFSParserOWL2.Model
 		}
 
 
-	
+
 
 		private int MarkClassesWithStereotypes(List<string> stereotypes)
 		{
@@ -872,24 +872,24 @@ namespace RDFSParserOWL2.Model
 		}
 
 
-        public void MarkBasePackages(Profile metaProfile) 
-        {
-            if (metaProfile != null ) 
-            {
-                List<ProfileElement> metaPackages = metaProfile.GetAllProfileElementsOfType(ProfileElementTypes.ClassCategory);
-                List<ProfileElement> packages=GetAllProfileElementsOfType(ProfileElementTypes.ClassCategory);
-                if (metaPackages != null && packages != null) 
-                {
-                    List<ClassCategory> categories = packages.Intersect(metaPackages,new ProfileElementComparer()).Cast<ClassCategory>().ToList();
-                    foreach(ClassCategory cat in categories) 
-                    {
-                        cat.IsBasePackage = true;
-                    }
-                
-                }
-            }
+		public void MarkBasePackages(Profile metaProfile)
+		{
+			if (metaProfile != null)
+			{
+				List<ProfileElement> metaPackages = metaProfile.GetAllProfileElementsOfType(ProfileElementTypes.ClassCategory);
+				List<ProfileElement> packages = GetAllProfileElementsOfType(ProfileElementTypes.ClassCategory);
+				if (metaPackages != null && packages != null)
+				{
+					List<ClassCategory> categories = packages.Intersect(metaPackages, new ProfileElementComparer()).Cast<ClassCategory>().ToList();
+					foreach (ClassCategory cat in categories)
+					{
+						cat.IsBasePackage = true;
+					}
 
-        }
+				}
+			}
+
+		}
 
 
 		private void DifferenceBeetwenListOfEnums(ref List<EnumMember> firstList, List<EnumMember> secondList, out List<EnumMember> enumsToAdd)
@@ -1222,10 +1222,13 @@ namespace RDFSParserOWL2.Model
 
 				else if (classes == null)
 				{
-					foreach (Property p in properties)
+					if (properties != null)
 					{
-						p.DomainAsObject = null;
-						p.RangeAsObject = null;
+						foreach (Property p in properties)
+						{
+							p.DomainAsObject = null;
+							p.RangeAsObject = null;
+						}
 					}
 
 				}
@@ -1265,11 +1268,13 @@ namespace RDFSParserOWL2.Model
 
 				else if (classes == null)
 				{
-					foreach (Property p in properties)
+					if (properties != null )
 					{
-						p.DomainAsObject = null;
+						foreach (Property p in properties)
+						{
+							p.DomainAsObject = null;
+						}
 					}
-
 				}
 
 			}
@@ -1287,7 +1292,7 @@ namespace RDFSParserOWL2.Model
 			{
 				MarkClassesWithStereotypes(stereotypes);
 				MarkPropertiesWithStereotypes(stereotypes);
-			
+
 			}
 		}
 

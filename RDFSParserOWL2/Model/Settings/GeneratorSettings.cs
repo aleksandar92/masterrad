@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RDFSParserOWL2.Manager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -97,6 +98,44 @@ namespace RDFSParserOWL2.Model.Settings
 		}
 
 
+
+
+
         #endregion
-    }
+
+		#region HELPERS
+		public bool CheckValidity(out string report) 
+		{
+			bool result = true;
+			StringBuilder sb = new StringBuilder();
+			if(!StringManipulationManager.IsValidURI(defaultNamespace)) 
+			{
+				sb.Append("Base URI "+defaultNamespace+"  for generated files is not valid");
+				result = false;
+			}
+
+			if(!StringManipulationManager.IsValidURI(extractionOntologyNS) && isSpecialOntology) 
+			{
+				sb.Append("Extracted ontology base URI " + extractionOntologyNS + "   is not valid");
+				result = false;
+			}
+
+			if (!StringManipulationManager.IsValidURI(roofOntologyNS) && isRoofOntology)
+			{
+				sb.Append("Roof ontology base URI " + roofOntologyNS + "   is not valid");
+				result = false;
+			}
+
+
+
+
+
+
+			report = sb.ToString();
+			return result;
+		
+		} 
+
+		#endregion
+	}
 }

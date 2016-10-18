@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
+using RDFSParserOWL2.Common;
 using RDFSParserOWL2.Converter;
 using RDFSParserOWL2.Generator;
+using RDFSParserOWL2.Generator.Helper;
 using RDFSParserOWL2.Model;
 using RDFSParserOWL2.Model.Settings;
 using RDFSParserOWL2.Parser;
@@ -32,6 +34,7 @@ namespace RDFSParserOWL2
 	{
 
 		private ObservableCollection<string> filesForParsing;
+		private List<Namespace> predefinedNamespace;
 
 
 
@@ -44,17 +47,18 @@ namespace RDFSParserOWL2
 		public MainWindow()
 		{
 			filesForParsing = new ObservableCollection<string>();
+			predefinedNamespace = InputOutput.LoadPredefinedNamespaces();
 			InitializeComponent();
-			Init();			
+			Init();
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			OpenFileDialog openFileDialog = new OpenFileDialog();
 			openFileDialog.Multiselect = true;
-			if (openFileDialog.ShowDialog() == true) 
+			if (openFileDialog.ShowDialog() == true)
 			{
-				foreach(string file in openFileDialog.FileNames) 
+				foreach (string file in openFileDialog.FileNames)
 				{
 					if (!filesForParsing.Contains(file.Trim()))
 					{
@@ -62,7 +66,7 @@ namespace RDFSParserOWL2
 					}
 				}
 				//txtFile.Text = openFileDialog.FileName;
-			}		
+			}
 		}
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -70,26 +74,48 @@ namespace RDFSParserOWL2
 
 			Stopwatch sw = new Stopwatch();
 			sw.Start();
-			ConvertFiles(filesForParsing);
+			string report;
+			
+			GeneratorSettings ge = new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim());
+			if (ge.CheckValidity(out report))
+			{
+				ConvertFiles(filesForParsing, ge);
+			}
+			else 
+			{
+				sw.Stop();
+				MessageBox.Show(report);
+				return;
+			}
+			
 			sw.Stop();
-			string message = String.Format("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno.Vreme izvrsavanja je:{0}",sw.Elapsed);
+			string message = String.Format("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno.Vreme izvrsavanja je:{0}", sw.Elapsed);
 			MessageBox.Show(message);
 		}
 
 
-		private void ConvertFiles(ObservableCollection<string> fileNames) 
+		private void ConvertFiles(ObservableCollection<string> fileNames, GeneratorSettings ge)
 		{
-			if (fileNames != null && fileNames.Count>0 )
+
+			//bool result = true;
+			if (fileNames != null && fileNames.Count > 0)
 			{
-				
-				//foreach(string fileName in fileNames) 
-				//{
-					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileNames.ToList(), new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(),(bool)rbEnumOpened.IsChecked,txtNS.Text.Trim()));
+
+				foreach (string fileName in fileNames)
+				{
+
+
+					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileNames.ToList(), ge);
 					converter.Convert();
-				//}
+
+				}
 			}
+
+
 		}
-		
+
+
+
 		private void cbOntology_Checked(object sender, RoutedEventArgs e)
 		{
 			if (cbOntology.IsChecked == true)
@@ -97,7 +123,7 @@ namespace RDFSParserOWL2
 				txtOntology.IsEnabled = true;
 				txtExtOnt.IsEnabled = true;
 			}
-			else 
+			else
 			{
 				txtOntology.IsEnabled = false;
 				txtExtOnt.IsEnabled = false;
@@ -110,8 +136,8 @@ namespace RDFSParserOWL2
 			{
 				txtRoofOntology.IsEnabled = true;
 				txtRoofOntNS.IsEnabled = true;
-			//	txtExtOnt.IsEnabled = true;
-				
+				//	txtExtOnt.IsEnabled = true;
+
 			}
 			else
 			{
@@ -128,7 +154,7 @@ namespace RDFSParserOWL2
 
 			ObservableCollection<string> listSelected = SelectedItemsToList();
 
-			foreach(string s in listSelected) 
+			foreach (string s in listSelected)
 			{
 				filesForParsing.Remove(s.Trim());
 			}
@@ -136,7 +162,7 @@ namespace RDFSParserOWL2
 			//filesForParsing = new ObservableCollection<string>((filesForParsing.ToList().Except(listSelected)));
 			//filesForParsing.ToList();
 
-			
+
 			//filesForParsing =(ObservableCollection<string>) filesForParsing.Except(itemsToRemove);
 			//filesForParsing.Except(); 
 		}
@@ -150,13 +176,25 @@ namespace RDFSParserOWL2
 		{
 			Stopwatch sw = new Stopwatch();
 			sw.Start();
-			ConvertFiles(SelectedItemsToList());
+			string report;
+			GeneratorSettings ge = new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim());
+			if (ge.CheckValidity(out report))
+			{
+				ConvertFiles(SelectedItemsToList(), ge);
+			}
+			else 
+			{
+				sw.Stop();
+				MessageBox.Show(report);
+				return;
+			}
+			
 			sw.Stop();
 			string message = String.Format("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno.Vreme izvrsavanja je:{0} ", sw.Elapsed);
 			MessageBox.Show(message);
 		}
 
-		private ObservableCollection<string> SelectedItemsToList() 
+		private ObservableCollection<string> SelectedItemsToList()
 		{
 			ObservableCollection<string> result = new ObservableCollection<string>();
 			foreach (string s in lbFilesParsing.SelectedItems)
@@ -167,14 +205,26 @@ namespace RDFSParserOWL2
 			return result;
 		}
 
-		private void Init() 
+		private void Init()
 		{
 			lbFilesParsing.ItemsSource = filesForParsing;
 			lbFilesParsing.SelectionMode = SelectionMode.Multiple;
+
 			txtOntology.IsEnabled = false;
+			txtNS.Text = BaseURI("base");
+			//txtOntology.Text = BaseURI("base");   
 			txtRoofOntology.IsEnabled = false;
+			txtExtOnt.Text = BaseURI("base");
 			txtExtOnt.IsEnabled = false;
+			txtRoofOntNS.Text = BaseURI("base");
 			txtRoofOntNS.IsEnabled = false;
+		}
+
+		private string BaseURI(string pfx)
+		{
+
+			Namespace n = predefinedNamespace.Where(x => !string.IsNullOrEmpty(x.Prefix) && x.Prefix.Equals(pfx)).SingleOrDefault();
+			return n != null ? n.Value : "";
 		}
 	}
 }

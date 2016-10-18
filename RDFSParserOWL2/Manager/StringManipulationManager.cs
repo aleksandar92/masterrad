@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace RDFSParserOWL2.Manager
@@ -70,6 +71,19 @@ namespace RDFSParserOWL2.Manager
 				return extarcted;
 			}
 
+
+
+			public static bool IsValidURI(string uri) 
+			{
+				string pattern = @"^http://[0-9a-zA-Z_-]*[.]{1}[0-9a-zA-Z._-]*/$";
+				Regex reg = new Regex(pattern);
+				if (reg.IsMatch(uri))
+				{
+					return true;
+				}
+
+				return false;
+			}
 
 			public static bool IsBlankNode(string id)
 			{
