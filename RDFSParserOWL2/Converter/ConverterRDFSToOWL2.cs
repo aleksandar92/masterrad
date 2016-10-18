@@ -5,6 +5,7 @@ using RDFSParserOWL2.Model.Settings;
 using RDFSParserOWL2.Parser;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,6 +84,8 @@ namespace RDFSParserOWL2.Converter
 
 				foreach(string path in paths) 
 				{
+					Stopwatch sw = new Stopwatch();
+					sw.Start();
 					rdfsParser = new RDFSXMLParser(path);
 					rdfsParser.ParseProfile();
 					Profile profile = rdfsParser.Profile;
@@ -91,7 +94,7 @@ namespace RDFSParserOWL2.Converter
                     profile.MarkBasePackages(metaProfile);
 					generator = new OWL2Generator(profile, ge);
 					generator.GenerateProfile();
-					InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName + DateTime.Now.Ticks), rdfsParser.Reporter.GenerateReport()+generator.Reporter.GenerateReport());	
+					
 
 					if (ge.IsSpecialOntology)
 					{
@@ -104,6 +107,9 @@ namespace RDFSParserOWL2.Converter
 							//generator.GenerateProfile();
 						}
 					}
+					sw.Stop();
+					string timeOfParsing = String.Format("\nSveukupno vreme:{0}",sw.Elapsed);
+					InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName + DateTime.Now.Ticks), rdfsParser.Reporter.GenerateReport() + generator.Reporter.GenerateReport()+timeOfParsing);	
 				}
 
 				if (entsoProfile != null) 

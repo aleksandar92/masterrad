@@ -560,7 +560,7 @@ namespace RDFSParserOWL2.Model
 		}
 
 
-		public void RemoveDuplicates()
+				public void RemoveDuplicates() 
 		{
 			foreach (ProfileElementTypes pet in Enum.GetValues(typeof(ProfileElementTypes)))
 			{

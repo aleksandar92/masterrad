@@ -100,15 +100,8 @@ namespace RDFSParserOWL2
 			//bool result = true;
 			if (fileNames != null && fileNames.Count > 0)
 			{
-
-				foreach (string fileName in fileNames)
-				{
-
-
 					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileNames.ToList(), ge);
 					converter.Convert();
-
-				}
 			}
 
 
