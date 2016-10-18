@@ -458,6 +458,7 @@ namespace RDFSParserOWL2.Parser.Handler
 			if (profile != null && profile.ProfileMap != null)
 			{
 				List<ProfileElement> moveFromUnknownToEnumElement = new List<ProfileElement>();
+				Profile.RemoveDuplicates();
 				foreach (ProfileElementTypes type in profile.ProfileMap.Keys)
 				{
 					switch (type)

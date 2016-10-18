@@ -560,6 +560,18 @@ namespace RDFSParserOWL2.Model
 		}
 
 
+		public void RemoveDuplicates()
+		{
+			foreach (ProfileElementTypes pet in Enum.GetValues(typeof(ProfileElementTypes)))
+			{
+				List<ProfileElement> heleprCollection = null;
+				profileMap.TryGetValue(pet, out heleprCollection);
+				if (heleprCollection != null)
+					profileMap[pet] = new List<ProfileElement>(new HashSet<ProfileElement>(heleprCollection, new ProfileElementComparer()));
+			}
+		}
+
+
 		private int MarkPropertiesWithStereotypes(List<string> stereotypes)
 		{
 			List<Property> properties = null;
