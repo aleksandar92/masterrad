@@ -1,41 +1,116 @@
 ﻿<Window x:Class="RDFSParserOWL2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Generator" Height="900" Width="1500">
+        Title="Generator" SizeToContent="WidthAndHeight" MaxHeight="768" MaxWidth="1025"   Height="Auto" Width="Auto">
 
-    <Grid Margin="0,0,-489,-151">
+    <Grid Margin="30,0,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="0*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="742*"/>
-            <ColumnDefinition Width="563*"/>
-            <ColumnDefinition Width="676*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+
         </Grid.ColumnDefinitions>
-        <Label Content="Files for converting:" HorizontalAlignment="Left" Margin="18,181,0,0" VerticalAlignment="Top" Height="38" Width="185"/>
-        <Label HorizontalAlignment="Left" Margin="211,250,0,0" VerticalAlignment="Top" Height="10" Width="10"/>
-        <ListBox Name="lbFilesParsing" ScrollViewer.HorizontalScrollBarVisibility="Auto"  ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Height="259" Margin="241,53,0,0" VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnImport"  Content="Browse" HorizontalAlignment="Left" Margin="262,53,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click" RenderTransformOrigin="0.093,2.25" Height="20" Grid.Column="1"/>
-        <Button Content="Convert all" HorizontalAlignment="Left" Margin="262,123,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_1" Height="20" Grid.Column="1"/>
-        <Button Content="Remove selected" Grid.Column="1" HorizontalAlignment="Left" Margin="262,160,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_2" Height="20"/>
-        <Button Content="Remove all" Grid.Column="1" HorizontalAlignment="Left" Margin="262,199,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_3" Height="20"/>
-        <Button Content="Convert selected" Grid.Column="1" HorizontalAlignment="Left" Margin="262,88,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_4" Height="20"/>
-        <Label Content="Name of the extracted ontology:" HorizontalAlignment="Left" Margin="15,437,0,0" VerticalAlignment="Top" Height="37" Width="206"/>
-        <TextBox x:Name="txtOntology" HorizontalAlignment="Left" Height="48" Margin="241,426,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <Label Content="Name of the roof ontology:" HorizontalAlignment="Left" Margin="18,591,0,0" VerticalAlignment="Top" Height="34" Width="185" RenderTransformOrigin="0.475,2.826"/>
-        <TextBox x:Name="txtRoofOntology" HorizontalAlignment="Left" Height="48" Margin="241,577,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <CheckBox Unchecked="cbOntology_Checked" x:Name="cbOntology" Content="Extract ontology" HorizontalAlignment="Left" Margin="279,442,0,0" VerticalAlignment="Top" Checked="cbOntology_Checked" Height="13" Width="149" Grid.Column="1"/>
-        <CheckBox x:Name="cbRoofOntology" Content="Roof ontology " HorizontalAlignment="Left" Margin="279,596,0,0" VerticalAlignment="Top" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked" Height="13" Width="103" Grid.Column="1"/>
-        <Label Content="Extracted ontology base URI:" HorizontalAlignment="Left" Margin="20,491,0,0" VerticalAlignment="Top" Width="183" Height="23"/>
-        <TextBox x:Name="txtExtOnt" HorizontalAlignment="Left" Height="48" Margin="241,491,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <Label Content="Roof ontology base URI:" HorizontalAlignment="Left" Margin="20,676,0,0" VerticalAlignment="Top" Height="23" Width="136"/>
-        <TextBox HorizontalAlignment="Left" Height="48" Margin="241,663,0,0" TextWrapping="Wrap" x:Name="txtRoofOntNS" VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <Label Content="Base URI for generated files:" HorizontalAlignment="Left" Margin="20,343,0,0" VerticalAlignment="Top" Width="161"/>
-        <TextBox Name="txtNS"  HorizontalAlignment="Left" Height="48" Margin="241,330,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
-        <RadioButton GroupName="enums" Name="rbEnumClosed" Content="Enumerations as closed" Grid.Column="1" HorizontalAlignment="Left" Margin="402,95,0,0" VerticalAlignment="Top" IsChecked="True"/>
-        <RadioButton GroupName="enums" Name="rbEnumOpened" Content="Enumerations as opened" Grid.Column="1" HorizontalAlignment="Left" Margin="402,123,0,0" VerticalAlignment="Top"/>
-        <Label Content="Meta ontology base URI:" HorizontalAlignment="Left" Margin="20,758,0,0" VerticalAlignment="Top" Width="161"/>
-        <TextBox HorizontalAlignment="Left" Height="48" Margin="241,745,0,0" TextWrapping="Wrap" Name="txtMetaURI" VerticalAlignment="Top" Width="735" Grid.ColumnSpan="2"/>
+
+
+        <Grid Grid.Row="0" Grid.Column="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Files for converting:" HorizontalAlignment="Left" Margin="20,72,0,588"  />
+        </Grid>
+
+
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition MinWidth="150" SharedSizeGroup="Button"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition  SharedSizeGroup="Button"/>
+            </Grid.RowDefinitions>
+
+            <ListBox Name="lbFilesParsing"  Grid.Row="0" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxWidth="500" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" MinHeight="200"  VerticalAlignment="Top" MinWidth="500" Grid.ColumnSpan="1" Margin="20,10,0,0"/>
+            <Button x:Name="btnImport" Grid.Row="0" Grid.Column="1"  Content="Browse" HorizontalAlignment="Left"   VerticalAlignment="Top"  Click="Button_Click" RenderTransformOrigin="0.093,2.25" Margin="25,10,0,0" Width="88" />
+            <Button Content="Convert all" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="Button_Click_1" Height="20" Margin="25,45,0,0" Width="88" />
+            <Button Content="Remove selected" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="Button_Click_2"  Margin="25,132,0,0"/>
+            <Button Content="Remove all" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="25,172,0,0" VerticalAlignment="Top"  Click="Button_Click_3" Width="88" />
+            <Button Content="Convert selected" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="25,89,0,0" VerticalAlignment="Top"  Click="Button_Click_4" />
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" Margin="0,-425">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Base URI for generated files:" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="20,10,0,-10"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Name of the extension ontology:" HorizontalAlignment="Left"   VerticalAlignment="Top" Margin="20,10,0,-10"  />
+            <Label Grid.Row="2" Grid.Column="0" Content="Extension ontology base URI:" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="20,10,0,-10"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Name of the common ontology:" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="20,10,0,-100" />
+            <Label Grid.Row="4" Grid.Column="0"  Content="Common ontology base URI:" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="20,10,0,-10"  />
+            <Label Grid.Row="5" Grid.Column="0"  Content="Meta ontology base URI:" HorizontalAlignment="Left" Margin="20,10,0,-10" VerticalAlignment="Top" />
+            <RadioButton Grid.Row="6" Grid.Column="0" GroupName="enums" Name="rbEnumClosed" Content="Enumerations as closed"  HorizontalAlignment="Left"  VerticalAlignment="Top" IsChecked="True" Margin="20,10,0,0"/>
+            <RadioButton Grid.Row="6" Grid.Column="0" GroupName="enums" Name="rbEnumOpened" Content="Enumerations as opened"  HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="20,37,0,0"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="0,258,0,-425" Grid.RowSpan="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox MinWidth="500" MinHeight="35" Grid.Row="0" Grid.Column="0" MaxWidth="500"  Name="txtNS"  HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Top" Margin="20,5,0,-5"  />
+            <TextBox MinWidth="500" Grid.Row="1" Grid.Column="0" x:Name="txtOntology" MaxWidth="500" HorizontalAlignment="Left" MinHeight="35"  TextWrapping="Wrap"  VerticalAlignment="Top" Margin="20,5,0,-5"  />
+            <CheckBox Unchecked="cbOntology_Checked" Grid.Row="1" Grid.Column="0"  x:Name="cbOntology" Content="Extension ontology?" HorizontalAlignment="Left"  VerticalAlignment="Top" Checked="cbOntology_Checked"  Margin="550,10,-140,0" />
+            <CheckBox x:Name="cbRoofOntology" Grid.Row="3" Grid.Column="0"  Content="Core ontology? " HorizontalAlignment="Left"  VerticalAlignment="Top" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked" Margin="550,18,-118,0" />
+            <TextBox MinWidth="500" MinHeight="35" Grid.Row="2" Grid.Column="0" MaxWidth="500"  x:Name="txtExtOnt" HorizontalAlignment="Left"  Margin="20,5,0,-5" TextWrapping="Wrap"  VerticalAlignment="Top" />
+            <TextBox MinWidth="500" MinHeight="35" Grid.Row="3" Grid.Column="0" MaxWidth="500"  x:Name="txtRoofOntology" HorizontalAlignment="Left"  Margin="20,5,0,-5" TextWrapping="Wrap"  VerticalAlignment="Top" />
+            <TextBox  MinWidth="500" MinHeight="35" Grid.Row="4" Grid.Column="0" MaxWidth="500" HorizontalAlignment="Left"  TextWrapping="Wrap" x:Name="txtRoofOntNS"  Margin="20,5,0,-5" VerticalAlignment="Top" />
+            <TextBox MinWidth="500" MinHeight="35" HorizontalAlignment="Left" MaxWidth="500" Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" Name="txtMetaURI" VerticalAlignment="Top" Margin="20,5,0,-5" />
+        </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </Grid>
+
 </Window>
