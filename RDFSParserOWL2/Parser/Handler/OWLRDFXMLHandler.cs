@@ -1,4 +1,4 @@
-﻿using RDFSParserOWL2.Generator.Helper;
+﻿  using RDFSParserOWL2.Generator.Helper;
 using RDFSParserOWL2.Manager;
 using RDFSParserOWL2.Model;
 using RDFSParserOWL2.Reporter;
@@ -413,6 +413,7 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		protected override void PopulateClassAttribute(Class cs, string attrVal, string attr, string localName)
 		{
+            
             if ((attr.Equals(MetaNamespace.MetaFixed)) && (attrVal != null))
             {
                 cs.IsFixed = attrVal;

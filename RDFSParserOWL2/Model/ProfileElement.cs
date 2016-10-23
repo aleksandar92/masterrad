@@ -68,6 +68,8 @@ namespace RDFSParserOWL2.Model
 		protected string uri;
 		protected string type;
 		//// created from shema
+        private bool isBlankNode;
+
 
         protected string isFixed;
 		protected List<ComplexTag> labels;
@@ -95,13 +97,15 @@ namespace RDFSParserOWL2.Model
 			this.uri = uri;
 			labels = new List<ComplexTag>();
 			comments = new List<ComplexTag>();
+            isBlankNode = false;
 		}
 
 
-		public bool IsBlankNode() 
-		{
-			return uri.StartsWith(StringManipulationManager.SeparatorBlankNode);
-		}
+        public bool IsBlankNode
+        {
+            get { return isBlankNode; }
+            set { isBlankNode = value; }
+        }
 
 		/// <summary>
 		/// Gets and sets the full URI of profile element.

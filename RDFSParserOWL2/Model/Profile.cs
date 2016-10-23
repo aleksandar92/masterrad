@@ -883,6 +883,27 @@ namespace RDFSParserOWL2.Model
 			}
 		}
 
+        public void PopulateClassCategoryReferences(Profile metaProfile) 
+        {
+            List<Class> classes = GetAllProfileElementsOfType(ProfileElementTypes.Class).Cast<Class>().ToList();
+            List<ProfileElement> metaPackages = metaProfile.GetAllProfileElementsOfType(ProfileElementTypes.ClassCategory);
+            foreach(Class c in classes) 
+            {
+                if (c.BelongsToCategoryAsObject == null) 
+                {
+                    ProfileElement pe=metaPackages.Where(x=>x.URI.Equals(c.BelongsToCategory)).SingleOrDefault();
+                    if (pe != null) 
+                    {
+                        ClassCategory cc = pe as ClassCategory;
+                        cc.IsBasePackage = true;
+                        c.BelongsToCategoryAsObject = cc;
+                    }
+
+
+                }
+            }
+
+        }
 
 		public void MarkBasePackages(Profile metaProfile)
 		{

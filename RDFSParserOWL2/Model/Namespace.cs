@@ -13,10 +13,12 @@ namespace RDFSParserOWL2.Model
 		private bool isToBeGenerated;
 		private bool isToBeRelative;
 		private bool isToBeDefault;
+        private bool isNotToBeWritten;
+
 		private string prefix;
 		private string ns;
 
-		public Namespace(string value,bool generate,bool relative,bool def,string ns,string prefix) 
+		public Namespace(string value,bool generate,bool relative,bool def,string ns,string prefix,bool isNotToBeWr) 
 		{
 			this.Value = value;
 			this.IsToBeGenerated = generate;
@@ -24,6 +26,7 @@ namespace RDFSParserOWL2.Model
 			this.IsToBeDefault = def;
 			this.ns = ns;
 			this.prefix = prefix;
+            this.isNotToBeWritten = isNotToBeWr;
 		}
 
 		public Namespace(string value,string prefix) 
@@ -31,6 +34,13 @@ namespace RDFSParserOWL2.Model
 			this.Value = value;
 			this.Prefix = prefix;
 		}
+
+
+        public bool IsNotToBeWritten
+        {
+            get { return isNotToBeWritten; }
+            set { isNotToBeWritten = value; }
+        }
 
 		public void GenerateNamespace(string def,string localName) 
 		{

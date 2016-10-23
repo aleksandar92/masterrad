@@ -18,6 +18,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected const string rdfAbout = "rdf:about";
 		protected const string rdfResource = "rdf:resource";
 		protected const string rdfParseType = "rdf:parseType";
+        protected const string rdfNodeId = "rdf:nodeID"; 
 
 		protected const string rdfProfileElement = "rdf:Description";
 		protected const string rdfPropertyElement = "rdf:Property";
@@ -31,6 +32,8 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected const string rdfsSubClassOf = "rdfs:subClassOf";
 
 		private IParserReporter reporter;
+
+        protected bool isBlankNode;
 
 		protected const string cimsStereotype = "cims:stereotype";
 
@@ -135,8 +138,14 @@ namespace RDFSParserOWL2.Parser.Handler
 				string ls;
 				prop.TryGetValue(qName, out ls);
 
+                if (atts.ContainsKey(rdfNodeId)) 
+                {
+                    isBlankNode = true;
+                }
+
 				foreach (KeyValuePair<string, string> at in atts)
 				{
+
 					if (ls != null)
 					{
 						int i = 0;
@@ -178,6 +187,10 @@ namespace RDFSParserOWL2.Parser.Handler
 					string type;
 					GetType(out type, localName);
 
+                    if (isBlankNode) 
+                    {
+                        reporter.AddtoEntityCountByType(EntityTypesReporter.BlankId,1);
+                    }
 					//if (ExtractSimpleNameFromResourceURI(type) == "ClassCategory")
 					//{
 					//	//ClassCategory cs = new ClassCategory();
@@ -234,6 +247,7 @@ namespace RDFSParserOWL2.Parser.Handler
 						reporter.AddtoEntityCountByType(EntityTypesReporter.Unknown, 1);
 					}
 
+                    isBlankNode = false;
 					prop.Clear();
 					values.Clear();
 					stereotypes.Clear();
@@ -361,16 +375,17 @@ namespace RDFSParserOWL2.Parser.Handler
 		{
 			if (pe != null)
 			{
-				if (uriValue.Contains(StringManipulationManager.SeparatorSharp))
-				{
+                //if (uriValue.Contains(StringManipulationManager.SeparatorSharp))
+                //{
 					pe.URI = StringManipulationManager.ExtractAllWithSeparator(uriValue, StringManipulationManager.SeparatorSharp);
-				}
+                //    isBlankNode = true;
+                //}
 
-				else if (StringManipulationManager.IsBlankNode(uriValue))
-				{
-					reporter.AddtoEntityCountByType(EntityTypesReporter.BlankId, 1);
-					pe.URI = StringManipulationManager.ExtractAllWithSeparator(uriValue, StringManipulationManager.SeparatorBlankNode);
-				}
+                //else if (StringManipulationManager.IsBlankNode(uriValue))
+                //{
+                //    reporter.AddtoEntityCountByType(EntityTypesReporter.BlankId, 1);
+                //    pe.URI = StringManipulationManager.ExtractAllWithSeparator(uriValue, StringManipulationManager.SeparatorBlankNode);
+                //}
 			}
 		}
 
@@ -550,6 +565,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		{
 
 			Class cs = new Class();
+            
 			OperationsForPopulatingClass(cs, localName);
 			AddProfileElement(ProfileElementTypes.Class, cs);
 
@@ -594,6 +610,7 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		protected virtual void PopulateClassCategoryAttributes(ClassCategory csCat,string localName)
 		{
+            csCat.IsBlankNode = isBlankNode;
 			foreach (KeyValuePair<string, string> pp in prop)
 			{
 				//string str = pp.Value;
@@ -626,6 +643,7 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		protected virtual void PopulateClassAttributes(Class cs, string localName)
 		{
+            cs.IsBlankNode = isBlankNode;
 			foreach (KeyValuePair<string, string> pp in prop)
 			{
 				//string str = pp.Value;
@@ -645,6 +663,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected virtual void PopulateProperty(string localName)
 		{
 			Property pr = new Property();
+            pr.IsBlankNode = isBlankNode;
 			foreach (KeyValuePair<string, string> pp in prop)
 			{
 				//string str = pp.Value;
@@ -672,6 +691,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected virtual void PopulateEnumMember(string localName)
 		{
 			EnumMember en = new EnumMember();
+            en.IsBlankNode = isBlankNode;
 			foreach (KeyValuePair<string, string> pp in prop)
 			{
 				string str = pp.Value;

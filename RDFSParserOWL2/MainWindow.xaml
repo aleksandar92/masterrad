@@ -38,7 +38,9 @@
                 <RowDefinition  SharedSizeGroup="Button"/>
             </Grid.RowDefinitions>
 
-            <ListBox Name="lbFilesParsing"  Grid.Row="0" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxWidth="500" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" MinHeight="200"  VerticalAlignment="Top" MinWidth="500" Grid.ColumnSpan="1" Margin="20,10,0,0"/>
+
+            <ListBox  Name="lbFilesParsing"   Grid.Row="0" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxWidth="500" MinWidth="500" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" MinHeight="200"  VerticalAlignment="Top"  Grid.ColumnSpan="1" Margin="55,10,0,0">
+            </ListBox>
             <Button x:Name="btnImport" Grid.Row="0" Grid.Column="1"  Content="Browse" HorizontalAlignment="Left"   VerticalAlignment="Top"  Click="Button_Click" RenderTransformOrigin="0.093,2.25" Margin="25,10,0,0" Width="88" />
             <Button Content="Convert all" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="Button_Click_1" Height="20" Margin="25,45,0,0" Width="88" />
             <Button Content="Remove selected" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="Button_Click_2"  Margin="25,132,0,0"/>
@@ -46,7 +48,108 @@
             <Button Content="Convert selected" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="25,89,0,0" VerticalAlignment="Top"  Click="Button_Click_4" />
         </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="0" Margin="0,-425">
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,-425">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+
+            <GroupBox Height="Auto" Width="Auto"  Header="Generated ontology settings" HorizontalAlignment="Left" Margin="0,-35,-28,0" Grid.Row="0" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Base URI for generated files:" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="0,10,0,0"/>
+                    <TextBox MinWidth="500" MinHeight="35" Grid.Row="0" Grid.Column="0" MaxWidth="500"  Name="txtNS"  HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Top" Margin="184,7,0,0"  />
+                    <Label Grid.Row="1" Grid.Column="0"  Content="Meta ontology base URI:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <TextBox MinWidth="500" MinHeight="35" HorizontalAlignment="Left" MaxWidth="500" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Name="txtMetaURI" Margin="184,7,0,0" VerticalAlignment="Top" />
+                </Grid>
+
+
+            </GroupBox>
+
+
+
+            <GroupBox Height="Auto" Width="Auto"  Header="Extension ontology settings" HorizontalAlignment="Left" Margin="0,10,-28,0" Grid.Row="1" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Grid.Row="0" Grid.Column="0"  Unchecked="cbOntology_Checked" MinWidth="30" MinHeight="30" Margin="0,10,0,0"   x:Name="cbOntology" Content="Extension ontology?" HorizontalAlignment="Left"  VerticalAlignment="Top" Checked="cbOntology_Checked"   />
+                    <Label Grid.Row="1" Grid.Column="0" Content="Name of the extension ontology:" HorizontalAlignment="Left"   VerticalAlignment="Top"  />
+                    <TextBox MinWidth="500" Grid.Row="1" Grid.Column="1" x:Name="txtOntology" MaxWidth="500" HorizontalAlignment="Left" MinHeight="35"  TextWrapping="Wrap"  VerticalAlignment="Top"   />
+                    <Label Grid.Row="2" Grid.Column="0" Content="Extension ontology base URI:" HorizontalAlignment="Left"  VerticalAlignment="Top"  />
+                    <TextBox Grid.Row="2" Grid.Column="1" MinWidth="500" MinHeight="35"  MaxWidth="500"  x:Name="txtExtOnt" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Top" Margin="0,5,0,0" />
+                </Grid>
+
+
+            </GroupBox>
+
+
+            <GroupBox Height="Auto" Width="Auto"  Header="Common ontology settings" HorizontalAlignment="Left" Margin="0,10,-28,0" Grid.Row="2" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="cbRoofOntology" Grid.Row="0" Grid.Column="0"  Content="Common ontology? " HorizontalAlignment="Left"  VerticalAlignment="Top" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked" Margin="0,10,0,0" />
+                    <Label Grid.Row="1" Grid.Column="0" Content="Name of the common ontology:" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,10,0,0" />
+                    <TextBox MinWidth="500" MinHeight="35" Grid.Row="1" Grid.Column="1" MaxWidth="500"  x:Name="txtRoofOntology" HorizontalAlignment="Left"  Margin="0,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" />
+                    <Label Grid.Row="2" Grid.Column="0"  Content="Common ontology base URI:" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="0,10,0,0"  />
+                    <TextBox  MinWidth="500" MinHeight="35" Grid.Row="2" Grid.Column="1" MaxWidth="500" HorizontalAlignment="Left"  TextWrapping="Wrap" x:Name="txtRoofOntNS"  Margin="0,5,0,0" VerticalAlignment="Top" />
+                </Grid>
+
+
+            </GroupBox>
+
+            <GroupBox Height="Auto" Width="Auto"  Header="Enumeration ontology settings" HorizontalAlignment="Left" Margin="0,10,-28,0" Grid.Row="3" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Grid.Row="0" Grid.Column="0" GroupName="enums" Name="rbEnumClosed" Content="Enumerations as closed"  HorizontalAlignment="Left"  VerticalAlignment="Top" IsChecked="True" Margin="20,5,30,0"/>
+                    <RadioButton Grid.Row="1" Grid.Column="0" GroupName="enums" Name="rbEnumOpened" Content="Enumerations as opened"  HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="20,5,30,0"/>
+                </Grid>
+
+
+            </GroupBox>
+
+        </Grid>
+        <!--<Grid Grid.Row="1" Grid.Column="0" Margin="0,-425">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
@@ -87,29 +190,12 @@
             <TextBox MinWidth="500" MinHeight="35" Grid.Row="0" Grid.Column="0" MaxWidth="500"  Name="txtNS"  HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Top" Margin="20,5,0,-5"  />
             <TextBox MinWidth="500" Grid.Row="1" Grid.Column="0" x:Name="txtOntology" MaxWidth="500" HorizontalAlignment="Left" MinHeight="35"  TextWrapping="Wrap"  VerticalAlignment="Top" Margin="20,5,0,-5"  />
             <CheckBox Unchecked="cbOntology_Checked" Grid.Row="1" Grid.Column="0"  x:Name="cbOntology" Content="Extension ontology?" HorizontalAlignment="Left"  VerticalAlignment="Top" Checked="cbOntology_Checked"  Margin="550,10,-140,0" />
-            <CheckBox x:Name="cbRoofOntology" Grid.Row="3" Grid.Column="0"  Content="Core ontology? " HorizontalAlignment="Left"  VerticalAlignment="Top" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked" Margin="550,18,-118,0" />
+            <CheckBox x:Name="cbRoofOntology" Grid.Row="3" Grid.Column="0"  Content="Common ontology? " HorizontalAlignment="Left"  VerticalAlignment="Top" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked" Margin="550,18,-118,0" />
             <TextBox MinWidth="500" MinHeight="35" Grid.Row="2" Grid.Column="0" MaxWidth="500"  x:Name="txtExtOnt" HorizontalAlignment="Left"  Margin="20,5,0,-5" TextWrapping="Wrap"  VerticalAlignment="Top" />
             <TextBox MinWidth="500" MinHeight="35" Grid.Row="3" Grid.Column="0" MaxWidth="500"  x:Name="txtRoofOntology" HorizontalAlignment="Left"  Margin="20,5,0,-5" TextWrapping="Wrap"  VerticalAlignment="Top" />
             <TextBox  MinWidth="500" MinHeight="35" Grid.Row="4" Grid.Column="0" MaxWidth="500" HorizontalAlignment="Left"  TextWrapping="Wrap" x:Name="txtRoofOntNS"  Margin="20,5,0,-5" VerticalAlignment="Top" />
             <TextBox MinWidth="500" MinHeight="35" HorizontalAlignment="Left" MaxWidth="500" Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" Name="txtMetaURI" VerticalAlignment="Top" Margin="20,5,0,-5" />
-        </Grid>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </Grid>-->
 
     </Grid>
 

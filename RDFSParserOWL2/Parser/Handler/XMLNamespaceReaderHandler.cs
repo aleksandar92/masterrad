@@ -19,6 +19,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		private bool def;
 		private string ns;
 		private string prefix;
+        private bool written;
 
 		public List<Namespace> Namespaces
 		{
@@ -52,7 +53,10 @@ namespace RDFSParserOWL2.Parser.Handler
 				}else if(kv.Key.Equals("prefix")) 
 				{
 					prefix = kv.Value.Trim();
-				}
+				}else if(kv.Key.Equals("notwritten")) 
+                {
+                    written = Boolean.Parse(kv.Value.Trim());
+                }
 			}
 		}
 
@@ -60,7 +64,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		{
 			if (localName.Equals("namespace")) 
 			{
-				namespaces.Add(new Namespace(value,generated,relative,def,ns,prefix));
+				namespaces.Add(new Namespace(value,generated,relative,def,ns,prefix,written));
 				//namespaces.Add(id,new Namespace(value,generated,relative,def));
 			}
 			id = string.Empty;
@@ -70,6 +74,7 @@ namespace RDFSParserOWL2.Parser.Handler
 			def = false;
 			prefix = string.Empty;
 			ns = string.Empty;
+            written = false;
 		}
 
 		public void StartPrefixMapping(string prefix, string uri)

@@ -128,7 +128,7 @@ namespace RDFSParserOWL2.Parser
             else 
 			if ((attr.Equals(cimsBelongsToCategory)) && (attrVal != null))
 			{
-				cs.BelongsToCategory = attrVal;
+				cs.BelongsToCategory = StringManipulationManager.ExtractAllWithSeparator(attrVal,StringManipulationManager.SeparatorSharp).Trim();
 				AddBelongingInformation(cs, cs.BelongsToCategory);
 			}
 			else if ((attr.Equals(cimsMultiplicity)) && (attrVal != null))

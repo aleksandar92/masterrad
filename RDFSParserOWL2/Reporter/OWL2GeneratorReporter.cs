@@ -68,24 +68,25 @@ namespace RDFSParserOWL2.Reporter
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("----------OWL2 Generator report----------");
 			sb.AppendLine(String.Format("Total number of  entities:{0}", EntityCount));
+            sb.AppendLine("Total number per type:");
 			foreach (EntityTypesGeneratorReporter type in Enum.GetValues(typeof(EntityTypesGeneratorReporter)))
 			{
 				switch (type)
 				{
 					case EntityTypesGeneratorReporter.Class:
-						sb.AppendLine(String.Format("Total number of generated classes:{0}", EntityCountByType(type)));
+						sb.AppendLine(String.Format("\t\t\t-generated classes:{0}", EntityCountByType(type)));                        
 						break;
 					case EntityTypesGeneratorReporter.DatatypeProperty:
-						sb.AppendLine(String.Format("Total number of generated datatype properties:{0}", EntityCountByType(type)));
+						sb.AppendLine(String.Format("\t\t\t-generated datatype properties:{0}", EntityCountByType(type)));
 						break;
 					case EntityTypesGeneratorReporter.ObjectProperty:
-						sb.AppendLine(String.Format("Total number of generated object properties:{0}", EntityCountByType(type)));
+						sb.AppendLine(String.Format("\t\t\t-generated object properties:{0}", EntityCountByType(type)));
 						break;
 					case EntityTypesGeneratorReporter.NamedIndividual:
-						sb.AppendLine(String.Format("Total number of generated named individual:{0}", EntityCountByType(type)));
+						sb.AppendLine(String.Format("\t\t\t-generated named individual:{0}", EntityCountByType(type)));
 						break;
 					case EntityTypesGeneratorReporter.NotGenerated:
-						sb.AppendLine(String.Format("Total number of entities not generated:{0}", EntityCountByType(type)));
+						sb.AppendLine(String.Format("\t\t\t-entities not generated:{0}", EntityCountByType(type)));
 						break;
 					case EntityTypesGeneratorReporter.BlankId:
 						sb.AppendLine(String.Format("Total number of entities with blank ids:{0}", EntityCountByType(type)));

@@ -90,8 +90,11 @@ namespace RDFSParserOWL2.Converter
 					rdfsParser.ParseProfile();
 					Profile profile = rdfsParser.Profile;
 					profile.MarkElementsWithStereotypes(InputOutput.LoadStereotypesToSkip());
-                    if(metaProfile!=null)
-                    profile.MarkBasePackages(metaProfile);
+                    if (metaProfile != null)
+                    {
+                        profile.PopulateClassCategoryReferences(metaProfile);
+                        profile.MarkBasePackages(metaProfile);
+                    }
 					generator = new OWL2Generator(profile, ge);
 					generator.GenerateProfile();
 					
@@ -108,7 +111,7 @@ namespace RDFSParserOWL2.Converter
 						}
 					}
 					sw.Stop();
-					string timeOfParsing = String.Format("\nSveukupno vreme:{0}",sw.Elapsed);
+					string timeOfParsing = String.Format("\nTotal time:{0}",sw.Elapsed);
 					InputOutput.WriteReportToFile(InputOutput.CreateTxtFilename(generator.ShortName + DateTime.Now.Ticks), rdfsParser.Reporter.GenerateReport() + generator.Reporter.GenerateReport()+timeOfParsing);	
 				}
 

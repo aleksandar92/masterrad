@@ -89,7 +89,7 @@ namespace RDFSParserOWL2
 			}
 			
 			sw.Stop();
-			string message = String.Format("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno.Vreme izvrsavanja je:{0}", sw.Elapsed);
+            string message = String.Format("Converting from RDFS to OWL2 format has been successfully executed.Executing time is:{0} ", sw.Elapsed);
 			MessageBox.Show(message);
 		}
 
@@ -183,7 +183,7 @@ namespace RDFSParserOWL2
 			}
 			
 			sw.Stop();
-			string message = String.Format("Konvertovanje iz RDFS u OWL2 format uspesno izvrseno.Vreme izvrsavanja je:{0} ", sw.Elapsed);
+			string message = String.Format("Converting from RDFS to OWL2 format has been successfully executed.Executing time is:{0} ", sw.Elapsed);
 			MessageBox.Show(message);
 		}
 
@@ -208,9 +208,9 @@ namespace RDFSParserOWL2
 			txtNS.Text = BaseURI("base");
 			//txtOntology.Text = BaseURI("base");   
 			txtRoofOntology.IsEnabled = false;
-			txtExtOnt.Text = BaseURI("base");
+			txtExtOnt.Text = BaseURI("extension");
 			txtExtOnt.IsEnabled = false;
-			txtRoofOntNS.Text = BaseURI("base");
+			txtRoofOntNS.Text = BaseURI("common");
 			txtRoofOntNS.IsEnabled = false;
 			txtMetaURI.Text = BaseURI("meta");
 		}

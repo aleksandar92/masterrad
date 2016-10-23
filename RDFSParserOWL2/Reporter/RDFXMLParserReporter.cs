@@ -53,24 +53,25 @@ namespace RDFSParserOWL2.Reporter
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("----------RDFXML Parser report----------");
 			sb.AppendLine(String.Format("Total number of  entities:{0}",EntityCount));
+            sb.AppendLine("Total number per type:");
 			foreach(EntityTypesReporter type in Enum.GetValues(typeof(EntityTypesReporter))) 
 			{
 				switch(type) 
 				{
 					case EntityTypesReporter.Class:
-						sb.AppendLine(String.Format("Total number of parsed classes:{0}", EntityCountByType(type)));
+						sb.AppendLine(String.Format("\t\t\t-parsed classes:{0}", EntityCountByType(type)));
 						break;
                     case EntityTypesReporter.ClassCategory:
-                        sb.AppendLine(String.Format("Total number of parsed class categories:{0}", EntityCountByType(type)));
+                        sb.AppendLine(String.Format("\t\t\t-parsed class categories:{0}", EntityCountByType(type)));
                         break;
 					case EntityTypesReporter.Property:
-						sb.AppendLine(String.Format("Total number of parsed properties:{0}", EntityCountByType(type)));
+						sb.AppendLine(String.Format("\t\t\t-parsed properties:{0}", EntityCountByType(type)));
 						break;
 					case EntityTypesReporter.EnumMembers:
-						sb.AppendLine(String.Format("Total number of parsed enum members:{0}", EntityCountByType(type)));
+						sb.AppendLine(String.Format("\t\t\t-parsed enum members:{0}", EntityCountByType(type)));
 						break;
 					case EntityTypesReporter.Unknown:
-						sb.AppendLine(String.Format("Total number of parsed unknown entities:{0}", EntityCountByType(type)));
+                        sb.AppendLine(String.Format("\t\t\t-parsed unknown entities:{0}", EntityCountByType(type)));
 						break;
 					case EntityTypesReporter.BlankId:
 						sb.AppendLine(String.Format("Total number of parsed  entities with blank ids:{0}", EntityCountByType(type)));

@@ -125,13 +125,13 @@ namespace RDFSParserOWL2.Model.Settings
 
 			if(!StringManipulationManager.IsValidURI(extractionOntologyNS) && isSpecialOntology) 
 			{
-				sb.Append("Extracted ontology base URI " + extractionOntologyNS + "   is not valid");
+				sb.Append("Extension ontology base URI " + extractionOntologyNS + "   is not valid");
 				result = false;
 			}
 
 			if (!StringManipulationManager.IsValidURI(roofOntologyNS) && isRoofOntology)
 			{
-				sb.Append("Roof ontology base URI " + roofOntologyNS + "   is not valid");
+				sb.Append("Common ontology base URI " + roofOntologyNS + "   is not valid");
 				result = false;
 			}
 
