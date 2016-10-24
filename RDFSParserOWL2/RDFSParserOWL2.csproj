@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\ParsingHelper.cs" />
     <Compile Include="Generator\Helper\MetaNamespace.cs" />
     <Compile Include="Model\ClassCategory.cs" />
     <Compile Include="Reporter\Interfaces\IGeneratorReporter.cs" />

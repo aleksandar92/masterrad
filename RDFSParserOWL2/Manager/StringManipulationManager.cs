@@ -21,6 +21,8 @@ namespace RDFSParserOWL2.Manager
 			public const string SeparatorSharp = "#";
 			/// <summary> "." </summary>
 			public const string SeparatorDot = ".";
+			/// <summary> ".." </summary>
+			public const string SeparatorTwoDot = "..";
 			/// <summary> ":" </summary>
 			public const string SeparatorColon = ":";
 			/// <summary> "/" </summary>
@@ -71,6 +73,20 @@ namespace RDFSParserOWL2.Manager
 				return extarcted;
 			}
 
+
+			/// <summary>
+			/// Method for parsing cardinality
+			/// </summary>
+			/// <param name="multiplicity">C</param>
+			/// <returns></returns>
+			public static List<string> ParseMultiplicity(string multiplicity) 
+			{
+				
+				if (multiplicity != null)
+					return ExtractShortestName(multiplicity,SeparatorColon).Split(new string[] { SeparatorTwoDot }, StringSplitOptions.None).ToList();
+				else
+					return new List<string>();
+			}
 
 
 			public static bool IsValidURI(string uri) 

@@ -276,7 +276,6 @@ namespace RDFSParserOWL2.Generator
 			switch (type)
 			{
                
-
 				case ProfileElementTypes.ClassCategory:
 					ClassCategory clsCat = pe as ClassCategory;
 					if (clsCat != null)
@@ -585,8 +584,8 @@ namespace RDFSParserOWL2.Generator
 		{
 			if (property != null)
 			{
-
-				CardinaltyType ct = property.ProcessMultiplicity();
+				Dictionary<CardinalityNumber, string> carNumb;
+			CardinaltyType ct = CardinalityHelper.ProcessMultiplicity(property.MultiplicityAsString,out carNumb);
 
 				if (ct == CardinaltyType.ZEROTOMANY)
 				{
@@ -608,10 +607,13 @@ namespace RDFSParserOWL2.Generator
 					string qCardinality = string.Empty;
 					string xsd = DefaultNamespaces.Where(x => x.Prefix != null && x.Prefix.Equals("xsd")).Single().Value;
 					string value = String.Format("{0}{1}", xsd, OWL2Namespace.nonNegativeInteger);
+					string cardNumber;
+					carNumb.TryGetValue(CardinalityNumber.MIN, out cardNumber);
 
 					if (ct == CardinaltyType.ZEROTOONE)
 					{
 						qCardinality = OWL2Namespace.MaxQualified;
+						carNumb.TryGetValue(CardinalityNumber.MAX, out cardNumber);
 					}
 					else if (ct == CardinaltyType.ONETOMANY)
 					{
@@ -620,11 +622,13 @@ namespace RDFSParserOWL2.Generator
 					else if (ct == CardinaltyType.ONE)
 					{
 						qCardinality = OWL2Namespace.Qualified;
+						
 					}
 
 					writer.WriteStartElement(OWL2Namespace.owlPrefix, qCardinality, null);
 					writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfDatatype, null, value);
-					writer.WriteValue(1);
+
+					writer.WriteValue(cardNumber);
 					writer.WriteEndElement();
 
 					if (property.IsObjectProperty())

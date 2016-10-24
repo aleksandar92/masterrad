@@ -1,4 +1,5 @@
-﻿  using RDFSParserOWL2.Generator.Helper;
+﻿using RDFSParserOWL2.Common;
+using RDFSParserOWL2.Generator.Helper;
 using RDFSParserOWL2.Manager;
 using RDFSParserOWL2.Model;
 using RDFSParserOWL2.Reporter;
@@ -566,7 +567,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				else if (qualified != null && qualified != string.Empty)
 					result = OWL2Namespace.Qualified;
 
-				if (result != null && result != string.Empty && prop.ContainsKey(OWL2Namespace.owlPrefix + StringManipulationManager.SeparatorColon + result))
+				if (!string.IsNullOrEmpty(result) && prop.ContainsKey(OWL2Namespace.owlPrefix + StringManipulationManager.SeparatorColon + result))
 					prop.Remove(OWL2Namespace.owlPrefix + StringManipulationManager.SeparatorColon + result);
 
 			}
@@ -586,7 +587,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				{
 					Property p = properties.Where(x => x.URI.Equals(ped)).SingleOrDefault();
 					if (p != null)
-						p.MultiplicityAsString = Property.ProcessOwlMultiplicityToString(res[ped]);
+						p.MultiplicityAsString = CardinalityHelper.ProcessOwlMultiplicityToString(res[ped]);
 				}
 
 			}

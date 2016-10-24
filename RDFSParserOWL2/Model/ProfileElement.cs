@@ -15,10 +15,7 @@ namespace RDFSParserOWL2.Model
 		Unknown=0,Comment=1,Label=2
 	}
 
-	public enum CardinaltyType
-	{
-		UNKNOWN = 0, ONETOMANY, ZEROTOMANY, ZEROTOONE, ONE, MANYTOMANY
-	}
+
 	/// <summary>
 	/// Possible types of profile elements
 	/// </summary>
@@ -290,46 +287,10 @@ namespace RDFSParserOWL2.Model
 			return base.GetHashCode();
 		}
 
-		public CardinaltyType ProcessMultiplicity()
-		{
-			CardinaltyType result=CardinaltyType.UNKNOWN;
-			if (multiplicityAsString != null && multiplicityAsString != null)
-			{
-				string cardinality = StringManipulationManager.ExtractShortestName(multiplicityAsString, StringManipulationManager.SeparatorColon);
-				if (cardinality.Equals("0..1")) 
-				{
-					result = CardinaltyType.ZEROTOONE;
-				}
-				else if (cardinality.Equals("1..1") || cardinality.Equals("1")) 
-				{
-					result = CardinaltyType.ONE;
-				}
-				else if (cardinality.Equals("1..n")) 
-				{
-					result = CardinaltyType.ONETOMANY;
-				}
-				else if (cardinality.Equals("0..n")) 
-				{
-					result = CardinaltyType.ZEROTOMANY;
-				} 
-			}
-			return result;
 
-		}
 
-        public static string ProcessOwlMultiplicityToString(string card)
-        {
-            string result=string.Empty;
-            if (card != null && card.Equals(OWL2Namespace.AllValuesFrom))
-                result = OWL2Namespace.multiplcityNs+"0..n";
-            else if (card != null && card.Equals(OWL2Namespace.MinQualified))
-				result = OWL2Namespace.multiplcityNs + "1..n";
-            else if (card != null && card.Equals(OWL2Namespace.MaxQualified))
-				result = OWL2Namespace.multiplcityNs + "0..1";
-            else if (card != null && card.Equals(OWL2Namespace.Qualified))
-				result = OWL2Namespace.multiplcityNs + "1..1";
-            return result;
-        }
+
+
 
 	}
 	
