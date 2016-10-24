@@ -39,7 +39,7 @@
             </Grid.RowDefinitions>
 
 
-            <ListBox  Name="lbFilesParsing"   Grid.Row="0" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxWidth="500" MinWidth="500" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" MinHeight="200"  VerticalAlignment="Top"  Grid.ColumnSpan="1" Margin="55,10,0,0">
+            <ListBox  Name="lbFilesParsing"   Grid.Row="0" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxWidth="500" MinWidth="500" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" MinHeight="200" MaxHeight="200" VerticalAlignment="Top"  Grid.ColumnSpan="1" Margin="55,10,0,0">
             </ListBox>
             <Button x:Name="btnImport" Grid.Row="0" Grid.Column="1"  Content="Browse" HorizontalAlignment="Left"   VerticalAlignment="Top"  Click="Button_Click" RenderTransformOrigin="0.093,2.25" Margin="25,10,0,0" Width="88" />
             <Button Content="Convert all" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="Button_Click_1" Height="20" Margin="25,45,0,0" Width="88" />
@@ -76,9 +76,9 @@
 
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="Base URI for generated files:" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="0,10,0,0"/>
-                    <TextBox MinWidth="500" MinHeight="35" Grid.Row="0" Grid.Column="0" MaxWidth="500"  Name="txtNS"  HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Top" Margin="184,7,0,0"  />
+                    <TextBox MinWidth="500" MinHeight="35" Grid.Row="0" Grid.Column="0" MaxWidth="500"  Name="txtNS"  HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Top" Margin="172,7,0,0"  />
                     <Label Grid.Row="1" Grid.Column="0"  Content="Meta ontology base URI:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <TextBox MinWidth="500" MinHeight="35" HorizontalAlignment="Left" MaxWidth="500" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Name="txtMetaURI" Margin="184,7,0,0" VerticalAlignment="Top" />
+                    <TextBox MinWidth="500" MinHeight="35" HorizontalAlignment="Left" MaxWidth="500" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Name="txtMetaURI" Margin="172,7,0,0" VerticalAlignment="Top" />
                 </Grid>
 
 

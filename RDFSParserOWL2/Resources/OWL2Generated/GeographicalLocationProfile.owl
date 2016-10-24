@@ -233,7 +233,7 @@
         <rdfs:label xml:lang="en">name</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:DatatypeProperty>
-    <owl:DatatypeProperty rdf:nodeID="property">
+    <owl:DatatypeProperty rdf:nodeID="bproperty">
         <rdfs:domain rdf:resource="blanknode" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#attribute</meta:stereotype>
@@ -557,7 +557,7 @@
         <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="property" />
+                <owl:onProperty rdf:resource="bproperty" />
                 <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
             </owl:Restriction>

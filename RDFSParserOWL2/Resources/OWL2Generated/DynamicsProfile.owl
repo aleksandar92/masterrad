@@ -12,11 +12,6 @@ Notes:
         <rdfs:label xml:lang="en">DynamicsProfile</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_Core">
-        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
-        <rdfs:label xml:lang="en">Core</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
-    </owl:NamedIndividual>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/DynamicsProfile#Package_Wires">
         <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
         <rdfs:label xml:lang="en">Wires</rdfs:label>
@@ -23925,6 +23920,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Simple_Float">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Simple_Float.value" />
@@ -23938,6 +23934,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Seconds">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Seconds.multiplier" />
@@ -23965,6 +23962,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#UnitSymbol">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>The units defined for usage in the CIM.</rdfs:comment>
         <rdfs:label xml:lang="en">UnitSymbol</rdfs:label>
@@ -24004,6 +24002,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         </owl:equivalentClass>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#UnitMultiplier">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <meta:stereotype>http://iec.ch/tc57/nonstandard/uml#enumeration</meta:stereotype>
         <rdfs:comment>The unit multipliers defined for the CIM.</rdfs:comment>
         <rdfs:label xml:lang="en">UnitMultiplier</rdfs:label>
@@ -24027,6 +24026,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         </owl:equivalentClass>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#PU">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#PU.multiplier" />
@@ -24685,6 +24685,7 @@ kq1, kq2, kq3, kq4, kqf.</rdfs:comment>
         </owl:equivalentClass>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#CurrentFlow">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#CurrentFlow.multiplier" />
@@ -25162,6 +25163,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ActivePower">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ActivePower.multiplier" />
@@ -26202,6 +26204,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Frequency">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Frequency.multiplier" />
@@ -26785,6 +26788,7 @@ tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Temperature">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Temperature.value" />
@@ -28595,6 +28599,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Area">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Area.multiplier" />
@@ -28638,6 +28643,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
         </owl:equivalentClass>
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#Length">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#Length.multiplier" />
@@ -28665,6 +28671,7 @@ A schematic of the hydraulic system of detailed hydro unit models, like Francis 
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#VolumeFlowRate">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#VolumeFlowRate.value" />
@@ -33934,6 +33941,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.3.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#AngleDegrees">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#AngleDegrees.multiplier" />
@@ -38246,6 +38254,7 @@ Reference: IEEE Standard 421.5-2005 Section 7.7.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/DynamicsProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/DynamicsProfile#ApparentPower">
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Domain" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/DynamicsProfile#ApparentPower.multiplier" />

@@ -1,18 +1,10 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.semanticweb.org/TopologyProfile#" xml:base="http://www.semanticweb.org/TopologyProfile" xmlns:gl="http://www.semanticweb.org/TopologyProfile#" xmlns:meta="http://www.semanticweb.org/meta" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:entsoe="http://entsoe.eu/CIM/SchemaExtension/3/1#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/TopologyProfile">
-        <owl:imports rdf:resource="http://semantic.web.profile/Entsoe" />
-    </owl:Ontology>
+    <owl:Ontology rdf:about="http://www.semanticweb.org/TopologyProfile" />
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/TopologyProfile#Package_TopologyProfile">
         <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
         <rdfs:comment>This profile has been built on the basis of the IEC 61970-456 document and adjusted to fit the purpose of the ENTSO-E CGMES.</rdfs:comment>
         <rdfs:label xml:lang="en">TopologyProfile</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
-    </owl:NamedIndividual>
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/TopologyProfile#Package_Core">
-        <rdf:type rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#ClassCategory" />
-        <rdfs:comment>Contains the core PowerSystemResource and ConductingEquipment entities</rdfs:comment>
-        <rdfs:label xml:lang="en">Core</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:NamedIndividual>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/TopologyProfile#Package_DC">
@@ -167,9 +159,6 @@
         <rdfs:label xml:lang="en">DCTopologicalNode</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:ObjectProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#IdentifiedObject.energyIdentCodeEic">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#IdentifiedObject.energyIdentCodeEic" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#IdentifiedObject.energyIdentCodeEic">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#IdentifiedObject" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -178,9 +167,6 @@
         <rdfs:label xml:lang="en">energyIdentCodeEic</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#IdentifiedObject.shortName">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#IdentifiedObject.shortName" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#IdentifiedObject.shortName">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#IdentifiedObject" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -190,9 +176,6 @@
         <rdfs:label xml:lang="en">shortName</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.baseUML">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion.baseUML" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.baseUML">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -202,9 +185,6 @@
         <meta:isFixed>iec61970cim16v28_iec61968cim12v08_iec62325cim03v01a</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.baseURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion.baseURI" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.baseURI">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -214,9 +194,6 @@
         <meta:isFixed>http://iec.ch/TC57/2013/61970-456/Topology/4</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.date">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion.date" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.date">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
@@ -227,9 +204,6 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:isFixed>2014-08-07</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.differenceModelURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion.differenceModelURI" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.differenceModelURI">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -239,9 +213,6 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:isFixed>http://iec.ch/TC57/61970-552/DifferenceModel/1#</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.entsoeUML">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion.entsoeUML" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.entsoeUML">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -251,9 +222,6 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:isFixed>entsoe_v2.4.15</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.entsoeURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion.entsoeURI" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.entsoeURI">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -265,9 +233,6 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:isFixed>http://entsoe.eu/CIM/Topology/4/1</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.modelDescriptionURI">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion.modelDescriptionURI" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.modelDescriptionURI">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -277,9 +242,6 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:isFixed>http://iec.ch/TC57/61970-552/ModelDescription/1#</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.namespaceRDF">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion.namespaceRDF" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.namespaceRDF">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -289,9 +251,6 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:isFixed>http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.namespaceUML">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion.namespaceUML" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.namespaceUML">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -301,9 +260,6 @@ Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.</rdfs:comme
         <meta:isFixed>http://iec.ch/TC57/2013/CIM-schema-cim16#</meta:isFixed>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.shortName">
-        <owl:equivalentProperty rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion.shortName" />
-    </rdf:Description>
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion.shortName">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/TopologyProfile#TopologyVersion" />
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
@@ -338,9 +294,6 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
         <rdfs:label xml:lang="en">name</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:DatatypeProperty>
-    <rdf:Description rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion">
-        <owl:equivalentClass rdf:resource="http://semantic.web.profile/Entsoe#TopologyVersion" />
-    </rdf:Description>
     <owl:Class rdf:about="http://www.semanticweb.org/TopologyProfile#TopologyVersion">
         <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/TopologyProfile#Package_TopologyProfile" />
         <rdfs:subClassOf>
@@ -420,13 +373,13 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/TopologyProfile#ACDCTerminal">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/TopologyProfile#IdentifiedObject" />
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/TopologyProfile#Package_Core" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Core" />
         <rdfs:comment>An electrical connection point (AC or DC) to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.</rdfs:comment>
         <rdfs:label xml:lang="en">ACDCTerminal</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/TopologyProfile#BaseVoltage">
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/TopologyProfile#Package_Core" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/TopologyProfile#BaseVoltage.TopologicalNode" />
@@ -438,7 +391,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/TopologyProfile#ConnectivityNode">
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/TopologyProfile#Package_Core" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/TopologyProfile#ConnectivityNode.TopologicalNode" />
@@ -453,7 +406,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/TopologyProfile#ConnectivityNodeContainer">
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/TopologyProfile#Package_Core" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/TopologyProfile#ConnectivityNodeContainer.TopologicalNode" />
@@ -466,7 +419,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/TopologyProfile#ReportingGroup">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/TopologyProfile#IdentifiedObject" />
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/TopologyProfile#Package_Core" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/TopologyProfile#ReportingGroup.TopologicalNode" />
@@ -478,7 +431,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/TopologyProfile" />
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/TopologyProfile#IdentifiedObject">
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/TopologyProfile#Package_Core" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/TopologyProfile#IdentifiedObject.shortName" />
@@ -520,7 +473,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the m
     </owl:Class>
     <owl:Class rdf:about="http://www.semanticweb.org/TopologyProfile#Terminal">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/TopologyProfile#ACDCTerminal" />
-        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/TopologyProfile#Package_Core" />
+        <meta:belongsToCategory rdf:resource="http://www.semanticweb.org/meta#Package_Core" />
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/TopologyProfile#Terminal.TopologicalNode" />
