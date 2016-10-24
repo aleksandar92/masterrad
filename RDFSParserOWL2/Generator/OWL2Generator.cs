@@ -315,7 +315,7 @@ namespace RDFSParserOWL2.Generator
 			else
 			{
 				
-				writer.WriteAttributeString(OWL2Namespace.rdfPrefix,blankNodeTag, null, uri);
+				writer.WriteAttributeString(OWL2Namespace.rdfPrefix,blankNodeTag, null,StringManipulationManager.SeparatorBlankNode+uri);
 			}
 		}
 
@@ -594,11 +594,11 @@ namespace RDFSParserOWL2.Generator
 					writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.AllValuesFrom, null);
 					if (property.RangeAsObject != null)
 					{
-                        GenerateURI(property.RangeAsObject.URI, baseAdress, property.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+                        GenerateURI(property.RangeAsObject.URI, baseAdress, property.RangeAsObject.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 					}
 					else
 					{
-						GenerateURI(property.Range, baseAdress,property.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+						GenerateURI(property.Range, baseAdress,false, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 					}
 					//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, value);
 					writer.WriteEndElement();
@@ -696,7 +696,9 @@ namespace RDFSParserOWL2.Generator
 					rangeValue = String.Format("{0}{1}", xsd, property.ProcessDatatype());
 				}
 
+				//bool isBlank = false;
 				domainUri = property.DomainAsObject == null  ? property.Domain :  property.DomainAsObject.URI;
+				//isBlank = property.DomainAsObject == null ? false : property.DomainAsObject.IsBlankNode;
 				//domainUri = StringManipulationManager.IsBlankNode(domainUri) ? domainUri : baseAdress + domainUri; 
 
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, propertyType, null);
@@ -706,7 +708,7 @@ namespace RDFSParserOWL2.Generator
 				if (!profileForGenerating.IsOwlProfile || (profileForGenerating.IsOwlProfile && property.DomainAsObject != null))
 				{
 					writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsDomain, null);
-					GenerateURI(domainUri, BaseAddress,property.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+					GenerateURI(domainUri, BaseAddress,property.DomainAsObject.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 					//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, domainUri);
 					writer.WriteEndElement();
 				}
@@ -714,7 +716,12 @@ namespace RDFSParserOWL2.Generator
 				writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsRange, null);
 				if (property.IsObjectProperty())
 				{
-					GenerateURI(rangeValue, baseAdress,property.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+					bool isBlank=false;
+					if (property.RangeAsObject != null) 
+					{
+						isBlank = property.RangeAsObject.IsBlankNode;
+					}
+					GenerateURI(rangeValue, baseAdress,isBlank, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 				}
 				else
 				{
@@ -727,7 +734,7 @@ namespace RDFSParserOWL2.Generator
 				if (!string.IsNullOrEmpty(property.InverseRoleName) && property.InverseRoleNameAsObject != null)
 				{
 					writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.InverseOf, null);
-					GenerateURI(property.InverseRoleNameAsObject.URI, baseAdress,property.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+					GenerateURI(property.InverseRoleNameAsObject.URI, baseAdress,property.InverseRoleNameAsObject.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 					//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + property.InverseRoleNameAsObject.URI);
 					writer.WriteEndElement();
 				}

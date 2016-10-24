@@ -292,7 +292,7 @@ namespace RDFSParserOWL2.Model
 
 		public CardinaltyType ProcessMultiplicity()
 		{
-			CardinaltyType result=CardinaltyType.UNKNOWN;;
+			CardinaltyType result=CardinaltyType.UNKNOWN;
 			if (multiplicityAsString != null && multiplicityAsString != null)
 			{
 				string cardinality = StringManipulationManager.ExtractShortestName(multiplicityAsString, StringManipulationManager.SeparatorColon);
@@ -312,13 +312,10 @@ namespace RDFSParserOWL2.Model
 				{
 					result = CardinaltyType.ZEROTOMANY;
 				} 
-
 			}
-
 			return result;
 
 		}
-
 
         public static string ProcessOwlMultiplicityToString(string card)
         {
@@ -333,7 +330,6 @@ namespace RDFSParserOWL2.Model
 				result = OWL2Namespace.multiplcityNs + "1..1";
             return result;
         }
-
 
 	}
 	
