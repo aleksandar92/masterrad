@@ -1031,6 +1031,28 @@ namespace RDFSParserOWL2.Model
 			return element;
 		}
 
+
+        public ProfileElement FindProfileElementByType(ProfileElementTypes type,string uri) 
+        {
+            ProfileElement pe = null;
+            List<ProfileElement> listOfElements ;
+            profileMap.TryGetValue(type,out listOfElements);
+            if (!string.IsNullOrEmpty(uri) && profileMap!=null && listOfElements!=null) 
+            {
+                foreach (ProfileElement elem in listOfElements)
+                {
+                    if (uri.Equals(elem.URI))
+                    {
+                        pe = elem;
+                        break;
+                    }
+                }
+            }
+
+            return pe;
+
+        }
+
 		public ProfileElement FindProfileElementByShortUri(string shortUri)
 		{
 			ProfileElement element = null;

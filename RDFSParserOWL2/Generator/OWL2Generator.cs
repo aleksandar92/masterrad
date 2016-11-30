@@ -642,13 +642,32 @@ namespace RDFSParserOWL2.Generator
 					else
 					{
 						writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.OnDataRange, null);
-						writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, xsd + property.ProcessDatatype());
+						writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, GenerateRangeValueForDatatypeProperty(property));
 						writer.WriteEndElement();
 					}
 
 				}
 			}
 		}
+
+
+        private string  GenerateRangeValueForDatatypeProperty(Property property) 
+        {
+            string ns = null;
+            ProfileElement pe = profileForGenerating.FindProfileElementByType(ProfileElementTypes.Class, property.DataType);
+            Class cls = pe as Class;
+
+            if (cls != null && !cls.HasStereotype("Primitive"))
+            {
+                ns = String.Format("{0}{1}", BaseAddress, cls.URI);
+            }
+            else
+            {
+                ns = String.Format("{0}{1}", DefaultNamespaces.Where(x => x.Prefix != null && x.Prefix.Equals("xsd")).Single().Value, property.ProcessDatatype()); ;
+            }
+
+            return ns;
+        }
 
 		private void GenerateProperty(Property property, ref XmlWriter writer)
 		{
@@ -696,8 +715,19 @@ namespace RDFSParserOWL2.Generator
 				{
 					reporter.AddtoEntityCountByType(EntityTypesGeneratorReporter.DatatypeProperty, 1);
 					propertyType = OWL2Namespace.DatatypeProperty;
-					string xsd = DefaultNamespaces.Where(x => x.Prefix != null && x.Prefix.Equals("xsd")).Single().Value;
-					rangeValue = String.Format("{0}{1}", xsd, property.ProcessDatatype());
+                    //string ns=null;
+                    //ProfileElement pe = profileForGenerating.FindProfileElementByType(ProfileElementTypes.Class,property.DataType);
+                    //Class cls = pe as Class;
+                    
+                    //if (cls!=null  && !cls.HasStereotype("Primitive"))
+                    //{
+                    //      ns = String.Format("{0}{1}",BaseAddress,cls.URI);
+                    //}
+                    //else
+                    //{
+                    //    ns =String.Format("{0}{1}", DefaultNamespaces.Where(x => x.Prefix != null && x.Prefix.Equals("xsd")).Single().Value, property.ProcessDatatype()); ;
+                    //}
+					rangeValue = GenerateRangeValueForDatatypeProperty(property);
 				}
 
 				//bool isBlank = false;

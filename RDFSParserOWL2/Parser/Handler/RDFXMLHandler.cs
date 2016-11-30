@@ -118,7 +118,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				string val;
 				atts.TryGetValue(rdfResource, out val);
 				if (!string.IsNullOrEmpty(val))
-					stereotypes.Add(val.Trim().ToLower());
+					stereotypes.Add(val.Trim());
 			}
 			else if (qName.Equals(rdfsComment) || qName.Equals(rdfsLabel))
 			{
@@ -313,7 +313,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				content = content.Trim();
 				if (!string.IsNullOrEmpty(content))
 				{
-					stereotypes.Add(content.Trim().ToLower());
+					stereotypes.Add(content.Trim());
 				}
 				content = string.Empty;
 			}
