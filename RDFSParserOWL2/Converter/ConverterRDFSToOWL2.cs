@@ -65,7 +65,7 @@ namespace RDFSParserOWL2.Converter
 			{
 				Profile entsoProfile = null;
                 Profile metaProfile = null;
-				if (ge.IsSpecialOntology) 
+				if (ge.IsExtensionOntology) 
 				{
 					owlParser = new OWL2XMLParser(InputOutput.CreatePathForGeneratedOWL(InputOutput.CreateOWLFilename(ge.NameOfOntology)));
 					owlParser.ParseProfile();
@@ -99,7 +99,7 @@ namespace RDFSParserOWL2.Converter
 					generator.GenerateProfile();
 					
 
-					if (ge.IsSpecialOntology)
+					if (ge.IsExtensionOntology)
 					{
 						if (entsoProfile != null)
 						{

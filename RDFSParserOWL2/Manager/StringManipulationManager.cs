@@ -307,6 +307,30 @@ namespace RDFSParserOWL2.Manager
 				return value;
 			}
 
+
+
+			public static  void GenerateNameForFile(string fileName,List<string> words , out string shortName)
+			{
+				shortName = fileName;
+				if (words != null)
+				{
+					int minIndex = Int32.MaxValue;
+					foreach (string w in words)
+					{
+						int index = fileName.IndexOf(w);
+						if (index != -1 && index < minIndex)
+						{
+							minIndex = index;
+						}
+					}
+					if (minIndex != Int32.MaxValue)
+					{
+						shortName = fileName.Substring(0, minIndex);
+					}
+				}
+			} 
+
+
 			/// <summary>
 			/// Method capitalizes the first letter of the given string value
 			/// </summary>

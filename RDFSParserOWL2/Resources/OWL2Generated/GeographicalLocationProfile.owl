@@ -12,8 +12,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem" />
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#CoordinateSystem.Location" />
         <meta:associationUsed>yes</meta:associationUsed>
-        <rdfs:comment>Coordinate system used to 
-	describe position points of this location.</rdfs:comment>
+        <rdfs:comment>Coordinate system used to describe position points of this location.</rdfs:comment>
         <rdfs:label xml:lang="en">CoordinateSystem</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:ObjectProperty>
@@ -49,8 +48,7 @@
         <rdfs:range rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint" />
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile#PositionPoint.Location" />
         <meta:associationUsed>no</meta:associationUsed>
-        <rdfs:comment>Sequence of position points describing this location, 
-	expressed in coordinate system 'Location.CoordinateSystem'.</rdfs:comment>
+        <rdfs:comment>Sequence of position points describing this location, expressed in coordinate system 'Location.CoordinateSystem'.</rdfs:comment>
         <rdfs:label xml:lang="en">PositionPoints</rdfs:label>
         <rdfs:isDefinedBy rdf:resource="http://www.semanticweb.org/GeographicalLocationProfile" />
     </owl:ObjectProperty>

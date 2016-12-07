@@ -39,6 +39,7 @@ namespace RDFSParserOWL2.Generator
 		private Profile profileForGenerating;
 		private HashSet<string> stereotypesToSkip;
 		private IGeneratorReporter reporter;
+		private XmlWriter writer;
 
 		#endregion
 
@@ -48,6 +49,10 @@ namespace RDFSParserOWL2.Generator
 			//set { profileForGenerating = value; }
 		}
 
+		public XmlWriter Writer 
+		{
+			get { return writer; }
+		}
 
 
 		public string ShortName
@@ -58,7 +63,7 @@ namespace RDFSParserOWL2.Generator
 
 		private void ChangeOfProfile()
 		{
-			GenerateNameForFile(profileForGenerating.FileName);
+			StringManipulationManager.GenerateNameForFile(profileForGenerating.FileName,words,out shortName);
 			fileName = profileForGenerating.FileName;
 		}
 
@@ -102,18 +107,6 @@ namespace RDFSParserOWL2.Generator
 		}
 
 
-		//public OWL2Generator(Profile profile)
-		//{
-		//	words = InputOutput.LoadWordsToSkip();
-		//	predefinedNamespaces = InputOutput.LoadPredefinedNamespaces();
-		//	fileName = profile.FileName;
-		//	GenerateNameForFile(fileName);
-		//	GenerateNamespaces();
-		//	profileForGenerating = profile;
-		//	importNamespaces = InputOutput.LoadImportNamespaces();
-		//	BaseAddress = predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value;
-		//	stereotypesToSkip = new HashSet<string>(InputOutput.LoadFixedStereotypes());
-		//}
 
 		public OWL2Generator(Profile profile, GeneratorSettings ge)
 		{
@@ -125,7 +118,7 @@ namespace RDFSParserOWL2.Generator
 			GenerateDefaultNamespace(predefinedNamespaces, ge, profile.IsOwlProfile);
 			AddToImportNamespaces();
 			fileName = profile.FileName;
-			GenerateNameForFile(fileName);
+			StringManipulationManager.GenerateNameForFile(fileName, words , out shortName);///GenerateNameForFile(fileName);
 			GenerateNamespaces();
 			reporter = new OWL2GeneratorReporter();
 			BaseAddress = predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value;
@@ -138,11 +131,11 @@ namespace RDFSParserOWL2.Generator
 		{
 			if (profileForGenerating != null && !profileForGenerating.IsOwlProfile)
 			{
-				if (settings.IsSpecialOntology)
+				if (settings.IsExtensionOntology)
 				{
-					if (!string.IsNullOrEmpty(settings.ExtractionOntologyNS))
+					if (!string.IsNullOrEmpty(settings.ExtensionOntologyNS))
 					{
-						importNamespaces.Add(new Namespace(String.Format("{0}{1}", settings.ExtractionOntologyNS, settings.NameOfOntology), settings.NameOfOntology));
+						importNamespaces.Add(new Namespace(String.Format("{0}{1}", settings.ExtensionOntologyNS, settings.NameOfOntology), settings.NameOfOntology));
 					}
 					else
 					{
@@ -150,17 +143,17 @@ namespace RDFSParserOWL2.Generator
 					}
 				}
 
-				if (settings.IsRoofOntology)
+				if (settings.IsCommonOntology)
 				{
-					if (!string.IsNullOrEmpty(settings.RoofOntologyNS.Trim()))
+					if (!string.IsNullOrEmpty(settings.CommonOntologyNS.Trim()))
 					{
-						importNamespaces.Add(new Namespace(String.Format("{0}{1}", settings.RoofOntologyNS, settings.RoofOntology), settings.RoofOntology));
+						importNamespaces.Add(new Namespace(String.Format("{0}{1}", settings.CommonOntologyNS, settings.CommonOntology), settings.CommonOntology));
 					}
 					else
 					{
-						importNamespaces.Add(new Namespace(predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value + settings.RoofOntology, settings.RoofOntology));
+						importNamespaces.Add(new Namespace(predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value + settings.CommonOntology, settings.CommonOntology));
 					}
-					//	importNamespaces.Add(new Namespace(predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value + settings.RoofOntology, settings.RoofOntology));
+
 				}
 
 
@@ -181,9 +174,9 @@ namespace RDFSParserOWL2.Generator
 					}
 				}
 
-				if (isOWl == true && ge.IsSpecialOntology && !string.IsNullOrEmpty(ge.ExtractionOntologyNS))
+				if (isOWl == true && ge.IsExtensionOntology && !string.IsNullOrEmpty(ge.ExtensionOntologyNS))
 				{
-					string ns = String.Format("{0}", ge.ExtractionOntologyNS);
+					string ns = String.Format("{0}", ge.ExtensionOntologyNS);
 					Namespace n = defaultNamespaces.Where(x => x.IsToBeDefault).SingleOrDefault();
 					if (n != null)
 					{
@@ -203,28 +196,8 @@ namespace RDFSParserOWL2.Generator
 		}
 
 
-		public void GenerateNameForFile(string fileName)
-		{
-			shortName = fileName;
-			if (words != null)
-			{
-				int minIndex = Int32.MaxValue;
-				foreach (string w in words)
-				{
-					int index = fileName.IndexOf(w);
-					if (index != -1 && index < minIndex)
-					{
-						minIndex = index;
-					}
-				}
-				if (minIndex != Int32.MaxValue)
-				{
-					shortName = fileName.Substring(0, minIndex);
-				}
-			}
-		}
 
-		public void GenerateNamespaces()
+		private void GenerateNamespaces()
 		{
 			List<Namespace> namespacesToGenerate = predefinedNamespaces.Where(x => x.IsToBeGenerated == true).ToList();
 			string baseAdr = predefinedNamespaces.Where(x => x.IsToBeDefault == true).Single().Value;
@@ -234,7 +207,7 @@ namespace RDFSParserOWL2.Generator
 			}
 		}
 
-		public void GenerateProfile()
+		public  void GenerateProfile()
 		{
 			//profileForGenerating.ProcessEntsoeElements(entsoProfile);
 			StringBuilder sb = new StringBuilder();
@@ -242,14 +215,14 @@ namespace RDFSParserOWL2.Generator
 			XmlTextWriter xtw = new XmlTextWriter(sb.ToString(), null);
 			xtw.Formatting = Formatting.Indented;
 			xtw.Indentation = 4;
-			XmlWriter writer = xtw;
-			GenerateStartElement(writer);
-			GenerateOntologyTag(writer);
+			writer = xtw;
+			GenerateStartElement();
+			GenerateOntologyTag();
 			foreach (ProfileElementTypes pet in profileForGenerating.ProfileMap.Keys)
 			{
 				foreach (ProfileElement pe in profileForGenerating.ProfileMap[pet])
 				{
-					GenerateElement(pet, pe, writer);
+					GenerateElement(pet, pe);
 				}
 			}
 
@@ -258,15 +231,15 @@ namespace RDFSParserOWL2.Generator
 			writer.Close();
 		}
 
-		public void GenerateOntologyTag(XmlWriter writer)
+		private  void GenerateOntologyTag()
 		{
 			writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.owlOntology, null);
 			writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress);
-			GenerateImports(writer);
+			GenerateImports();
 			writer.WriteEndElement();
 		}
 
-		private void GenerateElement(ProfileElementTypes type, ProfileElement pe, XmlWriter writer)
+		private void GenerateElement(ProfileElementTypes type, ProfileElement pe)
 		{
             if (pe.IsBlankNode) 
             {
@@ -289,12 +262,12 @@ namespace RDFSParserOWL2.Generator
 
 				case ProfileElementTypes.Property:
 					Property p = pe as Property;
-					GenerateProperty(p, ref writer);
+					GenerateProperty(p);
 					break;
 
 				case ProfileElementTypes.EnumerationElement:
 					EnumMember em = pe as EnumMember;
-					GenerateEnumMember(em, writer);
+					GenerateEnumMember(em);
 					break;
 
 				case ProfileElementTypes.Unknown:
@@ -305,7 +278,7 @@ namespace RDFSParserOWL2.Generator
 		}
 
 
-		private void GenerateURI(string uri, string baseURI,bool isBlank, XmlWriter writer, string startingTag,string blankNodeTag)
+		private void GenerateURI(string uri, string baseURI,bool isBlank, string startingTag,string blankNodeTag)
 		{
 			if (!isBlank)
 			{
@@ -330,15 +303,7 @@ namespace RDFSParserOWL2.Generator
                 if (!csCat.IsBasePackage)
                 {
                     writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.NamedIndividual, null);
-                    GenerateURI(csCat.URI, baseAdress, csCat.IsBlankNode, writer, OWL2Namespace.rdfAbout, OWL2Namespace.NodeId);
-                    //if (!StringManipulationManager.IsBlankNode(csCat.URI))
-                    //{
-                    //	writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + csCat.URI);
-                    //}
-                    //else 
-                    //{
-                    //	writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + csCat.URI);
-                    //}
+                    GenerateURI(csCat.URI, baseAdress, csCat.IsBlankNode,  OWL2Namespace.rdfAbout, OWL2Namespace.NodeId);
 
                     if (!string.IsNullOrEmpty(csCat.Type))
                     {
@@ -346,7 +311,7 @@ namespace RDFSParserOWL2.Generator
                         writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, csCat.Type);
                         writer.WriteEndElement();
                     }
-                    GenerateProfileElement(csCat, writer);
+                    GenerateProfileElement(csCat);
                     writer.WriteEndElement();
                     reporter.AddtoEntityCountByType(EntityTypesGeneratorReporter.NamedIndividual, 1);
                 }
@@ -362,13 +327,13 @@ namespace RDFSParserOWL2.Generator
 		/// </summary>
 		/// <param name="em">Enum member to be generated</param>
 		/// <param name="writer"></param>
-		private void GenerateEnumMember(EnumMember em, XmlWriter writer)
+		private void GenerateEnumMember(EnumMember em)
 		{
 			if (em != null && writer != null)
 			{
 				reporter.AddtoEntityCountByType(EntityTypesGeneratorReporter.NamedIndividual, 1);
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.NamedIndividual, null);
-				GenerateURI(em.URI, baseAdress,em.IsBlankNode, writer,OWL2Namespace.rdfAbout,OWL2Namespace.NodeId);
+				GenerateURI(em.URI, baseAdress,em.IsBlankNode, OWL2Namespace.rdfAbout,OWL2Namespace.NodeId);
 				//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + em.URI);
 				if (!profileForGenerating.IsOwlProfile && !em.IsBlankNode)
 				{
@@ -377,15 +342,15 @@ namespace RDFSParserOWL2.Generator
 
 					Class cls = em.EnumerationObject as Class;
 
-					if (settings.IsSpecialOntology && cls != null && settings.NameOfOntology != null && settings.NameOfOntology != string.Empty && cls.HasStereotype(settings.NameOfOntology))
+					if (settings.IsExtensionOntology && cls != null && settings.NameOfOntology != null && settings.NameOfOntology != string.Empty && cls.HasStereotype(settings.NameOfOntology))
 					{
 						found = true;
 						nmspace = importNamespaces.Where(x => x.Prefix.Equals(settings.NameOfOntology)).Single().Value + em.URI;
 					}
-					else if (((cls != null && !cls.HasDifferentStereotype(stereotypesToSkip)) || (cls == null)) && settings.IsRoofOntology && settings.RoofOntology != null && settings.RoofOntology != string.Empty)
+					else if (((cls != null && !cls.HasDifferentStereotype(stereotypesToSkip)) || (cls == null)) && settings.IsCommonOntology && settings.CommonOntology != null && settings.CommonOntology != string.Empty)
 					{
 						found = true;
-						nmspace = importNamespaces.Where(x => x.Prefix.Equals(settings.RoofOntology)).Single().Value + em.URI;
+						nmspace = importNamespaces.Where(x => x.Prefix.Equals(settings.CommonOntology)).Single().Value + em.URI;
 					}
 
 					if (found)
@@ -398,12 +363,12 @@ namespace RDFSParserOWL2.Generator
 
 				}
 
-				GenerateProfileElement(em, writer);
+				GenerateProfileElement(em);
 
 				if (settings.IsEnumMembersInstances && em.EnumerationObject != null)
 				{
 					writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Type, null);
-					GenerateURI(em.EnumerationObject.URI, baseAdress,em.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+					GenerateURI(em.EnumerationObject.URI, baseAdress,em.IsBlankNode,OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 					//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + em.EnumerationObject.URI);
 					writer.WriteEndElement();
 				}
@@ -433,7 +398,6 @@ namespace RDFSParserOWL2.Generator
 			{
 				if (cls.IsNotToBeGenerated)
 				{
-
 					reporter.AddtoEntityCountByType(EntityTypesGeneratorReporter.NotGenerated, 1);
 				}
 				else
@@ -443,30 +407,30 @@ namespace RDFSParserOWL2.Generator
 					{
 						string ontologyNamespace = string.Empty;
 						bool found = false;
-						if (settings.IsSpecialOntology && cls.HasStereotype(settings.NameOfOntology))
+						if (settings.IsExtensionOntology && cls.HasStereotype(settings.NameOfOntology))
 						{
 							ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(settings.NameOfOntology)).Single().Value;
 							found = true;
 						}
-						else if (settings.IsRoofOntology && settings.RoofOntology != null && !settings.RoofOntology.Equals(string.Empty) && !cls.HasDifferentStereotype(stereotypesToSkip))
+						else if (settings.IsCommonOntology && settings.CommonOntology != null && !settings.CommonOntology.Equals(string.Empty) && !cls.HasDifferentStereotype(stereotypesToSkip))
 						{
-							ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(settings.RoofOntology)).Single().Value;
+							ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(settings.CommonOntology)).Single().Value;
 							found = true;
 						}
 						if (found)
-							GenerateEquivalentClass(writer, ontologyNamespace, cls);
+							GenerateEquivalentClass( ontologyNamespace, cls);
 					}
 
 					///starting owl class element
 					writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.Class, null);
-                    GenerateURI(cls.URI, baseAdress, cls.IsBlankNode, writer, OWL2Namespace.rdfAbout, OWL2Namespace.NodeId);
+                    GenerateURI(cls.URI, baseAdress, cls.IsBlankNode, OWL2Namespace.rdfAbout, OWL2Namespace.NodeId);
 					//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + cls.URI);
 
 					if (cls.SubClassOf != null && cls.SubClassOf != string.Empty && cls.SubClassOfAsObject != null)
 					{
 						///subclass owl element
 						writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsSubclasOf, null);
-                        GenerateURI(cls.SubClassOf, baseAdress, cls.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+                        GenerateURI(cls.SubClassOf, baseAdress, cls.IsBlankNode,OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 						//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + cls.SubClassOfAsObject.URI);
 						writer.WriteEndElement();
 					}
@@ -486,8 +450,7 @@ namespace RDFSParserOWL2.Generator
 							baseURI = baseAdress;
 						}
 						uri = cls.BelongsToCategory;
-                        GenerateURI(uri, baseURI,false, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
-						// writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null,baseURI);
+                        GenerateURI(uri, baseURI,false,  OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 						writer.WriteEndElement();
 					}
 
@@ -503,7 +466,7 @@ namespace RDFSParserOWL2.Generator
 					}
 
 					GenerateStereotypes(cls.Stereotypes, writer);
-					GenerateProfileElement(cls, writer);
+					GenerateProfileElement(cls);
 					GenerateEnumeration(cls, writer);
 					writer.WriteEndElement();
 				}
@@ -546,7 +509,7 @@ namespace RDFSParserOWL2.Generator
 		private void GenerateDescription(XmlWriter writer,bool isBlank, string baseURI, string uri)
 		{
 			writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Description, null);
-			GenerateURI(uri, baseURI,isBlank, writer, OWL2Namespace.rdfAbout,OWL2Namespace.NodeId);
+			GenerateURI(uri, baseURI,isBlank,  OWL2Namespace.rdfAbout,OWL2Namespace.NodeId);
 			//writer.WritettributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, value);
 			writer.WriteEndElement();
 		}
@@ -565,10 +528,10 @@ namespace RDFSParserOWL2.Generator
 				///start of restriction owl element  
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.owlRestriction, null);
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.OnProperty, null);
-                GenerateURI(property.URI, baseAdress,property.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+                GenerateURI(property.URI, baseAdress,property.IsBlankNode,  OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 				//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + property.URI);
 				writer.WriteEndElement();
-				GenerateCardinality(property, writer);
+				GenerateCardinality(property);
 				writer.WriteEndElement();
 				writer.WriteEndElement();
 			}
@@ -580,7 +543,7 @@ namespace RDFSParserOWL2.Generator
 		/// </summary>
 		/// <param name="property"></param>
 		/// <param name="writer"></param>
-		private void GenerateCardinality(Property property, XmlWriter writer)
+		private void GenerateCardinality(Property property)
 		{
 			if (property != null)
 			{
@@ -593,13 +556,12 @@ namespace RDFSParserOWL2.Generator
 					writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.AllValuesFrom, null);
 					if (property.RangeAsObject != null)
 					{
-                        GenerateURI(property.RangeAsObject.URI, baseAdress, property.RangeAsObject.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+                        GenerateURI(property.RangeAsObject.URI, baseAdress, property.RangeAsObject.IsBlankNode,  OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 					}
 					else
 					{
-						GenerateURI(property.Range, baseAdress,false, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+						GenerateURI(property.Range, baseAdress,false,  OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 					}
-					//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, value);
 					writer.WriteEndElement();
 				}
 				else
@@ -635,8 +597,7 @@ namespace RDFSParserOWL2.Generator
 					{
 						string rangeUri = property.RangeAsObject == null ? property.Range : property.RangeAsObject.URI;
 						writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.OnClass, null);
-						GenerateURI(rangeUri, baseAdress,property.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
-						//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + rangeUri);
+						GenerateURI(rangeUri, baseAdress,property.IsBlankNode, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 						writer.WriteEndElement();
 					}
 					else
@@ -669,7 +630,7 @@ namespace RDFSParserOWL2.Generator
             return ns;
         }
 
-		private void GenerateProperty(Property property, ref XmlWriter writer)
+		private void GenerateProperty(Property property)
 		{
 			if (property != null && writer != null)
 			{
@@ -683,67 +644,46 @@ namespace RDFSParserOWL2.Generator
 					string ontologyNamespace = string.Empty;
 					bool found = false;
 					Class cls = property.DomainAsObject as Class;
-					if (settings.IsSpecialOntology && (property.HasStereotype(settings.NameOfOntology) || (property.DomainAsObject != null && property.DomainAsObject.HasStereotype(settings.NameOfOntology))))
+					if (settings.IsExtensionOntology && (property.HasStereotype(settings.NameOfOntology) || (property.DomainAsObject != null && property.DomainAsObject.HasStereotype(settings.NameOfOntology))))
 					{
 						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(settings.NameOfOntology)).SingleOrDefault().Value;
 						found = true;
 					}
-					else if ((((cls != null && !cls.HasDifferentStereotype(stereotypesToSkip)) || (cls == null)) && !property.HasDifferentStereotype(stereotypesToSkip)) && settings.IsRoofOntology && settings.RoofOntology != null && !settings.RoofOntology.Equals(string.Empty))
+					else if ((((cls != null && !cls.HasDifferentStereotype(stereotypesToSkip)) || (cls == null)) && !property.HasDifferentStereotype(stereotypesToSkip)) && settings.IsCommonOntology && settings.CommonOntology != null && !settings.CommonOntology.Equals(string.Empty))
 					{
-						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(settings.RoofOntology)).SingleOrDefault().Value;
+						ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(settings.CommonOntology)).SingleOrDefault().Value;
 						found = true;
 					}
 					if (found)
-						GenerateEquivalentProperty(writer, ontologyNamespace, property);
+						GenerateEquivalentProperty(ontologyNamespace, property);
 				}
-
-				//if (!profileForGenerating.IsOwlProfile && (hasSpecialStereotype && (property.HasStereotype(specialStereotype) || (property.DomainAsObject != null && property.DomainAsObject.HasStereotype(specialStereotype)))))
-				//{
-				//	string ontologyNamespace = importNamespaces.Where(x => x.Prefix.Equals(specialStereotype)).Single().Value;
-				//	GenerateEquivalentProperty(ref writer, ontologyNamespace, property);
-				//}
 
 				if (property.IsObjectProperty())
 				{
 					reporter.AddtoEntityCountByType(EntityTypesGeneratorReporter.ObjectProperty, 1);
 					propertyType = OWL2Namespace.ObjectProperty;
 					rangeValue = property.RangeAsObject != null ? property.RangeAsObject.URI : property.Range;
-					//rangeValue = StringManipulationManager.IsBlankNode(rangeValue) ? rangeValue : BaseAddress + rangeValue;
-					//rangeValue = property.RangeAsObject != null ? String.Format("{0}{1}", BaseAddress, property.RangeAsObject.URI) : String.Format("{0}{1}", BaseAddress, property.Range);
+
 				}
 				else
 				{
 					reporter.AddtoEntityCountByType(EntityTypesGeneratorReporter.DatatypeProperty, 1);
 					propertyType = OWL2Namespace.DatatypeProperty;
-                    //string ns=null;
-                    //ProfileElement pe = profileForGenerating.FindProfileElementByType(ProfileElementTypes.Class,property.DataType);
-                    //Class cls = pe as Class;
-                    
-                    //if (cls!=null  && !cls.HasStereotype("Primitive"))
-                    //{
-                    //      ns = String.Format("{0}{1}",BaseAddress,cls.URI);
-                    //}
-                    //else
-                    //{
-                    //    ns =String.Format("{0}{1}", DefaultNamespaces.Where(x => x.Prefix != null && x.Prefix.Equals("xsd")).Single().Value, property.ProcessDatatype()); ;
-                    //}
 					rangeValue = GenerateRangeValueForDatatypeProperty(property);
 				}
 
-				//bool isBlank = false;
+			
 				domainUri = property.DomainAsObject == null  ? property.Domain :  property.DomainAsObject.URI;
-				//isBlank = property.DomainAsObject == null ? false : property.DomainAsObject.IsBlankNode;
-				//domainUri = StringManipulationManager.IsBlankNode(domainUri) ? domainUri : baseAdress + domainUri; 
+
 
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, propertyType, null);
-				GenerateURI(property.URI, baseAdress,property.IsBlankNode, writer, OWL2Namespace.rdfAbout,OWL2Namespace.NodeId);
-				//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + property.URI);
+				GenerateURI(property.URI, baseAdress,property.IsBlankNode,  OWL2Namespace.rdfAbout,OWL2Namespace.NodeId);
+				
 
 				if (!profileForGenerating.IsOwlProfile || (profileForGenerating.IsOwlProfile && property.DomainAsObject != null))
 				{
 					writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsDomain, null);
-					GenerateURI(domainUri, BaseAddress,property.DomainAsObject.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
-					//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, domainUri);
+					GenerateURI(domainUri, BaseAddress,property.DomainAsObject.IsBlankNode,  OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 					writer.WriteEndElement();
 				}
 
@@ -755,7 +695,7 @@ namespace RDFSParserOWL2.Generator
 					{
 						isBlank = property.RangeAsObject.IsBlankNode;
 					}
-					GenerateURI(rangeValue, baseAdress,isBlank, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
+					GenerateURI(rangeValue, baseAdress,isBlank, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 				}
 				else
 				{
@@ -768,8 +708,7 @@ namespace RDFSParserOWL2.Generator
 				if (!string.IsNullOrEmpty(property.InverseRoleName) && property.InverseRoleNameAsObject != null)
 				{
 					writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.InverseOf, null);
-					GenerateURI(property.InverseRoleNameAsObject.URI, baseAdress,property.InverseRoleNameAsObject.IsBlankNode, writer, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
-					//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAdress + property.InverseRoleNameAsObject.URI);
+					GenerateURI(property.InverseRoleNameAsObject.URI, baseAdress,property.InverseRoleNameAsObject.IsBlankNode,  OWL2Namespace.rdfResource, OWL2Namespace.rdfResource);
 					writer.WriteEndElement();
 				}
 
@@ -781,20 +720,19 @@ namespace RDFSParserOWL2.Generator
 				}
 
 				GenerateStereotypes(property.Stereotypes, writer);
-				//if (!profileForGenerating.IsOwlProfile)
-				GenerateProfileElement(property, writer);
+				GenerateProfileElement(property);
 
 				writer.WriteEndElement();
 			}
 		}
 
-		private void GenerateProfileElement(ProfileElement pe, XmlWriter writer)
+		private void GenerateProfileElement(ProfileElement pe)
 		{
 			if (pe.Comments != null)
 			{
 				foreach (ComplexTag ct in pe.Comments)
 				{
-					GenerateCommentElement(writer, ct);
+					GenerateCommentElement(ct);
 				}
 			}
 
@@ -802,7 +740,7 @@ namespace RDFSParserOWL2.Generator
 			{
 				foreach (ComplexTag ct in pe.Labels)
 				{
-					GenerateLabelElement(writer, ct);
+					GenerateLabelElement( ct);
 				}
 			}
 
@@ -818,29 +756,29 @@ namespace RDFSParserOWL2.Generator
 			writer.WriteEndElement();
 		}
 
-		private void GenerateCommentElement(XmlWriter writer, ComplexTag ct)
+		private void GenerateCommentElement(ComplexTag ct)
 		{
 			if (ct != null && ct.Value != string.Empty && writer != null)
 			{
 				writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsComment, null);
-				GenerateAttsLabelComment(writer, ct.Attributes);
+				GenerateAttsLabelComment(ct.Attributes);
 				writer.WriteValue(ct.Value);
 				writer.WriteEndElement();
 			}
 		}
 
-		private void GenerateLabelElement(XmlWriter writer, ComplexTag ct)
+		private void GenerateLabelElement( ComplexTag ct)
 		{
 			if (ct != null && ct.Value != string.Empty && writer != null)
 			{
 				writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsLabel, null);
-				GenerateAttsLabelComment(writer, ct.Attributes);
+				GenerateAttsLabelComment(ct.Attributes);
 				writer.WriteValue(ct.Value);
 				writer.WriteEndElement();
 			}
 		}
 
-		private void GenerateAttsLabelComment(XmlWriter writer, Dictionary<string, string> atts)
+		private void GenerateAttsLabelComment( Dictionary<string, string> atts)
 		{
 			if (atts != null && atts.ContainsKey(OWL2Namespace.xmlLang))
 			{
@@ -849,7 +787,7 @@ namespace RDFSParserOWL2.Generator
 		}
 
 
-		public void GenerateStartElement(XmlWriter writer)
+		public void GenerateStartElement()
 		{
 			writer.WriteStartDocument();
 			string rdfVal = DefaultNamespaces.Where(x => x.Prefix != null && x.Prefix.Equals("rdf")).Single().Value;
@@ -861,7 +799,7 @@ namespace RDFSParserOWL2.Generator
 			}
 		}
 
-		private void GenerateImports(XmlWriter writer)
+		private void GenerateImports()
 		{
 			if (importNamespaces != null && profileForGenerating != null && !profileForGenerating.IsOwlProfile)
 			{
@@ -878,12 +816,12 @@ namespace RDFSParserOWL2.Generator
 			}
 		}
 
-		private void GenerateEquivalentProperty(XmlWriter writer, string baseAddressImport, Property p)
+		private void GenerateEquivalentProperty(string baseAddressImport, Property p)
 		{
 			if (p != null && writer != null)
 			{
 				writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Description, null);
-				GenerateURI(StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp), BaseAddress,p.IsBlankNode, writer, OWL2Namespace.rdfAbout,OWL2Namespace.NodeId);
+				GenerateURI(StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp), BaseAddress,p.IsBlankNode, OWL2Namespace.rdfAbout,OWL2Namespace.NodeId);
 				//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp));
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.EqProperty, null);
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAddressImport + StringManipulationManager.ExtractAllWithSeparator(p.URI, StringManipulationManager.SeparatorSharp));
@@ -892,14 +830,12 @@ namespace RDFSParserOWL2.Generator
 			}
 		}
 
-		private void GenerateEquivalentClass(XmlWriter writer, string baseAddressImport, Class c)
+		private void GenerateEquivalentClass(string baseAddressImport, Class c)
 		{
 			if (c != null && writer != null)
 			{
 				writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Description, null);
-				GenerateURI(StringManipulationManager.ExtractAllWithSeparator(c.URI, StringManipulationManager.SeparatorSharp), BaseAddress,c.IsBlankNode, writer, OWL2Namespace.rdfAbout, OWL2Namespace.NodeId);
-				//writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfAbout, null, baseAdress + StringManipulationManager.ExtractAllWithSeparator(c.URI, StringManipulationManager.SeparatorSharp));
-				//
+				GenerateURI(StringManipulationManager.ExtractAllWithSeparator(c.URI, StringManipulationManager.SeparatorSharp), BaseAddress,c.IsBlankNode, OWL2Namespace.rdfAbout, OWL2Namespace.NodeId);
 				writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.EqClass, null);
 				writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, baseAddressImport + StringManipulationManager.ExtractAllWithSeparator(c.URI, StringManipulationManager.SeparatorSharp));
 				writer.WriteEndElement();

@@ -13,19 +13,16 @@ namespace RDFSParserOWL2.Model.Settings
     public class GeneratorSettings
     {
         #region FIELDS
-        private bool isSpecialOntology;
-        private bool isRoofOntology;
+
+        private bool isExtensionOntology;
+        private bool isCommonOntology;
         private string nameOfOntology;
-        private string roofOntology;
-        private string extractionOntologyNS;
-		private string roofOntologyNS;
+        private string commonOntology;
+        private string extensionOntologyNS;
+		private string commonOntologyNS;
 		private bool isEnumMembersInstances;
 		private string defaultNamespace;
 		private string metaURI;
-
-
-
-
 
         #endregion
 
@@ -33,12 +30,12 @@ namespace RDFSParserOWL2.Model.Settings
 
         public GeneratorSettings(bool isROnt,bool isSpeOnt,string naOfOnt,string roofOnt,string ext,string roofOntNS,bool isEnumMemInstance,string defaultNS,string mURI) 
         {
-            isSpecialOntology = isSpeOnt;
-            isRoofOntology = isROnt;
-            roofOntology=roofOnt;
-            extractionOntologyNS=ext;
+            isExtensionOntology = isSpeOnt;
+            isCommonOntology = isROnt;
+            commonOntology=roofOnt;
+            extensionOntologyNS=ext;
             nameOfOntology = naOfOnt;
-			roofOntologyNS = roofOntNS;
+			commonOntologyNS = roofOntNS;
 			isEnumMembersInstances = isEnumMemInstance;
 			defaultNamespace = defaultNS;
 			metaURI = mURI;
@@ -53,10 +50,10 @@ namespace RDFSParserOWL2.Model.Settings
         #endregion
 
         #region PROPERTIES
-        public bool IsSpecialOntology
+        public bool IsExtensionOntology
         {
-            get { return isSpecialOntology; }
-            set { isSpecialOntology = value; }
+            get { return isExtensionOntology; }
+            set { isExtensionOntology = value; }
         }
 
         public string NameOfOntology
@@ -65,28 +62,28 @@ namespace RDFSParserOWL2.Model.Settings
             set { nameOfOntology = value; }
         }
 
-        public string RoofOntology
+        public string CommonOntology
         {
-            get { return roofOntology; }
-            set { roofOntology = value; }
+            get { return commonOntology; }
+            set { commonOntology = value; }
         }
 
-        public bool IsRoofOntology
+        public bool IsCommonOntology
         {
-            get { return isRoofOntology; }
-            set { isRoofOntology = value; }
+            get { return isCommonOntology; }
+            set { isCommonOntology = value; }
         }
 
-        public string ExtractionOntologyNS
+        public string ExtensionOntologyNS
         {
-            get { return extractionOntologyNS; }
-            set { extractionOntologyNS = value; }
+            get { return extensionOntologyNS; }
+            set { extensionOntologyNS = value; }
         }
 
-		public string RoofOntologyNS
+		public string CommonOntologyNS
 		{
-			get { return roofOntologyNS; }
-			set { roofOntologyNS = value; }
+			get { return commonOntologyNS; }
+			set { commonOntologyNS = value; }
 		}
 
 		public bool IsEnumMembersInstances
@@ -123,15 +120,15 @@ namespace RDFSParserOWL2.Model.Settings
 				result = false;
 			}
 
-			if(!StringManipulationManager.IsValidURI(extractionOntologyNS) && isSpecialOntology) 
+			if(!StringManipulationManager.IsValidURI(extensionOntologyNS) && isExtensionOntology) 
 			{
-				sb.Append("Extension ontology base URI " + extractionOntologyNS + "   is not valid");
+				sb.Append("Extension ontology base URI " + extensionOntologyNS + "   is not valid");
 				result = false;
 			}
 
-			if (!StringManipulationManager.IsValidURI(roofOntologyNS) && isRoofOntology)
+			if (!StringManipulationManager.IsValidURI(commonOntologyNS) && isCommonOntology)
 			{
-				sb.Append("Common ontology base URI " + roofOntologyNS + "   is not valid");
+				sb.Append("Common ontology base URI " + commonOntologyNS + "   is not valid");
 				result = false;
 			}
 
