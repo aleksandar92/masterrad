@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RDFSParserOWL2.Model
 {
-	public class ComplexTag
+	public class TextElement
 	{
 		//protected string name;
 		private string value;
@@ -15,19 +15,19 @@ namespace RDFSParserOWL2.Model
 
 
 
-		public ComplexTag() 
+		public TextElement() 
 		{                                        
 			attributes = new Dictionary<string, string>();
             value = String.Empty;
 		}
 
-		public ComplexTag(string value)
+		public TextElement(string value)
 		{
 			attributes = new Dictionary<string, string>();
 			this.value = value;
 		}
 
-		public ComplexTag(string value,Dictionary<string,string> attr) 
+		public TextElement(string value,Dictionary<string,string> attr) 
 		{
 		    this.attributes = new Dictionary<string,string>(attr);
 			this.value = value;		

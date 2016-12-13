@@ -13,7 +13,7 @@ namespace RDFSParserOWL2.Parser
     {
 
 
-        private RDFSXMLReaderHandler handler;
+        private RDFSRDFXMLHandler handler;
         private string path;
         private Profile profile;
 		private IParserReporter reporter;
@@ -33,13 +33,13 @@ namespace RDFSParserOWL2.Parser
 
         public RDFSXMLParser()
         {
-            handler = new RDFSXMLReaderHandler();
+            handler = new RDFSRDFXMLHandler();
 
         }
 
         public RDFSXMLParser(string path)
         {
-            handler = new RDFSXMLReaderHandler();
+            handler = new RDFSRDFXMLHandler();
             this.path = path;
         }
 

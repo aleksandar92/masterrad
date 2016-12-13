@@ -49,7 +49,7 @@ namespace RDFSParserOWL2.Common
         /// <returns>Returns resulting profile parsed from entsoe.owl file </returns>
         public static Profile LoadMetaProfile()
         {
-            OWLRDFXMLHandler handler = new OWLRDFXMLHandler();
+            OWL2RDFXMLHandler handler = new OWL2RDFXMLHandler();
             using (FileStream fs = new FileStream(owlGeneratedFilePath + metaFilename, FileMode.Open))
             {
                 bool su;
@@ -67,7 +67,7 @@ namespace RDFSParserOWL2.Common
 		/// <returns>Returns resulting profile parsed from entsoe.owl file </returns>
 		public static Profile LoadEntsoProfile() 
 		{
-			OWLRDFXMLHandler handler = new OWLRDFXMLHandler();
+			OWL2RDFXMLHandler handler = new OWL2RDFXMLHandler();
 			using (FileStream fs = new FileStream(owlGeneratedFilePath+entsoFilename, FileMode.Open))
 			{
 				bool su;

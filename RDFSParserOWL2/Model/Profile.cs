@@ -658,7 +658,7 @@ namespace RDFSParserOWL2.Model
 		/// <param name="specialOntologyProfile"></param>
 		/// <param name="nameOfStereotype"></param>
 		/// <returns></returns>
-		public bool ProcessSpecialStereotypeElements(Profile specialOntologyProfile, string nameOfStereotype)
+		public bool ProcessElementsWithSpecialStereotype(Profile specialOntologyProfile,string nameOfStereotype)
 		{
 			bool changed = false;
 			if (specialOntologyProfile != null)

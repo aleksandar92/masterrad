@@ -13,7 +13,7 @@ namespace RDFSParserOWL2.Parser
 {
 	public class OWL2XMLParser
 	{
-		private OWLRDFXMLHandler handler;
+		private OWL2RDFXMLHandler handler;
         private string path;
         private Profile profile;
 
@@ -27,13 +27,13 @@ namespace RDFSParserOWL2.Parser
 
         public OWL2XMLParser()
         {
-            handler = new OWLRDFXMLHandler();
+            handler = new OWL2RDFXMLHandler();
 
         }
 
 		public OWL2XMLParser(string path)
         {
-            handler = new OWLRDFXMLHandler();
+            handler = new OWL2RDFXMLHandler();
             this.path = path;
         }
 

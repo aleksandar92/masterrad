@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RDFSParserOWL2.Parser.Handler
 {
-	abstract class RDFXMLHandler : IHandler
+	public abstract class RDFXMLHandler : IHandler
 	{
 		protected const string rdfId = "rdf:ID";
 		protected const string rdfType = "rdf:type";
@@ -37,7 +37,7 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		protected const string cimsStereotype = "cims:stereotype";
 
-		protected Dictionary<TextType, List<ComplexTag>> commentsAndLabels;
+		protected Dictionary<TextType, List<TextElement>> commentsAndLabels;
 
 		protected const string xmlBase = "xml:base";
 
@@ -97,7 +97,7 @@ namespace RDFSParserOWL2.Parser.Handler
 			profile.SourcePath = filePath;
 			stereotypes = new List<string>();
 			allByType = new SortedDictionary<ProfileElementTypes, List<ProfileElement>>();
-			commentsAndLabels = new Dictionary<TextType, List<ComplexTag>>();
+			commentsAndLabels = new Dictionary<TextType, List<TextElement>>();
 			checkedElementsCount = 0;
 			commentAndLabelAtts = new Dictionary<string, string>();
 			abort = false;
@@ -266,7 +266,7 @@ namespace RDFSParserOWL2.Parser.Handler
 						commentAndLabelAtts = new Dictionary<string, string>();
 					}
 
-					AddComplexTagToCommentsAndLabels(TextType.Label, new ComplexTag(content, commentAndLabelAtts));
+					AddComplexTagToCommentsAndLabels(TextType.Label, new TextElement(content, commentAndLabelAtts));
 				}
 				content = string.Empty;
 				commentAndLabelAtts.Clear();
@@ -281,7 +281,7 @@ namespace RDFSParserOWL2.Parser.Handler
 						commentAndLabelAtts = new Dictionary<string, string>();
 					}
 					///Dodavanje novog komentara u kolekciju koja ce kasnije biti ispraznjena 
-					AddComplexTagToCommentsAndLabels(TextType.Comment, new ComplexTag(content, commentAndLabelAtts));
+					AddComplexTagToCommentsAndLabels(TextType.Comment, new TextElement(content, commentAndLabelAtts));
 				}
 				content = string.Empty;
 				commentAndLabelAtts.Clear();
@@ -867,16 +867,16 @@ namespace RDFSParserOWL2.Parser.Handler
 
         #endregion
 
-        protected void AddComplexTagToCommentsAndLabels(TextType type, ComplexTag ct)
+        protected void AddComplexTagToCommentsAndLabels(TextType type, TextElement ct)
 		{
 			if (commentsAndLabels == null)
 			{
-				commentsAndLabels = new Dictionary<TextType, List<ComplexTag>>();
+				commentsAndLabels = new Dictionary<TextType, List<TextElement>>();
 			}
 
 			if (!commentsAndLabels.ContainsKey(type))
 			{
-				commentsAndLabels[type] = new List<ComplexTag>();
+				commentsAndLabels[type] = new List<TextElement>();
 			}
 
 			commentsAndLabels[type].Add(ct);
@@ -893,15 +893,15 @@ namespace RDFSParserOWL2.Parser.Handler
 			{
 				foreach (TextType type in commentsAndLabels.Keys)
 				{
-					List<ComplexTag> tags = null;
+					List<TextElement> tags = null;
 					switch (type)
 					{
 						case TextType.Comment:
-							tags = new List<ComplexTag>(commentsAndLabels[TextType.Comment]);
+							tags = new List<TextElement>(commentsAndLabels[TextType.Comment]);
 							pe.Comments = tags;
 							break;
 						case TextType.Label:
-							tags = new List<ComplexTag>(commentsAndLabels[TextType.Label]);
+							tags = new List<TextElement>(commentsAndLabels[TextType.Label]);
 							pe.Labels = tags;
 							break;
 					}

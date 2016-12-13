@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RDFSParserOWL2.Parser
 {
-	class RDFSXMLReaderHandler : RDFXMLHandler
+	class RDFSRDFXMLHandler : RDFXMLHandler
 	{
 		#region fields
 

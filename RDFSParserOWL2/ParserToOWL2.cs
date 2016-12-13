@@ -22,7 +22,7 @@ namespace RDFSParserOWL2
 
 		 public void ParseDocument(string path)
 		 {
-			 RDFSXMLReaderHandler handler = new RDFSXMLReaderHandler();
+			 RDFSRDFXMLHandler handler = new RDFSRDFXMLHandler();
              using (FileStream fs = new FileStream(@"E:\Aleksandar Popovic\rdfs\GeographicalLocationProfileRDFSAugmented-v2_4_15-7Aug2014.rdf", FileMode.Open))
 			 {
 				 bool succes;

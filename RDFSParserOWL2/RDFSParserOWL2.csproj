@@ -57,6 +57,7 @@
     <Compile Include="Common\ParsingHelper.cs" />
     <Compile Include="Generator\Helper\MetaNamespace.cs" />
     <Compile Include="Model\ClassCategory.cs" />
+    <Compile Include="Parser\RDFXMLParser.cs" />
     <Compile Include="Reporter\Interfaces\IGeneratorReporter.cs" />
     <Compile Include="Reporter\Interfaces\IParserReporter.cs" />
     <Compile Include="Reporter\Interfaces\IProfileReport.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="Generator\OWL2Generator.cs" />
     <Compile Include="Manager\StringManipulationManager.cs" />
     <Compile Include="Model\Class.cs" />
-    <Compile Include="Model\ComplexTag.cs" />
+    <Compile Include="Model\TextElement.cs" />
     <Compile Include="Model\EnumMember.cs" />
     <Compile Include="Model\Namespace.cs" />
     <Compile Include="Model\Profile.cs" />
@@ -98,8 +99,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ParserToOWL2.cs" />
-    <Compile Include="Parser\Handler\OWLRDFXMLHandler.cs" />
-    <Compile Include="Parser\Handler\RDFSXMLReaderHandler.cs" />
+    <Compile Include="Parser\Handler\OWL2RDFXMLHandler.cs" />
+    <Compile Include="Parser\Handler\RDFSRDFXMLHandler.cs" />
     <Compile Include="Parser\Handler\RDFXMLHandler.cs" />
     <Compile Include="Parser\Handler\WordsToSkipXMLHandler.cs" />
     <Compile Include="Parser\Handler\XMLNamespaceReaderHandler.cs" />
@@ -150,12 +151,10 @@
     <Resource Include="Resources\StereotypesToSkip.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\OWL2Generated\todo.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\FixedStereotypes.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\OWL2Generated\" />
     <Folder Include="Resources\Reports\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

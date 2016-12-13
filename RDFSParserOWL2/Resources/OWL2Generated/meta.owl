@@ -78,9 +78,6 @@
         <rdfs:label xml:lang="en">Class Category</rdfs:label>
     </owl:Class>
     
-
-
-   
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -88,10 +85,6 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
-    
-
-
     <!-- http://www.semanticweb.org/meta#Package_Common -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/meta#Package_Common">

@@ -16,11 +16,11 @@ namespace RDFSParserOWL2.Model.Settings
 
         private bool isExtensionOntology;
         private bool isCommonOntology;
-        private string nameOfOntology;
-        private string commonOntology;
-        private string extensionOntologyNS;
-		private string commonOntologyNS;
-		private bool isEnumMembersInstances;
+        private string extensionOntologyName;
+        private string commonOntologyName;
+        private string extensionOntologyURI;
+		private string commonOntologyURI;
+		private bool isEnumMembersClosed;
 		private string defaultNamespace;
 		private string metaURI;
 
@@ -32,11 +32,11 @@ namespace RDFSParserOWL2.Model.Settings
         {
             isExtensionOntology = isSpeOnt;
             isCommonOntology = isROnt;
-            commonOntology=roofOnt;
-            extensionOntologyNS=ext;
-            nameOfOntology = naOfOnt;
-			commonOntologyNS = roofOntNS;
-			isEnumMembersInstances = isEnumMemInstance;
+            commonOntologyName=roofOnt;
+            extensionOntologyURI=ext;
+            extensionOntologyName = naOfOnt;
+			commonOntologyURI = roofOntNS;
+			isEnumMembersClosed = isEnumMemInstance;
 			defaultNamespace = defaultNS;
 			metaURI = mURI;
 
@@ -56,16 +56,16 @@ namespace RDFSParserOWL2.Model.Settings
             set { isExtensionOntology = value; }
         }
 
-        public string NameOfOntology
+        public string ExtensionOntologyName
         {
-            get { return nameOfOntology; }
-            set { nameOfOntology = value; }
+            get { return extensionOntologyName; }
+            set { extensionOntologyName = value; }
         }
 
-        public string CommonOntology
+        public string CommonOntologyName
         {
-            get { return commonOntology; }
-            set { commonOntology = value; }
+            get { return commonOntologyName; }
+            set { commonOntologyName = value; }
         }
 
         public bool IsCommonOntology
@@ -74,22 +74,22 @@ namespace RDFSParserOWL2.Model.Settings
             set { isCommonOntology = value; }
         }
 
-        public string ExtensionOntologyNS
+        public string ExtensionOntologyURI
         {
-            get { return extensionOntologyNS; }
-            set { extensionOntologyNS = value; }
+            get { return extensionOntologyURI; }
+            set { extensionOntologyURI = value; }
         }
 
-		public string CommonOntologyNS
+		public string CommonOntologyURI
 		{
-			get { return commonOntologyNS; }
-			set { commonOntologyNS = value; }
+			get { return commonOntologyURI; }
+			set { commonOntologyURI = value; }
 		}
 
-		public bool IsEnumMembersInstances
+		public bool IsEnumMembersClosed
 		{
-			get { return isEnumMembersInstances; }
-			set { isEnumMembersInstances = value; }
+			get { return isEnumMembersClosed; }
+			set { isEnumMembersClosed = value; }
 		}
 
 		public string DefaultNamespace
@@ -120,15 +120,15 @@ namespace RDFSParserOWL2.Model.Settings
 				result = false;
 			}
 
-			if(!StringManipulationManager.IsValidURI(extensionOntologyNS) && isExtensionOntology) 
+			if(!StringManipulationManager.IsValidURI(extensionOntologyURI) && isExtensionOntology) 
 			{
-				sb.Append("Extension ontology base URI " + extensionOntologyNS + "   is not valid");
+				sb.Append("Extension ontology base URI " + extensionOntologyURI + "   is not valid");
 				result = false;
 			}
 
-			if (!StringManipulationManager.IsValidURI(commonOntologyNS) && isCommonOntology)
+			if (!StringManipulationManager.IsValidURI(commonOntologyURI) && isCommonOntology)
 			{
-				sb.Append("Common ontology base URI " + commonOntologyNS + "   is not valid");
+				sb.Append("Common ontology base URI " + commonOntologyURI + "   is not valid");
 				result = false;
 			}
 

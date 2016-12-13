@@ -69,8 +69,8 @@ namespace RDFSParserOWL2.Model
 
 
         protected string isFixed;
-		protected List<ComplexTag> labels;
-		protected List<ComplexTag> comments;
+		protected List<TextElement> labels;
+		protected List<TextElement> comments;
 		/// <summary>
 		/// used for generating owl profile to idnicate if element is not going to be generated
 		/// </summary>
@@ -85,15 +85,15 @@ namespace RDFSParserOWL2.Model
 			//comment = new Dictionary<string, string>();
 			//label = new ComplexTag();
 			//comment = new ComplexTag();
-			labels = new List<ComplexTag>();
-			comments = new List<ComplexTag>();
+			labels = new List<TextElement>();
+			comments = new List<TextElement>();
 		}
 
 		public ProfileElement(string uri)
 		{
 			this.uri = uri;
-			labels = new List<ComplexTag>();
-			comments = new List<ComplexTag>();
+			labels = new List<TextElement>();
+			comments = new List<TextElement>();
             isBlankNode = false;
 		}
 
@@ -198,7 +198,7 @@ namespace RDFSParserOWL2.Model
 		/// </summary>
 		/// 
 
-		public List<ComplexTag> Labels
+		public List<TextElement> Labels
 		{
 			get { return labels; }
 			set { labels = value; }
@@ -240,7 +240,7 @@ namespace RDFSParserOWL2.Model
 		//}
 
 
-		public List<ComplexTag> Comments
+		public List<TextElement> Comments
 		{
 			get { return comments; }
 			set { comments = value; }
