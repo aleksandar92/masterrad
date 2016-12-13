@@ -65,17 +65,17 @@ namespace RDFSParserOWL2.Parser
 					base.StartElement(localName, qName, atts);
 				//}
 
-				checkedElementsCount++;
-				if (qName.StartsWith(rdfsNamespace, StringComparison.OrdinalIgnoreCase) || (qName.StartsWith(cimsNamespace, StringComparison.OrdinalIgnoreCase)))
-				{
-					documentIdentifiedLikeRDFS = true;
-				}
-				if ((!documentIdentifiedLikeRDFS) && (checkedElementsCount >= 70))
-				{
-					this.profile = null;
-					//occurredError = new ExtendedParseError(new Exception(documentError));
-					abort = true;
-				}
+                //checkedElementsCount++;
+                //if (qName.StartsWith(rdfsNamespace, StringComparison.OrdinalIgnoreCase) || (qName.StartsWith(cimsNamespace, StringComparison.OrdinalIgnoreCase)))
+                //{
+                //    documentIdentifiedLikeRDFS = true;
+                //}
+                //if ((!documentIdentifiedLikeRDFS) && (checkedElementsCount >= 70))
+                //{
+                //    this.profile = null;
+                //    //occurredError = new ExtendedParseError(new Exception(documentError));
+                //    abort = true;
+                //}
 			}
 		}
 
