@@ -71,7 +71,7 @@ namespace RDFSParserOWL2.Reporter
             sb.AppendLine("Total number per type:");
 			foreach (EntityTypesGeneratorReporter type in Enum.GetValues(typeof(EntityTypesGeneratorReporter)))
 			{
-				switch (type)
+				switch (type)  
 				{
 					case EntityTypesGeneratorReporter.Class:
 						sb.AppendLine(String.Format("\t\t\t-generated classes:{0}", EntityCountByType(type)));                        
@@ -96,5 +96,14 @@ namespace RDFSParserOWL2.Reporter
 			sb.AppendLine("-----------------------------------------");
 			return sb.ToString();
 		}
-	}
+
+
+        public void AddToEntityCountByTypes(List<EntityTypesGeneratorReporter> types, int nubmer)
+        {
+            foreach (EntityTypesGeneratorReporter reptype in types)
+            {
+                AddtoEntityCountByType(reptype, nubmer);
+            }
+        }
+    }
 }

@@ -15,37 +15,32 @@ namespace RDFSParserOWL2.Parser
     public class RDFXMLParser
     {
 
-            private RDFXMLHandler handler;
-        private string path;
-        private Profile profile;
-		private IParserReporter reporter;
+        private RDFXMLHandler handler;
+
+
+        //private IParserReporter reporter;
         bool isCheckingForFileExistenceNeeded;
-		public IParserReporter Reporter
-		{
-			get { return reporter; }
-			set { reporter = value; }
-		}
+        //public IParserReporter Reporter
+        //{
+        //    get { return reporter; }
+        //    set { reporter = value; }
+        //}
 
-        public Profile Profile
+
+        public RDFXMLParser(RDFXMLHandler handl,bool checking)
         {
-            get { return profile; }
-            set { profile = value; }
-        }
-
-
-        public RDFXMLParser(string path,RDFXMLHandler handl,bool checking)
-        {
-            handler = new RDFSRDFXMLHandler();
-            this.path = path;
+            handler = handl;
+            //this.path = path;
             isCheckingForFileExistenceNeeded = checking;
         }
 
-        public void ParseProfile()
+        public Profile ParseProfile(string path)
         {
+            Profile result = null;
              if(isCheckingForFileExistenceNeeded && !InputOutput.CheckIfFileExists(path))
 			{
-				Profile = new Profile(path);
-                return;
+				result = new Profile(path);
+                return  result;
 			}
 
 				using (FileStream fs = new FileStream(path, FileMode.Open))
@@ -55,14 +50,15 @@ namespace RDFSParserOWL2.Parser
 					try
 					{
 						XMLParser.DoParse(handler, fs, path, out succes, out ts);
-						Profile = handler.Profile;
-                        reporter = handler.Reporter;
+                        result = handler.Profile;
+                        
 					}catch(XmlException xe) 
 					{
                         if(isCheckingForFileExistenceNeeded)
-						Profile = new Profile(path);
+						result = new Profile(path);
 					}
-					
+
+                    return result;
 				}
 			}
 

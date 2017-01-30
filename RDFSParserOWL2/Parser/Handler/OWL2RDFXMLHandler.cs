@@ -506,11 +506,12 @@ namespace RDFSParserOWL2.Parser.Handler
 			if (profile != null)
 			{
 				profile.ProfileMap = allByType;
+
 				ProcessEnumerations();
-				/// funkcionalnost za povezivanje kardinaliteta
 				ConvertCardinality();
 				res.Clear();
 				ProcessProfile();
+                profile.AddToReport(Reporter.GenerateReport());
 			}
 		}
 

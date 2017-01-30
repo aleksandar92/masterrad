@@ -191,41 +191,7 @@ namespace RDFSParserOWL2.Parser.Handler
                     {
                         reporter.AddtoEntityCountByType(EntityTypesReporter.BlankId,1);
                     }
-					//if (ExtractSimpleNameFromResourceURI(type) == "ClassCategory")
-					//{
-					//	//ClassCategory cs = new ClassCategory();
-					//	//foreach (KeyValuePair<string, string> pp in prop)
-					//	//{
-					//	//	string str = pp.Value;
-					//	//	if ((pp.Key.Equals(cimsBelongsToCategory)) && (str != null))
-					//	//	{
-					//	//		cs.BelongsToCategory = str;
-					//	//		AddBelongingInformation(cs, cs.BelongsToCategory);
-					//	//	}
-					//	//	else if ((pp.Key.Equals(rdfsComment)) && (str != null))
-					//	//	{
-					//	//		cs.Comment = str;
-					//	//	}
-					//	//	else if ((pp.Key.Equals(rdfsLabel)) && (str != null))
-					//	//	{
-					//	//		cs.Label = str;
-					//	//	}
-					//	//	else if ((pp.Key.Equals(rdfType)) && (str != null))
-					//	//	{
-					//	//		cs.Type = str;
-					//	//	}
-					//	//	else if ((pp.Key.Equals(rdfProfileElement)) && (str != null))
-					//	//	{
-					//	//		cs.URI = str;
-					//	//	}
-					//	//	else if ((pp.Key.Equals(cimsMultiplicity)) && (str != null))
-					//	//	{
-					//	//		cs.MultiplicityAsString = ExtractSimpleNameFromResourceURI(str);
-					//	//	}
-					//	//}
-					//	//AddProfileElement(ProfileElementTypes.ClassCategory, cs);
-					//}
-					//else
+
                     if(IsClassCategory(type)) 
                     {
                         PopulateClassCategory(localName);
@@ -286,30 +252,8 @@ namespace RDFSParserOWL2.Parser.Handler
 				content = string.Empty;
 				commentAndLabelAtts.Clear();
 			}
-			//else if (qName.Equals(cimsIsAggregate)) //// end of isAggregate subelement
-			//{
-			//	content = content.Trim();
-			//	if (!string.IsNullOrEmpty(content))
-			//	{
-			//		bool paresedValue;
-
-			//		//novo
-			//		string ls;
-			//		prop.TryGetValue(qName, out ls);
-			//		if (ls == null)
-			//		{
-			//			if (bool.TryParse((string)content.Clone(), out paresedValue))
-			//			{
-			//				ls = paresedValue.ToString();
-			//			}
-			//			prop.Add(qName, ls);
-			//		}
-			//		content = string.Empty;
-			//	}
-			//}
 			else if (IsStereotype(qName))
 			{
-               // qName.Equals(cimsStereotype)
 				content = content.Trim();
 				if (!string.IsNullOrEmpty(content))
 				{
@@ -375,17 +319,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		{
 			if (pe != null)
 			{
-                //if (uriValue.Contains(StringManipulationManager.SeparatorSharp))
-                //{
 					pe.URI = StringManipulationManager.ExtractAllWithSeparator(uriValue, StringManipulationManager.SeparatorSharp);
-                //    isBlankNode = true;
-                //}
-
-                //else if (StringManipulationManager.IsBlankNode(uriValue))
-                //{
-                //    reporter.AddtoEntityCountByType(EntityTypesReporter.BlankId, 1);
-                //    pe.URI = StringManipulationManager.ExtractAllWithSeparator(uriValue, StringManipulationManager.SeparatorBlankNode);
-                //}
 			}
 		}
 
@@ -407,19 +341,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				elementsOfSameType = new List<ProfileElement>();
 			}
 			allByType.Remove(tp);
-			//allByType.Remove(tp);
-			//HashSet<ProfileElement> hsElementsOfSameType = new HashSet<ProfileElement>(elementsOfSameType);
-			//if (!hsElementsOfSameType.Contains(el, new ProfileElementComparer()))
-			//{
-			//	hsElementsOfSameType.Add(el);
-			//}
 			elementsOfSameType.Add(el);
-			//HashSet<ProfileElement> hsElementsOfSameType = new HashSet<ProfileElement>(elementsOfSameType);
-			//if (!hsElementsOfSameType.Contains(el, new ProfileElementComparer()))
-			//{
-			//	hsElementsOfSameType.Add(el);
-			//}
-			//elementsOfSameType.Add(el);
 			allByType.Add(tp, elementsOfSameType.ToList());
 		}
 
@@ -503,6 +425,7 @@ namespace RDFSParserOWL2.Parser.Handler
 									if (enumElement != null)
 									{
 										element.EnumerationObject = enumElement;
+                                        element.Kind = ProfileElementTypes.EnumerationElement;
 										enumElement.AddToMyEnumerationMembers(element);
 										moveFromUnknownToEnumElement.Add(element);
 										reporter.AddtoEntityCountByType(EntityTypesReporter.EnumMembers, 1);
@@ -602,6 +525,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected virtual void PopulateClassCategory(string localName) 
 		{
 			ClassCategory csCat = new ClassCategory();
+            csCat.Kind = ProfileElementTypes.ClassCategory;
 			PopulateClassCategoryAttributes(csCat,localName);
 			ProccessCommentsAndLabels(csCat);
             AddProfileElement(ProfileElementTypes.ClassCategory, csCat);
@@ -627,23 +551,19 @@ namespace RDFSParserOWL2.Parser.Handler
 
 		protected virtual void PopulateClassCategoryAttribute(ClassCategory csCat, string attrVal, string attr, string localName)
 		{
+
+            
             if ((attr.Equals(rdfType)) && (attrVal != null))
             {
                 csCat.Type = attrVal;
-                   // StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
             }
-
-			//if ((attr.ToLower().Contains(rdfsSubClassOf.ToLower())) && (attrVal != null))
-			//{
-			//	cs.SubClassOf = StringManipulationManager.ExtractAllWithSeparator(attrVal, StringManipulationManager.SeparatorSharp);
-			//}
-
 		}
 
 
 		protected virtual void PopulateClassAttributes(Class cs, string localName)
 		{
             cs.IsBlankNode = isBlankNode;
+            cs.Kind = ProfileElementTypes.Class;
 			foreach (KeyValuePair<string, string> pp in prop)
 			{
 				//string str = pp.Value;
@@ -663,6 +583,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected virtual void PopulateProperty(string localName)
 		{
 			Property pr = new Property();
+            pr.Kind = ProfileElementTypes.Property;
             pr.IsBlankNode = isBlankNode;
 			foreach (KeyValuePair<string, string> pp in prop)
 			{
@@ -691,6 +612,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		protected virtual void PopulateEnumMember(string localName)
 		{
 			EnumMember en = new EnumMember();
+            en.Kind = ProfileElementTypes.Unknown;
             en.IsBlankNode = isBlankNode;
 			foreach (KeyValuePair<string, string> pp in prop)
 			{
@@ -831,6 +753,7 @@ namespace RDFSParserOWL2.Parser.Handler
 		/// </summary>
 		private void ProcessProperty()
 		{
+             
 			ProfileElementTypes type = ProfileElementTypes.Property;
 			if (profile != null && profile.ProfileMap != null && profile.ProfileMap.ContainsKey(type))
 			{
@@ -838,6 +761,7 @@ namespace RDFSParserOWL2.Parser.Handler
 				List<Property> list = profile.ProfileMap[type].Cast<Property>().ToList();
 				foreach (Property element in list)
 				{
+                    
 					if (!element.IsPropertyDataTypeSimple)
 					{
 						element.DataTypeAsComplexObject = profile.FindProfileElementByUri(element.DataType);
@@ -850,15 +774,7 @@ namespace RDFSParserOWL2.Parser.Handler
 					{
 						element.InverseRoleNameAsObject = profile.FindProfileElementByUri(element.InverseRoleName);
 					}
-					//if (!string.IsNullOrEmpty(element.Name) && (Char.IsUpper(element.Name[0]))
-					//    && (!element.HasStereotype(ProfileElementStereotype.StereotypeByReference)))
-					//{
-					//    element.IsExpectedToContainLocalClass = true;
-					//    if (element.RangeAsObject != null)
-					//    {
-					//        element.RangeAsObject.IsExpectedAsLocal = true;
-					//    }
-					//}
+
 				}
 			}
 

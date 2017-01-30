@@ -10,7 +10,7 @@ namespace RDFSParserOWL2.Model.Settings
     /// <summary>
     /// Class that represents parameters for generators
     /// </summary>
-    public class GeneratorSettings
+    public class ConverterSettings
     {
         #region FIELDS
 
@@ -20,7 +20,14 @@ namespace RDFSParserOWL2.Model.Settings
         private string commonOntologyName;
         private string extensionOntologyURI;
 		private string commonOntologyURI;
-		private bool isEnumMembersClosed;
+        private Options option;
+
+        public Options Option
+        {
+            get { return option; }
+            set { option = value; }
+        }
+        private bool isEnumMembersClosed;
 		private string defaultNamespace;
 		private string metaURI;
 
@@ -28,7 +35,7 @@ namespace RDFSParserOWL2.Model.Settings
 
         #region CONSTRUCTORS
 
-        public GeneratorSettings(bool isROnt,bool isSpeOnt,string naOfOnt,string roofOnt,string ext,string roofOntNS,bool isEnumMemInstance,string defaultNS,string mURI) 
+        public ConverterSettings(bool isROnt,bool isSpeOnt,string naOfOnt,string roofOnt,string ext,string roofOntNS,bool isEnumMemInstance,string defaultNS,string mURI, Options opt) 
         {
             isExtensionOntology = isSpeOnt;
             isCommonOntology = isROnt;
@@ -39,10 +46,10 @@ namespace RDFSParserOWL2.Model.Settings
 			isEnumMembersClosed = isEnumMemInstance;
 			defaultNamespace = defaultNS;
 			metaURI = mURI;
-
+            option = opt;
         }
 
-        public GeneratorSettings() 
+        public ConverterSettings() 
         {
             
         }
@@ -132,11 +139,11 @@ namespace RDFSParserOWL2.Model.Settings
 				result = false;
 			}
 
-			//if (!string.IsNullOrEmpty(metaURI) && !StringManipulationManager.IsValidURI(roofOntologyNS)) 
-			//{
-			//	sb.Append("Meta ontology base URI " + roofOntologyNS + "   is not valid");
-			//	result = false;
-			//}
+            if (!string.IsNullOrEmpty(metaURI) && !StringManipulationManager.IsValidRelativeURI(metaURI))
+            {
+                sb.Append("Meta ontology base URI " + MetaURI + "   is not valid");
+                result = false;
+            }
 
 			report = sb.ToString();
 			return result;

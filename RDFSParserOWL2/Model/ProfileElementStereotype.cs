@@ -1,10 +1,12 @@
-﻿using RDFSParserOWL2.Manager;
+﻿using RDFSParserOWL2.Generator.Helper;
+using RDFSParserOWL2.Manager;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace RDFSParserOWL2.Model
 {
@@ -125,5 +127,20 @@ namespace RDFSParserOWL2.Model
 			}
 			return toString;
 		}
+
+        #region RDFXML representation
+
+
+
+        public void WriteProfileElementStereotype(XmlWriter writer)  
+        {
+                    writer.WriteStartElement(MetaNamespace.MetaPrefix, MetaNamespace.Steroetype, null);
+                    writer.WriteValue(Name);
+                    writer.WriteEndElement();
+        }
+
+
+        # endregion
+
 	}
 }

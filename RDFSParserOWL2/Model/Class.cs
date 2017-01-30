@@ -1,8 +1,14 @@
-﻿using System;
+﻿using RDFSParserOWL2.Common;
+using RDFSParserOWL2.Generator.Helper;
+using RDFSParserOWL2.Manager;
+using RDFSParserOWL2.Model.Settings;
+using RDFSParserOWL2.Reporter.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace RDFSParserOWL2.Model
 {
@@ -31,6 +37,9 @@ namespace RDFSParserOWL2.Model
 
 
 		#region Class specifics
+
+ 
+
 		/// <summary>
 		/// Class Specific property.
 		/// <para>Gets and sets the URI string of parent package i.e. parent class category.</para>
@@ -223,6 +232,12 @@ namespace RDFSParserOWL2.Model
 		
 		}
 
+        public override bool ContainsStereotype(string stereotype) 
+        {
+            return HasStereotype(stereotype);
+        }
+
+
 		public List<ProfileElementStereotype> GetUndefinedStereotypes()
 		{
 			List<ProfileElementStereotype> undefinedStereotypes = new List<ProfileElementStereotype>();
@@ -336,16 +351,175 @@ namespace RDFSParserOWL2.Model
 			return null;
 		}
 
-        //public void RemoveClassWithStereotype(string stereotype)
-        //{
-        //    List<Property> properties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
-        //    profileMap[ProfileElementTypes.Property] = properties.Where(x => !x.HasStereotype(stereotype)).Cast<ProfileElement>().ToList();
+        #region Methods for handling equivalence with another element
 
-        //}
+        public override void EquivalenceWithAnotherElement(string uriOfEquivalent)
+        {
+            if (!string.IsNullOrEmpty(uriOfEquivalent) && !IsBlankNode && !HasDifferentStereotype(ConfigurationFiles.StereotypesToSkip))
+            {
+                UriOfEquivalentElement = String.Format("{0}{1}",uriOfEquivalent, uri);
+            }
+        }
+
+
+        public override bool EquvialenceWithAnotherElementWithStereotype(string baseUriOfElement, string stereotype)
+        {
+            bool result = false;
+
+            if (!IsBlankNode  && HasStereotype(stereotype))
+            {
+                UriOfEquivalentElement = String.Format("{0}{1}{2}", baseUriOfElement, stereotype, uri);
+                result = true;
+            }
+
+            return result;
+        }
+
+
+        #endregion
 
 
 		
 
 		#endregion Class specifics
+
+        #region RDFXML representation
+
+        protected override bool IsNotToBeWritten() 
+        {
+            return IsNotToBeGenerated;
+        }
+
+
+        protected override void WriteSpecificElementsToRDFXML(XmlWriter writer, string baseAddress, EnumRepresentationKindOWL2 enumOpt)
+        {
+            WriteBelongsToCategoryToRDFXML(writer,baseAddress);
+            WriteSubclassToRDFXML(writer, baseAddress);
+            WriteStereotypesToRDFXML(stereotypes,writer);
+            WriteEnumerationToRDFXML(writer, baseAddress,enumOpt);
+            WriteRestrictionsToRDFXML(writer,baseAddress);
+
+        }
+
+        private void WriteBelongsToCategoryToRDFXML(XmlWriter writer, string baseAddress)
+        {
+            if (!string.IsNullOrEmpty(BelongsToCategory) && belongsToCategoryAsObject != null)
+            {
+                ClassCategory cat = BelongsToCategoryAsObject as ClassCategory;
+                if (cat != null)
+                {
+                    string baseURI;
+                    writer.WriteStartElement(MetaNamespace.MetaPrefix, MetaNamespace.Belongs, null);
+                    if (!cat.IsBasePackage)
+                    {
+                        baseURI = baseAddress + BelongsToCategory;
+                    }
+                    else
+                    {
+                        baseURI = cat.URI;
+                    }
+                    WriteURIToRDFXMLWithFullURI(baseURI, OWL2Namespace.rdfResource, writer);
+                    writer.WriteEndElement();
+                }
+            }
+        }
+
+
+        private void WriteRestrictionsToRDFXML(XmlWriter writer, string baseAddress) 
+        {
+            if (MyProperties != null)
+            {
+                foreach (ProfileElement pe in MyProperties)
+                {
+                    Property prop = pe as Property;
+                    if (prop != null)
+                        prop.WriteRestrictionToRDFXML(writer, baseAddress);
+                }
+            }
+        }
+
+        private void WriteSubclassToRDFXML(XmlWriter writer, string baseAddress) 
+        {
+            if (!string.IsNullOrEmpty(subClassOf) && SubClassOfAsObject != null)
+            {
+                writer.WriteStartElement(OWL2Namespace.rdfsPrefix, OWL2Namespace.rdfsSubclasOf, null);
+                WriteURIToRDFXML(SubClassOf, baseAddress, IsBlankNode, OWL2Namespace.rdfResource, OWL2Namespace.rdfResource, writer);
+                writer.WriteEndElement();
+            }
+        }
+
+        private void WriteEnumerationToRDFXML(XmlWriter writer, string baseAddress, EnumRepresentationKindOWL2 enumOpt) 
+        {
+            if ( IsEnumeration && writer != null && enumOpt==EnumRepresentationKindOWL2.CLOSED)
+            {
+                writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.EqClass, null);
+                writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.Class, null);
+                writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.OneOf, null);
+                writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.ParseType, null, OWL2Namespace.Collection);
+                WriteEnumMembersToRDFXML(writer,baseAddress,MyEnumerationMembers);
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+            }
+        }
+
+        private void WriteEnumMembersToRDFXML(XmlWriter writer,string baseAdress,List<ProfileElement> enumMembers) 
+        {
+            if (enumMembers != null )
+            {
+                foreach (ProfileElement em in enumMembers)
+                {
+                    WriteDescriptionToRDFXML(writer,em.IsBlankNode, baseAdress, em.URI);
+                }
+            }
+        }
+
+        protected override void WriteEquivalenceToRDFXML(XmlWriter writer, string baseAdress) 
+        {
+            WriteEquivalentClassToRDFXML(writer,baseAdress);
+
+        }
+
+        private void WriteEquivalentClassToRDFXML(XmlWriter writer, string baseAdress) 
+        {
+            if (!string.IsNullOrEmpty(UriOfEquivalentElement))
+            {
+                writer.WriteStartElement(OWL2Namespace.rdfPrefix, OWL2Namespace.Description, null);
+                WriteURIToRDFXML(StringManipulationManager.ExtractAllWithSeparator(URI, StringManipulationManager.SeparatorSharp), baseAdress, IsBlankNode, OWL2Namespace.rdfAbout, OWL2Namespace.NodeId, writer);
+                writer.WriteStartElement(OWL2Namespace.owlPrefix, OWL2Namespace.EqClass, null);
+                writer.WriteAttributeString(OWL2Namespace.rdfPrefix, OWL2Namespace.rdfResource, null, UriOfEquivalentElement);
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+            }
+        }
+
+        public override List<EntityTypesGeneratorReporter> StatusForOWL2() 
+        {
+            List<EntityTypesGeneratorReporter> reportStatus = new List<EntityTypesGeneratorReporter>();
+            if (IsBlankNode) 
+            {
+                reportStatus.Add(EntityTypesGeneratorReporter.BlankId);
+            }
+
+            if (IsNotToBeWritten())
+            {
+                reportStatus.Add(EntityTypesGeneratorReporter.NotGenerated);
+            }
+            else 
+            {
+                reportStatus.Add(EntityTypesGeneratorReporter.Class);
+            }
+
+            return reportStatus;
+        }
+
+        protected override string OWLRDFXMLType()
+        {
+            return OWL2Namespace.Class;
+        }
+
+
+        # endregion
+
 	}
 }

@@ -4,6 +4,7 @@ using RDFSParserOWL2.Converter;
 using RDFSParserOWL2.Generator;
 using RDFSParserOWL2.Generator.Helper;
 using RDFSParserOWL2.Model;
+using RDFSParserOWL2.Model.Extensions;
 using RDFSParserOWL2.Model.Settings;
 using RDFSParserOWL2.Parser;
 using RDFSParserOWL2.Parser.Handler;
@@ -71,38 +72,27 @@ namespace RDFSParserOWL2
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
-
-			Stopwatch sw = new Stopwatch();
-			sw.Start();
-			string report;
-			
-			GeneratorSettings ge = new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim(),txtMetaURI.Text.Trim());
-			if (ge.CheckValidity(out report))
-			{
-				ConvertFiles(filesForParsing, ge);
-			}
-			else 
-			{
-				sw.Stop();
-				MessageBox.Show(report);
-				return;
-			}
-			
-			sw.Stop();
-            string message = String.Format("Converting from RDFS to OWL2 format has been successfully executed.Executing time is:{0} ", sw.Elapsed);
-			MessageBox.Show(message);
+            ConvertProcedure(filesForParsing.ToList());
 		}
 
 
-		private void ConvertFiles(ObservableCollection<string> fileNames, GeneratorSettings ge)
+		private void ConvertFiles(List<string> fileNames, ConverterSettings ge)
 		{
 
-			//bool result = true;
 			if (fileNames != null && fileNames.Count > 0)
 			{
-					ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(fileNames.ToList(), ge);
-					converter.Convert();
-			}
+
+                ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(new OWL2DocumentGenerator());
+                REGIMESOFWORK regime = EnumsHelperMethods.ToRegimesOfWork(ge.IsExtensionOntology,ge.IsCommonOntology);
+                if (regime == REGIMESOFWORK.BASE)
+                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook);
+                else if (regime == REGIMESOFWORK.COMMON)
+                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook,ge.CommonOntologyURI+ge.CommonOntologyName);
+                else if(regime==REGIMESOFWORK.EXTENSION)
+                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook,ge.ExtensionOntologyURI,ge.ExtensionOntologyName);
+			    else if(regime==REGIMESOFWORK.COMMONEXTENSION)
+                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook, ge.ExtensionOntologyURI, ge.ExtensionOntologyName, ge.CommonOntologyURI + ge.CommonOntologyName);
+            }
 
 
 		}
@@ -129,35 +119,26 @@ namespace RDFSParserOWL2
 			{
 				txtRoofOntology.IsEnabled = true;
 				txtRoofOntNS.IsEnabled = true;
-				//	txtExtOnt.IsEnabled = true;
-
 			}
 			else
 			{
 				txtRoofOntology.IsEnabled = false;
 				txtRoofOntNS.IsEnabled = false;
-				//txtExtOnt.IsEnabled = false;
 			}
 		}
 
 
 		private void Button_Click_2(object sender, RoutedEventArgs e)
 		{
-			//ObservableCollection<string> itemsToRemove = new ObservableCollection<string>();
 
-			ObservableCollection<string> listSelected = SelectedItemsToList();
+
+			ObservableCollection<string> listSelected = SelectedItemsToObservableCollection();
 
 			foreach (string s in listSelected)
 			{
 				filesForParsing.Remove(s.Trim());
 			}
 
-			//filesForParsing = new ObservableCollection<string>((filesForParsing.ToList().Except(listSelected)));
-			//filesForParsing.ToList();
-
-
-			//filesForParsing =(ObservableCollection<string>) filesForParsing.Except(itemsToRemove);
-			//filesForParsing.Except(); 
 		}
 
 		private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -167,36 +148,74 @@ namespace RDFSParserOWL2
 
 		private void Button_Click_4(object sender, RoutedEventArgs e)
 		{
-			Stopwatch sw = new Stopwatch();
-			sw.Start();
-			string report;
-			GeneratorSettings ge = new GeneratorSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim(),txtMetaURI.Text.Trim());
-			if (ge.CheckValidity(out report))
-			{
-				ConvertFiles(SelectedItemsToList(), ge);
-			}
-			else 
-			{
-				sw.Stop();
-				MessageBox.Show(report);
-				return;
-			}
+            ConvertProcedure(SelectedItemsToList());
+            //Stopwatch sw = new Stopwatch();
+            //sw.Start();
+            //string report;
+            //Options options = new Options(EnumsHelperMethods.ToEnumOptions((bool)rbEnumOpened.IsChecked));
+            //ConverterSettings ge = new ConverterSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim(), txtMetaURI.Text.Trim(), options);
+            //if (ge.CheckValidity(out report))
+            //{
+            //    ConvertFiles(SelectedItemsToList(), ge);
+            //}
+            //else 
+            //{
+            //    sw.Stop();
+            //    MessageBox.Show(report);
+            //    return;
+            //}
 			
-			sw.Stop();
-			string message = String.Format("Converting from RDFS to OWL2 format has been successfully executed.Executing time is:{0} ", sw.Elapsed);
-			MessageBox.Show(message);
+            //sw.Stop();
+            //string message = String.Format("Converting from RDFS to OWL2 format has been successfully executed.Executing time is:{0} ", sw.Elapsed);
+            //MessageBox.Show(message);
 		}
 
-		private ObservableCollection<string> SelectedItemsToList()
+        private void ConvertProcedure(List<string> filesForConverting) 
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            string report;
+            Options options = new Options(EnumsHelperMethods.ToEnumOptions((bool)rbEnumOpened.IsChecked));
+            ConverterSettings ge = new ConverterSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim(), txtMetaURI.Text.Trim(), options);
+            if (ge.CheckValidity(out report))
+            {
+                ConvertFiles(filesForConverting, ge);
+            }
+            else
+            {
+                sw.Stop();
+                MessageBox.Show(report);
+                return;
+            }
+
+            sw.Stop();
+            string message = String.Format("Converting from RDFS to OWL2 format has been successfully executed.Executing time is:{0} ", sw.Elapsed);
+            MessageBox.Show(message);
+        }
+
+		private List<string> SelectedItemsToList()
 		{
-			ObservableCollection<string> result = new ObservableCollection<string>();
-			foreach (string s in lbFilesParsing.SelectedItems)
+			//ObservableCollection<string> result = new ObservableCollection<string>();
+            List<string> result = new List<string>();
+            foreach (string s in lbFilesParsing.SelectedItems)
 			{
 				result.Add(s);
 			}
 
 			return result;
 		}
+
+        private ObservableCollection<string> SelectedItemsToObservableCollection()
+        {
+            //ObservableCollection<string> result = new ObservableCollection<string>();
+            ObservableCollection<string> result = new ObservableCollection<string>();
+            foreach (string s in lbFilesParsing.SelectedItems)
+            {
+                result.Add(s);
+            }
+
+            return result;
+        }
 
 
 		private void Init()

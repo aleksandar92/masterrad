@@ -53,6 +53,17 @@ namespace RDFSParserOWL2.Model
 			value = sb.ToString();
 		}
 
+        public void ProcessNamespace(string baseUri)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(baseUri);
+            if (isToBeRelative == true)
+            {
+                sb.Append("#");
+            }
+            value = sb.ToString();
+        }
+
 		//public  Namespace(string def, string localName) 
 		//{
 		//	this.prefix = localName;

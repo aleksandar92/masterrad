@@ -1,8 +1,10 @@
-﻿using System;
+﻿using RDFSParserOWL2.Generator.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace RDFSParserOWL2.Model
 {
@@ -44,7 +46,33 @@ namespace RDFSParserOWL2.Model
 		{
 			get { return attributes; }
 			set { attributes = value; }
-		}
+        }
 
-	}
+        #region RDFXML representation
+
+        /// <summary>
+        /// Write  text element  in RDFXML
+        /// </summary>
+        /// <param name="writer"></param>
+        public void WriteTextElementToRDFXML(XmlWriter writer, string prefix)
+        {
+                writer.WriteStartElement(OWL2Namespace.rdfsPrefix,prefix, null);
+                WriteAttsToRDFXML(Attributes, writer);
+                writer.WriteValue(Value);
+                writer.WriteEndElement();
+        }
+
+
+
+        private void WriteAttsToRDFXML(Dictionary<string, string> atts, XmlWriter writer)
+        {
+            if (atts != null && atts.ContainsKey(OWL2Namespace.xmlLang))
+            {
+                writer.WriteAttributeString(OWL2Namespace.xmlPrefix, OWL2Namespace.Lang, null, atts[OWL2Namespace.xmlLang]);
+            }
+        }
+
+
+        #endregion
+    }
 }

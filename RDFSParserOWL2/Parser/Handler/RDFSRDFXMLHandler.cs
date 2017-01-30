@@ -248,6 +248,7 @@ namespace RDFSParserOWL2.Parser
 			{
 				profile.ProfileMap = allByType;
 				ProcessProfile();
+                profile.AddToReport(Reporter.GenerateReport());
 			}
 		}
 

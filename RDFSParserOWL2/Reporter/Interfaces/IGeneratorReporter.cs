@@ -23,7 +23,8 @@ namespace RDFSParserOWL2.Reporter.Interfaces
 		int EntityCount { get; }
 		int EntityCountByType(EntityTypesGeneratorReporter type);
 		void AddtoEntityCountByType(EntityTypesGeneratorReporter type, int number);
-		void RemoveFromEntityCountByType(EntityTypesGeneratorReporter type, int number);
+        void AddToEntityCountByTypes(List<EntityTypesGeneratorReporter> type,int nubmer);
+		void RemoveFromEntityCountByType(EntityTypesGeneratorReporter types, int number);
 
 	}
 }

@@ -54,9 +54,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\ConfigurationFiles.cs" />
     <Compile Include="Common\ParsingHelper.cs" />
     <Compile Include="Generator\Helper\MetaNamespace.cs" />
+    <Compile Include="Generator\Interfaces\IDocumentGenerator.cs" />
+    <Compile Include="Generator\OWL2DocumentGenerator.cs" />
     <Compile Include="Model\ClassCategory.cs" />
+    <Compile Include="Model\Extensions\EnumsHelperMethods.cs" />
+    <Compile Include="Model\Profiles.cs" />
+    <Compile Include="Model\Settings\Options.cs" />
+    <Compile Include="Model\Storage\NamespaceStorage.cs" />
     <Compile Include="Parser\RDFXMLParser.cs" />
     <Compile Include="Reporter\Interfaces\IGeneratorReporter.cs" />
     <Compile Include="Reporter\Interfaces\IParserReporter.cs" />
@@ -80,7 +87,6 @@
     <Compile Include="Common\InputOutput.cs" />
     <Compile Include="Converter\ConverterRDFSToOWL2.cs" />
     <Compile Include="Generator\Helper\OWL2Namespace.cs" />
-    <Compile Include="Generator\OWL2Generator.cs" />
     <Compile Include="Manager\StringManipulationManager.cs" />
     <Compile Include="Model\Class.cs" />
     <Compile Include="Model\TextElement.cs" />
@@ -90,7 +96,7 @@
     <Compile Include="Model\ProfileElement.cs" />
     <Compile Include="Model\ProfileElementStereotype.cs" />
     <Compile Include="Model\Property.cs" />
-    <Compile Include="Model\Settings\GeneratorSettings.cs" />
+    <Compile Include="Model\Settings\ConverterSettings.cs" />
     <Compile Include="Parser\Handler\IHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -98,7 +104,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ParserToOWL2.cs" />
     <Compile Include="Parser\Handler\OWL2RDFXMLHandler.cs" />
     <Compile Include="Parser\Handler\RDFSRDFXMLHandler.cs" />
     <Compile Include="Parser\Handler\RDFXMLHandler.cs" />
