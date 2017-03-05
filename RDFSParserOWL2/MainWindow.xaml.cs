@@ -85,13 +85,13 @@ namespace RDFSParserOWL2
                 ConverterRDFSToOWL2 converter = new ConverterRDFSToOWL2(new OWL2DocumentGenerator());
                 REGIMESOFWORK regime = EnumsHelperMethods.ToRegimesOfWork(ge.IsExtensionOntology,ge.IsCommonOntology);
                 if (regime == REGIMESOFWORK.BASE)
-                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook);
+                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook, ge.Option.CimDatatypePresentation);
                 else if (regime == REGIMESOFWORK.COMMON)
-                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook,ge.CommonOntologyURI+ge.CommonOntologyName);
+                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook,ge.CommonOntologyURI+ge.CommonOntologyName,ge.Option.CimDatatypePresentation);
                 else if(regime==REGIMESOFWORK.EXTENSION)
-                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook,ge.ExtensionOntologyURI,ge.ExtensionOntologyName);
+                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook,ge.ExtensionOntologyURI,ge.ExtensionOntologyName,ge.Option.CimDatatypePresentation);
 			    else if(regime==REGIMESOFWORK.COMMONEXTENSION)
-                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook, ge.ExtensionOntologyURI, ge.ExtensionOntologyName, ge.CommonOntologyURI + ge.CommonOntologyName);
+                    converter.Convert(fileNames, ge.DefaultNamespace, ge.MetaURI, ge.Option.EnumLook, ge.ExtensionOntologyURI, ge.ExtensionOntologyName, ge.CommonOntologyURI + ge.CommonOntologyName,ge.Option.CimDatatypePresentation);
             }
 
 
@@ -175,7 +175,7 @@ namespace RDFSParserOWL2
             Stopwatch sw = new Stopwatch();
             sw.Start();
             string report;
-            Options options = new Options(EnumsHelperMethods.ToEnumOptions((bool)rbEnumOpened.IsChecked));
+            Options options = new Options(EnumsHelperMethods.ToEnumOptions((bool)rbEnumOpened.IsChecked),EnumsHelperMethods.ToCimDatatypePresentation((bool)rbSimpleType.IsChecked));
             ConverterSettings ge = new ConverterSettings((bool)cbRoofOntology.IsChecked, (bool)cbOntology.IsChecked, txtOntology.Text.Trim(), txtRoofOntology.Text.Trim(), txtExtOnt.Text.Trim(), txtRoofOntNS.Text.Trim(), (bool)rbEnumOpened.IsChecked, txtNS.Text.Trim(), txtMetaURI.Text.Trim(), options);
             if (ge.CheckValidity(out report))
             {
@@ -239,5 +239,7 @@ namespace RDFSParserOWL2
 			Namespace n = predefinedNamespace.Where(x => !string.IsNullOrEmpty(x.Prefix) && x.Prefix.Equals(pfx)).SingleOrDefault();
 			return n != null ? n.Value : "";
 		}
+
+
 	}
 }

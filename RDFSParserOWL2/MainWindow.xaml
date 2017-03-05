@@ -141,8 +141,25 @@
                         <ColumnDefinition Width="Auto"/>
 
                     </Grid.ColumnDefinitions>
-                    <RadioButton Grid.Row="0" Grid.Column="0" GroupName="enums" Name="rbEnumClosed" Content="Enumerations as closed"  HorizontalAlignment="Left"  VerticalAlignment="Top" IsChecked="True" Margin="20,5,30,0"/>
-                    <RadioButton Grid.Row="1" Grid.Column="0" GroupName="enums" Name="rbEnumOpened" Content="Enumerations as opened"  HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="20,5,30,0"/>
+                    <RadioButton Grid.Row="0" Grid.Column="0" GroupName="enums" Name="rbEnumClosed" Content="Closed"  HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="20,5,30,0"/>
+                    <RadioButton Grid.Row="1" Grid.Column="0" GroupName="enums" Name="rbEnumOpened" Content="Opened"  HorizontalAlignment="Left"  VerticalAlignment="Top" IsChecked="True" Margin="20,5,30,0" />
+                </Grid>
+
+
+            </GroupBox>
+
+            <GroupBox Height="63" Width="Auto"  Header="CIMDatatype settings" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Top" Margin="248,10,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Grid.Row="0" Grid.Column="0" GroupName="types" Name="rbSimpleType" Content="Simple type"  HorizontalAlignment="Left"  VerticalAlignment="Top" IsChecked="True" Margin="20,5,30,0" />
+                    <RadioButton Grid.Row="1" Grid.Column="0" GroupName="types" Name="rbComplexType" Content="Complex type"  HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="20,5,30,0" />
                 </Grid>
 
 

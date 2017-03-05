@@ -29,41 +29,43 @@ namespace RDFSParserOWL2.Converter
             generator = docGenerator;
         }
 
-        public void Convert(List<string> paths, string baseAdressOfResultingDocument, string baseAdressOfMetaOntology, EnumRepresentationKindOWL2 enumRepresentationInResultingDocument)
+        public void Convert(List<string> paths, string baseAdressOfResultingDocument, string baseAdressOfMetaOntology, EnumRepresentationKindOWL2 enumRepresentationInResultingDocument,CIMDatatypePresentation cimDatatypePresentation)
         {
             Profiles profiles = new Profiles(ParseDocuments(paths));
-            profiles.ProcessElementsInProfiles(baseAdressOfMetaOntology);
+            profiles.ProcessElementsInProfiles(baseAdressOfMetaOntology,cimDatatypePresentation);
             profiles.ProcessProfilesInformationAfterParsing(baseAdressOfResultingDocument, new List<string>(), enumRepresentationInResultingDocument);
             profiles.WriteProfilesToFile(generator);
         }
 
-        public void Convert(List<string> paths, string baseAdressOfResultingDocument, string baseAdressOfMetaOntology, EnumRepresentationKindOWL2 enumRepresentationInResultingDocument, string commonOntologyBaseAddress)
+        public void Convert(List<string> paths, string baseAdressOfResultingDocument, string baseAdressOfMetaOntology, EnumRepresentationKindOWL2 enumRepresentationInResultingDocument, string commonOntologyBaseAddress, CIMDatatypePresentation cimDatatypePresentation)
         {
             Profiles profiles = new Profiles(ParseDocuments(paths));
-            profiles.ProcessElementsInProfiles(baseAdressOfMetaOntology);
+            profiles.ProcessElementsInProfiles(baseAdressOfMetaOntology,cimDatatypePresentation);
             profiles.ProcessProfilesInformationAfterParsing(baseAdressOfResultingDocument, ProcessImportNamespaces(commonOntologyBaseAddress), enumRepresentationInResultingDocument);
             profiles.ProcessEquivalencesForProfileElementsInCommonOntology(commonOntologyBaseAddress);
             profiles.WriteProfilesToFile(generator);
         }
 
 
-        public void Convert(List<string> paths, string baseAdressOfResultingDocument, string baseAdressOfMetaOntology, EnumRepresentationKindOWL2 enumRepresentationInResultingDocument, string baseAdressOfExtensionOntology, string stereotype, string commonOntologyBaseAdress)
+        public void Convert(List<string> paths, string baseAdressOfResultingDocument, string baseAdressOfMetaOntology, EnumRepresentationKindOWL2 enumRepresentationInResultingDocument, string baseAdressOfExtensionOntology, string stereotype, string commonOntologyBaseAdress,CIMDatatypePresentation cimDatatypePresentation)
         {
             Profiles profiles = new Profiles(ParseDocuments(paths));
-            profiles.ProcessElementsInProfiles(baseAdressOfMetaOntology);
+            profiles.ProcessElementsInProfiles(baseAdressOfMetaOntology,cimDatatypePresentation);
             profiles.ProcessProfilesInformationAfterParsing(baseAdressOfResultingDocument, ProcessImportNamespaces(baseAdressOfExtensionOntology + stereotype, commonOntologyBaseAdress), enumRepresentationInResultingDocument);
             profiles.ProcessEquivalencesForProfileElementsForCommonAndExtension(baseAdressOfExtensionOntology, stereotype, commonOntologyBaseAdress);
+            profiles.AddNamespaceToProfiles(new Namespace(baseAdressOfExtensionOntology + stereotype,false,false,false,"xmlns","ext",false));
             profiles.WriteProfilesToFile(generator);
             Profile extensionOntologyProfile = profiles.ProcessExtensionOntology(baseAdressOfExtensionOntology, stereotype, enumRepresentationInResultingDocument, baseAdressOfMetaOntology);
             generator.GenerateDocument(extensionOntologyProfile);
         }
 
 
-        public void Convert(List<string> paths, string baseAdressOfResultingDocument, string baseAdressOfMetaOntology, EnumRepresentationKindOWL2 enumRepresentationInResultingDocument, string baseAdressOfExtensionOntology, string stereotype)
+        public void Convert(List<string> paths, string baseAdressOfResultingDocument, string baseAdressOfMetaOntology, EnumRepresentationKindOWL2 enumRepresentationInResultingDocument, string baseAdressOfExtensionOntology, string stereotype, CIMDatatypePresentation cimDatatypePresentation)
         {
             Profiles profiles = new Profiles(ParseDocuments(paths));
-            profiles.ProcessElementsInProfiles(baseAdressOfMetaOntology);
+            profiles.ProcessElementsInProfiles(baseAdressOfMetaOntology,cimDatatypePresentation);
             profiles.ProcessProfilesInformationAfterParsing(baseAdressOfResultingDocument, ProcessImportNamespaces(baseAdressOfExtensionOntology + stereotype), enumRepresentationInResultingDocument);
+            profiles.AddNamespaceToProfiles(new Namespace(baseAdressOfExtensionOntology + stereotype, false, false, false, "xmlns", "ext", false));
             profiles.ProcessEquivalencesForProfileElementsInExtensionOntology(baseAdressOfExtensionOntology, stereotype);
             profiles.WriteProfilesToFile(generator);
             Profile extensionOntologyProfile = profiles.ProcessExtensionOntology(baseAdressOfExtensionOntology, stereotype, enumRepresentationInResultingDocument, baseAdressOfMetaOntology);

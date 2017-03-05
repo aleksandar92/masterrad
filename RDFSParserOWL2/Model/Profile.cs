@@ -1106,6 +1106,70 @@ namespace RDFSParserOWL2.Model
             return element;
         }
 
+
+
+        public void ProcessElementsWithCIMDatatypeStereotype(CIMDatatypePresentation presentation) 
+        {
+            if (presentation == CIMDatatypePresentation.SIMPLE) 
+            {
+                List<Class> classes = GetAllProfileElementsOfType(ProfileElementTypes.Class).Cast<Class>().ToList();
+                foreach (Class cls in classes)
+                {
+                    if (cls.ContainsStereotype("CIMDatatype"))
+                    {
+                        cls.IsNotToBeGenerated = true;
+                        if (cls.MyProperties != null)
+                        {
+                            foreach (ProfileElement profileElement in cls.MyProperties)
+                            {
+
+                                profileElement.IsNotToBeGenerated = true;
+                            }
+                        }
+
+                        if (cls.MyEnumerationMembers != null)
+                        {
+                            foreach (ProfileElement profileElement in cls.MyEnumerationMembers)
+                            {
+                                profileElement.IsNotToBeGenerated = true;
+                            }
+                        }
+
+                    }
+                }
+
+                    List<Property> properties = GetAllProfileElementsOfType(ProfileElementTypes.Property).Cast<Property>().ToList();
+                    if (properties != null) 
+                    {
+                        foreach (Property property in properties) 
+                        {
+                            //if (!property.IsObjectProperty()) 
+                            //{
+                                if (property.DataTypeAsComplexObject != null) 
+                                {
+                                    Class cl = property.DataTypeAsComplexObject as Class;
+                                    if (cl != null && cl.MyProperties!=null && cl.ContainsStereotype("CIMDatatype")) 
+                                    {
+                                        ProfileElement pe = cl.MyProperties.Where(x => x.Name.StartsWith("value")).SingleOrDefault() ;
+                                        Property datatypeValueProperty = pe as Property;
+                                        if (datatypeValueProperty != null) 
+                                        {
+                                            property.DataType = datatypeValueProperty.DataType;
+                                            property.DataTypeAsComplexObject = null; 
+                                        }
+                                    }
+                                }
+                           // }
+                        }
+                    
+                    }
+                    // 
+                
+            }
+            //foreach () {}
+        }
+
+
         /*
         public string FullPrintingString()
         {
@@ -1379,6 +1443,8 @@ namespace RDFSParserOWL2.Model
             BaseNS = baseAddressOfDocument + filename;
             ImportNamespaces = importNamespaces;
         }
+
+       
 
         private void SortElementsInMap()
         {

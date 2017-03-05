@@ -46,7 +46,7 @@ namespace RDFSParserOWL2.Model.Storage
                 }
                 else 
                 {
-                    namespaces.Add(namesp);
+                    namespaces.Add(ns);
                 }
             }
         }

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://www.semanticweb.extension/Entsoe#" xml:base="http://www.semanticweb.extension/Entsoe" xmlns:gl="http://www.semanticweb.extension/Entsoe#" xmlns:meta="http://www.semanticweb.org/metanamespace#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+<rdf:RDF xmlns="http://www.semanticweb.extension/Entsoe#" xml:base="http://www.semanticweb.extension/Entsoe" xmlns:gl="http://www.semanticweb.extension/Entsoe#" xmlns:meta="http://www.semanticweb.org/meta#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://www.semanticweb.extension/Entsoe" />
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.extension/Entsoe#OperationalLimitType.limitType">
         <meta:stereotype>http://iec.ch/TC57/NonStandard/UML#attribute</meta:stereotype>

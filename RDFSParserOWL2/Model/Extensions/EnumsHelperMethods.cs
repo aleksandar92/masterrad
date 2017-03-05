@@ -26,18 +26,21 @@ namespace RDFSParserOWL2.Model.Extensions
             }
         }
 
-        //public static EntityTypesGeneratorReporter ToEntityTypesGenerator(ProfileElementTypes type)
-        //{
-        //    switch (type)
-        //    {
-        //        case ProfileElementTypes.Class:
-        //            return EntityTypesGeneratorReporter.Class;
-        //        case true:
-        //            return EnumRepresentationKind.OPENED;
-        //        default:
-        //            return EnumRepresentationKind.CLOSED;
-        //    }
-        //}
+        public static CIMDatatypePresentation ToCimDatatypePresentation(Boolean options)
+        {
+            switch (options)
+            {
+                case false:
+                    return CIMDatatypePresentation.COMPLEX;
+                case true:
+                    return CIMDatatypePresentation.SIMPLE;
+                default:
+                    return CIMDatatypePresentation.SIMPLE;
+            }
+        }
+
+
+
 
         public static REGIMESOFWORK ToRegimesOfWork(Boolean extension, Boolean common)
         {

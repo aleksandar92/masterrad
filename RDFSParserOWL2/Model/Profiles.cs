@@ -34,7 +34,7 @@ namespace RDFSParserOWL2.Model
 
 
 
-        public void ProcessElementsInProfiles(string metaBaseAddress)
+        public void ProcessElementsInProfiles(string metaBaseAddress, CIMDatatypePresentation representation)
         {
             Profile metaProfile = ParseMetaDocument();
             foreach (Profile profile in profileCollection)
@@ -46,9 +46,20 @@ namespace RDFSParserOWL2.Model
                 {
                     profile.MarkBasePackages(metaProfile, metaBaseAddress);
                 }
+                profile.ProcessElementsWithCIMDatatypeStereotype(representation);
+
             }
         }
 
+        public void AddNamespaceToProfiles(Namespace ns) 
+        {
+            foreach (Profile p in profileCollection) 
+            {
+                p.AddNamespace(ns);
+            }        
+        }
+
+        
         public void ProcessProfilesInformationAfterParsing(string baseAddressOfDocument, List<string> importNamespaces,EnumRepresentationKindOWL2 enumRepresentation) 
         {
             foreach (Profile profile in profileCollection)
